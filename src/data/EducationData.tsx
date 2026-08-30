@@ -49,7 +49,7 @@ export const educationData: educationDataProps[] = [
 
   {
     icon: <GraduationCap className="text-primary mt-0 h-6 w-6 shrink-0 md:h-8 md:w-8" />,
-    id: 2,
+    id: 3,
     degree: "Class 10th",
     institutionName: "Gurukul Vidyapeeth",
     location: 'Hajipur, Bihar, India',

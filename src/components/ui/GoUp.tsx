@@ -54,8 +54,7 @@ export default function GoUp() {
         "bg-white dark:bg-black text-neutral-700 dark:text-neutral-300",
         "border border-neutral-200 dark:border-neutral-800",
         "shadow-md backdrop-blur-md transition-all duration-200 ease-out",
-        "hover:border-[#f34213] dark:hover:border-[#FF8800]",
-        "hover:text-[#f34213] dark:hover:text-[#FF8800]",
+        "hover-border-brand-accent hover-text-brand-accent",
         "hover:-translate-y-1 active:translate-y-0"
       )}
     >

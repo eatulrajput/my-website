@@ -49,23 +49,27 @@ const FeatureFlagsPanel = ({ isOpen, onClose }: Props) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
-          onClick={onClose}
-        >
+        <div className="fixed inset-0 z-[100] flex justify-end">
+          {/* Backdrop */}
           <motion.div
-            initial={{ scale: 0.95, y: 20, opacity: 0 }}
-            animate={{ scale: 1, y: 0, opacity: 1 }}
-            exit={{ scale: 0.95, y: 20, opacity: 0 }}
-            transition={{ type: "spring", duration: 0.4, bounce: 0.1 }}
-            className="w-full max-w-md bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-3xl p-6 shadow-2xl relative overflow-hidden backdrop-blur-xl max-h-[90vh] overflow-y-auto hide-scrollbar"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs"
+            onClick={onClose}
+          />
+
+          {/* Right Slide-Over Sidebar Drawer */}
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", stiffness: 350, damping: 30 }}
+            className="w-full max-w-sm sm:max-w-md h-screen max-h-screen bg-white dark:bg-black border-l border-neutral-200 dark:border-neutral-800 shadow-2xl flex flex-col z-[101] relative overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
-            <div className="flex items-center justify-between mb-6 relative z-10">
+            {/* Sticky Header */}
+            <div className="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-neutral-800 shrink-0 bg-white/80 dark:bg-black/80 backdrop-blur-md">
               <h2 className="text-lg font-bold tracking-tight text-black dark:text-white flex items-center gap-2.5 font-sans">
                 <div className="p-2 rounded-xl bg-neutral-100 dark:bg-neutral-900 text-brand-accent">
                   <IconSettings className="size-4.5 animate-[spin_8s_linear_infinite]" />
@@ -82,7 +86,11 @@ const FeatureFlagsPanel = ({ isOpen, onClose }: Props) => {
               </button>
             </div>
 
-            <div className="flex flex-col gap-5 relative z-10">
+            {/* Scrollable Content Body (Lenis Bypassed) */}
+            <div
+              data-lenis-prevent
+              className="p-6 flex flex-col gap-6 overflow-y-auto min-h-0 flex-1 hide-scrollbar"
+            >
               {/* Feature Cards Grid */}
               <div className="flex flex-col gap-2.5">
                 {flagItems.map((item) => {
@@ -130,7 +138,7 @@ const FeatureFlagsPanel = ({ isOpen, onClose }: Props) => {
               {/* 3-Color Theme Palette Selector */}
               <div className="flex flex-col gap-3 pt-4 border-t border-neutral-200 dark:border-neutral-800">
                 <div className="text-left flex items-center gap-2.5">
-                  <div className="p-2 rounded-xl bg-neutral-200/60 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                  <div className="p-2 rounded-xl bg-neutral-100 dark:bg-neutral-900 text-brand-accent">
                     <IconPalette className="size-4" />
                   </div>
                   <div>
@@ -151,7 +159,7 @@ const FeatureFlagsPanel = ({ isOpen, onClose }: Props) => {
                         className={cn(
                           "p-3 rounded-2xl border transition-all duration-200 cursor-pointer flex items-center justify-between text-left",
                           isSelected
-                            ? 'border-brand-accent bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white font-semibold shadow-xs'
+                            ? 'border-brand-accent bg-neutral-100 dark:bg-neutral-900 text-brand-accent font-semibold shadow-xs'
                             : 'border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black text-neutral-700 dark:text-neutral-300 hover:border-neutral-300 dark:hover:border-neutral-700'
                         )}
                       >
@@ -186,7 +194,7 @@ const FeatureFlagsPanel = ({ isOpen, onClose }: Props) => {
               {/* Font Family Selection */}
               <div className="flex flex-col gap-3 pt-4 border-t border-neutral-200 dark:border-neutral-800">
                 <div className="text-left flex items-center gap-2.5">
-                  <div className="p-2 rounded-xl bg-neutral-200/60 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                  <div className="p-2 rounded-xl bg-neutral-100 dark:bg-neutral-900 text-brand-accent">
                     <IconTypography className="size-4" />
                   </div>
                   <div>
@@ -228,8 +236,13 @@ const FeatureFlagsPanel = ({ isOpen, onClose }: Props) => {
                 </div>
               </div>
             </div>
+
+            {/* Sidebar Footer */}
+            <div className="p-4 border-t border-neutral-200 dark:border-neutral-800 text-[11px] font-mono text-neutral-400 text-center shrink-0 bg-neutral-50/50 dark:bg-neutral-900/40">
+              <span>Preferences saved automatically</span>
+            </div>
           </motion.div>
-        </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );

@@ -41,21 +41,16 @@ export default function BlogTitle({
       <div className="mb-4 flex items-center">
         <Link
           href={`/blog?category=${isTech ? "tech" : "non-tech"}`}
-          className={cn(
-            "inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-transform duration-200 hover:scale-105 no-underline shadow-sm border",
-            isTech
-              ? "bg-brand-slate/10 border-brand-slate/20 text-neutral-800 dark:bg-brand-slate/15 dark:border-brand-slate/30 dark:text-brand-slate hover:bg-brand-slate/20"
-              : "bg-brand-apricot/20 border-brand-apricot/30 text-brand-midnight dark:bg-brand-apricot/85 dark:border-transparent dark:text-brand-midnight hover:bg-brand-apricot/30"
-          )}
+          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-brand-accent bg-neutral-100 dark:bg-neutral-900 text-brand-accent font-mono text-xs font-semibold uppercase tracking-wider transition-transform duration-200 hover:scale-105 no-underline shadow-xs"
         >
           {isTech ? (
             <>
-              <IconTerminal2 className="size-3.5 text-brand-slate" />
+              <IconTerminal2 className="size-3.5 text-brand-accent" />
               <span>Technical</span>
             </>
           ) : (
             <>
-              <IconNotebook className="size-3.5 text-brand-midnight" />
+              <IconNotebook className="size-3.5 text-brand-accent" />
               <span>Non-Technical</span>
             </>
           )}

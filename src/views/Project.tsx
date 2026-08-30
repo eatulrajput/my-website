@@ -17,10 +17,25 @@ import { cn } from "@/lib/utils";
 
 const Project = () => {
   const [expandedTitle, setExpandedTitle] = useState<string | null>(null);
+  const [selectedStatus, setSelectedStatus] = useState<"all" | "progress" | "completed">("all");
 
   const toggleProject = (title: string) => {
     setExpandedTitle((prev) => (prev === title ? null : title));
   };
+
+  const filteredProjects = projects.filter((project) => {
+    if (selectedStatus === "all") return true;
+    const status = (project.projectStatus || "").toLowerCase();
+    if (selectedStatus === "completed") return status.includes("completed");
+    if (selectedStatus === "progress") return status.includes("progress");
+    return true;
+  });
+
+  const statusTabs = [
+    { label: "All Projects", value: "all" as const },
+    { label: "In Progress", value: "progress" as const },
+    { label: "Completed", value: "completed" as const },
+  ];
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 text-left space-y-6">
@@ -37,10 +52,35 @@ const Project = () => {
         </div>
       </div>
 
+      {/* Status Filter Tabs */}
+      <div className="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-3 font-mono text-xs">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {statusTabs.map((tab) => (
+            <button
+              key={tab.value}
+              onClick={() => setSelectedStatus(tab.value)}
+              type="button"
+              className={cn(
+                "px-2.5 py-1 rounded-lg border text-xs font-mono transition-all cursor-pointer",
+                selectedStatus === tab.value
+                  ? "border-brand-accent bg-neutral-100 dark:bg-neutral-900 text-brand-accent font-bold"
+                  : "border-transparent text-neutral-500 hover:text-black dark:hover:text-white"
+              )}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+        <span className="text-xs text-neutral-400 font-mono hidden sm:inline">
+          {filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}
+        </span>
+      </div>
+
       {/* Projects List */}
-      <div className="flex flex-col divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800">
-        {projects.map((project: ProjectItem) => {
-          const isExpanded = expandedTitle === project.title;
+      {filteredProjects.length > 0 ? (
+        <div className="flex flex-col divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800">
+          {filteredProjects.map((project: ProjectItem) => {
+            const isExpanded = expandedTitle === project.title;
 
           return (
             <div key={project.title} className="py-4 flex flex-col transition-colors">
@@ -59,14 +99,7 @@ const Project = () => {
 
                     {/* Status Badge */}
                     {project.projectStatus && (
-                      <span
-                        className={cn(
-                          "text-[10px] font-mono px-2 py-0.5 rounded-full capitalize shrink-0 border font-medium",
-                          project.projectStatus.toLowerCase() === "completed"
-                            ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20"
-                            : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
-                        )}
-                      >
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-full capitalize shrink-0 border border-brand-accent bg-neutral-100 dark:bg-neutral-900 text-brand-accent font-semibold tracking-wider">
                         {project.projectStatus}
                       </span>
                     )}
@@ -195,6 +228,13 @@ const Project = () => {
           );
         })}
       </div>
+      ) : (
+        <div className="py-12 text-center font-mono">
+          <p className="text-neutral-500 dark:text-neutral-400 text-xs">
+            No projects found matching this status filter.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

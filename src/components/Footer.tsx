@@ -4,16 +4,16 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t border-neutral-200/80 dark:border-neutral-800/80 py-8 mt-16 bg-white dark:bg-black transition-colors">
+    <footer className="w-full border-t border-neutral-200/80 dark:border-neutral-800/80 py-8 pb-20 sm:pb-8 mt-16 bg-white dark:bg-black transition-colors">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500 dark:text-neutral-400">
         <div>
           <span>© {year} Atul Rajput</span>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center flex-wrap justify-center gap-3">
           <Link
             href="/status"
-            className="hover:text-[#f34213] dark:hover:text-[#FF8800] transition-colors"
+            className="hover-text-brand-accent transition-colors"
           >
             Status
           </Link>
@@ -22,7 +22,7 @@ const Footer = () => {
             href="https://github.com/eatulrajput"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[#f34213] dark:hover:text-[#FF8800] transition-colors"
+            className="hover-text-brand-accent transition-colors"
           >
             GitHub
           </a>
@@ -31,7 +31,7 @@ const Footer = () => {
             href="https://linkedin.com/in/eatulrajput"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[#f34213] dark:hover:text-[#FF8800] transition-colors"
+            className="hover-text-brand-accent transition-colors"
           >
             LinkedIn
           </a>
@@ -40,7 +40,7 @@ const Footer = () => {
             href="https://x.com/eatulrajput"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[#f34213] dark:hover:text-[#FF8800] transition-colors"
+            className="hover-text-brand-accent transition-colors"
           >
             X
           </a>
@@ -49,7 +49,7 @@ const Footer = () => {
             href="/sitemap.xml"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[#f34213] dark:hover:text-[#FF8800] transition-colors"
+            className="hover-text-brand-accent transition-colors"
           >
             Sitemap
           </a>

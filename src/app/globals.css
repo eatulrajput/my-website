@@ -166,6 +166,36 @@ html.hide-scrollbar *::-webkit-scrollbar {
   display: none !important;
 }
 
+/* Custom Unified Theme Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--color-accent-light) transparent !important;
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: var(--color-accent-dark) transparent !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+  display: block !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent-light) !important;
+  border-radius: 9999px !important;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent-dark) !important;
+  border-radius: 9999px !important;
+}
+
 @theme {
   --font-body: var(--font-body);
   --font-heading: var(--font-heading);

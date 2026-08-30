@@ -145,14 +145,7 @@ export default function BlogList() {
                     </h2>
 
                     {/* Article Type Badge */}
-                    <span
-                      className={cn(
-                        "text-[10px] font-mono px-2 py-0.5 rounded uppercase shrink-0 border font-medium tracking-wider",
-                        isTech
-                          ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20"
-                          : "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20"
-                      )}
-                    >
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded uppercase shrink-0 border border-brand-accent bg-neutral-100 dark:bg-neutral-900 text-brand-accent font-semibold tracking-wider">
                       {articleType}
                     </span>
                   </div>
