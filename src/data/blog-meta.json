@@ -1,0 +1,1166 @@
+[
+  {
+    "slug": "Setting My Own Rules for the Social Media Apps",
+    "meta": {
+      "title": "Setting My Own Rules for the Social Media Apps",
+      "subtitle": "In a world built on distraction, I’ve learned to design my own focus.",
+      "date": "June 12, 2026",
+      "description": "These applications are completely free to use, meaning you do not pay them money in exchange for their services. Instead, you pay with your attention. They earn their revenue through advertisements. Because they possess your personalized information (including your likes, dislikes, and comments) they can serve you highly targeted ads.",
+      "image": "/images/blog/social_media/social_rules_1.webp",
+      "readingTime": "9 min read"
+    }
+  },
+  {
+    "slug": "The Rules Of My Digital Life",
+    "meta": {
+      "title": "The Rules Of My Digital Life",
+      "subtitle": "Modified rules for engaging with applications in era of internet",
+      "date": "May 25, 2026",
+      "description": "I choose intentional digital behavior over compulsive social participation.",
+      "image": "/images/blog/social_media/social_rules.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "first-post",
+    "meta": {
+      "title": "Using MDX for blogs",
+      "date": "2026-05-14",
+      "description": "Learning MDX with Vite",
+      "image": "/images/blog/mdx/mdx.webp",
+      "readingTime": "1 min read"
+    }
+  },
+  {
+    "slug": "npm",
+    "meta": {
+      "title": "Packet Manager: npm, yarn, pnpm and bun",
+      "subtitle": "Let's explore package manager of JavaScript",
+      "date": "May 12, 2026",
+      "description": "Learning about different package managers of JS",
+      "image": "/images/blog/npm/npm.png",
+      "readingTime": "6 min read"
+    }
+  },
+  {
+    "slug": "react-native-installation",
+    "meta": {
+      "title": "React Native Installation Guide 2026",
+      "subtitle": "Let's explore package manager of JavaScript",
+      "date": "May 10, 2026",
+      "description": "How to setup your system for React Native",
+      "image": "/images/blog/react-native-installation/react-native-installation.png",
+      "readingTime": "1 min read"
+    }
+  },
+  {
+    "slug": "Last day in college",
+    "meta": {
+      "title": "Last Day In College",
+      "subtitle": "What is a Token? Your Digital Key to Access",
+      "date": "Apr 18, 2026",
+      "description": "Mere dost Raju Bhai ne kaha, kya tum ek lekh nhi likh sakte, itne saal jo guzaare ho ish college mein? Mera instant reply yhi tha, nhi, nhi, kucch bhi nhi. Nothing.",
+      "image": "/images/blog/lastday/lastday.webp",
+      "readingTime": "12 min read"
+    }
+  },
+  {
+    "slug": "Why People Use Ubuntu but Still Fail to Learn Linux",
+    "meta": {
+      "title": "Why People Use Ubuntu but Still Fail to Learn Linux",
+      "subtitle": "",
+      "date": "Apr 18, 2026",
+      "description": "Mere dost Raju Bhai ne kaha, kya tum ek lekh nhi likh sakte, itne saal jo guzaare ho ish college mein? Mera instant reply yhi tha, nhi, nhi, kucch bhi nhi. Nothing.",
+      "image": "/images/blog/ubuntu/ubuntu.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Use Your “Unfair Advantage”: A Misleading Way to Guide People",
+    "meta": {
+      "title": "Use Your “Unfair Advantage”: A Misleading Way to Guide People",
+      "subtitle": "A misleading way to guide people",
+      "date": "Mar 11, 2026",
+      "description": "I recently saw a reel where a content creator advised people to “use your unfair advantage to get ahead of others in life.” This made me question the idea behind that phrase.",
+      "image": "/images/blog/unfair_advantage/unfair_advantage.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Becoming a Creator is secondary, be a human first",
+    "meta": {
+      "title": "Becoming a Creator is secondary, be a human first.",
+      "subtitle": "Conciousness is a choice.",
+      "date": "Mar 10, 2026",
+      "description": "Be human first, then be the doer. Conscious action matters more than mechanical action. Just doing things without reflection makes you part of the algorithmic loop, where your work is shaped more by external forces than by your own purpose.",
+      "image": "/images/blog/creator/creator.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "When Comedy Crosses into the Unnecessary: Why Some Jokes Don’t Need to Be Told",
+    "meta": {
+      "title": "When Comedy Crosses into the Unnecessary: Why Some Jokes Don’t Need to Be Told",
+      "subtitle": "(Context of this is I saw a stand up comedy video where a comic making jokes on Stephen Hawkings.)",
+      "date": "Jan 24, 2026",
+      "description": "Comedy is often defended as a space where anything can be joked about. “Nothing is off-limits,” people say. And in theory, that freedom is what gives comedy its power, to challenge authority, expose hypocrisy, and say what polite society avoids. But freedom in comedy does not automatically equal meaning, fairness, or necessity.",
+      "image": "/images/blog/comedy/comedy.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "The Road Not Taken",
+    "meta": {
+      "title": "The Road Not Taken",
+      "subtitle": "",
+      "date": "Jan 23, 2026",
+      "description": "A new path is not created simply because the familiar one feels useless; it is created because you understand clearly and honestly why that familiar path no longer serves you.",
+      "image": "/images/blog/road/road.webp",
+      "readingTime": "1 min read"
+    }
+  },
+  {
+    "slug": "When Students Shine but Teachers Remain Invisible",
+    "meta": {
+      "title": "When Students Shine but Teachers Remain Invisible",
+      "subtitle": "Gratitude is required",
+      "date": "Jan 22, 2026",
+      "description": "Give respect",
+      "image": "/images/blog/teacher/teacher.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "System Design vs Coding Interview: A Deep Dive into the Difference",
+    "meta": {
+      "title": "System Design vs Coding Interview: A Deep Dive into the Difference",
+      "date": "January 15, 2026",
+      "description": "one of the most common confusions developers face is understanding the difference between a System Design Interview (SDI) and a Coding Interview (CI)",
+      "image": "/images/blog/npm/npm.png",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "how-I-used-web3forms-in-my-portfolio-website",
+    "meta": {
+      "title": "How I Used Web3Forms in My Portfolio Website",
+      "subtitle": "Let's explore package manager of JavaScript",
+      "date": "January 15, 2026",
+      "description": "Learning MDX with Vite",
+      "image": "/images/blog/web3forms/web3forms.png",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "privacy-around-sharing-phone-numbers-and-email-Addresses",
+    "meta": {
+      "title": "Privacy Around Sharing Phone Numbers and Email Addresses",
+      "subtitle": "Prevention is better than cure.",
+      "date": "January 15, 2026",
+      "description": "How to setup your system for React Native",
+      "image": "/images/blog/privacy/privacy.png",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "Traveller of Time",
+    "meta": {
+      "title": "Traveller of Time",
+      "subtitle": "",
+      "date": "Nov 13, 2025",
+      "description": "Reflection",
+      "image": "/images/blog/traveller/traveller.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "Beyond the Profile Picture: Choosing Authentic Connection Over Visibility",
+    "meta": {
+      "title": "Beyond the Profile Picture: Choosing Authentic Connection Over Visibility",
+      "subtitle": "",
+      "date": "Nov 8, 2025",
+      "description": "In a world where everything begins with a click, a face often speaks before words do.Scroll through LinkedIn or Instagram, and you’ll notice something: profiles without pictures tend to get ignored. No image, no curiosity — as if the absence of a face means the absence of a person.",
+      "image": "/images/blog/connection/connection.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Leaving Social Media: Reclaiming Focus, Authenticity, and Real Connection",
+    "meta": {
+      "title": "Leaving Social Media: Reclaiming Focus, Authenticity, and Real Connection",
+      "subtitle": "",
+      "date": "Nov 5, 2025",
+      "description": "In today’s digital age, social media has become the default way to consume information, connect with others, and even define our self-worth. Yet, beneath the endless scroll and the illusion of connection, there lies a silent cost — our focus, our time, and our authenticity.",
+      "image": "/images/blog/social_media/social_media.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "What Is the Purpose of a Portfolio Website",
+    "meta": {
+      "title": "What Is the Purpose of a Portfolio Website?",
+      "subtitle": "Understanding the Thought Process Behind Building One",
+      "date": "October 21, 2025",
+      "description": "When you build a portfolio website, it’s not just about showcasing your work; it’s about telling a story — your story. Behind every great portfolio lies a clear purpose, a targeted strategy, and a deep understanding of your audience. Without this, your portfolio risks being just another online collection of projects.",
+      "image": "/images/blog/portfolio/portfolio.png",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Navigating the Information Overload: Finding Balance in the Digital Age",
+    "meta": {
+      "title": "Navigating the Information Overload: Finding Balance in the Digital Age",
+      "subtitle": "Information Overload is a new problem now...",
+      "date": "Oct 10, 2025",
+      "description": "Before the internet became widely accessible, people relied primarily on books and trusted sources that often included citations and relevant facts. This meant information was curated, reliable, and grounded in research. Today, however, the internet offers an overwhelming flood of information from countless sources, making it difficult to find a middle ground or maintain clarity in how we process knowledge.",
+      "image": "/images/blog/info/info.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "The Brag Economy: When Highly Intelligent People Chase Shallow Numbers",
+    "meta": {
+      "title": "The Brag Economy: When Highly Intelligent People Chase Shallow Numbers",
+      "subtitle": "",
+      "date": "Oct 10, 2025",
+      "description": "In a world flooded with distractions, you’d expect the most computationally skilled minds — those who build algorithms, optimize systems, and push the boundaries of logic — to see through the noise.",
+      "image": "/images/blog/linkedin/linkedin.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Are You Using AI as a Crutch - or Becoming a Slave to It",
+    "meta": {
+      "title": "Are You Using AI as a Crutch or Becoming a Slave to It?",
+      "subtitle": "",
+      "date": "Sep 21, 2025",
+      "description": "AI — Artificial Intelligence — was designed to replicate human intelligence. It hasn’t reached full human-level thinking yet, but it’s closing the gap faster than we ever imagined.",
+      "image": "/images/blog/crutch/crutch.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "The Lie I Tell Myself: Content Consumption",
+    "meta": {
+      "title": "The Lie I Tell Myself: Content Consumption",
+      "subtitle": "What does “content” really mean?",
+      "date": "Sep 21, 2025",
+      "description": "At its core, content is anything created for a consumer — videos, articles, podcasts, tweets, memes. There are endless forms of it. And with just a tap, we open platforms overflowing with a chaotic flood of information.",
+      "image": "/images/blog/lie/lie.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "A reminder of impermanence",
+    "meta": {
+      "title": "A reminder of impermanence",
+      "subtitle": "",
+      "date": "Sep 9, 2025",
+      "description": "Reflection",
+      "image": "/images/blog/traveller/traveller-2.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "Dear Me: Remember, You Are a Traveler",
+    "meta": {
+      "title": "Dear Me: Remember, You Are a Traveler",
+      "subtitle": "Letter to me",
+      "date": "Sep 9, 2025",
+      "description": "Reflection",
+      "image": "/images/blog/traveller/traveller-1.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "Exams",
+    "meta": {
+      "title": "Exams",
+      "subtitle": "",
+      "date": "Sep 9, 2025",
+      "description": "A True Reflection Of What We Know",
+      "image": "/images/blog/exams/exams.webp",
+      "readingTime": "1 min read"
+    }
+  },
+  {
+    "slug": "Books",
+    "meta": {
+      "title": "Books",
+      "subtitle": "",
+      "date": "Sep 4, 2025",
+      "description": "A book is not only a book",
+      "image": "/images/blog/books/books.webp",
+      "readingTime": "1 min read"
+    }
+  },
+  {
+    "slug": "How to Start Learning Computer Science in Your First Year",
+    "meta": {
+      "title": "How to Start Learning Computer Science in Your First Year",
+      "subtitle": "Right way to be a software engineer is based up on strong foundation",
+      "date": "September 4, 2025",
+      "description": "Starting your Computer Science (CS) journey in your first year of college can be overwhelming. The internet is full of content, and it's easy to get attached to a single YouTuber or influencer. But as time passes, you discover more creators, new tech stacks, and diverse perspectives.",
+      "image": "/images/blog/cs_firstyear/cs_firstyear.png",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "FastAPI with LLM",
+    "meta": {
+      "title": "FastAPI with LLM",
+      "subtitle": "Started learning FastAPI with creating LLM integration using auth.",
+      "date": "August 30, 2025",
+      "description": "Starting your Computer Science (CS) journey in your first year of college can be overwhelming. The internet is full of content, and it's easy to get attached to a single YouTuber or influencer. But as time passes, you discover more creators, new tech stacks, and diverse perspectives.",
+      "image": "/images/blog/fastapi/fastapi.png",
+      "readingTime": "8 min read"
+    }
+  },
+  {
+    "slug": "SSH in GitHub. Found something new",
+    "meta": {
+      "title": "SSH in GitHub. Found something new.",
+      "subtitle": "A way to save time",
+      "date": "August 22, 2025",
+      "description": "SSH stands for Secure Shell. It's a protocol that allows you to securely connect to servers or services over the internet.",
+      "image": "/images/blog/ssh/ssh.png",
+      "readingTime": "5 min read"
+    }
+  },
+  {
+    "slug": "When Ancient Wisdom Meets Modern Tech: A Reflection on the Bhagavad Gita, AI, and Our Priorities",
+    "meta": {
+      "title": "When Ancient Wisdom Meets Modern Tech: A Reflection on the Bhagavad Gita, AI, and Our Priorities",
+      "subtitle": "",
+      "date": "Aug 22, 2025",
+      "description": "A discussion",
+      "image": "/images/blog/discussion/discussion.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Ego: The Silent Force Within",
+    "meta": {
+      "title": "Ego: The Silent Force Within",
+      "subtitle": "",
+      "date": "Aug 20, 2025",
+      "description": "Ego is a subtle derivative of human existence — always present, but not always seen. It can emerge in any situation, and though it often hides beneath the surface, it reveals itself to those who observe carefully.",
+      "image": "/images/blog/ego/ego.webp",
+      "readingTime": "1 min read"
+    }
+  },
+  {
+    "slug": "Why Skipping Fundamentals Can Hurt You More Than Help",
+    "meta": {
+      "title": "Why Skipping Fundamentals Can Hurt You More Than Help",
+      "subtitle": "",
+      "date": "Aug 20, 2025",
+      "description": "In today’s fast-paced world of AI, Machine Learning, and Data Science, there’s a growing trend among beginners: jump straight into projects and learn the theory later. It sounds efficient. It feels productive.",
+      "image": "/images/blog/basics/basics.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "The Art of Meaningful Praise: Why We Should Reserve It for What Truly Deserves It",
+    "meta": {
+      "title": "The Art of Meaningful Praise: Why We Should Reserve It for What Truly Deserves It",
+      "subtitle": "",
+      "date": "Aug 8, 2025",
+      "description": "In a world where words flow freely and social validation often feels like currency, the act of praise has become both abundant and diluted. We praise quickly — a compliment here, a like there, a token word of encouragement just to keep conversations polite. But have we stopped to ask ourselves whether what we praise is actually worthy of praise?",
+      "image": "/images/blog/praise/praise.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "When Professors and Students Misjudge a Subject: Reflections on Teaching ENPP",
+    "meta": {
+      "title": "When Professors and Students Misjudge a Subject: Reflections on Teaching ENPP",
+      "subtitle": "",
+      "date": "Aug 6, 2025",
+      "description": "A True Reflection Of What We Know",
+      "image": "/images/blog/study/study-1.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "When the Classroom Becomes a Distraction: My Experience with an Online HCI Class",
+    "meta": {
+      "title": "When the Classroom Becomes a Distraction: My Experience with an Online HCI Class",
+      "subtitle": "",
+      "date": "Aug 6, 2025",
+      "description": "I recently enrolled in a course on Human-Computer Interaction (HCI) — an elective that immediately caught my interest. Not because it seemed easy, but because I was genuinely curious. I saw it as an opportunity to explore a new area, learn something that aligns with my interests, and gain insights into how we interact with technology.",
+      "image": "/images/blog/study/study.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Coffee Bot: From Gemini API in Streamlit to FastAPI",
+    "meta": {
+      "title": "Coffee Bot: From Gemini API in Streamlit to FastAPI",
+      "subtitle": "Coffee Bot",
+      "date": "August 05, 2025",
+      "description": "Moving Coffeebot from Streamlit to FastAPI",
+      "image": "/images/blog/coffeebot/coffeebot.png",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Keploy - AI based API Testing tool born in Open Source",
+    "meta": {
+      "title": "Keploy - AI based API Testing tool born in Open Source",
+      "subtitle": "Keploy AI based Testing Tool",
+      "date": "August 05, 2025",
+      "description": "Real Talk: My Experience with Keploy Chrome Extension for API Testing",
+      "image": "/images/blog/keploy/keploy.png",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Inner Working of Python",
+    "meta": {
+      "title": "Inner Working of Python",
+      "subtitle": "How python actually works?",
+      "date": "July 24, 2025",
+      "description": "Learning MDX with Vite",
+      "image": "/images/blog/python/python.png",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Beyond Certificates: The Real Value of Completing a Course",
+    "meta": {
+      "title": "Beyond Certificates: The Real Value of Completing a Course",
+      "subtitle": "",
+      "date": "Jul 14, 2025",
+      "description": "In today’s world of online learning, it’s become common to see people proudly sharing certificates on LinkedIn after completing a course. And there’s nothing wrong with that. It’s an achievement, after all. Maybe your connections like it, maybe they’re impressed, maybe even a little jealous — whatever they feel, the post gets attention.",
+      "image": "/images/blog/study/study-2.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "You Are Not Truly Yours",
+    "meta": {
+      "title": "You Are Not Truly Yours",
+      "subtitle": "",
+      "date": "Jul 3, 2025",
+      "description": "A True Reflection Of What We Know",
+      "image": "/images/blog/truth/truth.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Invisible Eyes: When Digital Curiosity Crosses Personal Boundaries",
+    "meta": {
+      "title": "Invisible Eyes: When Digital Curiosity Crosses Personal Boundaries",
+      "subtitle": "",
+      "date": "Jun 27, 2025",
+      "description": "In an age where so much of our intellectual and emotional life lives quietly online — in follows, likes, playlists, and bookmarks — we often assume a subtle boundary exists between what’s visible and what’s shared. But what happens when someone close to us begins noticing, commenting on, or even subtly weaponizing what we thought was personal?",
+      "image": "/images/blog/boundary/boundary.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Goodbye, Realme 5 Pro: A Journey with My First Phone",
+    "meta": {
+      "title": "Goodbye, Realme 5 Pro: A Journey with My First Phone",
+      "subtitle": "",
+      "date": "Jun 26, 2025",
+      "description": "I still remember the December of 2019 — the final weeks of my Class 11 — when I held my very first smartphone in my hands: the Realme 5 Pro. For most people, a phone is just a device, but for me, this one became a quiet companion through my student life, a reliable tool, and a mirror of how I live: minimal, efficient, and intentional.",
+      "image": "/images/blog/phone/phone.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "When to Use DCO (Developer Certificate of Origin) – And When You Don’t Need To",
+    "meta": {
+      "title": "When to Use DCO (Developer Certificate of Origin) – And When You Don’t Need To",
+      "subtitle": "About DCO",
+      "date": "June 22, 2025",
+      "description": "Using DCO is about clarity and accountability. It's a simple practice that becomes powerful when you're part of something bigger—especially in open source communities.",
+      "image": "/images/blog/dco/dco.png",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Become the Best by Learning from the Best",
+    "meta": {
+      "title": "Become the Best by Learning from the Best",
+      "subtitle": "",
+      "date": "Jun 16, 2025",
+      "description": "If you want to be the best in any field — whether it’s software engineering, music, leadership, or philosophy — the most powerful approach is to get close to those who have already reached that level. Surround yourself with greatness. Want to be the best software engineer? Follow the best ones. Listen to them. Read their code, their blogs, their books. If possible, ask them questions. Try to work with them or learn from how they work. Analyze their mindset, how they think, and how they solve problems.",
+      "image": "/images/blog/learning/learning.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "From Curiosity to Clarity: How to Focus and Finish What Matters",
+    "meta": {
+      "title": "From Curiosity to Clarity: How to Focus and Finish What Matters",
+      "subtitle": "",
+      "date": "Jun 8, 2025",
+      "description": "Setting priorities is essential. Why? Because when you’re young, you often think you have plenty of time. You believe you can do everything you see and explore every new trend. Using the internet isn’t inherently bad — in fact, it can be a powerful tool — but the most important thing is your work. The completion of that work must be the top priority because it puts food on your table and sustains you.",
+      "image": "/images/blog/curiosity/curiosity.png",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "How to Optimize Your LinkedIn Skills: What to Keep, What to Cut, and Why It Matters",
+    "meta": {
+      "title": "How to Optimize Your LinkedIn Skills: What to Keep, What to Cut, and Why It Matters",
+      "subtitle": "",
+      "date": "Jun 6, 2025",
+      "description": "If you’re actively applying for internships, jobs, or freelance work, your LinkedIn profile is not just a digital resume — it’s a searchable, scannable, and rankable document used by recruiters, algorithms, and hiring managers.",
+      "image": "/images/blog/linkedin/linkedin-1.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "When Is It Okay to Call Something a “Skill”",
+    "meta": {
+      "title": "When Is It Okay to Call Something a “Skill”?",
+      "subtitle": "",
+      "date": "Jun 6, 2025",
+      "description": "In today’s resume-driven world, we’re often encouraged to “list your skills” — but what exactly counts as a skill?",
+      "image": "/images/blog/skill/skill.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "The Power of Present Decisions: Letting Go of the Past and Embracing Growth",
+    "meta": {
+      "title": "The Power of Present Decisions: Letting Go of the Past and Embracing Growth",
+      "subtitle": "",
+      "date": "May 26, 2025",
+      "description": "Every choice we make is rooted in a moment — a moment shaped by our mindset, emotions, and understanding of the world at that time. Sometimes, those decisions lead to outcomes we didn’t anticipate or that, in hindsight, we might wish we had avoided. But does that make them wrong? Not necessarily.",
+      "image": "/images/blog/think/think.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "A Traveler’s Dilemma",
+    "meta": {
+      "title": "A Traveler’s Dilemma",
+      "subtitle": "",
+      "date": "May 25, 2025",
+      "description": "You are a traveler, an explorer, a being capable of deep thought or stillness, as time allows. You are caught between journeys — the journey of breath, the journey of death, the journey of seeking truth. You search for solitude, which sometimes feels like loneliness. You feel envy growing from the destinies of others, wondering if what you have is enough to satisfy your desires. You question whether your actions carry meaning, or if they are mere echoes in an indifferent world.",
+      "image": "/images/blog/traveller/traveller-3.webp",
+      "readingTime": "1 min read"
+    }
+  },
+  {
+    "slug": "Access Token vs Refresh Token – Explained",
+    "meta": {
+      "title": "Access Token vs Refresh Token – Explained",
+      "subtitle": "What is a Token? Your Digital Key to Access",
+      "date": "May 25, 2025",
+      "description": "This article explores the role of Access Tokens and Refresh Tokens in modern apps, explaining how they facilitate seamless and secure user experiences without frequent logins. Tokens act as digital keys that replace traditional session management, offering a more scalable and efficient solution. Access Tokens provide temporary access, while Refresh Tokens enable the issuance of new Access Tokens without requiring users to log in again. The article outlines their differences in purpose, lifespan, storage, and sensitivity to enhance understanding of their functionalities.",
+      "image": "/images/blog/token/token.png",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Stop Comparing - Flow Like Water",
+    "meta": {
+      "title": "Stop Comparing, Flow Like Water",
+      "subtitle": "",
+      "date": "May 16, 2025",
+      "description": "There will always be someone better than you, somewhere, in something. That’s the nature of life — it’s vast, diverse, and filled with people walking different paths. But most of our problems begin when we start comparing ourselves to those people. Not because they’ve done something wrong, but because we’ve forgotten how and what to compare.",
+      "image": "/images/blog/traveller/traveller-4.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "This Looked So Hard - But It Was Easy - Why You Feel That Way and How to Master It",
+    "meta": {
+      "title": "“This Looked So Hard — But It Was Easy”: Why You Feel That Way and How to Master It",
+      "subtitle": "",
+      "date": "May 10, 2025",
+      "description": "Ever opened a coding problem, read the description, and felt your stomach drop?",
+      "image": "/images/blog/study/study-3.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Awakening",
+    "meta": {
+      "title": "Awakening",
+      "subtitle": "",
+      "date": "May 2, 2025",
+      "description": "Awake now...",
+      "image": "/images/blog/awake/awake.webp",
+      "readingTime": "1 min read"
+    }
+  },
+  {
+    "slug": "How to Create a Bootable USB Drive with Ventoy",
+    "meta": {
+      "title": "How to Create a Bootable USB Drive with Ventoy for Installing Windows 11 Using Ubuntu (GPT/UEFI Compatible)",
+      "subtitle": "How to use Ventoy",
+      "date": "April 27, 2025",
+      "description": "Installing Windows 11 using a bootable USB drive is easy when you use Ventoy, especially on Ubuntu. Unlike traditional tools where you have to \"burn\" each ISO to the USB, Ventoy allows you to simply copy ISO files, and it supports multiple ISOs at once!",
+      "image": "/images/blog/ventoy/ventoy.png",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Many Came, Many Went",
+    "meta": {
+      "title": "Many Came, Many Went",
+      "subtitle": "",
+      "date": "Apr 12, 2025",
+      "description": "Many came, many went like air, just gone, as they came.",
+      "image": "/images/blog/bye/bye.webp",
+      "readingTime": "1 min read"
+    }
+  },
+  {
+    "slug": "The Dilemma of Stupidity: When Code-Like Wisdom Fails Human Logic",
+    "meta": {
+      "title": "The Dilemma of Stupidity: When Code-Like Wisdom Fails Human Logic",
+      "subtitle": "",
+      "date": "Apr 6, 2025",
+      "description": "There’s a growing trend — especially in tech culture — of reducing life into functions and conditionals. The idea is seductive: if you just code your life right, the outcome is guaranteed. But people are not functions. And life doesn’t compile cleanly.",
+      "image": "/images/blog/code/code.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "How to Stay Connected with Friends in a Busy World",
+    "meta": {
+      "title": "How to Stay Connected with Friends in a Busy World",
+      "subtitle": "",
+      "date": "Mar 7, 2025",
+      "description": "In today’s fast-paced world, staying connected with friends can feel like an uphill battle. With work, responsibilities, and endless distractions, friendships often take a backseat. But true friendships — ones filled with laughter, deep conversations, and shared memories — are worth nurturing.",
+      "image": "/images/blog/friend/friend.webp",
+      "readingTime": "5 min read"
+    }
+  },
+  {
+    "slug": "Opportunities Are Meant for You, Not the Other Way Around",
+    "meta": {
+      "title": "Opportunities Are Meant for You, Not the Other Way Around",
+      "subtitle": "",
+      "date": "Mar 2, 2025",
+      "description": "Opportunities will come into your life. They are crafted for you, but you are not made for them. The power of choice lies in your hands — choose wisely which to embrace, which to leave behind, and which to pursue with conviction.",
+      "image": "/images/blog/opportunity/opportunity.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "Understanding JavaScript Array Optimization and JSVU",
+    "meta": {
+      "title": "Understanding JavaScript Array Optimization and JSVU",
+      "subtitle": "JavaScript engines",
+      "date": "February 16, 2025",
+      "description": "JavaScript engines, such as V8 (used in Chrome and Node.js) and SpiderMonkey (used in Firefox), continuously optimize JavaScript code for performance. One key area of optimization is how arrays are handled internally. In this blog, we will explore JavaScript array optimizations and how the JavaScript engine categorizes arrays for efficient execution.",
+      "image": "/images/blog/js/js.png",
+      "readingTime": "7 min read"
+    }
+  },
+  {
+    "slug": "The Illusion of Admiration: Why People Follow Others",
+    "meta": {
+      "title": "The Illusion of Admiration: Why People Follow Others",
+      "subtitle": "",
+      "date": "Feb 15, 2025",
+      "description": "In the age of social media, where millions follow influencers, entrepreneurs, and thought leaders, a fundamental truth remains hidden beneath layers of admiration and appreciation — people like themselves the most. They follow others not out of pure admiration but because they see a reflection of their own desires, ambitions, and aspirations.",
+      "image": "/images/blog/illusion/illusion.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Let Go of Baggage: Elevate Your Connections",
+    "meta": {
+      "title": "Let Go of Baggage: Elevate Your Connections",
+      "subtitle": "",
+      "date": "Feb 14, 2025",
+      "description": "In life, we often carry unnecessary baggage — old friendships, outdated mindsets, and toxic relationships that no longer serve us. The people who belittle you, question your growth, or fail to support your upgraded mindset are not your true friends.",
+      "image": "/images/blog/baggage/baggage.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "Who Am I to Decide Who I Am",
+    "meta": {
+      "title": "Who Am I to Decide Who I Am?",
+      "subtitle": "",
+      "date": "Feb 14, 2025",
+      "description": "In a world obsessed with identity, we are constantly nudged to define ourselves. Social media profiles demand bios. Job applications expect summaries of our skills and experiences. Conversations often begin with, “Tell me about yourself.”",
+      "image": "/images/blog/who/who.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "Instagram Is Not Needed And the Most Powerful People in Tech Prove It",
+    "meta": {
+      "title": "Instagram Is Not Needed And the Most Powerful People in Tech Prove It",
+      "subtitle": "",
+      "date": "Feb 8, 2025",
+      "description": "Brutal Thought over Instagram",
+      "image": "/images/blog/instagram/instagram.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "The Code to Success: Why ECE Students Sometimes Outshine ECS Students in Coding",
+    "meta": {
+      "title": "The Code to Success: Why ECE Students Sometimes Outshine ECS Students in Coding",
+      "subtitle": "",
+      "date": "Jan 11, 2025",
+      "description": "In the ever-evolving world of technology, coding has become a universal skill that transcends academic boundaries. While one might expect students of Electronics and Computer Science Engineering (ECS) to naturally excel in coding, it’s fascinating to observe that students from Electronics and Communication Engineering (ECE) often perform just as well, if not better, in this domain. This phenomenon highlights the importance of factors like proactiveness, interest, time management, and ambition over academic labels. Let’s explore the various perspectives and underlying reasons behind this trend.",
+      "image": "/images/blog/engineering/engineering.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Many a True Word is Spoken in Jest - But Does Humor Excuse Thoughtless Commentary",
+    "meta": {
+      "title": "Many a True Word is Spoken in Jest — But Does Humor Excuse Thoughtless Commentary?",
+      "subtitle": "",
+      "date": "Jan 7, 2025",
+      "description": "Humor is a powerful tool. It can diffuse tension, create bonds, and even reveal profound truths. The adage “Many a true word is spoken in jest” captures this perfectly. It suggests that humor often carries kernels of reality, making us laugh while also forcing us to reflect. But does this mean that anything said in the guise of a joke is acceptable? Certainly not. In fact, careless jokes can often do more harm than good.",
+      "image": "/images/blog/humour/humour.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "The New Year: A Moment for Retrospection and Renewal",
+    "meta": {
+      "title": "The New Year: A Moment for Retrospection and Renewal",
+      "subtitle": "",
+      "date": "Jan 2, 2025",
+      "description": "The concept of a new year is an enigma deeply rooted in the human psyche. Across civilizations, the turning of the calendar has been celebrated with fervor, marked by rituals, resolutions, and hope for renewal. Yet, beneath the layers of festivity lies a profound question: what truly changes when the clock strikes midnight? Is it merely the passage of another day, as ephemeral as a breath, or does it hold the potential for something greater — the elevation of consciousness?",
+      "image": "/images/blog/new_year/new_year.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "The Transparent Dream",
+    "meta": {
+      "title": "The Transparent Dream",
+      "subtitle": "",
+      "date": "Dec 29, 2024",
+      "description": "A thought",
+      "image": "/images/blog/dream/dream.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "Ignorance Kills More Than Being Unknown: The Climate Change Perspective",
+    "meta": {
+      "title": "Ignorance Kills More Than Being Unknown: The Climate Change Perspective",
+      "subtitle": "",
+      "date": "Dec 24, 2024",
+      "description": "Climate change is no longer an abstract or distant concern — it is a tangible, present-day crisis. The phrase, “Ignorance kills more than being unknown,” is particularly resonant in this context. Scientific knowledge about the climate crisis is widely available, and yet its devastating effects persist and intensify. This paradox points not to a lack of information but to the far-reaching consequences of ignorance — whether willful, systemic, or circumstantial.",
+      "image": "/images/blog/climate/climate.webp",
+      "readingTime": "5 min read"
+    }
+  },
+  {
+    "slug": "Against the Power: The Power Has Engulfed the Man",
+    "meta": {
+      "title": "Against the Power: The Power Has Engulfed the Man",
+      "subtitle": "",
+      "date": "Dec 23, 2024",
+      "description": "The phrase “against the power, the power has engulfed the man” reflects a profound observation about the nature of power and its influence over human beings. Power, in its myriad forms, has been a central theme in philosophical discourses, political theories, and spiritual teachings throughout history. It often manifests as an external force that individuals resist or strive to control, yet, paradoxically, it has the potential to subsume those who engage with it, whether in opposition or in pursuit.",
+      "image": "/images/blog/power/power.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Note Taking: What is the correct way",
+    "meta": {
+      "title": "Note Taking: What is the correct way?",
+      "subtitle": "",
+      "date": "Dec 23, 2024",
+      "description": "In an era dominated by digital technology, the art of note-taking remains a cornerstone of effective learning and memory retention. The process of transcribing information, whether by hand or digitally, engages cognitive functions that enhance comprehension and facilitate the integration of new knowledge.",
+      "image": "/images/blog/note/note.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "Celebrities: Credible Icons or Misleading Influencers",
+    "meta": {
+      "title": "Celebrities: Credible Icons or Misleading Influencers?",
+      "subtitle": "",
+      "date": "Dec 22, 2024",
+      "description": "In today’s world, celebrities have transcended their traditional roles as entertainers, athletes, and artists. They’ve become influential figures in politics, health advocacy, product endorsements, and even social movements. But the question arises: should celebrities be viewed as indicators of credibility? Examining this issue from multiple perspectives reveals a nuanced and thought-provoking debate.",
+      "image": "/images/blog/celebrity/celebrity.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Let’s Think Critically: A Call to Sharpen Minds and Broaden Horizons",
+    "meta": {
+      "title": "Let’s Think Critically: A Call to Sharpen Minds and Broaden Horizons",
+      "subtitle": "",
+      "date": "Dec 22, 2024",
+      "description": "In a world overflowing with information, the ability to think critically is no longer just an asset; it’s a necessity. We navigate a complex web of opinions, facts, and fallacies daily, making critical thinking the compass that can help us distinguish between what matters and what distracts. But what does it truly mean to think critically, and how can we cultivate this vital skill?",
+      "image": "/images/blog/think/think-1.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "The Myth of Finding the “Right Partner” During Teenage Years",
+    "meta": {
+      "title": "The Myth of Finding the “Right Partner” During Teenage Years",
+      "subtitle": "",
+      "date": "Dec 22, 2024",
+      "description": "Teenage years are often romanticized as a time of exploration, growth, and self-discovery. However, society’s narrative sometimes places undue emphasis on finding the “right partner” during this phase. This expectation not only misguides young individuals but also distracts them from the crucial journey of self-development. Let’s unpack why this idea is flawed and why the focus should be redirected toward self-awareness and personal growth.",
+      "image": "/images/blog/partner/partner.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Feelings Are Just the Growth of Unthought Particles: Understanding the Intersection of Emotion, Thought, and Reality",
+    "meta": {
+      "title": "Feelings Are Just the Growth of Unthought Particles: Understanding the Intersection of Emotion, Thought, and Reality",
+      "subtitle": "",
+      "date": "Dec 15, 2024",
+      "description": "In the intricate dance between consciousness and existence, feelings emerge as a powerful force, born from the depths of our unconscious mind. They are the unthought particles that shape our emotional landscapes, often appearing unbidden and unexamined. In contrast, thinking — a conscious act of decision-making — arises from the interplay of awareness and reflection. Together, these dimensions of the human experience provide insight into how we navigate the complexities of reality and truth.",
+      "image": "/images/blog/think/think-2.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Be Changing, Evolving, Mutating: Embracing the Philosophical Journey of Transformation",
+    "meta": {
+      "title": "Be Changing, Evolving, Mutating: Embracing the Philosophical Journey of Transformation",
+      "subtitle": "",
+      "date": "Dec 14, 2024",
+      "description": "In the tapestry of life, change is not merely a passage; it is the very thread that weaves together progress, growth, and innovation. From the ancient wisdom of philosophers to modern scientific understanding, the concepts of change, evolution, and mutation resonate deeply, offering profound insights into the nature of existence and progress. As we navigate the complexities of a rapidly shifting world, these timeless ideas continue to shape how we adapt, evolve, and embrace the unpredictable.",
+      "image": "/images/blog/think/think-3.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Being Authentic and Straightforward: A Blessing or a Curse",
+    "meta": {
+      "title": "Being Authentic and Straightforward: A Blessing or a Curse?",
+      "subtitle": "",
+      "date": "Dec 14, 2024",
+      "description": "In a world where social dynamics often prioritize politeness and tact, the virtues of authenticity and straightforwardness are sometimes viewed as disruptive or even harmful. While being genuine can foster trust and deepen relationships, it can also lead to misunderstandings, discomfort, and even social alienation. Striking the right balance between honest expression and social harmony is a delicate dance, one that has been explored by countless thinkers throughout history.",
+      "image": "/images/blog/fake/fake.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "How to Dual Boot Ubuntu with Windows: A Beginner’s Guide to the Ultimate Computing Setup",
+    "meta": {
+      "title": "How to Dual Boot Ubuntu with Windows: A Beginner’s Guide to the Ultimate Computing Setup",
+      "subtitle": "",
+      "date": "Dec 8, 2024",
+      "description": "Are you tired of choosing between Windows and Ubuntu? Do you want to experience the best of both worlds without sacrificing performance or ease of use? Imagine the freedom of seamlessly switching between the reliability of Windows and the power of Ubuntu — whether you’re gaming, coding, or exploring new software. This guide will walk you through the process of dual-booting Ubuntu alongside Windows, turning your computer into a dynamic, high-performance machine that fits your every need.",
+      "image": "/images/blog/linux/linux.webp",
+      "readingTime": "5 min read"
+    }
+  },
+  {
+    "slug": "Understanding the OSI Model: The Backbone of Modern Communication",
+    "meta": {
+      "title": "Understanding the OSI Model: The Backbone of Modern Communication",
+      "subtitle": "",
+      "date": "Dec 8, 2024",
+      "description": "The world we live in today is connected by the internet, and everything from sending emails to streaming videos happens over a network. But have you ever wondered how all these devices communicate with each other seamlessly? The answer lies in something called the OSI Model. This model is like a set of rules that helps different devices communicate over networks. Let’s break it down and understand it step by step.",
+      "image": "/images/blog/osi/osi.webp",
+      "readingTime": "5 min read"
+    }
+  },
+  {
+    "slug": "Why I Aspire to Be Vegan",
+    "meta": {
+      "title": "Why I Aspire to Be Vegan",
+      "subtitle": "",
+      "date": "Nov 30, 2024",
+      "description": "Our food choices are more than personal preferences — they shape the world around us. The decision to move from non-vegetarianism to vegetarianism, and eventually to veganism, has been a profound journey for me.",
+      "image": "/images/blog/love/love.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Success: A Collective Effort Beyond Individual Hard Work",
+    "meta": {
+      "title": "Success: A Collective Effort Beyond Individual Hard Work",
+      "subtitle": "",
+      "date": "Nov 29, 2024",
+      "description": "Success is often attributed to individual talent, effort, and determination. The classic rags-to-riches story celebrates hard work as the sole driver of achievement. While these attributes undeniably play a role, they form only part of the equation. Success, in reality, is a mosaic of individual endeavors and external influences — a web of societal, environmental, and generational contributions that often go unnoticed.",
+      "image": "/images/blog/win/win.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "The Art of Silence: Things Best Kept Private for Lasting Happiness",
+    "meta": {
+      "title": "The Art of Silence: Things Best Kept Private for Lasting Happiness",
+      "subtitle": "",
+      "date": "Nov 29, 2024",
+      "description": "In a world increasingly obsessed with sharing, where every moment and milestone often finds its way onto social media, the art of discretion is becoming rare. Yet, many philosophers, psychologists, and spiritual thinkers suggest that happiness often lies in knowing what to share and what to keep private. There’s an undeniable charm to mystery, and protecting your inner world can be a profound act of self-care.",
+      "image": "/images/blog/private/private.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "The Mosaic of Success: Unraveling Its True Ingredients",
+    "meta": {
+      "title": "The Mosaic of Success: Unraveling Its True Ingredients",
+      "subtitle": "",
+      "date": "Nov 29, 2024",
+      "description": "Success, a word that echoes through classrooms, boardrooms, and social media feeds, holds different meanings for everyone. For some, it signifies wealth and power; for others, it is fulfillment and purpose. While success stories captivate us, understanding the formula behind them requires a deep dive into psychology, sociology, economics, and personal development. Here, we explore the multifaceted nature of success and the science-backed factors that pave the way.",
+      "image": "/images/blog/win/win-1.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Christopher Nolan: The Visionary Director Who Redefined Modern Cinema",
+    "meta": {
+      "title": "Christopher Nolan: The Visionary Director Who Redefined Modern Cinema",
+      "subtitle": "",
+      "date": "Nov 9th, 2024",
+      "description": "Christopher Nolan has become one of the most influential and celebrated directors of the 21st century. Known for his cerebral storytelling, visual innovation, and genre-bending narratives, Nolan’s work redefines the boundaries of mainstream cinema. His films — ranging from superhero sagas and sci-fi epics to psychological thrillers — demonstrate an artistic ambition and philosophical depth that has resonated with both critics and audiences. This article delves into what makes Christopher Nolan a cinematic visionary, exploring the key elements of his unique style, influences, and contributions to modern filmmaking.",
+      "image": "/images/blog/movie/movie.webp",
+      "readingTime": "6 min read"
+    }
+  },
+  {
+    "slug": "The Art of Thinking: Understanding Different Types of Thought and How They Shape Our Lives",
+    "meta": {
+      "title": "The Art of Thinking: Understanding Different Types of Thought and How They Shape Our Lives",
+      "subtitle": "",
+      "date": "Nov 9th, 2024",
+      "description": "Thinking is a fundamental human capability that shapes everything we do, from everyday decisions to complex problem-solving. Our thoughts affect how we interact with the world, how we process experiences, and how we envision the future. Yet, not all thinking is the same. Different types of thinking, each with unique strengths, can lead us to different insights and solutions. In this article, we explore various types of thinking, such as critical, analytical, creative, objective, and subjective thinking, drawing on research to understand how they influence our mindsets and decisions.",
+      "image": "/images/blog/think/think-4.webp",
+      "readingTime": "6 min read"
+    }
+  },
+  {
+    "slug": "The Long-term Effects of Consuming Low-Quality Content: How Shallow Entertainment Influences Mindset, Future Perspectives, and Thinking Processes",
+    "meta": {
+      "title": "The Long-term Effects of Consuming Low-Quality Content: How Shallow Entertainment Influences Mindset, Future Perspectives, and Thinking Processes",
+      "subtitle": "",
+      "date": "Nov 9, 2024",
+      "description": "  ",
+      "image": "/images/blog/content/content.webp",
+      "readingTime": "6 min read"
+    }
+  },
+  {
+    "slug": "Protecting Your Privacy on Social Media: Why Limiting Access is Essential for Your Well-being",
+    "meta": {
+      "title": "Protecting Your Privacy on Social Media: Why Limiting Access is Essential for Your Well-being",
+      "subtitle": "",
+      "date": "Nov 8, 2024",
+      "description": "In the age of digital connectivity, social media has transformed the way we interact, share, and form connections. But with the constant sharing of personal moments, location check-ins, and professional updates, the boundary between public and private life has blurred. Protecting your personal space online by restricting access to unknown users can be a valuable step for privacy and well-being. Research indicates that limited social media exposure to unknown individuals can reduce stress, increase personal security, and even contribute to more genuine online relationships.",
+      "image": "/images/blog/privacy/privacy-3.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "The Pursuit of Partnership in Youth: A Journey Often Started Too Soon",
+    "meta": {
+      "title": "The Pursuit of Partnership in Youth: A Journey Often Started Too Soon",
+      "subtitle": "",
+      "date": "Nov 8, 2024",
+      "description": "In our teenage and early adult years, we enter an exciting but challenging phase of life, marked by exploration, self-discovery, and a deep yearning for connection. For many, this period brings a strong desire to find a romantic partner, often before fully understanding themselves or their aspirations. Driven by cultural norms, social media, and the desire for companionship, young people may enter relationships without a clear sense of what they truly need or want in a partner. This article explores the reasons behind this early pursuit of partnership, the impacts of entering relationships prematurely, and the importance of self-awareness during these formative years.",
+      "image": "/images/blog/discover/discover.webp",
+      "readingTime": "5 min read"
+    }
+  },
+  {
+    "slug": "When Good Design Becomes a Silent Enemy: How Simplified Interfaces May Contribute to Cognitive Decline",
+    "meta": {
+      "title": "When Good Design Becomes a Silent Enemy: How Simplified Interfaces May Contribute to Cognitive Decline",
+      "subtitle": "",
+      "date": "Nov 8, 2024",
+      "description": "In the age of sleek, intuitive design, we are blessed with an abundance of tools and interfaces that make our lives easier, often without us lifting a finger or even thinking too hard. But what if this ease and elegance come with an unseen cost? Recent research in fields ranging from cognitive science to behavioral psychology and design ethics suggests that overly simplified design might contribute to a phenomenon known as cognitive decline, subtly eroding our mental sharpness over time.",
+      "image": "/images/blog/design/design.webp",
+      "readingTime": "5 min read"
+    }
+  },
+  {
+    "slug": "The Craving to Share: Unpacking the Science of Social Media Urges",
+    "meta": {
+      "title": "The Craving to Share: Unpacking the Science of Social Media Urges",
+      "subtitle": "",
+      "date": "Nov 6, 2024",
+      "description": "In today’s hyper-connected world, the urge to post on social media can feel as natural as breathing. Whether it’s a perfectly crafted selfie, an inspiring quote, or a candid snapshot of our daily lives, sharing with our online network has become a powerful impulse. But what lies behind this craving? This article delves into the psychological, neurological, and social factors that drive us to share online, even when we resolve to take a break.",
+      "image": "/images/blog/social_media/social_media-1.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Why Some People Hate Coding — and How to Overcome It",
+    "meta": {
+      "title": "Why Some People Hate Coding and How to Overcome It",
+      "subtitle": "",
+      "date": "Nov 6, 2024",
+      "description": "Coding has become a highly valued skill, opening doors to exciting tech careers and empowering people to build amazing things from scratch. But for some, coding is more foe than friend, and the thought of sitting down to write code feels like a chore — or worse. What exactly drives people away from coding? And for those determined to make coding a sustainable part of their lives, how can they move past these hurdles?",
+      "image": "/images/blog/coding/coding.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Turning Pages, Not Screens: A Research-Backed Guide to Spend More Time Reading and Less on Your Phone",
+    "meta": {
+      "title": "Turning Pages, Not Screens: A Research-Backed Guide to Spend More Time Reading and Less on Your Phone",
+      "subtitle": "",
+      "date": "Nov 3, 2024",
+      "description": "Ina world where we are constantly connected, it’s easier than ever to lose hours on our phones without even realizing it. Social media, news updates, and messages have a way of keeping us scrolling, even though many of us wish to spend that time more productively, like diving into a good book. Research from various fields — psychology, neuroscience, digital well-being, and productivity — has shown that swapping some of those screen hours for reading can boost mental health, knowledge retention, and even empathy. Here’s a guide on how to make that shift and why it’s so valuable.",
+      "image": "/images/blog/read/read.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Borrowed Thought vs. Own Thought: The Critical Difference and Why It Matters",
+    "meta": {
+      "title": "Borrowed Thought vs. Own Thought: The Critical Difference and Why It Matters",
+      "subtitle": "",
+      "date": "Oct 30, 2024",
+      "description": "Our minds are constantly influenced by the thoughts, opinions, and ideas we come across, both in personal conversations and in the vast content offered by media, books, and the internet. We’re essentially living in a marketplace of thoughts, where some ideas are bought without question and others are personally crafted and refined. The distinction between borrowed thought and own thought lies at the heart of how we navigate life’s complexities and make choices that align with our true selves. However, the impact of adopting borrowed thoughts without critical examination can be subtle, and it may even turn destructive.",
+      "image": "/images/blog/think/think-5.webp",
+      "readingTime": "6 min read"
+    }
+  },
+  {
+    "slug": "From Introversion to Intentionality: A Journey of Growth and Purpose",
+    "meta": {
+      "title": "From Introversion to Intentionality: A Journey of Growth and Purpose",
+      "subtitle": "",
+      "date": "Oct 30, 2024",
+      "description": "Growing up, I was always the quiet one in the room, the introvert who preferred meaningful conversations with a select few rather than engaging in large social gatherings. Throughout my high school years, I maintained a small circle of friends, shying away from deeper interactions and large groups. While I was comfortable in this cocoon, I often felt limited by my reluctance to discuss my thoughts and feelings with others.",
+      "image": "/images/blog/introvert/introvert.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "Why Readership is Declining Among Gen Z: A Philosophical, Psychological, and Sociological Perspective",
+    "meta": {
+      "title": "Why Readership is Declining Among Gen Z: A Philosophical, Psychological, and Sociological Perspective",
+      "subtitle": "",
+      "date": "Oct 30, 2024",
+      "description": "As digital technology becomes ubiquitous, there has been a notable decline in traditional readership among Gen Z, born roughly between 1997 and 2012. With access to fast-paced information from platforms like TikTok, Instagram, and YouTube, books, newspapers, and long-form content are competing with shorter, visually engaging media. This shift has been examined across multiple disciplines, including philosophy, psychology, and sociology, and has significant implications for individual cognitive development, emotional well-being, and societal cohesion.",
+      "image": "/images/blog/read/read-1.webp",
+      "readingTime": "5 min read"
+    }
+  },
+  {
+    "slug": "The Power of Emojis: Enhancing Communication and Spreading Joy",
+    "meta": {
+      "title": "The Power of Emojis: Enhancing Communication and Spreading Joy",
+      "subtitle": "",
+      "date": "Oct 29, 2024",
+      "description": "In our increasingly digital world, emojis have become a fundamental aspect of online communication. These small, colorful icons serve not just as embellishments but as powerful tools that can transform our conversations. They add nuance, tone, and emotion to our words, helping to convey meaning that might otherwise be lost in the vastness of text.",
+      "image": "/images/blog/emoji/emoji.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Embracing the Quiet Moments: Finding Beauty and Meaning in Solitude",
+    "meta": {
+      "title": "Embracing the Quiet Moments: Finding Beauty and Meaning in Solitude",
+      "subtitle": "",
+      "date": "Oct 28, 2024",
+      "description": "In a world that’s always bustling, where productivity and connectivity are celebrated, solitude is often seen as something to escape from rather than embrace. Yet, there is a unique, almost sacred beauty in the quiet moments spent alone, when the world falls away, and you are left with nothing but your own thoughts, dreams, and sometimes fears.",
+      "image": "/images/blog/solitude/solitude.webp",
+      "readingTime": "4 min read"
+    }
+  },
+  {
+    "slug": "The Real Meaning Behind Celebrations: Why Achievements Matter More than Birthdays",
+    "meta": {
+      "title": "The Real Meaning Behind Celebrations: Why Achievements Matter More than Birthdays",
+      "subtitle": "",
+      "date": "Oct 20, 2024",
+      "description": "Birthdays are celebrated all around the world, often with cakes, gifts, and gatherings. It’s a tradition that has transcended generations, cultures, and geographic boundaries. But is celebrating birthdays as significant as society makes it seem? Should we focus on these annual rituals, or are there deeper milestones in life worth celebrating? Let’s explore the question through scientific, psychological, and cultural lenses to understand why celebrating achievements, rather than birthdays, might be a more meaningful practice.",
+      "image": "/images/blog/celebrate/celebrate.webp",
+      "readingTime": "5 min read"
+    }
+  },
+  {
+    "slug": "The Art of Dance: A Reflection on Responsibility and Expression in the Age of Social Media",
+    "meta": {
+      "title": "The Art of Dance: A Reflection on Responsibility and Expression in the Age of Social Media",
+      "subtitle": "",
+      "date": "Oct 14, 2024",
+      "description": "Dance, one of the oldest and most universal forms of artistic expression, has the power to convey emotions, tell stories, and connect people across cultures. From the elegant movements of ballet to the vibrant rhythms of hip-hop, dance has long been celebrated for its beauty, creativity, and ability to transcend language barriers. However, in the age of social media, the landscape of dance has transformed, leading to a concerning trend where this exquisite art form is often reduced to mere entertainment for the sake of views and likes.",
+      "image": "/images/blog/dance/dance.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Why I Left Playing Valorant: A Personal Reflection",
+    "meta": {
+      "title": "Why I Left Playing Valorant: A Personal Reflection",
+      "subtitle": "",
+      "date": "Oct 7, 2024",
+      "description": "I used to play Valorant — an immensely popular first-person shooter game with a dedicated fanbase. But I recently made the decision to quit, and it wasn’t just a spur-of-the-moment thing. I stepped away because I realized something profound: I wasn’t getting any real value from it. Instead of offering enjoyment or satisfaction, the game started to bring me nothing but tension, frustration, and a sense of time slipping away.",
+      "image": "/images/blog/valorant/valorant.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Why I Left Social Media: Rediscovering Real Connections in a Distracted World",
+    "meta": {
+      "title": "Why I Left Social Media: Rediscovering Real Connections in a Distracted World",
+      "subtitle": "",
+      "date": "Oct 6, 2024",
+      "description": "In an age where social media seems to dominate every aspect of life, stepping away can feel like an unusual choice. For many, it’s a tool to stay informed, connect with friends, or even advance their careers. But for me, social media slowly morphed from a helpful resource into a source of distraction, emotional overload, and blurred boundaries. I made the decision to leave — and through that choice, I rediscovered the importance of real-world connections and regained control over my time and focus",
+      "image": "/images/blog/social_media/social_media-3.webp",
+      "readingTime": "5 min read"
+    }
+  },
+  {
+    "slug": "The Paradox of Saving: How Instagram Users Get Trapped in a Cycle of Overwhelming Content",
+    "meta": {
+      "title": "The Paradox of Saving: How Instagram Users Get Trapped in a Cycle of Overwhelming Content",
+      "subtitle": "",
+      "date": "Sep 26, 2024",
+      "description": "In the age of social media, platforms like Instagram have become hubs for inspiration, creativity, and information. Users eagerly follow pages that resonate with their interests, saving posts they intend to read or engage with later. However, a curious phenomenon has emerged: many find themselves trapped in a cycle of saving content without ever reading it. This article explores the implications of this behavior and offers insights on how to break free from this paradox.",
+      "image": "/images/blog/social-media/connect.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Breaking the Cycle: Why We Drift from Our Goals and How to Regain Focus",
+    "meta": {
+      "title": "Breaking the Cycle: Why We Drift from Our Goals and How to Regain Focus",
+      "subtitle": "",
+      "date": "Sep 22, 2024",
+      "description": "Every day, we’re bombarded with thoughts, plans, and distractions. We start the day with a schedule, an intention to be productive, yet often find ourselves doing the complete opposite. This might sound familiar: I had a day planned out, but instead, I watched a movie. After the movie ended, instead of getting back to my scheduled tasks, I drifted to YouTube, scrolling through content in search of either motivation or entertainment.",
+      "image": "/images/blog/goal/goal.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "How web designing can be a hobby",
+    "meta": {
+      "title": "How web designing can be a hobby?",
+      "subtitle": "",
+      "date": "Sep 13, 2024",
+      "description": "Have you ever thought web designing as a hobby. I like web designing in my leisure time. It can be a fulfilling and enjoyable hobby for many reasons.",
+      "image": "/images/blog/design/design-1.webp",
+      "readingTime": "3 min read"
+    }
+  },
+  {
+    "slug": "Parasocial Relationships: Emotional Connections Without Reciprocity",
+    "meta": {
+      "title": "Parasocial Relationships: Emotional Connections Without Reciprocity",
+      "subtitle": "",
+      "date": "Sep 13, 2024",
+      "description": "A parasocial relationship refers to a one-sided, often unreciprocated, emotional connection that an individual forms with a media personality or character, typically through television, social media, or other forms of mass media. The term “parasocial” comes from “para-” (meaning beside or alongside) and “social,” highlighting the asymmetry in the relationship.",
+      "image": "/images/blog/ott/ott.webp",
+      "readingTime": "2 min read"
+    }
+  },
+  {
+    "slug": "Setting Up Python Environment on Ubuntu",
+    "meta": {
+      "title": "Setting Up Python Environment on Ubuntu",
+      "subtitle": "",
+      "date": "Sep 12, 2024",
+      "description": "Setting up a Python environment on Ubuntu is crucial for efficient development, as it allows you to isolate your projects and their dependencies. This guide will walk you through the steps to install Python, create, activate, and deactivate a virtual environment.",
+      "image": "/images/blog/coding/coding-1.webp",
+      "readingTime": "2 min read"
+    }
+  }
+]

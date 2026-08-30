@@ -1,0 +1,17 @@
+/*
+  Link: </sitemap.xml>; rel="sitemap", </llms.txt>; rel="llms-txt"
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/logos/*
+  Cache-Control: public, max-age=2592000, immutable
+
+/design/*
+  Cache-Control: public, max-age=2592000, immutable
+
+/travel/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400

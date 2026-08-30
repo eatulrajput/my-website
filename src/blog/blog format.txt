@@ -1,0 +1,17 @@
+export const meta = {
+    title: " ",
+    subtitle:"",
+    date: "  ",
+    description: "  ",
+    image: "/images/blog/"
+}
+
+<BlogTitle>
+ 
+</BlogTitle>
+
+<CoverImage src="/images/blog/" />
+
+<BlogContent>
+
+</BlogContent>

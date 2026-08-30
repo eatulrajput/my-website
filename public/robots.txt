@@ -1,0 +1,21 @@
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: *
+Allow: /
+
+# Agent Discovery
+Sitemap: https://eatulrajput.netlify.app/sitemap.xml
+
+# LLM/AI Agent Information
+# See llms.txt for structured content optimized for large language models.
+# https://eatulrajput.netlify.app/llms.txt

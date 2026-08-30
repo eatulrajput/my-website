@@ -1,0 +1,161 @@
+export const meta = {
+    title: "SSH in GitHub. Found something new.",
+    subtitle:"A way to save time",
+    date: "August 22, 2025",
+    description: "SSH stands for Secure Shell. It's a protocol that allows you to securely connect to servers or services over the internet.",
+    image: "/images/blog/ssh/ssh.png"
+}
+
+<BlogTitle>
+SSH in GitHub. Found something new.
+</BlogTitle>
+
+<CoverImage src="/images/blog/ssh/ssh.png" />
+
+<BlogContent>
+Hi Reader,
+
+Today I learnt how to use SSH in GitHub. What is this new thing? Let’s discuss it.
+
+I have been using GitHub for more than a year. I have different repositories — some are related to projects, and some are learning tutorial codes — the codes which I wrote while learning from YouTube or any course.
+
+Keeping some projects as public to show others is fine enough to digest. But here comes the twist. Why show your learning codes or backup codes, which you may just pushed to save your PC’s hard disk space, right?
+
+I do put my code over GitHub mostly as a backup and update it whenever I learn something new. First of all GitHub is a version control system, where whatever changes I make are saved in a new version. So, if any error occurs later — may be breaking the project knowingly, unknowingly or while experimenting — I can retrieve the safe version of the code, I mean the working one.
+
+## SSH - A New Bird on the Tree
+So, let’s come back to SSH, this new bird on the tree. How did I come across it?
+
+Since I usually push code to GitHub, sometimes I also want to pull it back to my local PC — and I am talking about private repositories here.
+
+What I used to do was:
+- Go to the private repository
+- Make it public for a minute
+- Clone it
+- Quickly make it private again
+
+Just to clone my own repository, I followed this tedious process.
+
+I used this method for a year, and never questioned myself:
+
+<Quote>
+💡
+“Is there any other way to clone a private repository without making it public on GitHub?”
+That’s when I found SSH.
+</Quote>
+
+## What is SSH?
+SSH stands for Secure Shell. It's a protocol that allows you to securely connect to servers or services over the internet.
+
+When used with GitHub, SSH lets you push and pull from repositories without entering your username and password every time. Instead, you authenticate using a pair of SSH keys:
+- Private Key: Stays on your local machine — never share this.
+- Public Key: Uploaded to your GitHub account.
+
+When you try to interact with a repository, GitHub checks if your private key matches the public one on file. If it does — you’re in!
+
+## Setting Up SSH for GitHub
+#### First Check for existing SSH keys
+Maybe you have unknowingly have SSH keys in your local machine, like I had.
+
+Run the following command in your terminal ( I use Git Bash terminal) on Ubuntu, and I would prefer you to switch to Linux anyway.
+
+```Bash
+ls -al ~/.ssh
+```
+
+Explaining the command:
+- ls: it will list the contents of the current directory
+- -a: it will show all the files including hidden files those starting with a dot '.'
+- -l : This means "long list format", which provides detailed information about each file, such as permissions, owner, size, and modification date.
+- ~/.ssh: This specifies the directory to list the .ssh folder inside your home directory, '~' is a shortcut for your home directory
+
+This command will lists all files, including the hidden ones, inside your .ssh directory in a detailed format. The .ssh folder usually contains SSH keys and configuration files used for secure shell access.
+
+After running the above command you will see files like:
+- id_ed25519 and id_ed25519.pub ( it is a newer, recommended format)
+These are your SSH keys:
+- The file ending in .pub is your public key
+- The file without .pub is your private key
+- If your find such files, then you already have a key pair.
+
+Otherwise you will see:
+- ls: cannot access 'home/user/.ssh': No such file or directory
+
+It means the folder is empty and that means you don’t have any SSH keys yet.
+
+So, let’s talk how to set up the SSH key for the local PC.
+
+To generate SSH key on your PC, enter command:
+```bash
+ssh-keygen -t ed25519 -C "your-email@example.com"
+```
+- ssh-keygen: This is the command-line tool used to generate SSH key pairs ( a private key and public key). SSH keys are used for secure authentication to remote servers.
+- -t ed25519: This option specifies the type of key to generate. ed25519 is a modern and secure elliptic curve algorithm that is faster and more secure than older algorithms like RSA.
+- -C “your-email@example.com”: This adds a comment to the key, usually an email address or identifier. This comment is stored within the public key and helps you recognise the key later( e.g., when managing multiple keys).
+
+What this command will do:
+
+It creates a new ed25519 SSH key pair.
+
+You will be prompted to choose a file location to save the key (default is ~/.ssh/id_ed25519).
+
+You can also set a passphrase to add an extra layer of security.
+
+The comment ”your-email@example.com” is embedded in the public key file, helping identify the key.
+This command line will display the contents of your ed25519 public SSH key.
+
+#### Add your public key to GitHub
+Copy the output from the command:
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+- cat: This is a command-line utility that reads the contents of a file and outputs it to the terminal.
+
+Copy the public SSH key.
+
+For example your SSH key will be like:
+```bash
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB... your-email@example.com
+```
+
+Now go to your GitHub account:
+1. Go to Settings
+2. Navigate to SSH and GPG keys
+3. Click over New SSH key
+4. Give it a title (e.g., “My PC”)
+5. Paste the public SSH key
+6. Set as authorise key
+7. And click Add SSH key
+
+#### Test the connection to see if SSH Setup Is Completed
+
+Run
+
+```bash
+ssh -T git@github.com
+```
+
+You will see something like this:
+```bash
+Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+That means you’re good to go!
+```
+
+That means you’re good to go!
+
+## Clone your private repository using SSH
+```bash
+git clone git@github.com:username/repo.git
+```
+
+## Now the reason to use SSH with GitHub Are:
+- It is a secure feature.
+- You don’t need to enter credentials every time.
+- And it is good for automation and scripts.
+
+Thank you so much if you have read this so far. You have learnt something new today, and you can share this knowledge with your friends and grow together. May be they don’t know about this feature and may be trying to figure out some solution — so you should share it with them too.
+
+Bye..
+
+
+</BlogContent>

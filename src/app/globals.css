@@ -1,0 +1,196 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Strict Color Theme Rules:
+   Light mode:
+     Primary (Background): #ffffff (white)
+     Secondary (Accent): #f34213 (electric orange)
+     Text: #000000 (black)
+
+   Dark mode:
+     Primary (Background): #000000 (black)
+     Secondary (Accent): #FF8800 (vibrant orange/amber)
+     Text: #ffffff (white)
+*/
+:root {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-heading: var(--font-inter), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  
+  --color-bg-light: #ffffff;
+  --color-bg-dark: #000000;
+  --color-accent-light: #f34213;
+  --color-accent-dark: #FF8800;
+
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.65;
+  background-color: #ffffff;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background-color: var(--color-accent-light);
+  color: #ffffff;
+}
+
+.dark ::selection {
+  background-color: var(--color-accent-dark);
+  color: #ffffff;
+}
+
+/* Unified Dynamic Brand Accent Utilities */
+.text-brand-accent {
+  color: var(--color-accent-light);
+}
+
+.dark .text-brand-accent {
+  color: var(--color-accent-dark);
+}
+
+.bg-brand-accent {
+  background-color: var(--color-accent-light);
+}
+
+.dark .bg-brand-accent {
+  background-color: var(--color-accent-dark);
+}
+
+.border-brand-accent {
+  border-color: var(--color-accent-light);
+}
+
+.dark .border-brand-accent {
+  border-color: var(--color-accent-dark);
+}
+
+.hover-text-brand-accent:hover {
+  color: var(--color-accent-light);
+}
+
+.dark .hover-text-brand-accent:hover {
+  color: var(--color-accent-dark);
+}
+
+.hover-border-brand-accent:hover {
+  border-color: var(--color-accent-light);
+}
+
+.dark .hover-border-brand-accent:hover {
+  border-color: var(--color-accent-dark);
+}
+
+/* Dynamic Prose Accent Styling for Blog Posts */
+.prose a {
+  color: var(--color-accent-light) !important;
+}
+
+.dark .prose a {
+  color: var(--color-accent-dark) !important;
+}
+
+.prose blockquote {
+  border-left-color: var(--color-accent-light) !important;
+}
+
+.dark .prose blockquote {
+  border-left-color: var(--color-accent-dark) !important;
+}
+
+.prose code:not(pre code) {
+  color: var(--color-accent-light) !important;
+}
+
+.dark .prose code:not(pre code) {
+  color: var(--color-accent-dark) !important;
+}
+
+/* Force pure black background in dark mode on all core container tags */
+.dark,
+.dark body,
+.dark html,
+.dark #root,
+.dark .app-layout,
+.dark main {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Prevent horizontal overflow globally */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-y: auto !important;
+}
+
+body,
+#root,
+.app-layout {
+  overflow-y: visible !important;
+}
+
+/* Global scrollbar behavior */
+html.hide-scrollbar,
+html.hide-scrollbar body,
+html.hide-scrollbar * {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+html.hide-scrollbar ::-webkit-scrollbar,
+html.hide-scrollbar body::-webkit-scrollbar,
+html.hide-scrollbar *::-webkit-scrollbar {
+  display: none !important;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+
+@theme {
+  --font-body: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
+
+  --color-accent-light: #f34213;
+  --color-accent-dark: #FF8800;
+  --color-dark-primary: #000000;
+  --color-light-primary: #ffffff;
+
+  /* Backward compatibility fallback mapping */
+  --color-amber-glow: #f34213;
+  --color-amber-glow-500: #f34213;
+  --color-brand-apricot: #f34213;
+  --color-brand-midnight: #000000;
+  --color-frozen-water-900: #ffffff;
+  --color-light-sea-green: #f34213;
+  --color-light-sea-green-500: #f34213;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
