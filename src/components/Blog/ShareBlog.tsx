@@ -39,8 +39,8 @@ export default function ShareBlog({ title }: ShareBlogProps) {
   };
 
   return (
-    <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800 not-prose">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/40 backdrop-blur-xs">
+    <div className="mt-10 pt-6 not-prose">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4.5 rounded-2xl bg-neutral-100/50 dark:bg-neutral-900/40">
         <div className="flex items-center gap-2 font-mono text-xs text-neutral-600 dark:text-neutral-400">
           <IconShare className="size-4 text-brand-accent" />
           <span className="font-semibold text-black dark:text-white">Enjoyed this post?</span>

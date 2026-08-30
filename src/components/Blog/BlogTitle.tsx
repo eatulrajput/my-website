@@ -36,7 +36,7 @@ export default function BlogTitle({
   }, []);
 
   return (
-    <div className="mb-12 mt-8 border-b border-neutral-200 dark:border-neutral-800 pb-8 font-sans">
+    <div className="mb-8 mt-6 pb-6 font-sans">
       {/* Category Tag Badge */}
       <div className="mb-4 flex items-center">
         <Link

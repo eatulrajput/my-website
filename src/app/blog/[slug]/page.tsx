@@ -65,7 +65,7 @@ export default function BlogPage() {
   }) as React.ComponentType<any>;
 
   return (
-    <main aria-label="Blog Article" className="mx-auto w-full max-w-2xl px-4 sm:px-6 pt-1 sm:pt-2 pb-12 md:pb-20 relative">
+    <main aria-label="Blog Article" className="mx-auto w-full max-w-2xl px-6 sm:px-10 pt-4 sm:pt-6 pb-16 md:pb-24 relative">
       {/* Line-by-line Reading Ruler Overlay */}
       <FocusReadingRuler active={focusRulerActive} />
 
@@ -112,9 +112,9 @@ export default function BlogPage() {
             "prose-headings:font-sans prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-neutral-900 dark:prose-headings:text-neutral-50",
             "prose-p:mb-6 prose-p:text-neutral-700 dark:prose-p:text-neutral-300",
             "prose-a:font-semibold prose-a:no-underline hover:prose-a:underline transition-colors",
-            "prose-img:rounded-3xl prose-img:shadow-2xl prose-img:mx-auto prose-img:my-10 border border-neutral-200/60 dark:border-neutral-800/60",
+            "prose-img:rounded-3xl prose-img:shadow-2xl prose-img:mx-auto prose-img:my-10",
             "prose-blockquote:border-l-4 prose-blockquote:bg-neutral-50 dark:prose-blockquote:bg-neutral-900/50 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-2xl prose-blockquote:font-medium prose-blockquote:not-italic prose-blockquote:text-neutral-900 dark:prose-blockquote:text-neutral-100 shadow-xs",
-            "prose-pre:overflow-x-auto prose-pre:rounded-2xl prose-pre:p-6 prose-pre:bg-neutral-950 prose-pre:shadow-2xl prose-pre:border prose-pre:border-neutral-800/80",
+            "prose-pre:overflow-x-auto prose-pre:rounded-2xl prose-pre:p-6 prose-pre:bg-neutral-950 prose-pre:shadow-2xl",
             "prose-code:break-words prose-code:font-mono prose-code:text-sm prose-code:bg-neutral-100 dark:prose-code:bg-neutral-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md",
             "prose-strong:font-bold prose-strong:text-neutral-900 dark:prose-strong:text-neutral-50"
           )}
@@ -148,7 +148,7 @@ export default function BlogPage() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
-          className="mt-20 pt-12 border-t border-neutral-200 dark:border-neutral-800"
+          className="mt-16 pt-8"
         >
           <h3 className="text-xl font-bold font-mono uppercase tracking-wider text-neutral-900 dark:text-neutral-100 mb-8 text-center">
             Read Next
@@ -157,7 +157,7 @@ export default function BlogPage() {
             {prevPost ? (
               <Link
                 href={`/blog/${prevPost.slug}`}
-                className="group flex flex-col justify-between rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-white dark:hover:bg-neutral-900 cursor-pointer"
+                className="group flex flex-col justify-between rounded-2xl bg-neutral-100/50 dark:bg-neutral-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 cursor-pointer"
               >
                 <div>
                   <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold text-brand-accent mb-2 uppercase tracking-wider">
@@ -178,7 +178,7 @@ export default function BlogPage() {
             {nextPost ? (
               <Link
                 href={`/blog/${nextPost.slug}`}
-                className="group flex flex-col justify-between rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-white dark:hover:bg-neutral-900 cursor-pointer text-right"
+                className="group flex flex-col justify-between rounded-2xl bg-neutral-100/50 dark:bg-neutral-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 cursor-pointer text-right"
               >
                 <div>
                   <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold text-brand-accent mb-2 uppercase tracking-wider justify-end">

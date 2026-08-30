@@ -66,7 +66,7 @@ export const BlogReadingToolbar = ({
       </div>
 
       {/* Floating Accessibility Control Bar */}
-      <div className="sticky top-6 z-40 mt-1 mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-white/90 dark:bg-neutral-900/90 p-2.5 sm:px-4 shadow-lg backdrop-blur-md transition-all">
+      <div className="sticky top-6 z-40 mt-1 mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-white/95 dark:bg-neutral-900/95 p-2.5 sm:px-4 shadow-md backdrop-blur-md transition-all">
         {/* Font Size Controls */}
         <div className="flex items-center gap-1 font-mono text-xs">
           <span className="text-[10px] text-neutral-400 uppercase font-bold mr-1 hidden sm:inline">

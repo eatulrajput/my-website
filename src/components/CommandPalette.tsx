@@ -10,11 +10,7 @@ import {
   IconCode,
   IconMail,
   IconBolt,
-  IconCamera,
-  IconDeviceDesktop,
-  IconBook,
   IconPencil,
-  IconCube,
   IconLink,
   IconCopy,
   IconCheck,
@@ -28,7 +24,6 @@ import {
   IconBrandDiscord,
   IconSearch,
   IconX,
-  IconSettings,
   IconNotebook,
   IconTerminal2,
 } from "@tabler/icons-react";
@@ -142,7 +137,7 @@ export default function CommandPalette() {
             <Command className="w-full flex flex-col font-sans">
               {/* Search Bar Input */}
               <div className="flex items-center gap-3 px-4 py-3.5 border-b border-neutral-200/80 dark:border-neutral-800">
-                <IconSearch className="size-5 text-neutral-400 shrink-0" />
+                <IconSearch className="size-5 text-brand-accent shrink-0" />
                 <Command.Input
                   value={search}
                   onValueChange={setSearch}
@@ -153,18 +148,18 @@ export default function CommandPalette() {
                 {search && (
                   <button
                     onClick={() => setSearch("")}
-                    className="p-1 rounded-md text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
+                    className="p-1 rounded-md text-neutral-400 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
                   >
                     <IconX className="size-4" />
                   </button>
                 )}
-                <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-1 text-[10px] font-mono font-semibold text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800 rounded-md border border-neutral-200 dark:border-neutral-700">
+                <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-1 text-[10px] font-mono font-semibold text-brand-accent bg-neutral-100 dark:bg-neutral-800 rounded-md border border-neutral-200 dark:border-neutral-700">
                   ESC
                 </kbd>
               </div>
 
               {/* Command List Items */}
-              <Command.List className="max-h-[60vh] overflow-y-auto p-2 scrollbar-none space-y-3">
+              <Command.List className="max-h-[60vh] overflow-y-auto p-2 hide-scrollbar space-y-3">
                 <Command.Empty className="py-12 text-center text-xs font-mono text-neutral-400">
                   No matching results found.
                 </Command.Empty>
@@ -175,37 +170,37 @@ export default function CommandPalette() {
                   className="[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-widest [&_[cmdk-group-heading]]:text-neutral-400"
                 >
                   <CommandItem
-                    icon={<IconHome className="size-4 text-sky-500" />}
+                    icon={<IconHome className="size-4 text-brand-accent" />}
                     label="Home"
                     description="Return to the primary landing page"
                     onSelect={() => handleNavigate("/")}
                   />
                   <CommandItem
-                    icon={<IconStack2 className="size-4 text-amber-glow" />}
+                    icon={<IconStack2 className="size-4 text-brand-accent" />}
                     label="Projects Showcase"
                     description="Explore application builds and software projects"
                     onSelect={() => handleNavigate("/project")}
                   />
                   <CommandItem
-                    icon={<IconPencil className="size-4 text-light-sea-green" />}
+                    icon={<IconPencil className="size-4 text-brand-accent" />}
                     label="Blog & Articles"
                     description="Read technical posts, tutorials, and insights"
                     onSelect={() => handleNavigate("/blog")}
                   />
                   <CommandItem
-                    icon={<IconBolt className="size-4 text-honey-bronze" />}
+                    icon={<IconBolt className="size-4 text-brand-accent" />}
                     label="System Status"
                     description="Check service health, uptime, and incident logs"
                     onSelect={() => handleNavigate("/status")}
                   />
                   <CommandItem
-                    icon={<IconCode className="size-4 text-cyan-500" />}
+                    icon={<IconCode className="size-4 text-brand-accent" />}
                     label="Technical Skills"
                     description="Jump to skills and technology stack overview"
                     onSelect={() => handleNavigate("/#skills")}
                   />
                   <CommandItem
-                    icon={<IconMail className="size-4 text-emerald-500" />}
+                    icon={<IconMail className="size-4 text-brand-accent" />}
                     label="Contact & Connect"
                     description="Send a message or reach out for work"
                     onSelect={() => handleNavigate("/#contact")}
@@ -224,9 +219,9 @@ export default function CommandPalette() {
                         key={post.slug}
                         icon={
                           isTech ? (
-                            <IconTerminal2 className="size-4 text-sky-500 shrink-0" />
+                            <IconTerminal2 className="size-4 text-brand-accent shrink-0" />
                           ) : (
-                            <IconNotebook className="size-4 text-brand-apricot shrink-0" />
+                            <IconNotebook className="size-4 text-brand-accent shrink-0" />
                           )
                         }
                         label={post.meta.title || post.slug}
@@ -238,10 +233,7 @@ export default function CommandPalette() {
                         badge={
                           <span
                             className={cn(
-                              "text-[9px] font-bold uppercase tracking-wider font-mono px-1.5 py-0.5 rounded shrink-0",
-                              isTech
-                                ? "bg-neutral-200/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300"
-                                : "bg-brand-apricot/10 text-brand-apricot dark:bg-brand-apricot/20 dark:text-brand-apricot"
+                              "text-[9px] font-bold uppercase tracking-wider font-mono px-1.5 py-0.5 rounded shrink-0 border border-brand-accent bg-neutral-100 dark:bg-neutral-900 text-brand-accent"
                             )}
                           >
                             {isTech ? "Tech" : "Personal"}
@@ -262,9 +254,9 @@ export default function CommandPalette() {
                   <CommandItem
                     icon={
                       theme === "dark" ? (
-                        <IconSun className="size-4 text-amber-500" />
+                        <IconSun className="size-4 text-brand-accent" />
                       ) : (
-                        <IconMoon className="size-4 text-brand-apricot" />
+                        <IconMoon className="size-4 text-brand-accent" />
                       )
                     }
                     label={theme === "dark" ? "Switch to Light Theme" : "Switch to Dark Theme"}
@@ -274,9 +266,9 @@ export default function CommandPalette() {
                   <CommandItem
                     icon={
                       copied ? (
-                        <IconCheck className="size-4 text-emerald-500" />
+                        <IconCheck className="size-4 text-brand-accent" />
                       ) : (
-                        <IconCopy className="size-4 text-sky-500" />
+                        <IconCopy className="size-4 text-brand-accent" />
                       )
                     }
                     label={copied ? "Link Copied!" : "Copy Page Link"}
@@ -284,7 +276,7 @@ export default function CommandPalette() {
                     onSelect={handleCopyLink}
                   />
                   <CommandItem
-                    icon={<IconArrowUp className="size-4 text-purple-500" />}
+                    icon={<IconArrowUp className="size-4 text-brand-accent" />}
                     label="Scroll to Top"
                     description="Smooth scroll back to top of page"
                     onSelect={handleScrollToTop}
@@ -297,31 +289,31 @@ export default function CommandPalette() {
                   className="[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-widest [&_[cmdk-group-heading]]:text-neutral-400"
                 >
                   <CommandItem
-                    icon={<IconBrandGithub className="size-4 text-neutral-700 dark:text-neutral-300" />}
+                    icon={<IconBrandGithub className="size-4 text-brand-accent" />}
                     label="GitHub Profile"
                     description="github.com/eatulrajput"
                     onSelect={() => handleNavigate("https://github.com/eatulrajput")}
                   />
                   <CommandItem
-                    icon={<IconBrandX className="size-4 text-neutral-700 dark:text-neutral-300" />}
+                    icon={<IconBrandX className="size-4 text-brand-accent" />}
                     label="Twitter / X"
                     description="x.com/eatulrajput"
                     onSelect={() => handleNavigate("https://x.com/eatulrajput")}
                   />
                   <CommandItem
-                    icon={<IconBrandLinkedin className="size-4 text-blue-600" />}
+                    icon={<IconBrandLinkedin className="size-4 text-brand-accent" />}
                     label="LinkedIn Profile"
                     description="linkedin.com/in/eatulrajput"
                     onSelect={() => handleNavigate("https://linkedin.com/in/eatulrajput")}
                   />
                   <CommandItem
-                    icon={<IconBrandInstagram className="size-4 text-pink-500" />}
+                    icon={<IconBrandInstagram className="size-4 text-brand-accent" />}
                     label="Instagram"
                     description="instagram.com/eatulrajput"
                     onSelect={() => handleNavigate("https://instagram.com/eatulrajput")}
                   />
                   <CommandItem
-                    icon={<IconBrandDiscord className="size-4 text-indigo-500" />}
+                    icon={<IconBrandDiscord className="size-4 text-brand-accent" />}
                     label="Discord Community"
                     description="Connect via Discord"
                     onSelect={() => handleNavigate("https://discord.gg")}
@@ -345,7 +337,7 @@ export default function CommandPalette() {
                     <span>select</span>
                   </span>
                 </div>
-                <span className="text-[10px] text-neutral-500 dark:text-neutral-400">
+                <span className="text-[10px] text-brand-accent font-semibold">
                   Central Command Palette
                 </span>
               </div>
@@ -377,17 +369,17 @@ function CommandItem({
       value={value}
       onSelect={onSelect}
       className={cn(
-        "group flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer select-none transition-colors duration-150",
-        "data-[selected=true]:bg-neutral-100 dark:data-[selected=true]:bg-neutral-800/80"
+        "group flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer select-none transition-colors duration-150 border border-transparent",
+        "data-[selected=true]:bg-neutral-100 dark:data-[selected=true]:bg-neutral-900 data-[selected=true]:border-brand-accent/30"
       )}
     >
       <div className="flex items-center gap-3 min-w-0">
-        <div className="flex items-center justify-center size-8 rounded-lg bg-neutral-100 dark:bg-neutral-800 border border-neutral-200/60 dark:border-neutral-700/60 shrink-0 group-data-[selected=true]:bg-white dark:group-data-[selected=true]:bg-neutral-700">
+        <div className="flex items-center justify-center size-8 rounded-lg bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800 shrink-0 group-data-[selected=true]:bg-neutral-200 dark:group-data-[selected=true]:bg-black group-data-[selected=true]:border-brand-accent">
           {icon}
         </div>
         <div className="flex flex-col min-w-0">
           <div className="flex items-center gap-2">
-            <span className="text-xs md:text-sm font-semibold text-neutral-800 dark:text-neutral-100 truncate">
+            <span className="text-xs md:text-sm font-semibold text-neutral-800 dark:text-neutral-100 group-data-[selected=true]:text-brand-accent truncate">
               {label}
             </span>
             {badge}
@@ -399,7 +391,7 @@ function CommandItem({
           )}
         </div>
       </div>
-      <IconLink className="size-3.5 text-neutral-300 dark:text-neutral-600 opacity-0 group-data-[selected=true]:opacity-100 transition-opacity shrink-0 ml-2" />
+      <IconLink className="size-3.5 text-brand-accent opacity-0 group-data-[selected=true]:opacity-100 transition-opacity shrink-0 ml-2" />
     </Command.Item>
   );
 }
