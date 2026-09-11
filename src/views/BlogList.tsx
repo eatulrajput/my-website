@@ -6,6 +6,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { blogPosts, isTechnicalPost } from "../lib/posts";
 import { Breadcrumbs } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import GeometricLines from "@/components/GeometricLines";
 
 export default function BlogList() {
   const [selectedCategory, setSelectedCategory] = useState<"all" | "tech" | "non-tech">("all");
@@ -82,7 +83,11 @@ export default function BlogList() {
   ];
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 text-left space-y-6">
+    <main className="relative min-h-screen">
+      {/* Geometric grid decoration in the left/right viewport margins */}
+      <GeometricLines />
+
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 text-left space-y-6">
       {/* Page Header */}
       <div className="space-y-3">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
@@ -183,5 +188,6 @@ export default function BlogList() {
         </div>
       )}
     </div>
+    </main>
   );
 }

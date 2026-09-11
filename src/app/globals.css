@@ -224,3 +224,17 @@ html.hide-scrollbar *::-webkit-scrollbar {
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+/* ============================================================
+   SECTION NAV — sticky left-side section navigator
+   ============================================================ */
+
+/* Glow on the active dot */
+.section-nav-dot {
+  will-change: transform, box-shadow;
+}
+
+/* Smooth transition for the connecting vertical line */
+.section-nav-line {
+  transition: height 0.3s ease;
+}

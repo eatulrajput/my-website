@@ -18,6 +18,13 @@ import BlogReadingToolbar, { TypographyMode } from "@/components/Blog/BlogReadin
 import BlogTextHighlighter from "@/components/Blog/BlogTextHighlighter";
 import FocusReadingRuler from "@/components/Blog/FocusReadingRuler";
 import { motion } from "motion/react";
+// ── New UX Components ────────────────────────────────────────────
+import ReadingProgressBar from "@/components/Blog/ReadingProgressBar";
+import BlogTableOfContents from "@/components/Blog/BlogTableOfContents";
+import CodeBlock from "@/components/Blog/CodeBlock";
+import { H2, H3, H4 } from "@/components/Blog/AnchorHeading";
+import ArticleReactions from "@/components/Blog/ArticleReactions";
+
 
 export default function BlogPage() {
   const params = useParams();
@@ -66,6 +73,13 @@ export default function BlogPage() {
 
   return (
     <main aria-label="Blog Article" className="mx-auto w-full max-w-2xl px-6 sm:px-10 pt-4 sm:pt-6 pb-16 md:pb-24 relative">
+      {/* ── Fixed overlays ──────────────────────────────────────── */}
+      {/* Thin accent bar showing scroll progress through this article */}
+      <ReadingProgressBar />
+
+      {/* Right-margin sticky table of contents (xl+ only) */}
+      <BlogTableOfContents />
+
       {/* Line-by-line Reading Ruler Overlay */}
       <FocusReadingRuler active={focusRulerActive} />
 
@@ -130,9 +144,25 @@ export default function BlogPage() {
               Alert,
               YoutubeVideo,
               Quote,
+              // ── UX Overrides ──────────────────────────────────
+              // h2/h3/h4 get anchor links + auto-generated IDs for the ToC
+              h2: H2,
+              h3: H3,
+              h4: H4,
+              // pre gets a hover copy button + language badge
+              pre: CodeBlock,
             }}
           />
         </motion.article>
+
+        {/* ── Emoji Reactions ──────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <ArticleReactions slug={slug} />
+        </motion.div>
 
         {/* Animated Share Section */}
         <motion.div
@@ -141,6 +171,27 @@ export default function BlogPage() {
           transition={{ duration: 0.5, delay: 0.25 }}
         >
           <ShareBlog title={(post.meta.title as string) || "Blog Post"} />
+        </motion.div>
+
+        {/* ── Back to Top ──────────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="mt-6 flex justify-center"
+        >
+          <button
+            type="button"
+            onClick={() => {
+              const lenis = (window as Window & { __lenis?: { scrollTo: (t: number, o?: Record<string, unknown>) => void } }).__lenis;
+              if (lenis) lenis.scrollTo(0, { duration: 1.2 });
+              else window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-400 hover-text-brand-accent transition-colors"
+          >
+            <span>↑</span>
+            <span>Back to top</span>
+          </button>
         </motion.div>
 
         {/* Animated Keep Reading Section */}
