@@ -10,6 +10,7 @@ export interface ProjectItem {
   projectStatus?: string;
   date?: string;
   sortDate?: string; // YYYY-MM for exact chronological sorting
+  showInProjects?: boolean;
 }
 
 export const rawProjects: ProjectItem[] = [
@@ -24,6 +25,7 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Jan 2026",
     sortDate: "2026-01",
+    showInProjects: false,
   },
   {
     title: "Crato",
@@ -36,6 +38,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "In Progress",
     date: "Aug 2025",
     sortDate: "2025-08",
+    showInProjects: false,
+
   },
   {
     title: "2025 Solution Challenge",
@@ -48,6 +52,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "In Progress",
     date: "Jan - Jul 2025",
     sortDate: "2025-07",
+    showInProjects: false,
+
   },
   {
     title: "Workflow",
@@ -60,6 +66,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "In Progress",
     date: "Jun 2025",
     sortDate: "2025-06",
+    showInProjects: false,
+
   },
   {
     title: "Astra AI",
@@ -72,6 +80,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "In Progress",
     date: "May 2025",
     sortDate: "2025-05",
+    showInProjects: false,
+
   },
   {
     title: "Test Forge",
@@ -91,6 +101,7 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Apr 2025",
     sortDate: "2025-04",
+    showInProjects: false,
   },
   {
     title: "Appoint Ease",
@@ -103,6 +114,7 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "In Progress",
     date: "Jan 2025",
     sortDate: "2025-01",
+    showInProjects: false,
   },
   {
     title: "Hapocalypse",
@@ -115,6 +127,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "In Progress",
     date: "Dec 2024",
     sortDate: "2024-12",
+    showInProjects: false,
+
   },
   {
     title: "GitHub Copilot Challenge",
@@ -127,6 +141,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Nov 2024 - Jan 2025",
     sortDate: "2024-11.5",
+    showInProjects: false,
+
   },
   {
     title: "Google's Deepdream Project",
@@ -139,6 +155,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Nov 2024",
     sortDate: "2024-11",
+    showInProjects: false,
+
   },
   {
     title: "Harmony Bot",
@@ -151,6 +169,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Oct - Nov 2024",
     sortDate: "2024-10.5",
+    showInProjects: false,
+
   },
   {
     title: "Distance Measurement Using HC-SR04",
@@ -163,6 +183,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Oct 2024",
     sortDate: "2024-10.2",
+    showInProjects: false,
+
   },
   {
     title: "Dharavi Mapping",
@@ -175,6 +197,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Oct 2024",
     sortDate: "2024-10",
+    showInProjects: false,
+
   },
   {
     title: "Finfy",
@@ -187,6 +211,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "May 2024",
     sortDate: "2024-05",
+    showInProjects: false,
+
   },
   {
     title: "Weather App",
@@ -199,6 +225,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Apr - Jun 2024",
     sortDate: "2024-04",
+    showInProjects: false,
+
   },
   {
     title: "Calculator App",
@@ -211,6 +239,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Mar 2024",
     sortDate: "2024-03",
+    showInProjects: false,
+
   },
   {
     title: "Breakout Game",
@@ -223,6 +253,8 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Nov 2023",
     sortDate: "2023-11",
+    showInProjects: false,
+
   },
 ];
 
@@ -237,4 +269,4 @@ export const getSortedProjects = (items: ProjectItem[]): ProjectItem[] => {
   });
 };
 
-export const projects = getSortedProjects(rawProjects);
+export const projects = getSortedProjects(rawProjects.filter(p => p.showInProjects !== false));
