@@ -25,8 +25,14 @@
   --color-accent-light: #f34213;
   --color-accent-dark: #FF8800;
 
+  --color-brand-accent: var(--color-accent-light);
+
   background-color: #ffffff;
   color: #000000;
+}
+
+.dark {
+  --color-brand-accent: var(--color-accent-dark);
 }
 
 body {
@@ -48,47 +54,6 @@ body {
 .dark ::selection {
   background-color: var(--color-accent-dark);
   color: #ffffff;
-}
-
-/* Unified Dynamic Brand Accent Utilities */
-.text-brand-accent {
-  color: var(--color-accent-light);
-}
-
-.dark .text-brand-accent {
-  color: var(--color-accent-dark);
-}
-
-.bg-brand-accent {
-  background-color: var(--color-accent-light);
-}
-
-.dark .bg-brand-accent {
-  background-color: var(--color-accent-dark);
-}
-
-.border-brand-accent {
-  border-color: var(--color-accent-light);
-}
-
-.dark .border-brand-accent {
-  border-color: var(--color-accent-dark);
-}
-
-.hover-text-brand-accent:hover {
-  color: var(--color-accent-light);
-}
-
-.dark .hover-text-brand-accent:hover {
-  color: var(--color-accent-dark);
-}
-
-.hover-border-brand-accent:hover {
-  border-color: var(--color-accent-light);
-}
-
-.dark .hover-border-brand-accent:hover {
-  border-color: var(--color-accent-dark);
 }
 
 /* Dynamic Prose Accent Styling for Blog Posts */
@@ -201,6 +166,7 @@ html.hide-scrollbar *::-webkit-scrollbar {
   --font-heading: var(--font-heading);
   --font-mono: var(--font-mono);
 
+  --color-brand-accent: var(--color-brand-accent);
   --color-accent-light: #f34213;
   --color-accent-dark: #FF8800;
   --color-dark-primary: #000000;
