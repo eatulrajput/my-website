@@ -7,18 +7,18 @@ function GithubOctocatAnimation() {
   return (
     <div className="w-8 h-8 relative flex items-center justify-center overflow-hidden">
       {/* Octocat */}
-      <motion.svg 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
+      <motion.svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         className="absolute inset-0 w-full h-full drop-shadow-sm"
         variants={{
           rest: { y: 0, opacity: 1, scale: 1 },
-          hover: { 
-            y: -20, 
+          hover: {
+            y: -20,
             opacity: 0,
             scale: 0.8,
             transition: { duration: 0.4, ease: "easeInOut" }
@@ -30,19 +30,19 @@ function GithubOctocatAnimation() {
       </motion.svg>
 
       {/* PC Monitor with Terminal */}
-      <motion.svg 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
+      <motion.svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         className="absolute inset-0 w-full h-full drop-shadow-sm"
         variants={{
           rest: { y: 20, opacity: 0, scale: 0.8 },
-          hover: { 
-            y: 0, 
-            opacity: 1, 
+          hover: {
+            y: 0,
+            opacity: 1,
             scale: 1,
             transition: { duration: 0.5, delay: 0.1, type: "spring", stiffness: 300, damping: 20 }
           }
@@ -52,10 +52,10 @@ function GithubOctocatAnimation() {
         <rect width="20" height="14" x="2" y="3" rx="2" />
         <line x1="8" y1="21" x2="16" y2="21" />
         <line x1="12" y1="17" x2="12" y2="21" />
-        
+
         {/* Terminal Prompt ">" */}
-        <motion.path 
-          d="M 6 8 L 8 10 L 6 12" 
+        <motion.path
+          d="M 6 8 L 8 10 L 6 12"
           strokeWidth="1.5"
           variants={{
             rest: { opacity: 0 },
@@ -63,8 +63,8 @@ function GithubOctocatAnimation() {
           }}
         />
         {/* Blinking Cursor "_" */}
-        <motion.line 
-          x1="10" y1="12" x2="14" y2="12" 
+        <motion.line
+          x1="10" y1="12" x2="14" y2="12"
           strokeWidth="1.5"
           variants={{
             rest: { opacity: 0 },
@@ -80,15 +80,15 @@ function OpeningEnvelopeAnimation() {
   return (
     <div className="w-12 h-12 flex items-center justify-center relative">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full drop-shadow-sm overflow-visible">
-        
+
         {/* Back Flap (Open) - Drawn behind paper */}
-        <motion.path 
-          d="M3 8 l9 -7 l9 7" 
+        <motion.path
+          d="M3 8 l9 -7 l9 7"
           style={{ transformOrigin: "50% 8px" }}
           variants={{
             rest: { rotateX: -90, opacity: 0, x: 0, y: 0, rotate: 0 },
-            hover: { 
-              rotateX: [-90, -90, 0, 0, 0], 
+            hover: {
+              rotateX: [-90, -90, 0, 0, 0],
               opacity: [0, 0, 1, 1, 0],
               x: [0, 0, 0, 0, -20],
               y: [0, 0, 0, 0, 20],
@@ -102,8 +102,8 @@ function OpeningEnvelopeAnimation() {
         <motion.g
           variants={{
             rest: { x: 0, y: 0, opacity: 0, rotate: 0 },
-            hover: { 
-              y: [0, 0, -14, -14, -8], 
+            hover: {
+              y: [0, 0, -14, -14, -8],
               x: [0, 0, 0, 0, 12],
               opacity: [0, 0, 1, 1, 1],
               rotate: [0, 0, 0, 0, 20],
@@ -116,9 +116,9 @@ function OpeningEnvelopeAnimation() {
         </motion.g>
 
         {/* Envelope Body - Covers paper's bottom half, then flies away */}
-        <motion.path 
-          d="M3 8 h18 v10 a2 2 0 0 1 -2 2 H5 a2 2 0 0 1 -2 -2 V8 z" 
-          className="fill-white dark:fill-neutral-900" 
+        <motion.path
+          d="M3 8 h18 v10 a2 2 0 0 1 -2 2 H5 a2 2 0 0 1 -2 -2 V8 z"
+          className="fill-white dark:fill-neutral-900"
           style={{ transformOrigin: "center" }}
           variants={{
             rest: { x: 0, y: 0, opacity: 1, rotate: 0 },
@@ -131,17 +131,17 @@ function OpeningEnvelopeAnimation() {
             }
           }}
         />
-        
+
         {/* Front Flap (Closed) - Folds open and disappears */}
-        <motion.path 
-          d="M3 8 l9 7 l9 -7" 
+        <motion.path
+          d="M3 8 l9 7 l9 -7"
           style={{ transformOrigin: "50% 8px" }}
           variants={{
             rest: { rotateX: 0, opacity: 1 },
-            hover: { 
-              rotateX: [0, 90, 90], 
-              opacity: [1, 0, 0], 
-              transition: { duration: 2, times: [0, 0.15, 1], ease: "easeInOut" } 
+            hover: {
+              rotateX: [0, 90, 90],
+              opacity: [1, 0, 0],
+              transition: { duration: 2, times: [0, 0.15, 1], ease: "easeInOut" }
             }
           }}
         />
@@ -158,11 +158,11 @@ function TwitterToXAnimation() {
         className="absolute inset-0 flex items-center justify-center"
         variants={{
           rest: { y: 0, x: 0, opacity: 1, rotate: 0, scale: 1 },
-          hover: { 
-            y: -15, 
-            x: 15, 
-            opacity: 0, 
-            rotate: 20, 
+          hover: {
+            y: -15,
+            x: 15,
+            opacity: 0,
+            rotate: 20,
             scale: 0.5,
             transition: { duration: 0.5, ease: "easeIn" }
           }
@@ -176,17 +176,17 @@ function TwitterToXAnimation() {
         className="absolute inset-0 flex items-center justify-center"
         variants={{
           rest: { y: 15, opacity: 0, rotate: -20, scale: 0.5 },
-          hover: { 
-            y: 0, 
-            opacity: 1, 
-            rotate: 0, 
+          hover: {
+            y: 0,
+            opacity: 1,
+            rotate: 0,
             scale: 1,
             transition: { duration: 0.5, delay: 0.2, type: "spring", stiffness: 300, damping: 20 }
           }
         }}
       >
         <svg viewBox="0 0 24 24" fill="currentColor" className="w-[85%] h-[85%] drop-shadow-sm">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
       </motion.div>
     </div>
@@ -197,9 +197,9 @@ function LinkedinToMagnetAnimation() {
   return (
     <div className="w-8 h-8 relative flex items-center justify-center">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full drop-shadow-sm overflow-visible">
-        
+
         {/* LinkedIn Bounding Box */}
-        <motion.rect 
+        <motion.rect
           x="2" y="2" width="20" height="20" rx="4"
           variants={{
             rest: { opacity: 1, scale: 1 },
@@ -222,15 +222,15 @@ function LinkedinToMagnetAnimation() {
               hover: { opacity: 1, y: -2, transition: { duration: 0.4, delay: 0.2 } }
             }}
           >
-            <motion.path 
-              d="M 9 1 A 3 3 0 0 1 15 1" 
+            <motion.path
+              d="M 9 1 A 3 3 0 0 1 15 1"
               variants={{
                 rest: { opacity: 0 },
                 hover: { opacity: [0, 1, 0], transition: { duration: 1.5, repeat: Infinity, delay: 0.2 } }
               }}
             />
-            <motion.path 
-              d="M 7 -3 A 5 5 0 0 1 17 -3" 
+            <motion.path
+              d="M 7 -3 A 5 5 0 0 1 17 -3"
               variants={{
                 rest: { opacity: 0 },
                 hover: { opacity: [0, 1, 0], transition: { duration: 1.5, repeat: Infinity, delay: 0.6 } }
@@ -241,10 +241,10 @@ function LinkedinToMagnetAnimation() {
           {/* Morphing Path */}
           <motion.path
             variants={{
-              rest: { 
+              rest: {
                 d: "M 8 10 L 8 18 M 8 6 L 8 6.1 M 12 10 L 12 18 M 12 13 C 12 10 16 10 16 13 L 16 18 M 16 18 L 16 18"
               },
-              hover: { 
+              hover: {
                 d: "M 7 10 L 7 20 M 5 17 L 9 17 M 15 17 L 19 17 M 7 10 C 7 2 17 2 17 10 L 17 20 M 17 20 L 17 20",
                 transition: { duration: 0.6, type: "spring", stiffness: 100, damping: 15 }
               }
@@ -264,10 +264,10 @@ type LinkItem = {
 };
 
 const links: LinkItem[] = [
-  { name: 'GitHub', url: 'https://github.com', icon: <GithubOctocatAnimation /> },
-  { name: 'LinkedIn', url: 'https://linkedin.com', icon: <LinkedinToMagnetAnimation /> },
-  { name: 'Twitter', url: 'https://twitter.com', icon: <TwitterToXAnimation /> },
-  { name: 'Email', url: 'mailto:hello@example.com', icon: <OpeningEnvelopeAnimation /> },
+  { name: 'GitHub', url: 'https://github.com/eatulrajput', icon: <GithubOctocatAnimation /> },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/eatulrajput', icon: <LinkedinToMagnetAnimation /> },
+  { name: 'X', url: 'https://x.com/eatulrajput', icon: <TwitterToXAnimation /> },
+  { name: 'Email', url: 'mailto:[EMAIL_ADDRESS]', icon: <OpeningEnvelopeAnimation /> },
 ];
 
 export function LinksCard() {
