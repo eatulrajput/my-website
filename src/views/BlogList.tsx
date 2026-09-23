@@ -65,6 +65,10 @@ export default function BlogList() {
 
   // Filter posts based on selected category
   const filteredPosts = sortedPosts.filter((post) => {
+    // Restrict to add category into the blog, if not added it won't be listed
+    const rawCat = (post.meta.category || post.meta.type) as string | undefined;
+    if (!rawCat) return false;
+
     const isTech = isTechnicalPost(post);
     if (selectedCategory === "tech" && !isTech) return false;
     if (selectedCategory === "non-tech" && isTech) return false;

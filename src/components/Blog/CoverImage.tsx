@@ -3,12 +3,20 @@ type Props = {
   alt?: string;
 };
 
-export default function CoverImage({ alt }: Props) {
-  if (!alt) return null;
+export default function CoverImage({ src, alt = "Cover image" }: Props) {
+  if (!src) return null;
+  
   return (
-    <div className="my-8 w-full rounded-2xl p-6 bg-neutral-900 border border-neutral-800 text-frozen-water font-mono text-sm shadow-sm">
-      <span className="text-amber-glow font-bold block mb-1">ARTICLE TAKEAWAY</span>
-      <p className="text-neutral-300 italic">{alt}</p>
+    <div className="my-10 w-full relative">
+      <div className="relative w-full overflow-hidden rounded-[2rem]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img 
+          src={src} 
+          alt={alt} 
+          className="w-full h-auto max-h-[60vh] object-cover"
+          loading="eager"
+        />
+      </div>
     </div>
   );
 }

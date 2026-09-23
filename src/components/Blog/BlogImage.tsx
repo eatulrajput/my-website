@@ -1,16 +1,26 @@
 type Props = {
-  src?: string
-  alt?: string
-}
+  src?: string;
+  alt?: string;
+};
 
-export default function BlogImage({ alt }: Props) {
-  if (!alt) return null;
+export default function BlogImage({ src, alt = "Blog image" }: Props) {
+  if (!src) return null;
   return (
-    <figure className="my-8 flex flex-col items-center w-full">
-      <div className="w-full rounded-xl border border-neutral-300 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900/60 p-4 font-mono text-xs text-neutral-700 dark:text-neutral-300">
-        <span className="text-light-sea-green font-bold">[NOTE] </span>
-        {alt}
+    <figure className="my-10 flex flex-col items-center w-full">
+      <div className="relative w-full overflow-hidden rounded-2xl">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img 
+          src={src} 
+          alt={alt} 
+          className="w-full h-auto object-cover"
+          loading="lazy"
+        />
       </div>
+      {alt !== "Blog image" && (
+        <figcaption className="mt-3 text-center font-mono text-xs text-neutral-500 dark:text-neutral-400">
+          {alt}
+        </figcaption>
+      )}
     </figure>
-  )
+  );
 }
