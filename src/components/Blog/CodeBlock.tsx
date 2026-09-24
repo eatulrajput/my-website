@@ -46,7 +46,7 @@ export default function CodeBlock({
   };
 
   return (
-    <div className="relative group/code my-6 not-prose">
+    <div className="relative group/code my-6 w-full max-w-full overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 not-prose bg-neutral-50 dark:bg-[#0d1117]">
       {/* Copy button — appears on hover */}
       <button
         type="button"
@@ -56,13 +56,13 @@ export default function CodeBlock({
           "absolute top-3 right-3 z-10",
           "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg",
           "text-xs font-mono font-medium",
-          "bg-neutral-800/90 dark:bg-neutral-700/90 backdrop-blur-sm",
-          "border border-neutral-700 dark:border-neutral-600",
+          "bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm",
+          "border border-neutral-200 dark:border-neutral-700",
           "transition-all duration-200",
           "opacity-0 group-hover/code:opacity-100",
           copied
-            ? "text-emerald-400 border-emerald-600/50"
-            : "text-neutral-300 hover:text-white"
+            ? "text-emerald-500 border-emerald-500/50"
+            : "text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white"
         )}
       >
         {copied ? (
@@ -77,7 +77,7 @@ export default function CodeBlock({
       <LangBadge preRef={preRef} className={className} />
 
       {/* The actual <pre> element */}
-      <pre ref={preRef} className={className} {...props}>
+      <pre ref={preRef} className={cn(className, "whitespace-pre-wrap break-words overflow-hidden w-full max-w-full p-4 pt-10 text-sm")} {...props}>
         {children}
       </pre>
     </div>
