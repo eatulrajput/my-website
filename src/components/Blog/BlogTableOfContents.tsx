@@ -29,15 +29,26 @@ type LenisWindow = Window & {
 export default function BlogTableOfContents() {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string>("");
-  const [visible, setVisible] = useState(false);
   const ioRef = useRef<IntersectionObserver | null>(null);
+  
+  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0, opacity: 0 });
 
-  // Fade in after user starts scrolling
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 200);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const activeIndex = headings.findIndex(h => h.id === activeId);
+    if (activeIndex !== -1 && itemRefs.current[activeIndex]) {
+      const el = itemRefs.current[activeIndex];
+      if (el) {
+        setIndicatorStyle({
+          top: el.offsetTop,
+          height: el.offsetHeight,
+          opacity: 1,
+        });
+      }
+    } else {
+      setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
+    }
+  }, [activeId, headings]);
 
   const observe = useCallback((els: HTMLElement[]) => {
     ioRef.current?.disconnect();
@@ -101,7 +112,11 @@ export default function BlogTableOfContents() {
     if (!el) return;
     const lenis = (window as LenisWindow).__lenis;
     if (lenis) {
-      lenis.scrollTo(el, { offset: -90, duration: 1.0 });
+      lenis.scrollTo(el, { 
+        offset: -90, 
+        duration: 1.8,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      });
     } else {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -113,57 +128,53 @@ export default function BlogTableOfContents() {
     <aside
       aria-label="Table of contents"
       className={cn(
-        // Layout: right margin only, fixed, vertically starts at nav height
         "fixed hidden xl:block z-30",
         "top-24",
         "max-h-[calc(100vh-7rem)] overflow-y-auto hide-scrollbar",
-        // Fade
-        "transition-opacity duration-500",
-        visible ? "opacity-100" : "opacity-0 pointer-events-none"
       )}
       style={{
-        // Position right of centered max-w-2xl content (336px half-width + px-6 ≈ 360px + 28px gap)
-        left: "calc(50vw + 388px)",
-        width: "180px",
+        left: "calc(50vw + 350px)",
+        width: "250px",
       }}
     >
-      {/* Header label */}
-      <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-3 flex items-center gap-2">
-        <span className="inline-block w-3 h-px bg-neutral-300 dark:bg-neutral-600" />
+      <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-900 dark:text-neutral-100 mb-4 font-sans">
         On this page
-      </p>
+      </h3>
 
-      <nav>
-        <ol className="flex flex-col gap-1">
-          {headings.map((h) => {
+      <nav className="relative">
+        {/* Animated sliding indicator line */}
+        <div 
+          className="absolute left-[-1px] w-[2px] bg-brand-accent transition-all duration-300 ease-out z-10"
+          style={{
+            top: `${indicatorStyle.top}px`,
+            height: `${indicatorStyle.height}px`,
+            opacity: indicatorStyle.opacity,
+          }}
+        />
+        <ol className="relative flex flex-col border-l border-neutral-200 dark:border-neutral-700">
+          {headings.map((h, i) => {
             const isActive = activeId === h.id;
             return (
-              <li key={h.id}>
+              <li 
+                key={h.id}
+                ref={(el) => { itemRefs.current[i] = el; }}
+              >
                 <button
                   type="button"
                   onClick={() => scrollTo(h.id)}
                   className={cn(
-                    "group text-left w-full leading-snug transition-all duration-200",
-                    "flex items-start gap-2 py-0.5",
-                    h.level === 3 && "pl-3",
+                    "group text-left w-full transition-all duration-200",
+                    "flex items-start py-1.5 px-4",
+                    "-ml-[1px] border-l-2 border-transparent",
+                    h.level === 3 && "pl-8",
                     isActive
-                      ? "text-brand-accent"
-                      : "text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300"
+                      ? "text-brand-accent font-medium"
+                      : "text-neutral-500 dark:text-neutral-400 hover:border-neutral-300 dark:hover:border-neutral-600 hover:text-neutral-900 dark:hover:text-neutral-100"
                   )}
                 >
-                  {/* Active indicator dot */}
                   <span
                     className={cn(
-                      "mt-[6px] flex-shrink-0 rounded-full transition-all duration-200",
-                      isActive
-                        ? "w-1.5 h-1.5 bg-brand-accent"
-                        : "w-1 h-1 bg-neutral-300 dark:bg-neutral-600 group-hover:bg-neutral-400"
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      "text-[11px] font-mono leading-snug line-clamp-2",
-                      isActive && "font-semibold"
+                      "text-sm font-sans leading-relaxed line-clamp-2",
                     )}
                   >
                     {h.text}

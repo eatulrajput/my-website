@@ -64,9 +64,10 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     // Initialize Lenis for smooth slow scrolling
     const lenis = new Lenis({
-      duration: 1.4, // higher = slower scroll
-      smoothWheel: true, // smooth mouse wheel
-      lerp: 0.1, // lower = smoother / slower
+      duration: 1.6, // slightly slower for cinematic feel
+      smoothWheel: true, 
+      lerp: 0.08, // lower lerp for smoother interpolation
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
     });
     lenisRef.current = lenis;
     (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
