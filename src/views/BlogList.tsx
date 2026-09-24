@@ -6,7 +6,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { blogPosts, isTechnicalPost } from "../lib/posts";
 import { Breadcrumbs } from "@/components/ui";
 import { cn } from "@/lib/utils";
-import GeometricLines from "@/components/GeometricLines";
+
 
 export default function BlogList() {
   const [selectedCategory, setSelectedCategory] = useState<"all" | "tech" | "non-tech">("tech");
@@ -88,8 +88,6 @@ export default function BlogList() {
 
   return (
     <main className="relative min-h-screen">
-      {/* Geometric grid decoration in the left/right viewport margins */}
-      <GeometricLines />
 
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 text-left space-y-6">
         {/* Page Header */}
@@ -131,7 +129,7 @@ export default function BlogList() {
 
         {/* Text List of Blog Posts */}
         {filteredPosts.length > 0 ? (
-          <div className="flex flex-col divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800">
+          <div className="group/bloglist flex flex-col divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800">
             {filteredPosts.slice(0, visibleCount).map((post) => {
               const isTech = isTechnicalPost(post);
               const articleType = post.meta.category
@@ -141,11 +139,11 @@ export default function BlogList() {
                   : "Personal";
 
               return (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="py-4 group block transition-colors hover:bg-neutral-50/60 dark:hover:bg-neutral-900/30 -mx-3 px-3 rounded-lg"
-                >
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="py-4 group block transition-all duration-500 hover:bg-neutral-50/60 dark:hover:bg-neutral-900/30 group-hover/bloglist:opacity-40 group-hover/bloglist:blur-[2px] hover:!opacity-100 hover:!blur-none -mx-3 px-3 rounded-lg"
+                  >
                   <div className="flex flex-col gap-1.5">
                     {/* Top Row: Title & Type Badge */}
                     <div className="flex items-start justify-between gap-3">
