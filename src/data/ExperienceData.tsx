@@ -1,5 +1,13 @@
 import { IconBriefcase } from "@tabler/icons-react";
 
+export type ExperienceCategory = "Work Experience" | "Fellowship" | "Open Source";
+
+export const categoryDisplayOrder: ExperienceCategory[] = [
+  "Work Experience",
+  "Fellowship",
+  "Open Source",
+];
+
 export interface ExperienceItem {
   id: string | number;
   position: string;
@@ -7,6 +15,10 @@ export interface ExperienceItem {
   duration: string;
   startDate: string; // YYYY-MM format for comparison
   endDate?: string;   // YYYY-MM format or "Present"
+  category: ExperienceCategory;
+  location?: "Remote" | "On-site" | "Hybrid";
+  description?: React.ReactNode;
+  skills?: string[];
   OrgWebsiteLink?: string;
   OrganizationLogo?: string;
   icon?: React.ReactNode;
@@ -22,8 +34,12 @@ export const rawExperienceData: ExperienceItem[] = [
     duration: "June 2025 - July 2025",
     startDate: "2025-06",
     endDate: "2025-07",
+    location: "Remote",
+    category: "Fellowship",
+    description: (<>Worked on API development lifecycle, automation testing, and building developer tools using <a href="https://keploy.io/" target="_blank" rel="noopener noreferrer">Keploy</a> and LLMs.</>),
     OrgWebsiteLink: "https://keploy.io/",
     OrganizationLogo: "/logos/keploy.svg",
+    skills: ["API Design", "Keploy", "GitHub Actions", "C++", "LLMs", "Git", "Chrome Extensions"],
     details: (
       <div>
         <ul className="text-muted-foreground list-disc space-y-1.5 pl-4 text-sm md:space-y-2 md:text-lg">
@@ -59,8 +75,12 @@ export const rawExperienceData: ExperienceItem[] = [
     duration: "May 2024 - Aug 2024",
     startDate: "2024-05",
     endDate: "2024-08",
+    location: "Remote",
+    category: "Open Source",
+    description: (<>Contributed to open-source projects via <a href="https://gssoc.girlscript.org/" target="_blank" rel="noopener noreferrer">GSSoC 2024</a>, gained API testing experience, and built a community website.</>),
     OrgWebsiteLink: "https://gssoc.girlscript.org/",
     OrganizationLogo: "/logos/gssoc.svg",
+    skills: ["Postman", "Git", "GitHub"],
     details: (
       <div>
         <ul className="text-muted-foreground list-disc space-y-1.5 pl-4 text-sm md:space-y-2 md:text-base">
@@ -87,8 +107,12 @@ export const rawExperienceData: ExperienceItem[] = [
     duration: "Oct 2023",
     startDate: "2023-10",
     endDate: "2023-10",
+    location: "Remote",
+    category: "Open Source",
+    description: (<>Contributed to React repositories during <a href="https://hacktoberfest.com/" target="_blank" rel="noopener noreferrer">Hacktoberfest 2023</a> and strengthened Git/GitHub workflows.</>),
     OrgWebsiteLink: "https://hacktoberfest.com/",
     OrganizationLogo: "/logos/hacktoberfest.svg",
+    skills: ["React", "JavaScript", "Git", "GitHub"],
     details: (
       <div>
         <ul className="text-muted-foreground list-disc space-y-1.5 pl-4 text-sm md:space-y-2 md:text-base">
@@ -126,3 +150,25 @@ export const getSortedExperienceData = (items: ExperienceItem[]): ExperienceItem
 };
 
 export const experienceData = getSortedExperienceData(rawExperienceData);
+
+/**
+ * Groups experiences by category, preserving sort order within each group.
+ */
+export const getGroupedExperience = (
+  items: ExperienceItem[]
+): { category: ExperienceCategory; items: ExperienceItem[] }[] => {
+  const sorted = getSortedExperienceData(items);
+  const groups = new Map<ExperienceCategory, ExperienceItem[]>();
+
+  for (const item of sorted) {
+    const existing = groups.get(item.category) || [];
+    existing.push(item);
+    groups.set(item.category, existing);
+  }
+
+  return categoryDisplayOrder
+    .filter((cat) => groups.has(cat))
+    .map((cat) => ({ category: cat, items: groups.get(cat)! }));
+};
+
+export const groupedExperienceData = getGroupedExperience(rawExperienceData);
