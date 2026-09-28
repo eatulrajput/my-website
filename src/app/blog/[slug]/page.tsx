@@ -14,9 +14,7 @@ import Quote from "@/components/Blog/Quote";
 import { cn } from "@/lib/utils";
 import CoverImage from "@/components/Blog/CoverImage";
 import ShareBlog from "@/components/Blog/ShareBlog";
-import BlogReadingToolbar, { TypographyMode } from "@/components/Blog/BlogReadingToolbar";
-import BlogTextHighlighter from "@/components/Blog/BlogTextHighlighter";
-import FocusReadingRuler from "@/components/Blog/FocusReadingRuler";
+
 import { motion } from "motion/react";
 // ── New UX Components ────────────────────────────────────────────
 import ReadingProgressBar from "@/components/Blog/ReadingProgressBar";
@@ -31,9 +29,6 @@ export default function BlogPage() {
   const rawSlug = params?.slug as string;
   const slug = rawSlug ? decodeURIComponent(rawSlug) : "";
 
-  const [fontSizeScale, setFontSizeScale] = useState<number>(1.0);
-  const [typographyMode, setTypographyMode] = useState<TypographyMode>("sans");
-  const [focusRulerActive, setFocusRulerActive] = useState<boolean>(false);
 
   const post = blogPosts.find((p) => p.slug === slug);
 
@@ -80,11 +75,6 @@ export default function BlogPage() {
       {/* Right-margin sticky table of contents (xl+ only) */}
       <BlogTableOfContents />
 
-      {/* Line-by-line Reading Ruler Overlay */}
-      <FocusReadingRuler active={focusRulerActive} />
-
-      {/* Floating Interactive Text Highlighter Menu */}
-      <BlogTextHighlighter />
 
       <div className="container mx-auto">
         {/* Animated Breadcrumbs Header */}
@@ -102,27 +92,15 @@ export default function BlogPage() {
           />
         </motion.div>
 
-        {/* Accessibility & Reading Toolbar */}
-        <BlogReadingToolbar
-          fontSizeScale={fontSizeScale}
-          onFontSizeScaleChange={setFontSizeScale}
-          typographyMode={typographyMode}
-          onTypographyModeChange={setTypographyMode}
-          focusRulerActive={focusRulerActive}
-          onToggleFocusRuler={() => setFocusRulerActive((prev) => !prev)}
-        />
 
         {/* Animated Article Body */}
         <motion.article
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          style={{ fontSize: `${fontSizeScale}rem` }}
           className={cn(
             "prose prose-lg md:prose-xl dark:prose-invert max-w-none text-neutral-800 dark:text-neutral-200 transition-all duration-200",
-            typographyMode === "sans" && "font-sans leading-relaxed md:leading-loose tracking-normal",
-            typographyMode === "serif" && "font-serif leading-relaxed md:leading-loose tracking-wide",
-            typographyMode === "dyslexic" && "font-sans leading-loose tracking-wider font-normal",
+            "font-sans leading-relaxed md:leading-loose tracking-normal",
             "prose-headings:font-sans prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-neutral-900 dark:prose-headings:text-neutral-50",
             "prose-p:mb-6 prose-p:text-neutral-700 dark:prose-p:text-neutral-300",
             "prose-a:font-semibold prose-a:no-underline hover:prose-a:underline transition-colors",
