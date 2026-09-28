@@ -1,5 +1,16 @@
 [
   {
+    "slug": "Orchestration and Management",
+    "meta": {
+      "title": "AI Orchestration and Management",
+      "subtitle": "Management and Orchestration",
+      "date": "Sep 25, 2026",
+      "description": "AI Orchestration and Management",
+      "category": "Technical",
+      "readingTime": "1 min read"
+    }
+  },
+  {
     "slug": "Setting My Own Rules for the Social Media Apps",
     "meta": {
       "title": "Setting My Own Rules for the Social Media Apps",
@@ -22,10 +33,10 @@
     }
   },
   {
-    "slug": "first-post",
+    "slug": "Using MDX for blogs",
     "meta": {
       "title": "Using MDX for blogs",
-      "date": "2026-05-14",
+      "date": "May 14, 2026",
       "description": "Learning MDX with Vite",
       "category": "Technical",
       "readingTime": "1 min read"
