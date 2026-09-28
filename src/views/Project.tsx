@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Breadcrumbs } from "@/components/ui";
+import { Breadcrumbs, EmptyCookieState } from "@/components/ui";
 import { projects, ProjectItem } from "@/data/projectData";
 import {
   IconChevronDown,
@@ -15,9 +15,11 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
+type ProjectFilterStatus = "all" | "progress" | "completed";
+
 const Project = () => {
   const [expandedTitle, setExpandedTitle] = useState<string | null>(null);
-  const [selectedStatus, setSelectedStatus] = useState<"all" | "progress" | "completed">("all");
+  const [selectedStatus, setSelectedStatus] = useState<ProjectFilterStatus>("all");
 
   const toggleProject = (title: string) => {
     setExpandedTitle((prev) => (prev === title ? null : title));
@@ -31,10 +33,10 @@ const Project = () => {
     return true;
   });
 
-  const statusTabs = [
-    { label: "All Projects", value: "all" as const },
-    { label: "In Progress", value: "progress" as const },
-    { label: "Completed", value: "completed" as const },
+  const statusTabs: { label: string; value: ProjectFilterStatus }[] = [
+    { label: "All Projects", value: "all" },
+    { label: "In Progress", value: "progress" },
+    { label: "Completed", value: "completed" },
   ];
 
   return (
@@ -229,11 +231,17 @@ const Project = () => {
         })}
       </div>
       ) : (
-        <div className="py-12 text-center font-mono">
-          <p className="text-neutral-500 dark:text-neutral-400 text-xs">
-            No projects found matching this status filter.
-          </p>
-        </div>
+        <EmptyCookieState
+          title="No projects found"
+          description={
+            <>
+              We couldn't find any projects matching the <span className="font-semibold text-brand-accent capitalize">'{selectedStatus}'</span> status, but here's a cookie for your troubles!
+            </>
+          }
+          showAction={selectedStatus !== "all"}
+          onAction={() => setSelectedStatus("all")}
+          actionText="Clear Filters"
+        />
       )}
     </div>
   );
