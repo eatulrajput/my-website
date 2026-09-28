@@ -1,4 +1,5 @@
-// types.ts
+import React from 'react';
+
 export interface SkillItem {
   name?: string;             // Skill name
   logo?: string;            // Optional logo path

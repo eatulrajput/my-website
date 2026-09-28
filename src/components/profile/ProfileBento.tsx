@@ -27,40 +27,40 @@ const itemVariants: Variants = {
 export function ProfileBento() {
   return (
     <motion.div
-      className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[auto]"
+      className="flex flex-col gap-4"
       variants={containerVariants}
       initial="hidden"
       animate="show"
     >
-      <div className="col-span-1 md:col-span-2 lg:col-span-2 row-span-2 flex flex-col gap-4">
-        <motion.div variants={itemVariants} className="flex-1">
+      <div className="columns-1 lg:columns-2 gap-4">
+        <motion.div variants={itemVariants} className="break-inside-avoid mb-4">
           <AboutCard />
         </motion.div>
-        <motion.div variants={itemVariants} className="h-[120px]">
+
+        <motion.div variants={itemVariants} className="break-inside-avoid mb-4">
+          <SkillsCard />
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="break-inside-avoid mb-4 h-[120px]">
           <StatsSummaryCard />
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="break-inside-avoid mb-4">
+          <WhatIDoCard />
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="break-inside-avoid mb-4">
+          <LinksCard />
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="break-inside-avoid mb-4">
+          <BadgesCard />
         </motion.div>
       </div>
 
-      <motion.div variants={itemVariants} className="col-span-1 md:col-span-1 lg:col-span-2 h-full">
-        <SkillsCard />
-      </motion.div>
-
-      <motion.div variants={itemVariants} className="col-span-1 md:col-span-2 lg:col-span-2 h-full">
-        <WhatIDoCard />
-      </motion.div>
-
-      {/* GitHub Stats Full Width */}
-      <motion.div variants={itemVariants} className="col-span-full h-full">
+      {/* Full Width Footer */}
+      <motion.div variants={itemVariants} className="w-full">
         <GithubStatsCard />
-      </motion.div>
-
-      {/* Links & Badges Below */}
-      <motion.div variants={itemVariants} className="col-span-1 md:col-span-1 lg:col-span-2 h-full">
-        <LinksCard />
-      </motion.div>
-
-      <motion.div variants={itemVariants} className="col-span-1 md:col-span-2 lg:col-span-2 h-full">
-        <BadgesCard />
       </motion.div>
     </motion.div>
   );
