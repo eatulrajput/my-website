@@ -9,6 +9,7 @@ interface certificateDataProps {
   details?: React.ReactNode;
   certificateLink?: string;
   organizationLogo?: string;
+  skills?: string[];
 }
 
 export const certificateData: certificateDataProps[] = [
@@ -22,6 +23,7 @@ export const certificateData: certificateDataProps[] = [
     Platform: "Coursera",
     certificateLink: "https://www.coursera.org/account/accomplishments/verify/KH8U53D7P5EQ",
     organizationLogo: "/logos/ibm.svg",
+    skills: ["Git", "GitHub", "Version Control"],
   },
 
   {
@@ -33,6 +35,7 @@ export const certificateData: certificateDataProps[] = [
     Platform: "Coursera",
     certificateLink: "https://www.coursera.org/account/accomplishments/verify/TMMXZR3FFZ3Q",
     organizationLogo: "/logos/ibm.svg",
+    skills: ["Cloud Computing", "IBM Cloud"],
   },
 
   {
@@ -44,6 +47,7 @@ export const certificateData: certificateDataProps[] = [
     Platform: "Coursera",
     certificateLink: "https://www.coursera.org/account/accomplishments/verify/78FBW3DE7PUQ",
     organizationLogo: "/logos/northeastern_university.svg",
+    skills: ["Data Privacy", "Cybersecurity"],
   },
 
   {
@@ -55,6 +59,7 @@ export const certificateData: certificateDataProps[] = [
     Platform: "Coursera",
     certificateLink: "https://www.coursera.org/account/accomplishments/professional-cert/DHUFNTQV8S1K",
     organizationLogo: "/logos/google.svg",
+    skills: ["Cybersecurity", "Network Security", "Python"],
   },
 
   {
@@ -66,7 +71,7 @@ export const certificateData: certificateDataProps[] = [
     Platform: "Coursera",
     certificateLink: "https://www.coursera.org/account/accomplishments/verify/41MSEUTCQIDM",
     organizationLogo: "/logos/google.svg",
-
+    skills: ["Artificial Intelligence", "Machine Learning"],
   },
   {
     certifedOn: "Oct 7, 2025",
@@ -77,6 +82,7 @@ export const certificateData: certificateDataProps[] = [
     Platform: "Coursera",
     certificateLink: "https://www.coursera.org/account/accomplishments/verify/NDHZFFSW3Q0F",
     organizationLogo: "/logos/google.svg",
+    skills: ["Project Management", "Agile"],
   },
   {
     certifedOn: "Oct 10, 2025",
@@ -87,6 +93,7 @@ export const certificateData: certificateDataProps[] = [
     Platform: "Coursera",
     certificateLink: "https://www.coursera.org/account/accomplishments/verify/T1SPUJJYV6CA",
     organizationLogo: "/logos/google.svg",
+    skills: ["Project Planning", "Risk Management"],
   },
   {
     certifedOn: "Apr 24, 2024",
@@ -95,7 +102,8 @@ export const certificateData: certificateDataProps[] = [
     degreeType: "Achievement",
     institutionName: "The Energy and Resources Institute (TERI)",
     Platform: "GO4Youth Olympiad",
-    organizationLogo: "/logos/teri.svg"
+    organizationLogo: "/logos/teri.svg",
+    skills: ["Environmental Awareness", "Sustainability"],
   },
   {
     certifedOn: "Nov 3, 2025",
@@ -105,6 +113,7 @@ export const certificateData: certificateDataProps[] = [
     institutionName: "Krish Naik (Instructor)",
     Platform: "Udemy",
     organizationLogo: "/logos/udemy.svg",
+    skills: ["Data Science", "Machine Learning", "NLP", "Deep Learning"],
   },
   {
     certifedOn: "Jan 23, 2025",
@@ -115,6 +124,7 @@ export const certificateData: certificateDataProps[] = [
     Platform: "Code Signal",
     certificateLink: "https://codesignal.com/learn/certificates/cm4ua9avi00057fivt77r86h0/course-paths/74",
     organizationLogo: "/logos/codesignal.svg",
+    skills: ["Python", "Flask", "REST APIs"],
   },
 
 ];

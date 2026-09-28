@@ -34,6 +34,18 @@ const Certificate = () => {
                 </a>
               )}
             </div>
+            {item.skills && item.skills.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-1.5">
+                {item.skills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-0.5 text-[10px] font-mono rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
