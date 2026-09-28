@@ -57,14 +57,6 @@ export const BlogReadingToolbar = ({
 
   return (
     <>
-      {/* Top Scroll Progress Indicator */}
-      <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-neutral-200/50 dark:bg-neutral-800/50">
-        <div
-          style={{ width: `${scrollProgress}%` }}
-          className="h-full bg-brand-accent transition-all duration-150"
-        />
-      </div>
-
       {/* Floating Accessibility Control Bar */}
       <div className="sticky top-6 z-40 mt-1 mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-white/95 dark:bg-neutral-900/95 p-2.5 sm:px-4 shadow-md backdrop-blur-md transition-all">
         {/* Font Size Controls */}
