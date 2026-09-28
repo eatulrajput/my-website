@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { IconArrowRight } from "@tabler/icons-react";
-import { blogPosts } from "@/lib/posts";
+import { blogPosts, isTechnicalPost } from "@/lib/posts";
 
 const Blogs = () => {
-  const latestPosts = blogPosts.slice(0, 4);
+  const latestPosts = blogPosts.filter(isTechnicalPost).slice(0, 4);
 
   return (
     <section id="writing" className="flex flex-col gap-4 text-left border-t border-neutral-200 dark:border-neutral-800 pt-10">
