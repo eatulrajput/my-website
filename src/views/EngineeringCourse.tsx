@@ -291,14 +291,14 @@ export const EngineeringCourse = () => {
               className="w-full pl-10 pr-4 py-2.5 text-sm rounded-2xl bg-neutral-100 dark:bg-neutral-900 border-none text-neutral-900 dark:text-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-black/5 dark:focus:ring-white/10 transition-all"
             />
           </div>
-          <div className="flex items-center bg-neutral-100 dark:bg-neutral-900 p-1 rounded-2xl">
+          <div className="flex items-center bg-[#e3e3e8] dark:bg-[#1c1c1e] p-0.5 rounded-[9px]">
             <button
               onClick={() => setViewMode("grid")}
               className={cn(
-                "p-2 rounded-xl transition-all duration-300",
+                "p-1.5 rounded-[7px] transition-all duration-200",
                 viewMode === "grid"
-                  ? "bg-white dark:bg-neutral-800 shadow-sm text-neutral-900 dark:text-white"
-                  : "text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300"
+                  ? "bg-white dark:bg-[#636366] shadow-[0_1px_3px_rgba(0,0,0,0.1)] text-black dark:text-white"
+                  : "text-[#8e8e93] hover:text-black dark:hover:text-white"
               )}
             >
               <IconLayoutGrid stroke={1.5} className="w-4 h-4" />
@@ -306,10 +306,10 @@ export const EngineeringCourse = () => {
             <button
               onClick={() => setViewMode("table")}
               className={cn(
-                "p-2 rounded-xl transition-all duration-300",
+                "p-1.5 rounded-[7px] transition-all duration-200",
                 viewMode === "table"
-                  ? "bg-white dark:bg-neutral-800 shadow-sm text-neutral-900 dark:text-white"
-                  : "text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300"
+                  ? "bg-white dark:bg-[#636366] shadow-[0_1px_3px_rgba(0,0,0,0.1)] text-black dark:text-white"
+                  : "text-[#8e8e93] hover:text-black dark:hover:text-white"
               )}
             >
               <IconList stroke={1.5} className="w-4 h-4" />
@@ -408,60 +408,55 @@ export const EngineeringCourse = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="overflow-hidden rounded-[2rem] bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.02)]"
+            className="flex flex-col rounded-[10px] bg-white dark:bg-[#1c1c1e] border border-[#c6c6c8]/50 dark:border-[#38383a]/50 shadow-sm w-full"
           >
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="border-b border-black/5 dark:border-white/5 bg-neutral-50/50 dark:bg-neutral-950/50">
-                    <th className="py-4 px-6 text-xs font-semibold tracking-wider text-neutral-500 uppercase">Sem</th>
-                    <th className="py-4 px-6 text-xs font-semibold tracking-wider text-neutral-500 uppercase">Code</th>
-                    <th className="py-4 px-6 text-xs font-semibold tracking-wider text-neutral-500 uppercase">Subject</th>
-                    <th className="py-4 px-6 text-xs font-semibold tracking-wider text-neutral-500 uppercase">Type</th>
-                    <th className="py-4 px-6 text-xs font-semibold tracking-wider text-neutral-500 uppercase text-right">Credits</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-black/5 dark:divide-white/5">
-                  <AnimatePresence mode="popLayout">
-                    {filteredCourses.map((item) => {
-                      const isLab =
-                        item.subjectName.toLowerCase().includes("lab") ||
-                        item.subjectName.toLowerCase().includes("workshop") ||
-                        item.subjectName.toLowerCase().includes("drawing") ||
-                        item.subjectName.toLowerCase().includes("graphics");
-                      return (
-                        <motion.tr
-                          layout
-                          key={item.subjectId}
-                          className="hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors group"
-                        >
-                          <td className="py-4 px-6 text-sm font-medium text-neutral-500">{item.semester}</td>
-                          <td className="py-4 px-6">
-                            <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 text-xs font-semibold tracking-tight">
-                              {item.subjectId}
-                            </span>
-                          </td>
-                          <td className="py-4 px-6 text-sm font-medium text-neutral-900 dark:text-white group-hover:text-black dark:group-hover:text-white transition-colors">
-                            {item.subjectName}
-                          </td>
-                          <td className="py-4 px-6">
-                            <span className={cn(
-                              "inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase",
-                              isLab ? "bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
-                            )}>
-                              {isLab ? "Lab" : "Theory"}
-                            </span>
-                          </td>
-                          <td className="py-4 px-6 text-sm font-medium text-neutral-900 dark:text-white text-right">
-                            {item.subjectCredit}
-                          </td>
-                        </motion.tr>
-                      );
-                    })}
-                  </AnimatePresence>
-                </tbody>
-              </table>
-            </div>
+            <AnimatePresence mode="popLayout">
+              {filteredCourses.map((item, index) => {
+                const isLab =
+                  item.subjectName.toLowerCase().includes("lab") ||
+                  item.subjectName.toLowerCase().includes("workshop") ||
+                  item.subjectName.toLowerCase().includes("drawing") ||
+                  item.subjectName.toLowerCase().includes("graphics");
+                const isLast = index === filteredCourses.length - 1;
+
+                return (
+                  <motion.div
+                    layout
+                    key={item.subjectId}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="flex items-center px-4 py-2.5 bg-transparent relative"
+                  >
+                    <div className={cn(
+                      "flex-shrink-0 w-8 h-8 rounded-[7px] flex items-center justify-center mr-3.5",
+                      isLab ? "bg-[#34c759]" : "bg-[#007aff]"
+                    )}>
+                      {isLab ? <IconFlask className="w-4 h-4 text-white" /> : <IconBook className="w-4 h-4 text-white" />}
+                    </div>
+
+                    <div className="flex flex-col flex-1 min-w-0 justify-center">
+                      <div className="text-[17px] font-normal text-black dark:text-white truncate leading-tight mb-0.5">
+                        {item.subjectName}
+                      </div>
+                      <div className="text-[13px] text-[#8e8e93] truncate leading-tight">
+                        {item.subjectId} • Semester {item.semester}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center ml-4">
+                      <span className="text-[17px] text-[#8e8e93] font-normal">
+                        {item.subjectCredit} {item.subjectCredit === 1 ? 'cr' : 'cr'}
+                      </span>
+                    </div>
+
+                    {!isLast && (
+                      <div className="absolute bottom-0 left-[54px] right-0 h-[0.5px] bg-[#c6c6c8] dark:bg-[#38383a]" />
+                    )}
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
           </motion.div>
         )}
       </div>
