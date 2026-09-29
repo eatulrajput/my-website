@@ -19,6 +19,13 @@ const Footer = () => {
           </Link>
           <span>•</span>
           <a
+            href="/profile"
+            className="hover-text-brand-accent transition-colors"
+          >
+            At a Glance
+          </a>
+          <span>•</span>
+          <a
             href="https://github.com/eatulrajput"
             target="_blank"
             rel="noopener noreferrer"
