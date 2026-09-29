@@ -22,6 +22,7 @@ import BlogTableOfContents from "@/components/Blog/BlogTableOfContents";
 import CodeBlock from "@/components/Blog/CodeBlock";
 import { H2, H3, H4 } from "@/components/Blog/AnchorHeading";
 import ArticleReactions from "@/components/Blog/ArticleReactions";
+import CustomLink from "@/components/Blog/CustomLink";
 
 
 export default function BlogPage() {
@@ -103,7 +104,7 @@ export default function BlogPage() {
             "font-sans leading-relaxed md:leading-loose tracking-normal",
             "prose-headings:font-sans prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-neutral-900 dark:prose-headings:text-neutral-50",
             "prose-p:mb-6 prose-p:text-neutral-700 dark:prose-p:text-neutral-300",
-            "prose-a:font-semibold prose-a:no-underline hover:prose-a:underline transition-colors",
+            "transition-colors",
             "prose-img:rounded-3xl prose-img:shadow-2xl prose-img:mx-auto prose-img:my-10",
             "prose-blockquote:border-l-4 prose-blockquote:bg-neutral-50 dark:prose-blockquote:bg-neutral-900/50 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-2xl prose-blockquote:font-medium prose-blockquote:not-italic prose-blockquote:text-neutral-900 dark:prose-blockquote:text-neutral-100 shadow-xs",
             "prose-pre:overflow-x-auto prose-pre:rounded-2xl prose-pre:p-6 prose-pre:bg-neutral-950 prose-pre:shadow-2xl",
@@ -129,6 +130,7 @@ export default function BlogPage() {
               h4: H4,
               // pre gets a hover copy button + language badge
               pre: CodeBlock,
+              a: CustomLink,
             }}
           />
         </motion.article>
