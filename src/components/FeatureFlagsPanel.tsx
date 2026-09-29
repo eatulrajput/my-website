@@ -148,7 +148,7 @@ const FeatureFlagsPanel = ({ isOpen, onClose }: Props) => {
                 </div>
 
                 <div className="grid grid-cols-1 gap-2 mt-1">
-                  {(Object.keys(themePalettes) as ThemePaletteId[]).map((paletteId) => {
+                  {(Object.keys(themePalettes) as Exclude<ThemePaletteId, 'custom'>[]).map((paletteId) => {
                     const palette = themePalettes[paletteId];
                     const isSelected = (flags.activePalette || 'ember') === paletteId;
                     return (
@@ -188,6 +188,44 @@ const FeatureFlagsPanel = ({ isOpen, onClose }: Props) => {
                       </button>
                     );
                   })}
+                  {/* Custom Color Palette Option */}
+                  <div
+                    className={cn(
+                      "p-3 rounded-2xl border transition-all duration-200 flex items-center justify-between text-left",
+                      flags.activePalette === 'custom'
+                        ? 'border-brand-accent bg-neutral-100 dark:bg-neutral-900 text-brand-accent font-semibold shadow-xs'
+                        : 'border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black text-neutral-700 dark:text-neutral-300 hover:border-neutral-300 dark:hover:border-neutral-700'
+                    )}
+                  >
+                    <div 
+                      className="flex items-center gap-3 flex-1 cursor-pointer" 
+                      onClick={() => setFlag('activePalette', 'custom')}
+                    >
+                      {/* Color Swatch Picker */}
+                      <div className="flex items-center shrink-0 relative">
+                        <input
+                          type="color"
+                          value={flags.customPaletteColor}
+                          onChange={(e) => {
+                            setFlag('activePalette', 'custom');
+                            setFlag('customPaletteColor', e.target.value);
+                          }}
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-6 h-6 rounded-full overflow-hidden bg-transparent border-0 p-0 cursor-pointer [&::-webkit-color-swatch-wrapper]:p-0 [&::-webkit-color-swatch]:border-none [&::-webkit-color-swatch]:rounded-full ring-2 ring-white dark:ring-black"
+                        />
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold font-sans">Custom Color</p>
+                        <p className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 mt-0.5">Pick your own unique color</p>
+                      </div>
+                    </div>
+
+                    {flags.activePalette === 'custom' && (
+                      <span className="text-[10px] font-mono font-bold uppercase text-brand-accent shrink-0 ml-2">
+                        Active
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 

@@ -1,4 +1,4 @@
-export type ThemePaletteId = "ember" | "emerald" | "indigo";
+export type ThemePaletteId = "ember" | "emerald" | "indigo" | "custom";
 
 export interface ThemePalette {
   id: ThemePaletteId;
@@ -9,7 +9,7 @@ export interface ThemePalette {
   previewSwatches: [string, string, string];
 }
 
-export const themePalettes: Record<ThemePaletteId, ThemePalette> = {
+export const themePalettes: Record<Exclude<ThemePaletteId, 'custom'>, ThemePalette> = {
   ember: {
     id: "ember",
     name: "Electric Ember",

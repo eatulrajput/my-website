@@ -7,7 +7,7 @@ import GoUp from "@/components/ui/GoUp";
 import CommandPalette from "@/components/CommandPalette";
 import { useFeatureFlags } from "@/context/FeatureFlagContext";
 import { usePathname } from "next/navigation";
-import { themePalettes } from "@/lib/theme";
+import { themePalettes, ThemePaletteId } from "@/lib/theme";
 
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   const { flags } = useFeatureFlags();
@@ -127,12 +127,17 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
 
   // Synchronize global theme palette colors on document element based on activePalette setting
   useEffect(() => {
-    const palette = themePalettes[flags.activePalette || "ember"];
-    if (palette) {
-      document.documentElement.style.setProperty("--color-accent-light", palette.lightAccent);
-      document.documentElement.style.setProperty("--color-accent-dark", palette.darkAccent);
+    if (flags.activePalette === "custom") {
+      document.documentElement.style.setProperty("--color-accent-light", flags.customPaletteColor);
+      document.documentElement.style.setProperty("--color-accent-dark", flags.customPaletteColor);
+    } else {
+      const palette = themePalettes[flags.activePalette as Exclude<ThemePaletteId, "custom"> || "ember"];
+      if (palette) {
+        document.documentElement.style.setProperty("--color-accent-light", palette.lightAccent);
+        document.documentElement.style.setProperty("--color-accent-dark", palette.darkAccent);
+      }
     }
-  }, [flags.activePalette]);
+  }, [flags.activePalette, flags.customPaletteColor]);
 
   // Security Shield implementation: disable DevTools/Inspect & hide Link URLs on hover
   useEffect(() => {

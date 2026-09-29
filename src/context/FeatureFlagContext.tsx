@@ -11,6 +11,7 @@ type FeatureFlags = {
   enableSecurityShield: boolean;
   activeFont: ActiveFont;
   activePalette: ThemePaletteId;
+  customPaletteColor: string;
 };
 
 // feature flag context
@@ -25,6 +26,7 @@ const defaultFlags: FeatureFlags = {
   enableSecurityShield: true,
   activeFont: 'google-sans',
   activePalette: 'ember',
+  customPaletteColor: '#ff0055',
 };
 
 // feature flag context
