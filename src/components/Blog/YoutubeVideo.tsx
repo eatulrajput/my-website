@@ -6,14 +6,21 @@ type YoutubeVideoProps = {
 
 export default function YoutubeVideo({ src }: YoutubeVideoProps) {
   return (
-    <div className="my-10 aspect-video w-full overflow-hidden rounded-2xl shadow-lg border border-neutral-200 dark:border-neutral-800">
-      <iframe
-        src={src}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className="h-full w-full border-none"
-      ></iframe>
-    </div>
+    <figure className="blog-youtube-figure">
+      <div className="blog-youtube-container">
+        {/* Inner Glass Bezel Reflection */}
+        <div className="blog-youtube-bezel" />
+
+        <div className="blog-youtube-wrapper">
+          <iframe
+            src={src}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="blog-youtube-iframe"
+          ></iframe>
+        </div>
+      </div>
+    </figure>
   );
 }

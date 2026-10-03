@@ -23,7 +23,10 @@ export default function IncidentLog({ logs, monitorName }: IncidentLogProps) {
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-500" />
           <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">
-            No incidents recorded for <span className="font-bold text-neutral-700 dark:text-neutral-300">{monitorName}</span>
+            No incidents recorded for{" "}
+            <span className="font-bold text-neutral-700 dark:text-neutral-300">
+              {monitorName}
+            </span>
           </span>
         </div>
       </div>

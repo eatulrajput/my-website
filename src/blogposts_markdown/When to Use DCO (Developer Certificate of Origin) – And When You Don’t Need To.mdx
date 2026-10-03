@@ -1,0 +1,124 @@
+export const meta = {
+  title:
+    "When to Use DCO (Developer Certificate of Origin) – And When You Don’t Need To",
+  subtitle: "About DCO",
+  date: "June 22, 2025",
+  description:
+    "Using DCO is about clarity and accountability. It's a simple practice that becomes powerful when you're part of something bigger—especially in open source communities.",
+  category: "Technical",
+};
+
+<BlogTitle>
+  When to Use DCO (Developer Certificate of Origin) And When You Don’t Need To
+</BlogTitle>
+
+<BlogContent>
+In modern software development—especially open source—trust, attribution, and legality matter. One common tool to ensure proper contribution practices is the Developer Certificate of Origin (DCO).
+
+But when exactly should you use DCO, and when is it unnecessary overhead?
+
+Let’s break it down.
+
+## What Is a DCO?
+
+The Developer Certificate of Origin (DCO) is a simple legal statement:
+
+<Quote>
+  “I certify that I wrote this code or have the right to contribute it under the
+  project's license.”
+</Quote>
+
+To comply with the DCO, each commit must include a line like:
+
+```bash
+Signed-off-by: Your Name <you@example.com>
+```
+
+This line verifies authorship and intent, and it’s added using:
+
+```bash
+git commit -s
+```
+
+## When You Should Use DCO
+
+1. You’re Contributing to an Open Source Project
+   - Many open source maintainers require it (e.g., Linux kernel, CNCF, OpenAPI, Public APIs)
+
+   - GitHub bots can reject pull requests without a proper DCO sign-off
+
+2. Your Project Accepts External Contributions
+   - Enforcing DCO ensures all contributions are traceable and legally clear
+
+   - It protects both the contributors and the maintainers
+
+3. Corporate or Collaborative Teams with Compliance Needs
+   - When multiple people or organizations are contributing, sign-offs create a paper trail
+
+   - Especially useful in regulated environments
+
+4. Participating in Programs Like GSoC
+   - Google Summer of Code and similar programs often require DCO-compliant commits
+
+## When You Don’t Need DCO
+
+1. You're Building a Personal or Private Project
+   - If you're the only contributor, there's no legal risk
+   - You can track your work without needing formal sign-offs
+
+2. You’re in a Small Team and Trust Is High
+   - For tight-knit teams, you might rely on GitHub attribution or internal agreements instead
+
+3. You're Not Planning to Accept External Contributions
+   - If your project is "read-only" for the public, you may skip DCO enforcement.
+
+## Common Pitfalls to Avoid
+
+| Pitfall                          | How to Avoid                               |
+| -------------------------------- | ------------------------------------------ |
+| Wrong author email in Git config | Run git config user.email "your@email.com" |
+| Forgot to sign commit            | Use git commit -s                          |
+| Manual Signed-off-by mismatch    | Let Git auto-generate it via -s flag       |
+
+## How to Enforce DCO in Your Project
+
+If you decide to use DCO, here’s how to enforce it:
+
+1. Enable the DCO GitHub App
+   Link: https://github.com/apps/dco
+
+2. Add contribution instructions
+   In CONTRIBUTING.md:
+
+```bash
+
+## DCO Notice
+
+## All contributions must be signed off using:
+
+git commit -s
+```
+
+This adds a `Signed-off-by:` line to your commit.
+
+3. Reject unsigned commits in CI (optional)
+   Some teams automate this with scripts or GitHub Actions.
+
+## Summary: DCO vs No DCO
+
+| Scenario                       | Use DCO? |
+| ------------------------------ | -------- |
+| **Open source contribution**   | Yes      |
+| **Accepting PRs from others**  | Yes      |
+| **Personal/private project**   | No       |
+| **Team of trusted devs**       | Optional |
+| **GSoC or community projects** | Required |
+
+## Final Thoughts
+
+Using DCO is about clarity and accountability. It's a simple practice that becomes powerful when you're part of something bigger—especially in open source communities.
+
+If you're building alone? Skip it.
+If you're building for the world? Sign it.
+
+</BlogContent>

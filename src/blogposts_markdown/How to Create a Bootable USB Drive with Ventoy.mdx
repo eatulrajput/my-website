@@ -1,0 +1,200 @@
+export const meta = {
+    title: "How to Create a Bootable USB Drive with Ventoy for Installing Windows 11 Using Ubuntu (GPT/UEFI Compatible)",
+    subtitle: "How to use Ventoy",
+    date: "April 27, 2025",
+    description: 'Installing Windows 11 using a bootable USB drive is easy when you use Ventoy, especially on Ubuntu. Unlike traditional tools where you have to "burn" each ISO to the USB, Ventoy allows you to simply copy ISO files, and it supports multiple ISOs at once!',
+    category: "Technical"
+
+}
+
+<BlogTitle>
+  How to Create a Bootable USB Drive with Ventoy for Installing Windows 11 Using
+  Ubuntu (GPT/UEFI Compatible)
+</BlogTitle>
+
+Updated April 27, 2025
+
+<BlogContent>
+
+Installing Windows 11 using a bootable USB drive is easy when you use Ventoy, especially on Ubuntu. Unlike traditional tools where you have to "burn" each ISO to the USB, Ventoy allows you to simply copy ISO files, and it supports multiple ISOs at once!
+
+In this guide, you'll learn:
+
+- How to create a Ventoy USB drive from Ubuntu
+- How to make it GPT partitioned for UEFI boot
+- How to bypass Windows 11 hardware checks easily
+
+Let’s get started!
+
+## What You'll Need
+
+-A PC running Ubuntu (or any Linux distribution)
+-A USB drive (8 GB minimum; 16 GB+ recommended)
+-Windows 11 ISO file (official or trusted download)
+-Latest Ventoy release for Linux
+-Basic terminal skills
+
+## Part 1: Set Up the USB Drive with GPT Partitioning
+
+Windows 11 prefers UEFI boot mode, which works best with a GPT partition table. Let's prepare your USB first.
+
+#### Step 1: Install GParted
+
+Open Terminal and install GParted:
+
+```bash
+sudo apt update
+sudo apt install gparted
+```
+
+#### Step 2: Reformat USB to GPT
+
+Insert your USB drive.
+
+Launch GParted:
+
+```bash
+ sudo gparted
+```
+
+#### Step 3: In GParted:
+
+- Select your USB device (top-right dropdown).
+- Unmount any mounted partitions (Right-click → Unmount).
+- Go to Device → Create Partition Table → Choose GPT → Apply.
+- Create a new primary partition (Filesystem: exFAT or leave unformatted).
+
+Your USB drive now uses GPT partitioning — perfect for UEFI boot systems.
+
+## Part 2: Install Ventoy on the USB Drive
+
+With your USB ready, install Ventoy.
+
+#### Step 1: Download and Extract Ventoy
+
+- Go to Ventoy GitHub Releases.
+- Download the latest ventoy-x.x.xx-linux.tar.gz file.
+- Open Terminal, navigate to your Downloads folder:
+
+```bash
+ cd ~/Downloads
+```
+
+- Extract the archive:
+
+```bash
+ tar -xzvf ventoy-*-linux.tar.gz
+ cd ventoy-*-linux
+```
+
+#### Step 2: Find Your USB Drive
+
+Find your USB device name:
+lsblk
+
+Example output:
+
+```bash
+sdb    14.6G  disk
+├─sdb1 14.6G  part
+```
+
+In this case, the USB device is /dev/sdb.
+
+Step 3: Install Ventoy in GPT Mode
+Install Ventoy with GPT and force install options:
+
+```bash
+sudo ./Ventoy2Disk.sh -I -g /dev/sdX
+```
+
+<Quote>Replace /dev/sdX with your correct USB device (like /dev/sdb).</Quote>
+
+Flags:
+
+- -I → Force install (overwrites any existing data)
+
+- -g → Install Ventoy using GPT partition style
+
+Ventoy will ask you to confirm twice before proceeding.
+
+Ventoy is now installed and your USB is GPT/UEFI ready!
+
+## Part 3: Copy Windows 11 ISO
+
+Open your USB drive in Ubuntu's file manager.
+
+Copy and paste the Windows 11 ISO file into the USB.
+
+You don't need to burn or extract the ISO — just copy it!
+
+You can even add multiple ISOs if you want (Linux, recovery tools, etc.).
+
+## Part 4: (Optional) Configure Bypass for Windows 11 Hardware Checks
+
+Windows 11 enforces strict hardware checks (like TPM 2.0 and Secure Boot). To bypass these:
+
+1. On your USB drive, create a folder named ventoy:
+
+```bash
+ mkdir /media/$USER/Ventoy/ventoy
+```
+
+2. Inside ventoy, create a ventoy.json file with this content:
+
+```bash
+{
+    "control": [
+        { "VTOY_DEFAULT_IMAGE": "/Windows11.iso" },
+        { "VTOY_WIN11_BYPASS_CHECK": 1 }
+    ]
+}
+```
+
+Make sure /Windows11.iso matches your actual ISO file name exactly.
+
+✅ This configuration will allow you to skip TPM, Secure Boot, and RAM checks during installation.
+
+## Part 5: Boot from Ventoy USB and Install Windows 11
+
+Now you're ready to install Windows 11!
+
+- Insert the Ventoy USB drive into your target machine.
+- Reboot the PC.
+- Open the Boot Menu (common keys: F12, F10, ESC, or F2).
+- Select the USB drive.
+- Ventoy will load, displaying the ISO list.
+- Select the Windows 11 ISO and press Enter.
+
+Windows setup should begin immediately, without needing any extra steps.
+
+## Tips for Best Results
+
+- Use UEFI boot mode, not Legacy/CSM.
+- Disable Secure Boot temporarily if your BIOS requires it (unless you eroll Ventoy secure keys).
+
+- Verify your ISO — corrupted ISOs can cause installation errors.
+
+## Quick Commands Summary
+
+|Task |Command|
+|Install GParted |sudo apt install gparted
+|Download & Extract Ventoy |tar -xzvf ventoy-\*-linux.tar.gz|
+|Find USB Device |lsblk|
+|Install Ventoy (GPT Mode) |sudo ./Ventoy2Disk.sh -I -g /dev/sdX|
+
+## Why Use Ventoy for Windows 11 Installation?
+
+- Supports UEFI and GPT natively.
+- No need to reformat USB when changing ISOs.
+- Multi-boot: Use one USB for Windows, Linux, recovery tools, and more.
+- Bypass Windows 11 hardware checks easily.
+  Open-source and actively maintained.
+
+## Final Thoughts
+
+Using Ventoy on Ubuntu to create a GPT/UEFI bootable USB drive for Windows 11 is simple and powerful. With just a few terminal commands and file copies, you’ll have a professional-grade installation tool that saves you time and effort — no need to flash USBs again and again.
+
+If you work often with multiple OS installations, Ventoy is definitely a tool you’ll want to keep on your system!
+
+</BlogContent>

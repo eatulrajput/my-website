@@ -36,13 +36,22 @@ export default function UptimeBar({ uptime, name }: UptimeBarProps) {
         <span className="text-xs font-mono font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
           Uptime Overview — {name}
         </span>
-        <span className={cn("text-xs font-mono font-bold", getUptimeColor(uptime.quarter))}>
+        <span
+          className={cn(
+            "text-xs font-mono font-bold",
+            getUptimeColor(uptime.quarter),
+          )}
+        >
           {uptime.quarter.toFixed(3)}%
         </span>
       </div>
 
       {/* Segmented bar */}
-      <div className="flex gap-1 h-8 rounded-lg overflow-hidden" role="img" aria-label={`Uptime bar for ${name}`}>
+      <div
+        className="flex gap-1 h-8 rounded-lg overflow-hidden"
+        role="img"
+        aria-label={`Uptime bar for ${name}`}
+      >
         {segments.map((seg, i) => (
           <div
             key={seg.label}
@@ -55,7 +64,8 @@ export default function UptimeBar({ uptime, name }: UptimeBarProps) {
               className={cn(
                 "h-full rounded-sm transition-all duration-300",
                 getBarColor(seg.value),
-                hoveredSegment === i && "ring-2 ring-brand-apricot/50 scale-y-110"
+                hoveredSegment === i &&
+                  "ring-2 ring-brand-apricot/50 scale-y-110",
               )}
             />
 
@@ -63,7 +73,9 @@ export default function UptimeBar({ uptime, name }: UptimeBarProps) {
             {hoveredSegment === i && (
               <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-10 px-3 py-1.5 rounded-lg bg-brand-midnight dark:bg-neutral-800 text-white text-[10px] font-mono whitespace-nowrap shadow-lg border border-neutral-700/50">
                 <div className="font-bold">{seg.label}</div>
-                <div className={getUptimeColor(seg.value)}>{seg.value.toFixed(3)}%</div>
+                <div className={getUptimeColor(seg.value)}>
+                  {seg.value.toFixed(3)}%
+                </div>
                 {/* Arrow */}
                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-brand-midnight dark:border-t-neutral-800" />
               </div>
@@ -75,7 +87,10 @@ export default function UptimeBar({ uptime, name }: UptimeBarProps) {
       {/* Period labels */}
       <div className="flex gap-1 mt-1.5">
         {segments.map((seg) => (
-          <span key={seg.label} className="flex-1 text-center text-[8px] font-mono text-neutral-400 dark:text-neutral-600">
+          <span
+            key={seg.label}
+            className="flex-1 text-center text-[8px] font-mono text-neutral-400 dark:text-neutral-600"
+          >
             {seg.label}
           </span>
         ))}

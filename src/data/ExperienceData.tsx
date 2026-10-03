@@ -1,6 +1,7 @@
 import { IconBriefcase } from "@tabler/icons-react";
 
-export type ExperienceCategory = "Work Experience" | "Fellowship" | "Open Source";
+export type ExperienceCategory =
+  "Work Experience" | "Fellowship" | "Open Source";
 
 export const categoryDisplayOrder: ExperienceCategory[] = [
   "Work Experience",
@@ -14,7 +15,7 @@ export interface ExperienceItem {
   OrganisationName: string;
   duration: string;
   startDate: string; // YYYY-MM format for comparison
-  endDate?: string;   // YYYY-MM format or "Present"
+  endDate?: string; // YYYY-MM format or "Present"
   category: ExperienceCategory;
   location?: "Remote" | "On-site" | "Hybrid";
   description?: React.ReactNode;
@@ -28,7 +29,9 @@ export interface ExperienceItem {
 export const rawExperienceData: ExperienceItem[] = [
   {
     id: "keploy-2025",
-    icon: <IconBriefcase className="text-primary mt-1 h-6 w-6 shrink-0 md:h-8 md:w-8" />,
+    icon: (
+      <IconBriefcase className="text-primary mt-1 h-6 w-6 shrink-0 md:h-8 md:w-8" />
+    ),
     position: "API Fellow",
     OrganisationName: "Keploy",
     duration: "June 2025 - July 2025",
@@ -36,16 +39,34 @@ export const rawExperienceData: ExperienceItem[] = [
     endDate: "2025-07",
     location: "Remote",
     category: "Fellowship",
-    description: (<>Worked on API development lifecycle, automation testing, and building developer tools using <a href="https://keploy.io/" target="_blank" rel="noopener noreferrer">Keploy</a> and LLMs.</>),
+    description: (
+      <>
+        Worked on API development lifecycle, automation testing, and building
+        developer tools using{" "}
+        <a href="https://keploy.io/" target="_blank" rel="noopener noreferrer">
+          Keploy
+        </a>{" "}
+        and LLMs.
+      </>
+    ),
     OrgWebsiteLink: "https://keploy.io/",
     OrganizationLogo: "/logos/keploy.svg",
-    skills: ["API Design", "Keploy", "GitHub Actions", "C++", "LLMs", "Git", "Chrome Extensions"],
+    skills: [
+      "API Design",
+      "Keploy",
+      "GitHub Actions",
+      "C++",
+      "LLMs",
+      "Git",
+      "Chrome Extensions",
+    ],
     details: (
       <div>
         <ul className="text-muted-foreground list-disc space-y-1.5 pl-4 text-sm md:space-y-2 md:text-lg">
           <li>
             Gained hands-on experience in the full lifecycle of API development:
-            Design, Testing, Deployment, and Version control using Git and GitHub.
+            Design, Testing, Deployment, and Version control using Git and
+            GitHub.
           </li>
           <li>
             Worked with automation tools to enhance API testing efficiency and
@@ -53,7 +74,8 @@ export const rawExperienceData: ExperienceItem[] = [
           </li>
           <li>Learned how to host Chrome extensions.</li>
           <li>
-            Explored various testing methodologies for robust and maintainable code.
+            Explored various testing methodologies for robust and maintainable
+            code.
           </li>
           <li>
             Developed a unit test generator for C++ code using local large
@@ -77,7 +99,19 @@ export const rawExperienceData: ExperienceItem[] = [
     endDate: "2024-08",
     location: "Remote",
     category: "Open Source",
-    description: (<>Contributed to open-source projects via <a href="https://gssoc.girlscript.org/" target="_blank" rel="noopener noreferrer">GSSoC 2024</a>, gained API testing experience, and built a community website.</>),
+    description: (
+      <>
+        Contributed to open-source projects via{" "}
+        <a
+          href="https://gssoc.girlscript.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GSSoC 2024
+        </a>
+        , gained API testing experience, and built a community website.
+      </>
+    ),
     OrgWebsiteLink: "https://gssoc.girlscript.org/",
     OrganizationLogo: "/logos/gssoc.svg",
     skills: ["Postman", "Git", "GitHub"],
@@ -109,7 +143,19 @@ export const rawExperienceData: ExperienceItem[] = [
     endDate: "2023-10",
     location: "Remote",
     category: "Open Source",
-    description: (<>Contributed to React repositories during <a href="https://hacktoberfest.com/" target="_blank" rel="noopener noreferrer">Hacktoberfest 2023</a> and strengthened Git/GitHub workflows.</>),
+    description: (
+      <>
+        Contributed to React repositories during{" "}
+        <a
+          href="https://hacktoberfest.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hacktoberfest 2023
+        </a>{" "}
+        and strengthened Git/GitHub workflows.
+      </>
+    ),
     OrgWebsiteLink: "https://hacktoberfest.com/",
     OrganizationLogo: "/logos/hacktoberfest.svg",
     skills: ["React", "JavaScript", "Git", "GitHub"],
@@ -117,10 +163,12 @@ export const rawExperienceData: ExperienceItem[] = [
       <div>
         <ul className="text-muted-foreground list-disc space-y-1.5 pl-4 text-sm md:space-y-2 md:text-base">
           <li>
-            Participated in Hacktoberfest 2023 by contributing to a React repository.
+            Participated in Hacktoberfest 2023 by contributing to a React
+            repository.
           </li>
           <li>
-            Strengthened understanding of Git and GitHub workflows, including: Forking repositories, Making pull requests.
+            Strengthened understanding of Git and GitHub workflows, including:
+            Forking repositories, Making pull requests.
           </li>
           <li>
             Built a simple portfolio website using React (Create React App).
@@ -135,7 +183,9 @@ export const rawExperienceData: ExperienceItem[] = [
  * Utility function to sort experiences chronologically (latest first).
  * Handles "Present" or ongoing roles as highest priority.
  */
-export const getSortedExperienceData = (items: ExperienceItem[]): ExperienceItem[] => {
+export const getSortedExperienceData = (
+  items: ExperienceItem[],
+): ExperienceItem[] => {
   return [...items].sort((a, b) => {
     // Treat "Present" or missing endDate as current (infinity)
     const endA = a.endDate === "Present" || !a.endDate ? "9999-99" : a.endDate;
@@ -155,7 +205,7 @@ export const experienceData = getSortedExperienceData(rawExperienceData);
  * Groups experiences by category, preserving sort order within each group.
  */
 export const getGroupedExperience = (
-  items: ExperienceItem[]
+  items: ExperienceItem[],
 ): { category: ExperienceCategory; items: ExperienceItem[] }[] => {
   const sorted = getSortedExperienceData(items);
   const groups = new Map<ExperienceCategory, ExperienceItem[]>();

@@ -11,10 +11,7 @@ interface Heading {
 
 type LenisWindow = Window & {
   __lenis?: {
-    scrollTo: (
-      target: HTMLElement,
-      options?: Record<string, unknown>
-    ) => void;
+    scrollTo: (target: HTMLElement, options?: Record<string, unknown>) => void;
   };
 };
 
@@ -30,12 +27,16 @@ export default function BlogTableOfContents() {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string>("");
   const ioRef = useRef<IntersectionObserver | null>(null);
-  
+
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
-  const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0, opacity: 0 });
+  const [indicatorStyle, setIndicatorStyle] = useState({
+    top: 0,
+    height: 0,
+    opacity: 0,
+  });
 
   useEffect(() => {
-    const activeIndex = headings.findIndex(h => h.id === activeId);
+    const activeIndex = headings.findIndex((h) => h.id === activeId);
     if (activeIndex !== -1 && itemRefs.current[activeIndex]) {
       const el = itemRefs.current[activeIndex];
       if (el) {
@@ -46,7 +47,7 @@ export default function BlogTableOfContents() {
         });
       }
     } else {
-      setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
+      setIndicatorStyle((prev) => ({ ...prev, opacity: 0 }));
     }
   }, [activeId, headings]);
 
@@ -65,7 +66,7 @@ export default function BlogTableOfContents() {
       {
         rootMargin: "-15% 0px -60% 0px",
         threshold: [0, 0.25, 0.5, 1],
-      }
+      },
     );
 
     els.forEach((el) => ioRef.current!.observe(el));
@@ -77,7 +78,7 @@ export default function BlogTableOfContents() {
       if (!article) return;
 
       const els = Array.from(
-        article.querySelectorAll("h2[id], h3[id]")
+        article.querySelectorAll("h2[id], h3[id]"),
       ) as HTMLElement[];
 
       if (els.length < 2) return; // Don't show ToC for very short posts
@@ -86,8 +87,8 @@ export default function BlogTableOfContents() {
         els.map((el) => ({
           id: el.id,
           text: el.textContent?.trim() ?? "",
-          level: (parseInt(el.tagName[1]) as 2 | 3),
-        }))
+          level: parseInt(el.tagName[1]) as 2 | 3,
+        })),
       );
 
       observe(els);
@@ -112,10 +113,10 @@ export default function BlogTableOfContents() {
     if (!el) return;
     const lenis = (window as LenisWindow).__lenis;
     if (lenis) {
-      lenis.scrollTo(el, { 
-        offset: -90, 
+      lenis.scrollTo(el, {
+        offset: -90,
         duration: 1.8,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });
     } else {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -143,7 +144,7 @@ export default function BlogTableOfContents() {
 
       <nav className="relative">
         {/* Animated sliding indicator line */}
-        <div 
+        <div
           className="absolute left-[-1px] w-[2px] bg-brand-accent transition-all duration-300 ease-out z-10"
           style={{
             top: `${indicatorStyle.top}px`,
@@ -155,9 +156,11 @@ export default function BlogTableOfContents() {
           {headings.map((h, i) => {
             const isActive = activeId === h.id;
             return (
-              <li 
+              <li
                 key={h.id}
-                ref={(el) => { itemRefs.current[i] = el; }}
+                ref={(el) => {
+                  itemRefs.current[i] = el;
+                }}
               >
                 <button
                   type="button"
@@ -169,7 +172,7 @@ export default function BlogTableOfContents() {
                     h.level === 3 && "pl-8",
                     isActive
                       ? "text-brand-accent font-medium"
-                      : "text-neutral-500 dark:text-neutral-400 hover:border-neutral-300 dark:hover:border-neutral-600 hover:text-neutral-900 dark:hover:text-neutral-100"
+                      : "text-neutral-500 dark:text-neutral-400 hover:border-neutral-300 dark:hover:border-neutral-600 hover:text-neutral-900 dark:hover:text-neutral-100",
                   )}
                 >
                   <span

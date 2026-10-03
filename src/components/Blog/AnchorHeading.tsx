@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 function slugify(text: string): string {
   return text
     .toLowerCase()
-    .replace(/[^\w\s-]/g, "")  // remove special chars
-    .replace(/\s+/g, "-")       // spaces → hyphens
-    .replace(/-+/g, "-")        // collapse multiple hyphens
+    .replace(/[^\w\s-]/g, "") // remove special chars
+    .replace(/\s+/g, "-") // spaces → hyphens
+    .replace(/-+/g, "-") // collapse multiple hyphens
     .trim();
 }
 
@@ -23,7 +23,9 @@ function extractText(children: React.ReactNode): string {
   if (typeof children === "number") return String(children);
   if (Array.isArray(children)) return children.map(extractText).join("");
   if (React.isValidElement(children)) {
-    return extractText((children.props as { children?: React.ReactNode }).children);
+    return extractText(
+      (children.props as { children?: React.ReactNode }).children,
+    );
   }
   return "";
 }
@@ -47,7 +49,11 @@ interface AnchorHeadingProps {
  *  - scroll-mt-24 so fixed navbar doesn't cover the heading
  *  - Lenis-aware smooth scroll on anchor click
  */
-export function AnchorHeading({ level, children, className }: AnchorHeadingProps) {
+export function AnchorHeading({
+  level,
+  children,
+  className,
+}: AnchorHeadingProps) {
   const Tag = `h${level}` as "h2" | "h3" | "h4";
   const text = extractText(children);
   const id = slugify(text);
@@ -68,30 +74,8 @@ export function AnchorHeading({ level, children, className }: AnchorHeadingProps
   };
 
   return (
-    <Tag
-      id={id}
-      className={cn(
-        "group relative scroll-mt-24",
-        className
-      )}
-    >
+    <Tag id={id} className={cn("group relative scroll-mt-24", className)}>
       {children}
-      {/* Anchor link — visible on heading hover */}
-      <a
-        href={`#${id}`}
-        onClick={handleAnchorClick}
-        aria-label={`Permalink to: ${text}`}
-        className={cn(
-          "ml-2 inline-block",
-          "text-brand-accent opacity-0 group-hover:opacity-60 hover:!opacity-100",
-          "transition-opacity duration-150",
-          "no-underline hover:no-underline",
-          "text-[0.7em] font-mono font-normal align-middle",
-          "select-none"
-        )}
-      >
-        #
-      </a>
     </Tag>
   );
 }

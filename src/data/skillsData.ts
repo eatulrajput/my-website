@@ -1,5 +1,5 @@
 // skillsData.ts
-import { Code2, Database, Library, Server, Wrench } from "lucide-react";
+import { Code2, Database, Library, Smartphone, Wrench } from "lucide-react";
 import type { SkillCategory } from "./types";
 
 export const skillsData: SkillCategory[] = [
@@ -8,179 +8,155 @@ export const skillsData: SkillCategory[] = [
     icon: Code2,
     items: [
       {
-        name: "Python",
-        logo: "/logos/python.svg",
-        link: "https://www.python.org/",
-      },
-      {
-        name: "Java",
-        logo: "/logos/java.svg",
-        link: "https://www.oracle.com/java/",
-      },
-      {
         name: "JavaScript",
-        logo: "/logos/js.svg",
+        level: "Advanced",
+
         link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
       },
       {
         name: "TypeScript",
-        logo: "/logos/typescript.svg",
+        level: "Intermediate",
+
         link: "https://www.typescriptlang.org/",
       },
       {
-        name: "Yaml",
-        logo: "/logos/yaml.svg",
-        link: "https://yaml.org/",
-      }
+        name: "Java",
+        level: "Beginner",
+
+        link: "https://www.oracle.com/java/",
+      },
+    ],
+  },
+  {
+    category: "Frameworks & Core",
+    icon: Smartphone,
+    items: [
+      {
+        name: "React Native",
+        level: "Advanced",
+
+        link: "https://reactnative.dev/",
+      },
+      {
+        name: "Expo",
+        level: "Advanced",
+
+        link: "https://expo.dev/",
+      },
+      {
+        name: "React",
+        level: "Advanced",
+
+        link: "https://react.dev/",
+      },
+      {
+        name: "Next.js",
+        level: "Advanced",
+
+        link: "https://nextjs.org/",
+      },
     ],
   },
   {
     category: "Libraries",
     icon: Library,
     items: [
+      {
+        name: "React Navigation",
+        level: "Advanced",
 
-      {
-        name: "React",
-        logo: "/logos/react.svg",
-        link: "https://react.dev/"
+        link: "https://reactnavigation.org/",
       },
       {
-        name: "Shadcn UI",
-        logo: "/logos/shadcnui.svg",
-        link: "https://ui.shadcn.com/",
-      },
-      {
-        name: "Motion",
-        logo: "/logos/motion.svg",
-        link: "https://motion.dev/",
-      },
-      {
-        name: "Radix UI",
-        logo: "/logos/radixui.svg",
-        link: "https://radixui.com/",
-      },
-      {
-        name: "Aceternity UI",
-        logo: "/logos/aceternityui.svg",
-        link: "https://ui.aceternity.com/",
-      },
-      {
-        name: "React Native",
-        logo: "/logos/react.svg",
-        link: "https://reactnative.dev/",
-      }
+        name: "Redux",
+        level: "Advanced",
 
-    ],
-  },
-  {
-    category: "Frameworks",
-    icon: Server,
-    items: [
-      {
-        name: "Django",
-        logo: "/logos/django.svg",
-        link: "https://www.djangoproject.com/",
+        link: "https://redux.js.org/",
       },
       {
-        name: "Flask",
-        logo: "/logos/flask.svg",
-        link: "https://flask.palletsprojects.com/",
-      },
-      {
-        name: "FastAPI",
-        logo: "/logos/fastapi.svg",
-        link: "https://fastapi.tiangolo.com/",
-      },
+        name: "Zustand",
+        level: "Advanced",
 
-      { name: "React", logo: "/logos/react.svg", link: "https://react.dev/" },
-      {
-        name: "NextJS",
-        logo: "/logos/nextjs.svg",
-        link: "https://nextjs.org/",
+        link: "https://zustand-demo.pmnd.rs/",
       },
       {
-        name: "Shadcn UI",
-        logo: "/logos/shadcnui.svg",
-        link: "https://ui.shadcn.com/",
+        name: "Reanimated",
+        level: "Beginner",
+
+        link: "https://docs.swmansion.com/react-native-reanimated/",
       },
       {
-        name: "Motion",
-        logo: "/logos/motion.svg",
-        link: "https://motion.dev/",
-      },
-      {
-        name: "Radix UI",
-        logo: "/logos/radixui.svg",
-        link: "https://radixui.com/",
+        name: "Axios",
+        level: "Intermediate",
+
+        link: "https://axios-http.com/",
       },
     ],
   },
   {
-    category: "Databases",
+    category: "Databases & BaaS",
     icon: Database,
     items: [
       {
-        name: "MySQL",
-        logo: "/logos/mysql.svg",
-        link: "https://www.mysql.com/",
-      },
-      {
-        name: "MongoDB",
-        logo: "/logos/mongodb.svg",
-        link: "https://www.mongodb.com/",
-      },
-      {
-        name: "PostgreSQL",
-        logo: "/logos/postgresql.svg",
-        link: "https://www.postgresql.org/",
-      },
-      {
         name: "SQLite",
-        logo: "/logos/sqlite.svg",
+        level: "Intermediate",
+
         link: "https://www.sqlite.org/",
-      }
+      },
+      {
+        name: "Firebase",
+        level: "Beginner",
+
+        link: "https://firebase.google.com/",
+      },
+      {
+        name: "Supabase",
+        level: "Beginner",
+
+        link: "https://supabase.com/",
+      },
+      {
+        name: "Realm",
+        level: "Beginner",
+
+        link: "https://realm.io/",
+      },
     ],
   },
   {
-    category: "Tools",
+    category: "Tools & DevOps",
     icon: Wrench,
     items: [
-      { name: "Git", logo: "/logos/git.svg", link: "https://git-scm.com/" },
+      {
+        name: "Git",
+        level: "Advanced",
+
+        link: "https://git-scm.com/",
+      },
+      {
+        name: "Android Studio",
+        level: "Beginner",
+
+        link: "https://developer.android.com/studio",
+      },
+      {
+        name: "Fastlane",
+        level: "Beginner",
+
+        link: "https://fastlane.tools/",
+      },
       {
         name: "Postman",
-        logo: "/logos/postman.svg",
+        level: "Intermediate",
+
         link: "https://www.postman.com/",
       },
       {
-        name: "Docker",
-        logo: "/logos/docker.svg",
-        link: "https://www.docker.com/",
-      },
-      {
         name: "VS Code",
-        logo: "/logos/vscode.svg",
+        level: "Advanced",
+
         link: "https://code.visualstudio.com/",
       },
-      {
-        name: "GitHub",
-        logo: "/logos/github.svg",
-        link: "https://github.com/",
-      },
-      {
-        name: "Linux",
-        logo: "/logos/linux.svg",
-        link: "https://linux.org/",
-      },
-      {
-        name: "Fedora",
-        logo: "/logos/fedora.svg",
-        link: "https://fedoraproject.org/",
-      },
-      {
-        name: "Bash Terminal",
-        logo: "/logos/bash.svg",
-        link: "https://bash.org/",
-      }
     ],
   },
 ];

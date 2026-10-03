@@ -9,7 +9,10 @@ export interface ThemePalette {
   previewSwatches: [string, string, string];
 }
 
-export const themePalettes: Record<Exclude<ThemePaletteId, 'custom'>, ThemePalette> = {
+export const themePalettes: Record<
+  Exclude<ThemePaletteId, "custom">,
+  ThemePalette
+> = {
   ember: {
     id: "ember",
     name: "Electric Ember",

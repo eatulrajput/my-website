@@ -43,7 +43,9 @@ export default function ShareBlog({ title }: ShareBlogProps) {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4.5 rounded-2xl bg-neutral-100/50 dark:bg-neutral-900/40">
         <div className="flex items-center gap-2 font-mono text-xs text-neutral-600 dark:text-neutral-400">
           <IconShare className="size-4 text-brand-accent" />
-          <span className="font-semibold text-black dark:text-white">Enjoyed this post?</span>
+          <span className="font-semibold text-black dark:text-white">
+            Enjoyed this post?
+          </span>
           <span className="hidden sm:inline">Share it with your network:</span>
         </div>
 
@@ -80,7 +82,11 @@ export default function ShareBlog({ title }: ShareBlogProps) {
             type="button"
             className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black font-mono text-xs font-semibold text-black dark:text-white hover-text-brand-accent hover-border-brand-accent transition-colors cursor-pointer"
           >
-            {copied ? <IconCheck className="size-3.5 text-emerald-500" /> : <IconCopy className="size-3.5" />}
+            {copied ? (
+              <IconCheck className="size-3.5 text-emerald-500" />
+            ) : (
+              <IconCopy className="size-3.5" />
+            )}
             <span>{copied ? "Copied!" : "Copy"}</span>
           </button>
         </div>

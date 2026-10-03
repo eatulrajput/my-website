@@ -1,0 +1,79 @@
+export const meta = {
+  title: "Inner Working of Python",
+  subtitle: "How python actually works?",
+  date: "July 24, 2025",
+  description: "Learning MDX with Vite",
+  category: "Technical"
+
+}
+
+<BlogTitle>Inner Working of Python</BlogTitle>
+
+<BlogContent>
+## Let’s deep dive into the inner working of Python!
+
+Do we really know what Python is? It’s a high-level, interpreted programming language. It’s known for being easy to read and write—kind of like writing in English, just with some indentations, special characters, and code blocks.
+
+Wait, what do you mean by interpreted programming language?
+It means the code is executed line-by-line or statement-by-statement by an interpreter, instead of being fully compiled into machine code before running.
+
+Python was created by Guido van Rossum and first released in 1991.
+
+It’s incredibly versatile and widely used in many fields like Web Development, Data Science, Automation, Scripting, Game Development, DevOps, and even App Development.
+
+<YoutubeVideo src="https://youtube.com/embed/3HTKc-ZgZbg?si=j_HINunHd49zlQEx" />
+
+## How Does Python Run?
+
+You write code in a .py file. The Python interpreter compiles it into bytecode. But here’s the thing: Python only creates .pyc bytecode files for imported modules, not for the top-level script you run directly. The top-level script is executed as-is because it usually runs once.
+
+These bytecode files are mostly hidden and stored in a special folder called **pycache**. Python automatically creates and manages this folder, which keeps updating bytecode versions, handling creation and deletion.
+
+The bytecode files have a .pyc extension, and their names look like this: module_name.cpython-XY.pyc, where XY is the Python version.
+
+#### Why Do We Prefer Bytecode Over Python Scripts?
+
+Because bytecode makes execution faster. If Python finds existing bytecode in the **pycache** folder, it skips recompiling and runs the bytecode directly. This saves time, especially for bigger programs or when you run scripts repeatedly.
+
+Also, bytecode is platform-independent—you can run the same bytecode file on any machine with the same Python version, no matter the operating system. It’s simpler and more uniform than high-level Python code.
+
+#### What Makes Python Scripts Run: PVM
+
+PVM stands for Python Virtual Machine. It’s the runtime engine that executes bytecode. The PVM translates bytecode into machine-level operations. It also handles memory management, function calls, exceptions, and more.
+
+In simple terms, it’s the engine under the hood that runs your Python programs after the code has been compiled into bytecode.
+
+#### Have You Heard About Frozen Binaries?
+
+No? Then let’s go…
+
+Frozen binaries are standalone executable files that contain your Python source code, the Python interpreter, and all required libraries or modules. In other words, these are programs that can run without needing a separate Python installation on the user’s system.Everyone Has Their Strengths and Weaknesses — So Do Frozen Binaries
+
+#### Features:
+
+- Users don’t need to install Python to run the app
+- Easy to distribute, especially on Windows or Mac
+- Harder to access source code, though not completely secure
+- Ensures your app runs with the exact libraries and versions it needs
+
+#### Limitations:
+
+- Includes the Python interpreter and all libraries, making the file size large
+
+- Slower to build the binaries, which can take more time
+
+- Built binaries are OS-specific, so less portable
+
+- Debugging is harder—you lose the normal edit, run, and debug workflow of regular Python scripts.
+
+#### Let Me Finish This Blog by Talking About Different Versions of Python
+
+- CPython is the default and most widely used standard version.
+- Jython is used when you want to work with Java binaries along with Python.
+- IronPython is for .NET integration.
+- Stackless Python is a variant focused on concurrency.
+- PyPy is a performance-oriented version using Just-In-Time compilation.
+
+If you’ve read the full article here, congrats! You’ve learned Python in a new way.
+
+</BlogContent>

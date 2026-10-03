@@ -1,0 +1,161 @@
+export const meta = {
+  title: "System Design vs Coding Interview: A Deep Dive into the Difference",
+  date: "January 15, 2026",
+  description: "one of the most common confusions developers face is understanding the difference between a System Design Interview (SDI) and a Coding Interview (CI)",
+  category: "Technical"
+
+}
+
+<BlogTitle>
+  System Design vs Coding Interview: A Deep Dive into the Difference
+</BlogTitle>
+
+<BlogContent>
+When preparing for software engineering interviews, one of the most common confusions developers face is understanding the difference between a System Design Interview (SDI) and a Coding Interview (CI). Both are crucial, but they assess entirely different skills.
+
+Let’s explore this difference in detail, using examples from real-world systems like LMS, Discord, and YouTube.
+
+## What Is a System Design Interview?
+
+<YoutubeVideo src="https://youtube.com/embed/VJVfWWdtJ4c?si=48WFYTfZ4TEdkGLP" />
+
+A System Design Interview focuses on your ability to architect large-scale systems — systems that can handle millions or even billions of users. It is open-ended, meaning there is no single correct answer. The goal is to see how you think, what trade-offs you consider, and how well you communicate your ideas.
+
+For example, if you are asked to design Discord, a real-time communication platform, questions might include:
+
+- Which database will you use for real-time chat?
+- Will MySQL, PostgreSQL, or MongoDB perform better?
+- How will you decide which one fits your use case?
+- There is no “fixed” solution here. You can:
+- Use the Hit and Try method — build and experiment.
+- Or, learn from blogs, articles, and engineering case studies.
+
+## When Should You Study System Design?
+
+The learning curve of System Design varies with experience.
+
+1. Initial Level (SDE 1 / Entry Level)
+   Beginners should start by reading books on System Design to understand concepts like:
+
+Database Sharding
+
+Load Balancers
+
+Message Brokers
+
+Apache Kafka
+
+These give a streamlined perspective of how real-world systems function.
+
+2. Higher Positions (SDE 2 / SDE 3 / Team Lead / Manager)
+   At this stage, learning happens through:
+
+- Experience sharing
+- Group discussions
+- Research and reading
+- Engineering blogs and articles
+
+## Example: Apache Kafka and Event-Driven Design
+
+Apache Kafka is a distributed event streaming platform.
+Every user action — registering, logging in, or buying a product — is an event.
+
+These events are consumed by various components:
+
+- Database
+- Redis
+- Data Lake
+- Machine Learning models
+- Website analytics
+- Monitoring systems
+
+Kafka acts like a post office for data, ensuring high throughput (millions of messages per second), fault tolerance, and horizontal scalability.
+
+Similarly, tools like Ingest provide event-driven workflows — running background jobs, retries, and complex workflows without manual infrastructure management.
+
+## How System Design Interviews Differ from Coding Interviews
+
+<YoutubeVideo src="https://youtube.com/embed/sJBAKEZK8I4?si=m4CaC-O7DJacfIWQ" />
+
+| Aspect      | Coding Interview(CI)               | System Design Interview(SDI)                                |
+| ----------- | ---------------------------------- | ----------------------------------------------------------- |
+| **Scope**   | Specific, well-defined problem     | Open-ended, large-scale problem                             |
+| **Example** | Reverse a linked list              | Design YouTube or a URL shortener                           |
+| **Focus**   | Writing correct and optimized code | Architecting scalable and reliable systems                  |
+| **Time**    | ~20–30 minutes                     | ~45–60 minutes                                              |
+| **Goal**    | Problem-solving and syntax mastery | Trade-offs, scalability, communication, and system thinking |
+
+## Scope and Depth
+
+In a Coding Interview
+You must:
+
+- Write working code that passes all test cases.
+- Focus on time and space complexity (e.g., O(n), O(n²)).
+
+In a System Design Interview
+You must:
+
+- Discuss trade-offs between choices.
+- Evaluate availability, latency, scalability, and reliability.
+- Explain why you used a specific technology (e.g., MySQL vs PostgreSQL).
+
+Example:
+If asked to design the Like button for Instagram —
+
+- In a coding interview, you might focus on data models and how the like count is stored or updated.
+- In a system design interview, you’ll discuss how that like is propagated to millions of users, stored efficiently, and scaled globally.
+
+Communication Skills Matter
+Strong communication is essential in both interviews.
+
+- In CI, your code clarity (good variable names, comments, logical flow) reflects your communication.
+- In SDI, you must verbally explain your assumptions, trade-offs, and design decisions clearly.
+
+For example, if you’re asked to design WhatsApp, you must clearly explain:
+
+- Why you’d choose SQL or NoSQL.
+- Whether you prioritize message delivery guarantees or database persistence.
+
+If you can’t make your thought process clear, it’s hard for the interviewer to follow your reasoning.
+
+## Trade-offs and Prioritization
+
+Trade-offs define good design.
+
+- In CI: trade-offs revolve around complexity (O(n) vs O(n²)).
+- In SDI: trade-offs involve SQL vs NoSQL, horizontal scaling, data consistency, and system availability.
+
+Knowing the pros and cons of your tech stack is not enough —
+You must discuss why you’re prioritizing one aspect over another.
+
+## Real-World Thinking vs Toy Problems
+
+In Coding Interviews
+Problems are mostly toy problems — simplified tasks used to test logic and algorithmic thinking.
+For example:
+
+- Build a quiz app.
+- Clone Trello.
+
+These rarely go into production but help assess your problem-solving ability.
+
+In System Design Interviews
+Problems mirror real-world challenges:
+
+- How will YouTube store and distribute videos?
+- Will you use a CDN?
+- How will the recommendation pipeline work?
+- How will notifications be sent to millions of users?
+
+These questions require practical, production-level thinking — not just writing code, but building systems that scale.
+
+## Evaluation scale
+
+| Criteria        | Coding Interview                   | System Design Interview                  |
+| --------------- | ---------------------------------- | ---------------------------------------- |
+| **Focus**       | Correctness and efficiency of code | Clarity of thought and communication     |
+| **Evaluation**  | Test cases, complexity             | Scalability, fault tolerance, trade-offs |
+| **Expectation** | Code runs perfectly                | System design is realistic and justified |
+
+</BlogContent>

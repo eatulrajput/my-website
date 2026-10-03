@@ -1,7 +1,25 @@
 "use client";
 
 import { IconPackage, IconArrowUpRight } from "@tabler/icons-react";
+import { motion, Variants } from "motion/react";
 import { PackageItem } from "./types";
+
+const container: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05 },
+  },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+};
 
 interface ProjectCorePackagesProps {
   packages: PackageItem[];
@@ -13,32 +31,37 @@ export const ProjectCorePackages = ({
   title = "Core Packages",
 }: ProjectCorePackagesProps) => {
   return (
-    <div className="space-y-3 border-t border-neutral-200 dark:border-neutral-800 pt-6">
-      <h2 className="text-base font-semibold text-black dark:text-white tracking-tight font-sans">
-        {title}
-      </h2>
-      <div className="divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800 font-mono text-xs">
+    <div className="project-packages">
+      <h2 className="project-packages__title">{title}</h2>
+      <motion.div
+        className="project-packages__list"
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
+      >
         {packages.map((pkg, idx) => (
-          <a
+          <motion.a
             key={idx}
+            variants={item}
             href={pkg.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="py-2.5 flex items-center justify-between gap-4 group hover-text-brand-accent transition-colors"
+            className="project-packages__item group"
           >
-            <div className="flex items-center gap-2 min-w-0">
-              <IconPackage className="size-4 text-neutral-400 shrink-0" />
-              <span className="font-semibold text-black dark:text-white group-hover:text-brand-accent transition-colors truncate">
-                {pkg.name}
+            <div className="project-packages__item-left">
+              <IconPackage className="project-packages__icon" />
+              <span className="project-packages__item-title">{pkg.name}</span>
+            </div>
+            <div className="project-packages__item-right">
+              <span className="project-packages__item-purpose">
+                {pkg.purpose}
               </span>
+              <IconArrowUpRight className="project-packages__arrow" />
             </div>
-            <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400 shrink-0">
-              <span>{pkg.purpose}</span>
-              <IconArrowUpRight className="size-3.5 text-neutral-400" />
-            </div>
-          </a>
+          </motion.a>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

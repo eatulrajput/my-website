@@ -1,3 +1,5 @@
+// Project Data
+
 export interface ProjectItem {
   projectIcon?: string;
   title: string;
@@ -16,7 +18,8 @@ export interface ProjectItem {
 export const rawProjects: ProjectItem[] = [
   {
     title: "Git Pie",
-    description: "A GitHub utility tracking tool designed to compile and discover hosted GitHub pages links for any user.",
+    description:
+      "A GitHub utility tracking tool designed to compile and discover hosted GitHub pages links for any user.",
     techStack: ["JavaScript", "GitHub API", "Netlify"],
     codeLink: "https://github.com/eatulrajput/github-page-tracker",
     liveLink: "https://gitpie.netlify.app/",
@@ -29,7 +32,8 @@ export const rawProjects: ProjectItem[] = [
   },
   {
     title: "Crato",
-    description: "A healthcare app prototype created under tight time constraints during the MIT HackNation hackathon.",
+    description:
+      "A healthcare app prototype created under tight time constraints during the MIT HackNation hackathon.",
     techStack: ["API", "JavaScript", "React"],
     codeLink: "https://github.com/eatulrajput/crato",
     liveLink: "",
@@ -39,11 +43,11 @@ export const rawProjects: ProjectItem[] = [
     date: "Aug 2025",
     sortDate: "2025-08",
     showInProjects: false,
-
   },
   {
     title: "2025 Solution Challenge",
-    description: "A real-world problem-solving prototype built for the 2025 Google Community Solution Challenge.",
+    description:
+      "A real-world problem-solving prototype built for the 2025 Google Community Solution Challenge.",
     techStack: ["TypeScript", "React", "AI APIs"],
     codeLink: "",
     liveLink: "https://vision.hack2skill.com/event/solutionschallenge2025",
@@ -53,11 +57,11 @@ export const rawProjects: ProjectItem[] = [
     date: "Jan - Jul 2025",
     sortDate: "2025-07",
     showInProjects: false,
-
   },
   {
     title: "Workflow",
-    description: "An n8n and Python based agent workflow automation developed for the Product Space AI Hackathon.",
+    description:
+      "An n8n and Python based agent workflow automation developed for the Product Space AI Hackathon.",
     techStack: ["Python", "n8n", "FastAPI"],
     codeLink: "",
     liveLink: "",
@@ -67,11 +71,11 @@ export const rawProjects: ProjectItem[] = [
     date: "Jun 2025",
     sortDate: "2025-06",
     showInProjects: false,
-
   },
   {
     title: "Astra AI",
-    description: "A RAG-based intelligent AI chatbot designed for accurate question answering and context retrieval.",
+    description:
+      "A RAG-based intelligent AI chatbot designed for accurate question answering and context retrieval.",
     techStack: ["FastAPI", "Python", "RAG", "Vector DB"],
     codeLink: "",
     liveLink: "/project/astra-ai",
@@ -80,12 +84,12 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "In Progress",
     date: "May 2025",
     sortDate: "2025-05",
-    showInProjects: false,
-
+    showInProjects: true,
   },
   {
     title: "Test Forge",
-    description: "An automated unit test generator developed to build Google Test suites for C++ projects via LLMs.",
+    description:
+      "An automated unit test generator developed to build Google Test suites for C++ projects via LLMs.",
     techStack: [
       "Python (FastAPI)",
       "C++",
@@ -105,7 +109,8 @@ export const rawProjects: ProjectItem[] = [
   },
   {
     title: "Appoint Ease",
-    description: "A comprehensive booking and appointment management system designed for patient and doctor scheduling.",
+    description:
+      "A comprehensive booking and appointment management system designed for patient and doctor scheduling.",
     techStack: ["JavaScript", "Node.js", "MongoDB"],
     codeLink: "https://github.com/AritraBanerjee-09/SE-Project",
     liveLink: "",
@@ -118,7 +123,8 @@ export const rawProjects: ProjectItem[] = [
   },
   {
     title: "Hapocalypse",
-    description: "An AI-powered submission for the MLSA Hackocalypse hackathon event at KIIT University.",
+    description:
+      "An AI-powered submission for the MLSA Hackocalypse hackathon event at KIIT University.",
     techStack: ["Python", "OpenAI API", "Streamlit"],
     codeLink: "",
     liveLink: "",
@@ -128,11 +134,11 @@ export const rawProjects: ProjectItem[] = [
     date: "Dec 2024",
     sortDate: "2024-12",
     showInProjects: false,
-
   },
   {
     title: "GitHub Copilot Challenge",
-    description: "An app development prototype utilizing GitHub Copilot tools to accelerate and optimize coding velocity.",
+    description:
+      "An app development prototype utilizing GitHub Copilot tools to accelerate and optimize coding velocity.",
     techStack: ["TypeScript", "GitHub Copilot", "Next.js"],
     codeLink: "",
     liveLink: "",
@@ -142,11 +148,11 @@ export const rawProjects: ProjectItem[] = [
     date: "Nov 2024 - Jan 2025",
     sortDate: "2024-11.5",
     showInProjects: false,
-
   },
   {
     title: "Google's Deepdream Project",
-    description: "A Computer Vision course group project utilizing convolutional neural networks to visualize image patterns.",
+    description:
+      "A Computer Vision course group project utilizing convolutional neural networks to visualize image patterns.",
     techStack: ["Python", "PyTorch", "OpenCV"],
     codeLink: "https://github.com/eatulrajput/cpvr-final-group-project",
     liveLink: "",
@@ -156,11 +162,11 @@ export const rawProjects: ProjectItem[] = [
     date: "Nov 2024",
     sortDate: "2024-11",
     showInProjects: false,
-
   },
   {
     title: "Harmony Bot",
-    description: "An interactive automated bot prototype developed for the Women Techmakers She Builds AI hackathon.",
+    description:
+      "An interactive automated bot prototype developed for the Women Techmakers She Builds AI hackathon.",
     techStack: ["Python", "Discord API", "OpenAI"],
     codeLink: "",
     liveLink: "",
@@ -170,11 +176,11 @@ export const rawProjects: ProjectItem[] = [
     date: "Oct - Nov 2024",
     sortDate: "2024-10.5",
     showInProjects: false,
-
   },
   {
     title: "Distance Measurement Using HC-SR04",
-    description: "IIoT research lab project utilizing ultrasonic sensors for real-time distance tracking and measurement.",
+    description:
+      "IIoT research lab project utilizing ultrasonic sensors for real-time distance tracking and measurement.",
     techStack: ["C", "Electronics", "NodeMCU"],
     codeLink: "https://github.com/eatulrajput/cpvr-final-group-project",
     liveLink: "",
@@ -184,11 +190,11 @@ export const rawProjects: ProjectItem[] = [
     date: "Oct 2024",
     sortDate: "2024-10.2",
     showInProjects: false,
-
   },
   {
     title: "Dharavi Mapping",
-    description: "A community GIS layout that creates solutions using NASA's open source geography metadata.",
+    description:
+      "A community GIS layout that creates solutions using NASA's open source geography metadata.",
     techStack: ["GIS", "JavaScript", "Leaflet"],
     codeLink: "",
     liveLink: "/project/community-mapping",
@@ -197,12 +203,12 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Oct 2024",
     sortDate: "2024-10",
-    showInProjects: false,
-
+    showInProjects: true,
   },
   {
     title: "Finfy",
-    description: "An AI-powered loan approval application that utilizes machine learning models to check eligibility.",
+    description:
+      "An AI-powered loan approval application that utilizes machine learning models to check eligibility.",
     techStack: ["Python", "Linear Regression", "Scikit-Learn", "Render"],
     codeLink: "https://finfy-app-04of.onrender.com/",
     liveLink: "https://finfy-app-04of.onrender.com/",
@@ -212,11 +218,11 @@ export const rawProjects: ProjectItem[] = [
     date: "May 2024",
     sortDate: "2024-05",
     showInProjects: false,
-
   },
   {
     title: "Weather App",
-    description: "A weather intelligence platform developed for the Google community Developer Student Clubs solution challenge.",
+    description:
+      "A weather intelligence platform developed for the Google community Developer Student Clubs solution challenge.",
     techStack: ["JavaScript", "OpenWeather API", "HTML/CSS"],
     codeLink: "",
     liveLink: "https://developers.google.com/community/gdsc-solution-challenge",
@@ -226,13 +232,14 @@ export const rawProjects: ProjectItem[] = [
     date: "Apr - Jun 2024",
     sortDate: "2024-04",
     showInProjects: false,
-
   },
   {
     title: "Calculator App",
-    description: "A simple, clean calculator application created during the Application Development Lab using Android Studio.",
+    description:
+      "A simple, clean calculator application created during the Application Development Lab using Android Studio.",
     techStack: ["Java", "Android Studio"],
-    codeLink: "https://github.com/eatulrajput/android_app/tree/master/calculator_app",
+    codeLink:
+      "https://github.com/eatulrajput/android_app/tree/master/calculator_app",
     liveLink: "",
     participationType: "solo",
     projectCategory: "academic",
@@ -240,11 +247,11 @@ export const rawProjects: ProjectItem[] = [
     date: "Mar 2024",
     sortDate: "2024-03",
     showInProjects: false,
-
   },
   {
     title: "Breakout Game",
-    description: "A classic arcade-style brick-breaker game built with Java and Python, requiring quick reflexes.",
+    description:
+      "A classic arcade-style brick-breaker game built with Java and Python, requiring quick reflexes.",
     techStack: ["Python", "Java", "Pygame"],
     codeLink: "https://github.com/eatulrajput/Break-Out-Game",
     liveLink: "",
@@ -254,7 +261,6 @@ export const rawProjects: ProjectItem[] = [
     date: "Nov 2023",
     sortDate: "2023-11",
     showInProjects: false,
-
   },
 ];
 
@@ -269,4 +275,6 @@ export const getSortedProjects = (items: ProjectItem[]): ProjectItem[] => {
   });
 };
 
-export const projects = getSortedProjects(rawProjects.filter(p => p.showInProjects !== false));
+export const projects = getSortedProjects(
+  rawProjects.filter((p) => p.showInProjects !== false),
+);

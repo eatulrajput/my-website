@@ -1,6 +1,24 @@
 "use client";
 
+import { motion, Variants } from "motion/react";
 import { FeatureItem } from "./types";
+
+const container: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+};
 
 interface ProjectFeaturesProps {
   features: FeatureItem[];
@@ -12,28 +30,34 @@ export const ProjectFeatures = ({
   title = "Key Features",
 }: ProjectFeaturesProps) => {
   return (
-    <div className="space-y-3 border-t border-neutral-200 dark:border-neutral-800 pt-6">
-      <h2 className="text-base font-semibold text-black dark:text-white tracking-tight font-sans">
-        {title}
-      </h2>
-      <div className="divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800">
+    <div className="project-features">
+      <h2 className="project-features__title">{title}</h2>
+      <motion.div
+        className="project-features__list"
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
+      >
         {features.map((feat, idx) => {
           const IconComponent = feat.icon;
           return (
-            <div key={idx} className="py-3.5 flex items-start gap-3">
-              <IconComponent className="size-4 text-neutral-500 dark:text-neutral-400 mt-0.5 shrink-0" />
-              <div className="space-y-0.5">
-                <span className="font-semibold text-xs sm:text-sm text-black dark:text-white block">
+            <motion.div
+              key={idx}
+              variants={item}
+              className="project-features__item"
+            >
+              <IconComponent className="project-features__icon" />
+              <div className="project-features__text-wrapper">
+                <span className="project-features__item-title">
                   {feat.label}
                 </span>
-                <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                  {feat.desc}
-                </p>
+                <p className="project-features__item-desc">{feat.desc}</p>
               </div>
-            </div>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </div>
   );
 };

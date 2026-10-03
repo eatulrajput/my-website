@@ -9,11 +9,15 @@ interface ServiceCardProps {
   avgResponseTime: number;
 }
 
-const statusStyles: Record<string, { label: string; dot: string; badge: string }> = {
+const statusStyles: Record<
+  string,
+  { label: string; dot: string; badge: string }
+> = {
   up: {
     label: "Operational",
     dot: "bg-emerald-500",
-    badge: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+    badge:
+      "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
   },
   down: {
     label: "Down",
@@ -23,22 +27,26 @@ const statusStyles: Record<string, { label: string; dot: string; badge: string }
   seems_down: {
     label: "Degraded",
     dot: "bg-amber-500",
-    badge: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
+    badge:
+      "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
   },
   paused: {
     label: "Paused",
     dot: "bg-neutral-400",
-    badge: "bg-neutral-400/10 text-neutral-500 dark:text-neutral-400 border-neutral-400/20",
+    badge:
+      "bg-neutral-400/10 text-neutral-500 dark:text-neutral-400 border-neutral-400/20",
   },
   not_checked: {
     label: "Pending",
     dot: "bg-neutral-400",
-    badge: "bg-neutral-400/10 text-neutral-500 dark:text-neutral-400 border-neutral-400/20",
+    badge:
+      "bg-neutral-400/10 text-neutral-500 dark:text-neutral-400 border-neutral-400/20",
   },
   unknown: {
     label: "Unknown",
     dot: "bg-neutral-400",
-    badge: "bg-neutral-400/10 text-neutral-500 dark:text-neutral-400 border-neutral-400/20",
+    badge:
+      "bg-neutral-400/10 text-neutral-500 dark:text-neutral-400 border-neutral-400/20",
   },
 };
 
@@ -49,7 +57,13 @@ function getUptimeColor(uptime: number): string {
   return "text-red-500";
 }
 
-export default function ServiceCard({ name, url, status, uptimeMonth, avgResponseTime }: ServiceCardProps) {
+export default function ServiceCard({
+  name,
+  url,
+  status,
+  uptimeMonth,
+  avgResponseTime,
+}: ServiceCardProps) {
   const style = statusStyles[status] || statusStyles.unknown;
 
   const displayUrl = (() => {
@@ -104,13 +118,16 @@ export default function ServiceCard({ name, url, status, uptimeMonth, avgRespons
         <span
           className={cn(
             "inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold uppercase border",
-            style.badge
+            style.badge,
           )}
         >
           {style.label}
         </span>
         <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500">
-          30d: <span className={cn("font-bold", getUptimeColor(uptimeMonth))}>{uptimeMonth}%</span>
+          30d:{" "}
+          <span className={cn("font-bold", getUptimeColor(uptimeMonth))}>
+            {uptimeMonth}%
+          </span>
         </span>
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import { useTheme } from "../hooks/useTheme";
 import { useEffect, useState } from "react";
-import { IconSun, IconMoon, IconDeviceDesktop } from "@tabler/icons-react";
+import { Sun, Moon, Monitor } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 export default function ThemeToggle() {
@@ -14,7 +14,7 @@ export default function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div className="size-8 sm:size-9" />;
+    return <div className="nav-theme-toggle-placeholder" />;
   }
 
   const cycleTheme = () => {
@@ -31,17 +31,17 @@ export default function ThemeToggle() {
     switch (theme) {
       case "light":
         return {
-          icon: <IconSun className="size-4 text-brand-accent" />,
+          icon: <Sun className="theme-icon" size={20} strokeWidth={1} />,
           label: "Light mode",
         };
       case "dark":
         return {
-          icon: <IconMoon className="size-4 text-brand-accent" />,
+          icon: <Moon className="theme-icon" size={20} strokeWidth={1} />,
           label: "Dark mode",
         };
       default:
         return {
-          icon: <IconDeviceDesktop className="size-4 text-neutral-500 dark:text-neutral-400" />,
+          icon: <Monitor className="theme-icon" size={20} strokeWidth={1} />,
           label: "System default",
         };
     }
@@ -53,7 +53,7 @@ export default function ThemeToggle() {
     <button
       onClick={cycleTheme}
       type="button"
-      className="p-2 rounded-lg text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors cursor-pointer"
+      className="nav-theme-toggle"
       aria-label={`Toggle theme (currently ${label})`}
       title={`Theme: ${label}`}
     >
@@ -64,7 +64,11 @@ export default function ThemeToggle() {
           animate={{ rotate: 0, scale: 1, opacity: 1 }}
           exit={{ rotate: 90, scale: 0.7, opacity: 0 }}
           transition={{ duration: 0.18, ease: "easeOut" }}
-          className="flex items-center justify-center"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
           {icon}
         </motion.div>

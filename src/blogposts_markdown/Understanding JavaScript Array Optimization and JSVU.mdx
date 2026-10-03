@@ -1,0 +1,319 @@
+export const meta = {
+  title: "Understanding JavaScript Array Optimization and JSVU",
+  subtitle: "JavaScript engines",
+  date: "February 16, 2025",
+  description:
+    "JavaScript engines, such as V8 (used in Chrome and Node.js) and SpiderMonkey (used in Firefox), continuously optimize JavaScript code for performance. One key area of optimization is how arrays are handled internally. In this blog, we will explore JavaScript array optimizations and how the JavaScript engine categorizes arrays for efficient execution.",
+  category: "Technical",
+};
+
+<BlogTitle>Understanding JavaScript Array Optimization and JSVU.</BlogTitle>
+
+<BlogContent>
+
+## Introduction
+
+JavaScript engines, such as V8 (used in Chrome and Node.js) and SpiderMonkey (used in Firefox), continuously optimize JavaScript code for performance. One key area of optimization is how arrays are handled internally. In this blog, we will explore JavaScript array optimizations and how the JavaScript engine categorizes arrays for efficient execution.
+
+Additionally, we will look at how to install JavaScript engines using JSVU (JavaScript Engine Version Updater), a tool that allows developers to easily install and manage multiple JavaScript engines.
+
+<YoutubeVideo src="https://youtube.com/embed/ZRS485LxX0s?si=0MZmMFbI93VhMmdw" />
+
+## Installing JavaScript Engines Using JSVU
+
+To install all JavaScript engines available in JSVU, use the following command:
+
+```bash
+jsvu --os=linux64 --engines=all
+```
+
+However, this will not install the v8-debug engine. To install v8-debug, use:
+
+```bash
+jsvu --os=linux64 --engines=v8-debug
+```
+
+Once installed, you can run the V8 debug engine using:
+
+```bash
+~/.jsvu/bin/v8-debug --allow-natives-syntax
+```
+
+This allows you to analyze JavaScript optimizations and engine behavior in-depth.
+
+## Types of JavaScript Arrays
+
+JavaScript arrays can be classified into two categories:
+
+- Continuous Arrays: Arrays without gaps (or holes) in their indices.
+- Holey Arrays: Arrays with missing elements (holes) at certain positions.
+
+## Optimization Strategies in JavaScript Arrays
+
+JavaScript engines optimize arrays based on the type of elements and their positions. The three main optimizations include:
+
+- SMI (Small Integer) Elements: Arrays that contain only small integers.
+- Packed Elements: Arrays where each index has a value, making them efficient.
+- Double (Float, String, Function) Elements: Arrays containing mixed types such as floating-point numbers, strings, or functions.
+
+Both continuous and holey arrays undergo these optimizations, but the optimization strategy depends on their structure and contents.
+
+## How JavaScript Engines Optimize Arrays
+
+JavaScript engines analyze the values in an array and categorize them based on their content:
+
+```js
+const arrTwo = [1, 2, 3, 4, 5];
+```
+
+This is a Packed SMI Array because all elements are small integers and have no gaps.
+
+```js
+arrTwo.push(6.0);
+```
+
+Now, arrTwo becomes a Packed Double Array because a floating-point number was added.
+
+```js
+arrTwo.push("7");
+```
+
+Now, arrTwo is a Packed Element Array, as it contains a mix of data types.
+
+```js
+arrTwo[10] = 11;
+```
+
+This makes arrTwo a Holey Array, as index positions 6–9 are missing.
+
+#### Why Are Holey Arrays Expensive?
+
+When accessing an array element, JavaScript performs several operations:
+
+- Bounds Check: The engine checks if the requested index is within the array length.
+
+- Property Lookup:
+  - If the value is undefined due to an out-of-bounds access, the engine quickly returns undefined.
+
+  - If the index is within bounds but the value is missing, the engine performs a prototype chain lookup, making it computationally expensive.
+
+```js
+console.log(arrTwo[9]); // Expensive operation due to holey nature
+```
+
+Since accessing holey elements requires additional checks, it is best to avoid holes in arrays for better performance.
+
+## Optimized Array Best Practices
+
+To maintain performance, follow these best practices:
+
+- Prefer Packed Arrays:
+
+  - Always initialize arrays with values instead of using empty slots.
+
+```js
+const arrOptimized = [];
+arrOptimized.push("1");
+arrOptimized.push("2");
+arrOptimized.push("3");
+```
+
+    - This ensures the array remains a Packed Element Array instead of becoming holey.
+
+- Avoid Unnecessary Type Changes:
+
+  - Once an array transitions to a more complex type (e.g., from SMI to Packed Double), it cannot revert to a simpler type.
+
+```js
+const arrSMI = [1, 2, 3, 4, 5];
+arrSMI.push(NaN); // Now a Packed Double Array
+arrSMI.push(Infinity);
+```
+
+    - Even if NaN or Infinity is removed, the array remains a Packed Double Array.
+
+- Use Recommended Iteration Methods:
+
+  - The V8 engine and SpiderMonkey recommend using built-in iteration methods instead of manually optimizing loops.
+
+```js
+arrOptimized.forEach((element) => console.log(element));
+```
+
+    - JavaScript engines optimize built-in functions better than manual loop optimizations.
+
+## Conclusion
+
+Understanding JavaScript array optimizations can significantly impact performance. Key takeaways:
+
+- Prefer packed arrays over holey arrays to avoid costly lookups.
+- Avoid unnecessary type conversions (e.g., SMI to Double) as they cannot be reversed.
+- Utilize built-in JavaScript iteration methods for optimal performance.
+- Use JSVU to install and test different JavaScript engines to analyze optimizations in real-time.
+
+By following these best practices, you can write efficient JavaScript code that performs well across different engines!
+
+#### My Notes on this topic:
+
+# jsvu
+
+Command to install engines from jsvu, but it will not install v8-debug
+
+```bash
+jsvu --os=linux64 --engines=all
+```
+
+To install v8-debug, command is:
+
+```bash
+jsvu --os=linux64 --engines=v8-debug
+```
+
+Terminal~$ ~/.jsvu/bin/v8-debug --allow-natives-syntax
+
+---
+
+In JS, there are two types of arrays:
+
+1. Continuous
+2. Holey Array
+
+In any language, optimization happens.
+
+In JS three kinds of optimization takes place:
+
+1. SMI(small interger, a type of array)
+2. Packed element
+3. Double(float, string, function)
+
+these 3 types are possible in both continuous and holey
+
+so, based on what elements are present and what are there position in array, internally javascript optimizes it.
+
+Given array has 0,1,2 element position, also checks what are the values, are strings, numbers, etc. That is how optimization happens in V8 and other engines.
+
+---
+
+Technical Communication:
+As much the technical communication is stronger becomes the more you can have pair programming with others.
+
+---
+
+In array, the every subtances are are called as elements of array. As we say for object has properties, we say array contain elements not properties
+
+So, which method will you use for based on there implementation:
+for-each on array:
+optimization will differ based on types, is it string, float, integer, continous or holey, optimization differs here
+
+Optimization does mean only to study linked list or dynamic programming, it is also mean to optimize things based on usecase and scenarios, that is the engineering side.
+
+#### Terminal Screenshot
+
+<BlogImage src="/images/blog/js/js-1.png" />
+<BlogImage src="/images/blog/js/js-2.png" />
+<BlogImage src="/images/blog/js/js-3.png" />
+
+```js
+const myArr = [];
+// %DebugPrint(myArr)
+
+// const arrTwo = [1, 2, 3, 4, 5]
+
+// This is packed ( or continuous, not technically called as continuous) SMI elements, because every position holds value
+
+// const arrThree = [1,2, , 4, 5]
+
+// This is holey elements, because one position holds no value
+
+const arrTwo = [1, 2, 3, 4, 5];
+
+// This is the best type of array, but are very restricted, you can only take numbers only.
+
+arrTwo.push(6.0);
+// It is now packed double elements
+// It contains a double element
+
+arrTwo.push("7");
+// It is now packed elements
+// It will have no different optimization.
+
+// When the packed SMI elements converted to other, there is no way to convert it back to packed SMI elements.
+
+arrTwo[10] = 11;
+// Now, it becomes holey elements and have gaps, and the optimization will be in a different way.
+
+console.log(arrTwo);
+console.log(arrTwo.length);
+console.log(arrTwo[9]);
+
+// These undefined operations are very costly operations
+
+// Whenever you want to access some elements from an array.
+// First happens 'bound check'
+
+// it checks from the starting element, array length, if the it is outside the array length, for example 19th position, it will quickly show undefined.
+
+// But when you ask for 9th position which is inside the array length but no values is there, it is undefined, and this is very different case from the previous one.
+
+// Since, array out of bound check is passed successfully.
+
+// Step 2, checking the property or any value here, hasOwnProperty(arrTwo, 9), if false and found no value then in prototype
+
+// Check property again, hasOwnProperty(arrTwo.prototype, 10)
+
+// if not found, since we know, JavaScript has prototypal nature, it keeps on checking until get null value.
+
+// So, now checking at hasOwnProperty(Object.prototype, 10)
+
+// Hence, the hasOwnProperty check is one of the most expensive check inside javascript, that is why it said holes are expensive.
+
+// That is why it is recommended to avoid holes in array
+
+const arrThree = [1, 2, 3, 4, 5];
+console.log(arrThree[8]);
+// Since, it is out of bound, bound check is done, it will return undefined, optimization is done here.
+
+console.log(arrThree[2]);
+// Since it is continuous, no holes, no out of bound, then return the value, done task.
+
+// Optimzed based array
+// SMI > Double > Packed Elements ---- Continous Array
+// Hole_SMI > Hole_Double > Hole_Packed ---- Holey Array
+
+// Note:
+// If SMI is changed to double, it can't be reverted even you remove the double element
+
+const arrFour = new Array(3);
+// It has 3 holes, it is now  holey SMI Elements
+
+// When downgrade starts:
+arrFour[0] = "1"; // Now it is holey elements, there is no other way to revert it.
+
+// What we did, first kept the array empty.
+// Optimization is less prioritized than Usecase
+
+arrFour[0] = "1";
+arrFour[1] = "1";
+arrFour[2] = "1";
+
+// What better we can do
+
+const arrFive = [];
+// We just keeping 3 positions empty, we took an array which is empty, it is little optimized.
+// Now, we can push elements.
+arrFive.push("1"); // It is not holey elements, it is now packed elements.
+arrFive.push("2");
+arrFive.push("3");
+
+const arrSix = [1, 2, 3, 4, 5]; // SMI Elements
+
+// If you added elements such as NaN
+arrSix.push(NaN); // it is now packed Double elements
+arrSix.push(Infinity);
+
+// Even you remove the element, it is now downgraded to packed double and it can't be SMI packed now
+
+// In modern optimization by V-8 or Spider-Monkey engine, the recommendation is given: either for for loop or for-of loop, or forEach or any other loop, it is advised to use methods prefered by the JavaScript because you thought you have optimised for 2 or 3 things, but the browser has optimised it for many things, so use the by default methods
+```
+
+</BlogContent>

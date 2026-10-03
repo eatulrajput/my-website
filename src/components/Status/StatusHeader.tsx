@@ -1,5 +1,10 @@
 import { cn } from "@/lib/utils";
-import { IconCircleCheck, IconAlertTriangle, IconCircleX, IconLoader2 } from "@tabler/icons-react";
+import {
+  IconCircleCheck,
+  IconAlertTriangle,
+  IconCircleX,
+  IconLoader2,
+} from "@tabler/icons-react";
 
 interface StatusHeaderProps {
   overallStatus: string;
@@ -9,7 +14,14 @@ interface StatusHeaderProps {
 
 const statusConfig: Record<
   string,
-  { label: string; description: string; color: string; bgGlow: string; icon: React.ElementType; pulse: string }
+  {
+    label: string;
+    description: string;
+    color: string;
+    bgGlow: string;
+    icon: React.ElementType;
+    pulse: string;
+  }
 > = {
   operational: {
     label: "All Systems Operational",
@@ -45,7 +57,11 @@ const statusConfig: Record<
   },
 };
 
-export default function StatusHeader({ overallStatus, checkedAt, monitorCount }: StatusHeaderProps) {
+export default function StatusHeader({
+  overallStatus,
+  checkedAt,
+  monitorCount,
+}: StatusHeaderProps) {
   const config = statusConfig[overallStatus] || statusConfig.unknown;
   const StatusIcon = config.icon;
 
@@ -64,20 +80,44 @@ export default function StatusHeader({ overallStatus, checkedAt, monitorCount }:
   return (
     <div className="relative overflow-hidden border-b border-neutral-200 dark:border-neutral-800">
       {/* Ambient glow backdrop */}
-      <div className={cn("absolute inset-0 bg-gradient-to-br opacity-60 pointer-events-none", config.bgGlow)} />
+      <div
+        className={cn(
+          "absolute inset-0 bg-gradient-to-br opacity-60 pointer-events-none",
+          config.bgGlow,
+        )}
+      />
 
       <div className="relative px-5 sm:px-6 py-6 sm:py-8">
         {/* Status indicator row */}
         <div className="flex items-center gap-2.5 mb-3">
           <span className="relative flex h-2.5 w-2.5">
-            <span className={cn("animate-ping absolute inline-flex h-full w-full rounded-full opacity-75", config.pulse)} />
-            <span className={cn("relative inline-flex rounded-full h-2.5 w-2.5", config.pulse)} />
+            <span
+              className={cn(
+                "animate-ping absolute inline-flex h-full w-full rounded-full opacity-75",
+                config.pulse,
+              )}
+            />
+            <span
+              className={cn(
+                "relative inline-flex rounded-full h-2.5 w-2.5",
+                config.pulse,
+              )}
+            />
           </span>
 
           <StatusIcon className={cn("size-4", config.color)} />
 
-          <span className={cn("text-[11px] font-mono font-bold uppercase tracking-wider", config.color)}>
-            {overallStatus === "operational" ? "ONLINE" : overallStatus === "major_outage" ? "OUTAGE" : overallStatus.toUpperCase()}
+          <span
+            className={cn(
+              "text-[11px] font-mono font-bold uppercase tracking-wider",
+              config.color,
+            )}
+          >
+            {overallStatus === "operational"
+              ? "ONLINE"
+              : overallStatus === "major_outage"
+                ? "OUTAGE"
+                : overallStatus.toUpperCase()}
           </span>
         </div>
 
@@ -93,12 +133,18 @@ export default function StatusHeader({ overallStatus, checkedAt, monitorCount }:
         <div className="mt-5 flex flex-wrap items-center gap-3 text-[10px] font-mono text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
           {formattedTime && (
             <span>
-              Last checked: <span className="text-neutral-600 dark:text-neutral-300 font-semibold">{formattedTime} IST</span>
+              Last checked:{" "}
+              <span className="text-neutral-600 dark:text-neutral-300 font-semibold">
+                {formattedTime} IST
+              </span>
             </span>
           )}
           <span className="hidden sm:inline">•</span>
           <span>
-            Monitors: <span className="text-neutral-600 dark:text-neutral-300 font-semibold">{monitorCount}</span>
+            Monitors:{" "}
+            <span className="text-neutral-600 dark:text-neutral-300 font-semibold">
+              {monitorCount}
+            </span>
           </span>
         </div>
       </div>

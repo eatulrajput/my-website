@@ -1,0 +1,73 @@
+export const meta = {
+  title: "Coffee Bot: From Gemini API in Streamlit to FastAPI",
+  subtitle: "Coffee Bot",
+  date: "August 05, 2025",
+  description: "Moving Coffeebot from Streamlit to FastAPI",
+  category: "Technical"
+
+}
+
+<BlogTitle>Coffee Bot: From Gemini API in Streamlit to FastAPI</BlogTitle>
+
+Updated August 05, 2025
+
+<BlogContent>
+Hello reader, nice to see you back!
+
+Today I’m going to talk about a project I originally built using the Gemini API back in Jan, 2025 and how I revamped it into a better version in 2025 using FastAPI and a full frontend stack.
+
+## First, What is an API?
+
+Let’s quickly talk about APIs, especially if you are new or just forgot.
+
+Imagine you are in a coffee shop. You sit at your table and order a cappuccino by calling the waiter. Now, do you care how the coffee is made? Do you need to know the temperature, sugar ratio, milk amount, cream or coffee beans? Of course not.
+
+You just want the cappuccino on your table. The waiter takes care of communicating with the kitchen and bring it to you. That is exactly how API works. It handles the communication between your request(as a user or developer) and the system that actually does the work behind the scenes.
+
+For example, when I built a weather website, did I install satellites and sensors all over the world? Nope. I simply used an API provided by the company that already collects and serves that data. My job was just to display it on my website, the rest is handled by the API.
+
+## Jan, 2025: The first version - Gemini API with Streamlit
+
+This was my second serious attempt at using an API in a project. I opened up VS Code, wrote a few lines of Python, added some Streamlit for the UI, imported the Gemini modules, and added the API key in the .env file.
+
+Since I was ( and still am) a student, I could not afford the pro version. So, I used the free tier model gemini-1.5-flash.
+
+I ran a few tests, fixed common bugs like API errors and missing environment variables, and eventually deployed it on Streamlit.
+
+That is how Coffee Chatbot was born, my first AI chatbot built using Gemini API.
+
+Aug, 2025: The upgrade - FastAPI, React and Tailwind
+
+Fast forward to August, 2025 - I had to learn FastAPI. And I thought, “Why not upgrade my old chatbot project from Streamlit to FastAPI?”
+
+So, I started rebuilding it from scratch using FastAPI, checking the documentation as I went along. Quick intro if you are new:
+
+FastAPI is a modern, high performance Python web framework developed by <a href='https://tiangolo.com/' target='_blank'>Sebastian Ramírez ( popular as Tianglo)</a>. It is known for its speed and simplicity
+
+I built the backend using FastAPI, but unlike Streamlit, which takes care of the frontend, FastAPI is mostly backend-focused. That meant I needed to build a custom frontend.
+
+## Frontend Makeover: React, TypeScript and Tailwind
+
+I didn’t want a plain UI with basic HTML/CSS/JavaScript, so I took a leap and built a better UI, something that looked more like ChatGPT or Gemini.
+
+I chose:
+
+- React for UI
+- TypeScript for type safety
+- and Tailwind CSS for styling
+
+I redesigned the whole interface, integrated it with the FastAPI backend, and renamed the project to Coffee Bot.
+
+One issue I faced was with the CORS( Cross Origin Resource Sharing). If your frontend and backend are hosted on different URLs, you need to enable CORS on your backend or they won’t talk to each other.
+
+## Closure
+
+So yeah, from Streamlit to FastAPI, from a basic chatbot to a sleek full stack app, it is been a fun learning journey.
+
+If you are new to APIs, Gemini and FastAPI or frontend development, start small, keep building, and upgrade as you go. Just like coffee, good code takes time to brew.
+
+Want the Source Code?
+
+Click here to view the full <a href='https://github.com/eatulrajput/coffeebot' target='_blank'>source code on GitHub</a>
+
+</BlogContent>

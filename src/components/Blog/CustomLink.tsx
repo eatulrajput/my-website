@@ -1,23 +1,31 @@
 "use client";
 
-import Link from 'next/link';
-import { AnchorHTMLAttributes, useEffect, useState } from 'react';
-import { ArrowUpRight, Loader2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import Link from "next/link";
+import { AnchorHTMLAttributes, useEffect, useState } from "react";
+import { ArrowUpRight, Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export default function CustomLink({ href, children, className, ...rest }: AnchorHTMLAttributes<HTMLAnchorElement>) {
-  const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
+export default function CustomLink({
+  href,
+  children,
+  className,
+  ...rest
+}: AnchorHTMLAttributes<HTMLAnchorElement>) {
+  const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
+
+  const isPlainUrl =
+    typeof children === "string" && !!href && children.trim() === href.trim();
 
   let defaultTitle = children;
   let shouldFetch = false;
 
-  // Check if the link text is essentially just the URL
-  if (typeof children === 'string' && href && (children === href || children.trim() === href.trim())) {
+  // If the link text is just the URL, parse it to show a clean hostname
+  if (isPlainUrl && !isInternalLink && href) {
     try {
-      defaultTitle = new URL(href).hostname.replace(/^www\./, '');
-      shouldFetch = true && !isInternalLink;
+      defaultTitle = new URL(href).hostname.replace(/^www\./, "");
+      shouldFetch = true;
     } catch {
-      // not a valid URL
+      // Keep defaults if URL is somehow invalid
     }
   }
 
@@ -43,12 +51,7 @@ export default function CustomLink({ href, children, className, ...rest }: Ancho
     }
   }, [href, shouldFetch]);
 
-  const baseStyles = cn(
-    "inline font-medium break-words",
-    "text-inherit underline decoration-inherit underline-offset-4",
-    "opacity-90 hover:opacity-100 transition-opacity duration-200",
-    className
-  );
+  const baseStyles = cn("blog-custom-link", className);
 
   if (isInternalLink) {
     return (
@@ -66,9 +69,9 @@ export default function CustomLink({ href, children, className, ...rest }: Ancho
       className={baseStyles}
       {...rest}
     >
-      {isLoading && <Loader2 className="inline-block w-3 h-3 animate-spin opacity-50 mr-1 align-baseline" />}
+      {isLoading && <Loader2 className="blog-custom-link-loader" />}
       <span>{title}</span>
-      <ArrowUpRight className="inline-block w-3 h-3 opacity-60 ml-0.5 align-baseline" />
+      <ArrowUpRight className="blog-custom-link-icon" />
     </a>
   );
 }

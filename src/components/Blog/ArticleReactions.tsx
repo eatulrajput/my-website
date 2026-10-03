@@ -82,10 +82,10 @@ function DeepDiveIcon({ className }: { className?: string }) {
 }
 
 const REACTIONS = [
-  { icon: HelpfulIcon,  label: "Helpful",   key: "helpful"   },
-  { icon: FireIcon,     label: "Awesome",   key: "awesome"   },
-  { icon: InsightIcon,  label: "Insightful",key: "insightful"},
-  { icon: DeepDiveIcon, label: "Deep Dive", key: "deepdive"  },
+  { icon: HelpfulIcon, label: "Helpful", key: "helpful" },
+  { icon: FireIcon, label: "Awesome", key: "awesome" },
+  { icon: InsightIcon, label: "Insightful", key: "insightful" },
+  { icon: DeepDiveIcon, label: "Deep Dive", key: "deepdive" },
 ] as const;
 
 type ReactionKey = (typeof REACTIONS)[number]["key"];
@@ -108,7 +108,9 @@ export default function ArticleReactions({ slug }: ArticleReactionsProps) {
   const storageKey = `blog-reactions-${slug}`;
 
   const [selected, setSelected] = useState<ReactionKey | null>(null);
-  const [counts, setCounts] = useState<Partial<Record<ReactionKey, number>>>({});
+  const [counts, setCounts] = useState<Partial<Record<ReactionKey, number>>>(
+    {},
+  );
   const [mounted, setMounted] = useState(false);
 
   // Hydrate from localStorage on mount
@@ -145,7 +147,7 @@ export default function ArticleReactions({ slug }: ArticleReactionsProps) {
     try {
       localStorage.setItem(
         storageKey,
-        JSON.stringify({ selected: newSelected, counts: newCounts })
+        JSON.stringify({ selected: newSelected, counts: newCounts }),
       );
     } catch {
       /* ignore storage errors */
@@ -190,7 +192,7 @@ export default function ArticleReactions({ slug }: ArticleReactionsProps) {
                   "transition-colors duration-200",
                   isSelected
                     ? "border-brand-accent bg-white dark:bg-black text-brand-accent shadow-sm"
-                    : "border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-black/60 text-neutral-600 dark:text-neutral-400 hover:border-brand-accent/50 hover:text-black dark:hover:text-white"
+                    : "border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-black/60 text-neutral-600 dark:text-neutral-400 hover:border-brand-accent/50 hover:text-black dark:hover:text-white",
                 )}
               >
                 {/* SVG Icon centered in top slot */}
@@ -204,7 +206,7 @@ export default function ArticleReactions({ slug }: ArticleReactionsProps) {
                         "w-7 h-7 stroke-[1.65]",
                         isSelected
                           ? "text-brand-accent"
-                          : "text-neutral-500 dark:text-neutral-400"
+                          : "text-neutral-500 dark:text-neutral-400",
                       )}
                     />
                   </motion.div>
@@ -228,7 +230,7 @@ export default function ArticleReactions({ slug }: ArticleReactionsProps) {
                       "px-2 py-0.5 rounded-full text-[10px] font-mono font-bold leading-none",
                       isSelected
                         ? "bg-brand-accent/10 text-brand-accent"
-                        : "bg-neutral-200/80 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
+                        : "bg-neutral-200/80 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400",
                     )}
                   >
                     {count > 0 ? count : 0}

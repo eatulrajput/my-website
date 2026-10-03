@@ -10,7 +10,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
  */
 export default function ReadingProgressBar() {
   const { scrollYProgress } = useScroll();
-  
+
   // Spring configuration for smooth but instant-feeling updates
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 200,

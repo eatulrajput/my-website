@@ -46,23 +46,15 @@ export default function CodeBlock({
   };
 
   return (
-    <div className="relative group/code my-6 w-full max-w-full overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 not-prose bg-neutral-50 dark:bg-[#0d1117]">
+    <div className="blog-codeblock-container not-prose">
       {/* Copy button — appears on hover */}
       <button
         type="button"
         onClick={handleCopy}
         aria-label={copied ? "Copied to clipboard" : "Copy code"}
         className={cn(
-          "absolute top-3 right-3 z-10",
-          "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg",
-          "text-xs font-mono font-medium",
-          "bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm",
-          "border border-neutral-200 dark:border-neutral-700",
-          "transition-all duration-200",
-          "opacity-0 group-hover/code:opacity-100",
-          copied
-            ? "text-emerald-500 border-emerald-500/50"
-            : "text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white"
+          "blog-codeblock-copy-btn",
+          copied ? "blog-codeblock-copy-btn--copied" : "",
         )}
       >
         {copied ? (
@@ -77,7 +69,11 @@ export default function CodeBlock({
       <LangBadge preRef={preRef} className={className} />
 
       {/* The actual <pre> element */}
-      <pre ref={preRef} className={cn(className, "whitespace-pre-wrap break-words overflow-hidden w-full max-w-full p-4 pt-10 text-sm")} {...props}>
+      <pre
+        ref={preRef}
+        className={cn(className, "blog-codeblock-pre")}
+        {...props}
+      >
         {children}
       </pre>
     </div>
@@ -124,9 +120,5 @@ function LangBadge({
     javascript: "JavaScript",
   };
 
-  return (
-    <span className="absolute top-3 left-4 text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-500 select-none pointer-events-none">
-      {DISPLAY[lang] ?? lang}
-    </span>
-  );
+  return <span className="blog-codeblock-lang">{DISPLAY[lang] ?? lang}</span>;
 }

@@ -10,7 +10,10 @@ interface ResponseTimeChartProps {
  * Lightweight SVG-based response time chart.
  * Pure SVG — no external charting library needed.
  */
-export default function ResponseTimeChart({ history, name }: ResponseTimeChartProps) {
+export default function ResponseTimeChart({
+  history,
+  name,
+}: ResponseTimeChartProps) {
   const chartData = useMemo(() => {
     if (!history || history.length === 0) return null;
 
@@ -30,7 +33,8 @@ export default function ResponseTimeChart({ history, name }: ResponseTimeChartPr
     // Generate points
     const points = history.map((h, i) => {
       const x = padding.left + (i / (history.length - 1)) * plotWidth;
-      const y = padding.top + plotHeight - ((h.value - min) / range) * plotHeight;
+      const y =
+        padding.top + plotHeight - ((h.value - min) / range) * plotHeight;
       return { x, y, value: h.value, timestamp: h.timestamp };
     });
 
@@ -38,7 +42,8 @@ export default function ResponseTimeChart({ history, name }: ResponseTimeChartPr
     const linePath = points.map((p) => `${p.x},${p.y}`).join(" ");
 
     // Gradient fill area path
-    const areaPath = `M ${points[0].x},${height - padding.bottom} ` +
+    const areaPath =
+      `M ${points[0].x},${height - padding.bottom} ` +
       points.map((p) => `L ${p.x},${p.y}`).join(" ") +
       ` L ${points[points.length - 1].x},${height - padding.bottom} Z`;
 
@@ -63,9 +68,21 @@ export default function ResponseTimeChart({ history, name }: ResponseTimeChartPr
           Response Time — {name}
         </span>
         <div className="flex items-center gap-4">
-          <StatBadge label="Avg" value={`${chartData.avg}ms`} color="text-brand-slate" />
-          <StatBadge label="Min" value={`${chartData.min}ms`} color="text-emerald-500" />
-          <StatBadge label="Max" value={`${chartData.max}ms`} color="text-brand-apricot" />
+          <StatBadge
+            label="Avg"
+            value={`${chartData.avg}ms`}
+            color="text-brand-slate"
+          />
+          <StatBadge
+            label="Min"
+            value={`${chartData.min}ms`}
+            color="text-emerald-500"
+          />
+          <StatBadge
+            label="Max"
+            value={`${chartData.max}ms`}
+            color="text-brand-apricot"
+          />
         </div>
       </div>
 
@@ -79,7 +96,13 @@ export default function ResponseTimeChart({ history, name }: ResponseTimeChartPr
         >
           <defs>
             {/* Gradient fill */}
-            <linearGradient id={`gradient-${name.replace(/\s/g, "")}`} x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient
+              id={`gradient-${name.replace(/\s/g, "")}`}
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#7690ac" stopOpacity="0.3" />
               <stop offset="100%" stopColor="#7690ac" stopOpacity="0.02" />
             </linearGradient>
@@ -148,11 +171,23 @@ export default function ResponseTimeChart({ history, name }: ResponseTimeChartPr
   );
 }
 
-function StatBadge({ label, value, color }: { label: string; value: string; color: string }) {
+function StatBadge({
+  label,
+  value,
+  color,
+}: {
+  label: string;
+  value: string;
+  color: string;
+}) {
   return (
     <div className="flex items-center gap-1.5">
-      <span className="text-[9px] font-mono text-neutral-400 dark:text-neutral-500 uppercase">{label}</span>
-      <span className={cn("text-[11px] font-mono font-bold", color)}>{value}</span>
+      <span className="text-[9px] font-mono text-neutral-400 dark:text-neutral-500 uppercase">
+        {label}
+      </span>
+      <span className={cn("text-[11px] font-mono font-bold", color)}>
+        {value}
+      </span>
     </div>
   );
 }

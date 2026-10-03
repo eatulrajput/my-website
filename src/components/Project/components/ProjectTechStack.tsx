@@ -1,5 +1,25 @@
 "use client";
 
+import { motion, Variants } from "motion/react";
+
+const container: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05, delayChildren: 0.1 },
+  },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, scale: 0.9, y: 10 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 300, damping: 20 },
+  },
+};
+
 interface ProjectTechStackProps {
   skills: string[];
   title?: string;
@@ -10,20 +30,25 @@ export const ProjectTechStack = ({
   title = "Technologies & Tools",
 }: ProjectTechStackProps) => {
   return (
-    <div className="space-y-3 border-t border-neutral-200 dark:border-neutral-800 pt-6">
-      <h2 className="text-base font-semibold text-black dark:text-white tracking-tight font-sans">
-        {title}
-      </h2>
-      <div className="flex flex-wrap gap-2">
+    <div className="project-tech">
+      <h2 className="project-tech__title">{title}</h2>
+      <motion.div
+        className="project-tech__list"
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
+      >
         {skills.map((skill) => (
-          <span
+          <motion.span
             key={skill}
-            className="px-2.5 py-1 rounded text-xs font-mono border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 text-neutral-700 dark:text-neutral-300"
+            variants={item}
+            className="project-tech__badge"
           >
             {skill}
-          </span>
+          </motion.span>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

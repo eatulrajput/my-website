@@ -1,6 +1,6 @@
-declare module '*.mdx' {
-  import { MDXContent } from 'mdx/types'
+declare module "*.mdx" {
+  import { MDXContent } from "mdx/types";
 
-  const MDXComponent: MDXContent
-  export default MDXComponent
+  const MDXComponent: MDXContent;
+  export default MDXComponent;
 }

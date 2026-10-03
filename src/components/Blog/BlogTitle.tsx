@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { IconTerminal2, IconNotebook } from "@tabler/icons-react";
+import {
+  IconTerminal2,
+  IconNotebook,
+  IconLink,
+  IconCheck,
+} from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { isTechnicalPost } from "@/lib/posts";
 
@@ -16,17 +21,25 @@ interface BlogTitleProps {
   slug?: string;
 }
 
-export default function BlogTitle({
-  children,
-  meta,
-  slug,
-}: BlogTitleProps) {
+export default function BlogTitle({ children, meta, slug }: BlogTitleProps) {
   const [readingTime, setReadingTime] = useState(5);
+  const [copied, setCopied] = useState(false);
 
-  const isTech = isTechnicalPost({ slug: slug || "", meta: meta || { title: children } });
+  const handleCopyLink = () => {
+    if (typeof window !== "undefined") {
+      navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const isTech = isTechnicalPost({
+    slug: slug || "",
+    meta: meta || { title: children },
+  });
 
   useEffect(() => {
-    const article = document.querySelector('article');
+    const article = document.querySelector("article");
     if (article) {
       const text = article.innerText || "";
       const wpm = 225;
@@ -35,36 +48,61 @@ export default function BlogTitle({
     }
   }, []);
 
+  const coverImg = (meta?.image || meta?.coverImage) as string | undefined;
+
   return (
-    <div className="mb-8 mt-6 pb-6 font-sans">
-      {/* Category Tag Badge */}
-      <div className="mb-4 flex items-center">
-        <Link
-          href={`/blog?category=${isTech ? "tech" : "non-tech"}`}
-          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-brand-accent bg-neutral-100 dark:bg-neutral-900 text-brand-accent font-mono text-xs font-semibold uppercase tracking-wider transition-transform duration-200 hover:scale-105 no-underline shadow-xs"
-        >
-          {isTech ? (
-            <>
-              <IconTerminal2 className="size-3.5 text-brand-accent" />
-              <span>Technical</span>
-            </>
-          ) : (
-            <>
-              <IconNotebook className="size-3.5 text-brand-accent" />
-              <span>Non-Technical</span>
-            </>
-          )}
-        </Link>
-      </div>
+    <div
+      className={cn(
+        "blog-title-header",
+        coverImg && "blog-title-header--has-image",
+      )}
+      style={
+        coverImg
+          ? {
+              backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('${coverImg}')`,
+            }
+          : undefined
+      }
+    >
+      <div className="blog-title-header-inner">
+        {/* Category Tag Badge */}
+        <div className="blog-title-badge-container">
+          <Link
+            href={`/blog?category=${isTech ? "tech" : "non-tech"}`}
+            className="blog-title-badge"
+          >
+            {isTech ? (
+              <>
+                <IconTerminal2 className="blog-title-badge__icon" />
+                <span>Technical</span>
+              </>
+            ) : (
+              <>
+                <IconNotebook className="blog-title-badge__icon" />
+                <span>Personal</span>
+              </>
+            )}
+          </Link>
+        </div>
 
-      <h1 className="mb-8 text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 md:text-5xl lg:text-6xl text-balance font-sans leading-tight md:leading-snug">
-        {children}
-      </h1>
+        <h1 className="blog-title-heading">{children}</h1>
 
-      <div className="flex items-center gap-2 font-mono text-xs text-neutral-500 dark:text-neutral-400 not-prose">
-        <span>{meta?.date || "Recently"}</span>
-        <span className="size-1 rounded-full bg-neutral-300 dark:bg-neutral-700" />
-        <span>{readingTime} min read</span>
+        <div className="blog-title-meta-container">
+          <div className="blog-title-meta">
+            <span>{meta?.date || "Recently"}</span>
+            <span className="blog-title-dot" />
+            <span>{readingTime} min read</span>
+          </div>
+
+          <button
+            onClick={handleCopyLink}
+            className="blog-title-copy-btn"
+            title="Copy Link"
+          >
+            {copied ? <IconCheck size={16} /> : <IconLink size={16} />}
+            <span>{copied ? "Copied" : "Copy Link"}</span>
+          </button>
+        </div>
       </div>
     </div>
   );

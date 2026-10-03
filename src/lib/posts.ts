@@ -1,4 +1,4 @@
-import blogMeta from '../data/blog-meta.json';
+import blogMeta from "../data/blog-meta.json";
 
 export interface BlogMeta {
   title?: string;
@@ -18,7 +18,9 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = blogMeta as BlogPost[];
 
-export const isTechnicalPost = (post: BlogPost | { slug?: string; meta?: BlogMeta }) => {
+export const isTechnicalPost = (
+  post: BlogPost | { slug?: string; meta?: BlogMeta },
+) => {
   if (!post || !post.meta) return false;
 
   const rawCat = (post.meta.category || post.meta.type) as string | undefined;
