@@ -1,16 +1,13 @@
 # Atul Rajput
 
-> Software Developer specializing in React Native mobile applications, web development, Python, and Machine Learning. This is my personal portfolio website.
+> Software Developer specializing in mobile app development (React Native & Expo) and modern web development. This is my personal portfolio website.
 
 ## Portfolio
 
 - [Home](https://eatulrajput.netlify.app/): The main page showcasing my biography, skills grid, professional/educational experience timelines, certifications, and a contact form.
-- [Gallery](https://eatulrajput.netlify.app/gallery): An interactive creative showcase categorized by photography, designs, and paintings, featuring a sliding marquee and fullscreen lightbox.
 - [Projects](https://eatulrajput.netlify.app/project): A searchable and tag-filterable index of engineering and development projects.
-- [Blog](https://eatulrajput.netlify.app/blog): A personal blog powered by MDX and local markdown files, featuring articles on software development, philosophy, and learning.
-- [Resources](https://eatulrajput.netlify.app/resources): A repository of curated technical assets, guides, and developer tools.
-- [Engineering Course](https://eatulrajput.netlify.app/eng): Academic coursework repository covering computer science and engineering modules.
-- [System Status](https://eatulrajput.netlify.app/status): Real-time operational status dashboard showing uptime, response times, and incident history for all monitored services.
+- [Tech Blog](https://eatulrajput.netlify.app/blog): A personal tech blog featuring articles on software development, engineering, and learning.
+- [Non-Tech Blog](https://eatulrajput.netlify.app/nontech-blog): A personal blog featuring articles on non-technical subjects like philosophy and other interests.
 
 ## Featured Projects
 

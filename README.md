@@ -287,7 +287,6 @@ The visual language is implemented as a vanilla CSS design system in `src/css/gl
 - XML sitemap and `robots.txt` for search engine indexing
 - `llms.txt` for LLM-readable site context
 - Custom `Cache-Control` headers for static assets (30-day cache with stale-while-revalidate)
-- Image optimisation configured for AVIF and WebP formats
 - Compression enabled in the Next.js configuration
 - Skip-to-content link for keyboard accessibility
 
