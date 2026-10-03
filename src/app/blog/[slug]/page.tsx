@@ -1,5 +1,6 @@
 "use client";
 import React, { ComponentProps, useEffect } from "react";
+import type { MDXProps } from "mdx/types";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -70,7 +71,7 @@ export default function BlogPage() {
         </div>
       ),
     },
-  ) as React.ComponentType<unknown>;
+  ) as React.ComponentType<MDXProps>;
 
   return (
     <main aria-label="Blog Article" className="blog-post">
