@@ -4,7 +4,7 @@ import type { MDXProps } from "mdx/types";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { blogPosts } from "@/lib/posts";
+import { blogPosts, isTechnicalPost } from "@/lib/posts";
 import Alert from "@/components/Blog/Alert";
 import BlogImage from "@/components/Blog/BlogImage";
 import BlogTitle from "@/components/Blog/BlogTitle";
@@ -46,13 +46,15 @@ export default function BlogPage() {
   }
 
   // Sort posts by date to find chronological prev/next
-  const sortedPosts = [...blogPosts].sort((a, b) => {
-    const parseDate = (dateStr: string | undefined) => {
-      if (!dateStr) return 0;
-      return new Date(dateStr.replace(/(\d+)(st|nd|rd|th)/, "$1")).getTime();
-    };
-    return parseDate(b.meta.date) - parseDate(a.meta.date);
-  });
+  const sortedPosts = [...blogPosts]
+    .filter((p) => isTechnicalPost(p))
+    .sort((a, b) => {
+      const parseDate = (dateStr: string | undefined) => {
+        if (!dateStr) return 0;
+        return new Date(dateStr.replace(/(\d+)(st|nd|rd|th)/, "$1")).getTime();
+      };
+      return parseDate(b.meta.date) - parseDate(a.meta.date);
+    });
 
   const currentIndex = sortedPosts.findIndex((p) => p.slug === slug);
   const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
