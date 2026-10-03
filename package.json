@@ -12,7 +12,8 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "format:mdx": "prettier --write \"**/*.mdx\""
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
