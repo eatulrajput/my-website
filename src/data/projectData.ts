@@ -16,6 +16,22 @@ export interface ProjectItem {
 }
 
 export const rawProjects: ProjectItem[] = [
+
+  {
+    title: "Clock",
+    description:
+      "A simple clock desktop application.",
+    techStack: ["TypeScript", "Tauri"],
+    codeLink: "",
+    liveLink: "/project/clock",
+    participationType: "solo",
+    projectCategory: "hobby",
+    projectStatus: "In Progress",
+    date: "Jan 2026",
+    sortDate: "2026-01",
+    showInProjects: true,
+
+  },
   {
     title: "Git Pie",
     description:
@@ -84,7 +100,7 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "In Progress",
     date: "May 2025",
     sortDate: "2025-05",
-    showInProjects: true,
+    showInProjects: false,
   },
   {
     title: "Test Forge",
@@ -203,7 +219,7 @@ export const rawProjects: ProjectItem[] = [
     projectStatus: "Completed",
     date: "Oct 2024",
     sortDate: "2024-10",
-    showInProjects: true,
+    showInProjects: false,
   },
   {
     title: "Finfy",
