@@ -1,43 +1,22 @@
 "use client";
 
-import React from "react";
 import {
   ProjectHeader,
   ProjectFeatures,
   ProjectTechStack,
   ProjectCorePackages,
-  TeamMembersSection,
   ProjectLinks,
-  FeatureItem,
-  PackageItem,
-  TeamMember,
-  ProjectLinkItem,
 } from "./components";
-import { teamProjects } from "@/data/teamProjects";
+import { soloProjects } from "@/data/soloProjects";
+import "@/css/solo-projects.css";
 
-export interface ProjectDetailProps {
-  slug: string;
-  breadcrumbs: { label: string; href?: string }[];
-  badgeText?: string;
-  title: string;
-  description: string;
-  liveDemoUrl?: string;
-  codeLink?: string;
-  projectOverview: React.ReactNode;
-  features?: FeatureItem[];
-  skills?: string[];
-  packages?: PackageItem[];
-  links?: ProjectLinkItem[];
-  teamMembers?: TeamMember[];
-}
-
-const ProjectDetailTemplate = ({ slug }: { slug: string }) => {
-  const project = teamProjects[slug];
+const SoloProjectDetailTemplate = ({ slug }: { slug: string }) => {
+  const project = soloProjects[slug];
   if (!project) return null;
 
   return (
     <div className="project-detail">
-      {/* Header section with Apple HIG styling - large typography, breathing room */}
+      {/* Header section */}
       <ProjectHeader
         badgeText={project.badgeText}
         title={project.title}
@@ -45,12 +24,41 @@ const ProjectDetailTemplate = ({ slug }: { slug: string }) => {
         liveDemoUrl={project.liveDemoUrl}
       />
 
+      {/* Banner / Screenshots Gallery */}
+      {project.bannerImage && (
+        <div className="solo-detail-banner">
+          <img
+            src={project.bannerImage}
+            alt={project.title}
+            className="solo-detail-banner-img"
+          />
+        </div>
+      )}
+
       {/* Project Overview */}
       {project.projectOverview && (
         <section className="project-detail__section">
           <h2 className="project-detail__section-title">Overview</h2>
           <div className="project-detail__overview-text">
             {project.projectOverview}
+          </div>
+        </section>
+      )}
+
+      {/* Additional Screenshot Gallery */}
+      {project.images && project.images.length > 1 && (
+        <section className="project-detail__section">
+          <h2 className="project-detail__section-title">Visual Previews & Screenshots</h2>
+          <div className="solo-gallery-grid">
+            {project.images.map((imgUrl, idx) => (
+              <img
+                key={idx}
+                src={imgUrl}
+                alt={`${project.title} preview ${idx + 1}`}
+                className="solo-gallery-img"
+                loading="lazy"
+              />
+            ))}
           </div>
         </section>
       )}
@@ -68,9 +76,7 @@ const ProjectDetailTemplate = ({ slug }: { slug: string }) => {
       {/* Technologies & Tools */}
       {project.skills && project.skills.length > 0 && (
         <section className="project-detail__section">
-          <h2 className="project-detail__section-title">
-            Technologies & Tools
-          </h2>
+          <h2 className="project-detail__section-title">Technologies & Tools</h2>
           <ProjectTechStack skills={project.skills} />
         </section>
       )}
@@ -78,31 +84,20 @@ const ProjectDetailTemplate = ({ slug }: { slug: string }) => {
       {/* Core Packages List */}
       {project.packages && project.packages.length > 0 && (
         <section className="project-detail__section">
-          <h2 className="project-detail__section-title">Core Packages</h2>
+          <h2 className="project-detail__section-title">Core Packages & Dependencies</h2>
           <ProjectCorePackages packages={project.packages} />
         </section>
       )}
 
       {/* Project Links */}
       {project.links && project.links.length > 0 && (
-        <section className="project-detail__section">
+        <section className="project-detail__section project-detail__section--last">
           <h2 className="project-detail__section-title">Resources & Links</h2>
           <ProjectLinks links={project.links} />
-        </section>
-      )}
-
-      {/* Team Members */}
-      {project.teamMembers && project.teamMembers.length > 0 && (
-        <section className="project-detail__section project-detail__section--last">
-          <TeamMembersSection
-            teamMembers={project.teamMembers}
-            projectName={project.title}
-            title="Team & Contributors"
-          />
         </section>
       )}
     </div>
   );
 };
 
-export default ProjectDetailTemplate;
+export default SoloProjectDetailTemplate;

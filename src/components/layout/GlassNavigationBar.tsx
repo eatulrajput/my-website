@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import { motion } from "motion/react";
@@ -41,6 +41,7 @@ export default function GlassNavigationBar() {
   const navItems = [
     { label: "Experience", href: "/#experience" },
     { label: "Projects", href: "/#projects" },
+    { label: "Solo Projects", href: "/solo-projects" },
     { label: "Blog", href: "/blog" },
     { label: "Skills", href: "/#skills" },
     { label: "Contact", href: "/#contact" },

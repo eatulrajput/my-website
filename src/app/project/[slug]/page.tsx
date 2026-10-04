@@ -1,10 +1,14 @@
 import { notFound } from "next/navigation";
 import ProjectDetailTemplate from "@/components/Project/ProjectDetailTemplate";
+import SoloProjectDetailTemplate from "@/components/Project/SoloProjectDetailTemplate";
 import { teamProjects } from "@/data/teamProjects";
+import { soloProjects } from "@/data/soloProjects";
 import { Metadata } from "next";
 
 export function generateStaticParams() {
-  return Object.keys(teamProjects).map((slug) => ({
+  const teamSlugs = Object.keys(teamProjects);
+  const soloSlugs = Object.keys(soloProjects);
+  return [...teamSlugs, ...soloSlugs].map((slug) => ({
     slug,
   }));
 }
@@ -15,7 +19,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const resolvedParams = await params;
-  const project = teamProjects[resolvedParams.slug];
+  const project = teamProjects[resolvedParams.slug] || soloProjects[resolvedParams.slug];
   if (!project) {
     return { title: "Project Not Found" };
   }
@@ -32,11 +36,15 @@ export default async function ProjectDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const resolvedParams = await params;
-  const project = teamProjects[resolvedParams.slug];
+  const slug = resolvedParams.slug;
 
-  if (!project) {
-    notFound();
+  if (teamProjects[slug]) {
+    return <ProjectDetailTemplate slug={slug} />;
   }
 
-  return <ProjectDetailTemplate slug={project.slug} />;
+  if (soloProjects[slug]) {
+    return <SoloProjectDetailTemplate slug={slug} />;
+  }
+
+  notFound();
 }
