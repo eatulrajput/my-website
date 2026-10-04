@@ -14,7 +14,8 @@ import {
 } from "@tabler/icons-react";
 import "@/css/solo-projects.css";
 
-type CategoryFilter = "all" | "desktop" | "web" | "ai" | "automation" | "tool" | "mobile";
+type CategoryFilter =
+  "all" | "desktop" | "web" | "ai" | "automation" | "tool" | "mobile";
 
 export default function SoloProjectsView() {
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>("all");
@@ -40,7 +41,9 @@ export default function SoloProjectsView() {
     <div className="solo-projects-container">
       {/* Header */}
       <div className="solo-projects-header space-y-3">
-        <Breadcrumbs items={[{ label: "Solo Projects", href: "/solo-projects" }]} />
+        <Breadcrumbs
+          items={[{ label: "Solo Projects", href: "/solo-projects" }]}
+        />
         <div>
           <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-mono bg-brand-accent/10 border border-brand-accent/20 text-brand-accent font-medium mb-2">
             <IconUser className="size-3.5" />
@@ -48,7 +51,9 @@ export default function SoloProjectsView() {
           </div>
           <h1 className="solo-projects-title">Solo Projects</h1>
           <p className="solo-projects-subtitle">
-            Comprehensive directory of solo engineering builds, desktop utilities, automated workflows, DevTools, and hackathon prototypes with deep architectural breakdowns.
+            Comprehensive directory of solo engineering builds, desktop
+            utilities, automated workflows, DevTools, and hackathon prototypes
+            with deep architectural breakdowns.
           </p>
         </div>
       </div>
@@ -151,7 +156,11 @@ export default function SoloProjectsView() {
                   {project.liveDemoUrl && (
                     <a
                       href={project.liveDemoUrl}
-                      target={project.liveDemoUrl.startsWith("http") ? "_blank" : "_self"}
+                      target={
+                        project.liveDemoUrl.startsWith("http")
+                          ? "_blank"
+                          : "_self"
+                      }
                       rel="noopener noreferrer"
                       className="text-neutral-500 hover:text-brand-accent transition-colors"
                       title="Live Demo"

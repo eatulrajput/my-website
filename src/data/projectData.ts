@@ -16,11 +16,9 @@ export interface ProjectItem {
 }
 
 export const rawProjects: ProjectItem[] = [
-
   {
     title: "Clock",
-    description:
-      "A simple clock desktop application.",
+    description: "A simple clock desktop application.",
     techStack: ["TypeScript", "Tauri"],
     codeLink: "",
     liveLink: "/project/clock",
@@ -30,7 +28,6 @@ export const rawProjects: ProjectItem[] = [
     date: "Jan 2026",
     sortDate: "2026-01",
     showInProjects: true,
-
   },
   {
     title: "Git Pie",

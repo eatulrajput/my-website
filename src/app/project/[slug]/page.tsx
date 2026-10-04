@@ -19,7 +19,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const resolvedParams = await params;
-  const project = teamProjects[resolvedParams.slug] || soloProjects[resolvedParams.slug];
+  const project =
+    teamProjects[resolvedParams.slug] || soloProjects[resolvedParams.slug];
   if (!project) {
     return { title: "Project Not Found" };
   }

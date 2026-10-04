@@ -40,20 +40,20 @@ Additional infrastructure includes a glassmorphic navigation bar, a dark/light t
 
 ## Technology Stack
 
-| Layer              | Technology                                                       |
-| ------------------ | ---------------------------------------------------------------- |
-| Framework          | Next.js 16 (App Router, React 18)                               |
-| Language           | TypeScript 5.9                                                   |
-| Styling            | Vanilla CSS (Apple HIG design system)                            |
-| Animations         | Motion (Framer Motion v12)                                       |
-| Blog Engine        | MDX with `@next/mdx`, `@mdx-js/loader`, `@mdx-js/react`        |
-| Syntax Highlighting| Shiki via `rehype-pretty-code`                                   |
-| Markdown Plugins   | `remark-gfm` (GitHub Flavoured Markdown)                         |
-| Icons              | `@tabler/icons-react`, `lucide-react`                            |
-| Typography         | Space Grotesk (sans-serif), JetBrains Mono (monospace)           |
-| Package Manager    | Bun                                                              |
-| Linting            | ESLint 10 with `typescript-eslint`, `eslint-config-next`         |
-| Formatting         | Prettier 3.9                                                     |
+| Layer               | Technology                                               |
+| ------------------- | -------------------------------------------------------- |
+| Framework           | Next.js 16 (App Router, React 18)                        |
+| Language            | TypeScript 5.9                                           |
+| Styling             | Vanilla CSS (Apple HIG design system)                    |
+| Animations          | Motion (Framer Motion v12)                               |
+| Blog Engine         | MDX with `@next/mdx`, `@mdx-js/loader`, `@mdx-js/react`  |
+| Syntax Highlighting | Shiki via `rehype-pretty-code`                           |
+| Markdown Plugins    | `remark-gfm` (GitHub Flavoured Markdown)                 |
+| Icons               | `@tabler/icons-react`, `lucide-react`                    |
+| Typography          | Space Grotesk (sans-serif), JetBrains Mono (monospace)   |
+| Package Manager     | Bun                                                      |
+| Linting             | ESLint 10 with `typescript-eslint`, `eslint-config-next` |
+| Formatting          | Prettier 3.9                                             |
 
 ---
 
@@ -235,14 +235,14 @@ portfolio-website-3/
 
 ## Available Scripts
 
-| Script           | Command                  | Description                                                                 |
-| ---------------- | ------------------------ | --------------------------------------------------------------------------- |
-| `dev`            | `bun run dev`            | Starts the Next.js development server with Turbopack                        |
-| `build`          | `bun run build`          | Generates the blog metadata index, then creates a production build          |
-| `start`          | `bun run start`          | Serves the production build locally                                         |
-| `lint`           | `bun run lint`           | Runs ESLint across the entire codebase                                      |
-| `lint:fix`       | `bun run lint:fix`       | Runs ESLint with automatic fix mode                                         |
-| `format`         | `bun run format`         | Formats all files with Prettier                                             |
+| Script     | Command            | Description                                                        |
+| ---------- | ------------------ | ------------------------------------------------------------------ |
+| `dev`      | `bun run dev`      | Starts the Next.js development server with Turbopack               |
+| `build`    | `bun run build`    | Generates the blog metadata index, then creates a production build |
+| `start`    | `bun run start`    | Serves the production build locally                                |
+| `lint`     | `bun run lint`     | Runs ESLint across the entire codebase                             |
+| `lint:fix` | `bun run lint:fix` | Runs ESLint with automatic fix mode                                |
+| `format`   | `bun run format`   | Formats all files with Prettier                                    |
 
 ---
 

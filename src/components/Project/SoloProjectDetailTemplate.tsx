@@ -48,7 +48,9 @@ const SoloProjectDetailTemplate = ({ slug }: { slug: string }) => {
       {/* Additional Screenshot Gallery */}
       {project.images && project.images.length > 1 && (
         <section className="project-detail__section">
-          <h2 className="project-detail__section-title">Visual Previews & Screenshots</h2>
+          <h2 className="project-detail__section-title">
+            Visual Previews & Screenshots
+          </h2>
           <div className="solo-gallery-grid">
             {project.images.map((imgUrl, idx) => (
               <img
@@ -76,7 +78,9 @@ const SoloProjectDetailTemplate = ({ slug }: { slug: string }) => {
       {/* Technologies & Tools */}
       {project.skills && project.skills.length > 0 && (
         <section className="project-detail__section">
-          <h2 className="project-detail__section-title">Technologies & Tools</h2>
+          <h2 className="project-detail__section-title">
+            Technologies & Tools
+          </h2>
           <ProjectTechStack skills={project.skills} />
         </section>
       )}
@@ -84,7 +88,9 @@ const SoloProjectDetailTemplate = ({ slug }: { slug: string }) => {
       {/* Core Packages List */}
       {project.packages && project.packages.length > 0 && (
         <section className="project-detail__section">
-          <h2 className="project-detail__section-title">Core Packages & Dependencies</h2>
+          <h2 className="project-detail__section-title">
+            Core Packages & Dependencies
+          </h2>
           <ProjectCorePackages packages={project.packages} />
         </section>
       )}

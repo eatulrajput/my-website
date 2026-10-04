@@ -31,7 +31,8 @@ export interface SoloProjectItem extends ProjectDetailProps {
   codeLink?: string;
   bannerImage?: string;
   images?: string[];
-  category: "desktop" | "web" | "ai" | "automation" | "challenge" | "mobile" | "tool";
+  category:
+    "desktop" | "web" | "ai" | "automation" | "challenge" | "mobile" | "tool";
   status: "Completed" | "In Progress";
   date: string;
 }
@@ -54,16 +55,19 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     liveDemoUrl: "",
     codeLink: "https://github.com/eatulrajput",
     bannerImage: "/images/clock/clock.png",
-    images: [
-      "",
-    ],
+    images: [""],
     projectOverview: (
       <div className="space-y-4">
         <p>
-          The Clock Desktop Application is designed to deliver a modern, distraction-free time tracking and countdown experience right on your desktop operating system.
+          The Clock Desktop Application is designed to deliver a modern,
+          distraction-free time tracking and countdown experience right on your
+          desktop operating system.
         </p>
         <p>
-          Leveraging Rust-backed Tauri for rendering native OS windows with negligible RAM consumption, it features a fluid dark theme, customizable alarm alerts, world time zones, and Pomodoro productivity session timers.
+          Leveraging Rust-backed Tauri for rendering native OS windows with
+          negligible RAM consumption, it features a fluid dark theme,
+          customizable alarm alerts, world time zones, and Pomodoro productivity
+          session timers.
         </p>
       </div>
     ),
@@ -89,11 +93,30 @@ export const soloProjects: Record<string, SoloProjectItem> = {
         desc: "Integrated interval timers with audio cues and session telemetry.",
       },
     ],
-    skills: ["TypeScript", "Tauri", "Rust", "React", "CSS Modules", "Tailwind CSS"],
+    skills: [
+      "TypeScript",
+      "Tauri",
+      "Rust",
+      "React",
+      "CSS Modules",
+      "Tailwind CSS",
+    ],
     packages: [
-      { name: "Tauri CLI", purpose: "Native OS Windowing & IPC", url: "https://tauri.app" },
-      { name: "Lucide React", purpose: "Clean iconography", url: "https://lucide.dev" },
-      { name: "Zustand", purpose: "Lightweight state management", url: "https://github.com/pmndrs/zustand" },
+      {
+        name: "Tauri CLI",
+        purpose: "Native OS Windowing & IPC",
+        url: "https://tauri.app",
+      },
+      {
+        name: "Lucide React",
+        purpose: "Clean iconography",
+        url: "https://lucide.dev",
+      },
+      {
+        name: "Zustand",
+        purpose: "Lightweight state management",
+        url: "https://github.com/pmndrs/zustand",
+      },
     ],
     links: [
       {
@@ -120,7 +143,8 @@ export const soloProjects: Record<string, SoloProjectItem> = {
       "A GitHub utility tracking tool designed to compile, inspect, and discover live hosted GitHub Pages links for any user or organization instantly.",
     liveDemoUrl: "https://gitpie.netlify.app/",
     codeLink: "https://github.com/eatulrajput/github-page-tracker",
-    bannerImage: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=1200&q=80",
+    bannerImage:
+      "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
@@ -128,10 +152,14 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     projectOverview: (
       <div className="space-y-4">
         <p>
-          Git Pie eliminates the manual chore of searching through public GitHub repositories to locate live deployments and GitHub Pages URLs.
+          Git Pie eliminates the manual chore of searching through public GitHub
+          repositories to locate live deployments and GitHub Pages URLs.
         </p>
         <p>
-          By querying GitHub REST APIs and analyzing CNAME records, gh-pages branches, and build configs, Git Pie generates a clean visual dashboard of all active hosted sites associated with any given profile.
+          By querying GitHub REST APIs and analyzing CNAME records, gh-pages
+          branches, and build configs, Git Pie generates a clean visual
+          dashboard of all active hosted sites associated with any given
+          profile.
         </p>
       </div>
     ),
@@ -154,7 +182,11 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     ],
     skills: ["JavaScript", "GitHub API", "HTML5", "CSS3", "Netlify"],
     packages: [
-      { name: "@octokit/rest", purpose: "GitHub REST API client", url: "https://github.com/octokit/rest.js" },
+      {
+        name: "@octokit/rest",
+        purpose: "GitHub REST API client",
+        url: "https://github.com/octokit/rest.js",
+      },
     ],
     links: [
       {
@@ -186,7 +218,8 @@ export const soloProjects: Record<string, SoloProjectItem> = {
       "An automated unit test generator developed to build Google Test (gtest) suites for complex C++ codebases using LLMs and static code analysis.",
     liveDemoUrl: "",
     codeLink: "https://github.com/eatulrajput/TestForge",
-    bannerImage: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80",
+    bannerImage:
+      "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
@@ -194,10 +227,15 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     projectOverview: (
       <div className="space-y-4">
         <p>
-          Test Forge streamlines software quality assurance for C++ engineers by auto-generating complete Google Test files directly from class definitions and header files.
+          Test Forge streamlines software quality assurance for C++ engineers by
+          auto-generating complete Google Test files directly from class
+          definitions and header files.
         </p>
         <p>
-          It parses Abstract Syntax Trees (AST) and header signatures, constructs edge-case test vectors via high-speed LLM inference (Groq API), and validates test syntax through automated GitHub Actions CI/CD workflows.
+          It parses Abstract Syntax Trees (AST) and header signatures,
+          constructs edge-case test vectors via high-speed LLM inference (Groq
+          API), and validates test syntax through automated GitHub Actions CI/CD
+          workflows.
         </p>
       </div>
     ),
@@ -232,8 +270,16 @@ export const soloProjects: Record<string, SoloProjectItem> = {
       "GitHub Actions",
     ],
     packages: [
-      { name: "FastAPI", purpose: "High-performance Python backend", url: "https://fastapi.tiangolo.com" },
-      { name: "Groq SDK", purpose: "Ultra-fast LLM API client", url: "https://groq.com" },
+      {
+        name: "FastAPI",
+        purpose: "High-performance Python backend",
+        url: "https://fastapi.tiangolo.com",
+      },
+      {
+        name: "Groq SDK",
+        purpose: "Ultra-fast LLM API client",
+        url: "https://groq.com",
+      },
     ],
     links: [
       {
@@ -260,7 +306,8 @@ export const soloProjects: Record<string, SoloProjectItem> = {
       "An n8n and Python based autonomous agent workflow engine developed for the Product Space AI Hackathon to automate multi-step data pipelines.",
     liveDemoUrl: "",
     codeLink: "https://github.com/eatulrajput",
-    bannerImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+    bannerImage:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
@@ -268,10 +315,13 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     projectOverview: (
       <div className="space-y-4">
         <p>
-          Developed for the Product Space AI Hackathon, this workflow engine connects n8n node orchestrations with custom Python FastAPI agents.
+          Developed for the Product Space AI Hackathon, this workflow engine
+          connects n8n node orchestrations with custom Python FastAPI agents.
         </p>
         <p>
-          It executes complex multi-step routines such as automated web scraping, content summarization, Slack/Discord notifications, and database syncing without human intervention.
+          It executes complex multi-step routines such as automated web
+          scraping, content summarization, Slack/Discord notifications, and
+          database syncing without human intervention.
         </p>
       </div>
     ),
@@ -294,8 +344,16 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     ],
     skills: ["Python", "n8n", "FastAPI", "Docker", "REST APIs"],
     packages: [
-      { name: "n8n", purpose: "Workflow automation tool", url: "https://n8n.io" },
-      { name: "FastAPI", purpose: "Backend API framework", url: "https://fastapi.tiangolo.com" },
+      {
+        name: "n8n",
+        purpose: "Workflow automation tool",
+        url: "https://n8n.io",
+      },
+      {
+        name: "FastAPI",
+        purpose: "Backend API framework",
+        url: "https://fastapi.tiangolo.com",
+      },
     ],
     links: [
       {
@@ -322,7 +380,8 @@ export const soloProjects: Record<string, SoloProjectItem> = {
       "A fast-response healthcare mobile app prototype engineered under strict 24-hour hackathon constraints during MIT HackNation.",
     liveDemoUrl: "",
     codeLink: "https://github.com/eatulrajput/crato",
-    bannerImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
+    bannerImage:
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80",
@@ -330,10 +389,13 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     projectOverview: (
       <div className="space-y-4">
         <p>
-          Crato was created to streamline emergency medical triage and patient health monitoring during the MIT HackNation hackathon.
+          Crato was created to streamline emergency medical triage and patient
+          health monitoring during the MIT HackNation hackathon.
         </p>
         <p>
-          The web application connects patients with emergency services, displays nearby clinic availability, and provides AI-powered preliminary symptom analysis.
+          The web application connects patients with emergency services,
+          displays nearby clinic availability, and provides AI-powered
+          preliminary symptom analysis.
         </p>
       </div>
     ),
@@ -351,7 +413,11 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     ],
     skills: ["React", "JavaScript", "REST APIs", "Tailwind CSS"],
     packages: [
-      { name: "React", purpose: "UI component library", url: "https://react.dev" },
+      {
+        name: "React",
+        purpose: "UI component library",
+        url: "https://react.dev",
+      },
     ],
     links: [
       {
@@ -378,14 +444,17 @@ export const soloProjects: Record<string, SoloProjectItem> = {
       "An intelligent AI-powered interactive solution created for the Microsoft Learn Student Ambassadors (MLSA) Hackocalypse at KIIT University.",
     liveDemoUrl: "",
     codeLink: "https://github.com/eatulrajput",
-    bannerImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+    bannerImage:
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
     ],
     projectOverview: (
       <div className="space-y-4">
         <p>
-          Hapocalypse combines natural language processing with interactive Streamlit interfaces to process complex text streams and deliver structured insight summaries.
+          Hapocalypse combines natural language processing with interactive
+          Streamlit interfaces to process complex text streams and deliver
+          structured insight summaries.
         </p>
       </div>
     ),
@@ -403,7 +472,11 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     ],
     skills: ["Python", "OpenAI API", "Streamlit", "Pandas"],
     packages: [
-      { name: "Streamlit", purpose: "Interactive data dashboard", url: "https://streamlit.io" },
+      {
+        name: "Streamlit",
+        purpose: "Interactive data dashboard",
+        url: "https://streamlit.io",
+      },
     ],
     links: [
       {
@@ -430,14 +503,17 @@ export const soloProjects: Record<string, SoloProjectItem> = {
       "An automated Discord community management and AI assistant bot built for the Women Techmakers She Builds AI hackathon.",
     liveDemoUrl: "",
     codeLink: "https://github.com/eatulrajput",
-    bannerImage: "https://images.unsplash.com/photo-1614680376593-902f749f7edc?auto=format&fit=crop&w=1200&q=80",
+    bannerImage:
+      "https://images.unsplash.com/photo-1614680376593-902f749f7edc?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1614680376593-902f749f7edc?auto=format&fit=crop&w=1200&q=80",
     ],
     projectOverview: (
       <div className="space-y-4">
         <p>
-          Harmony Bot provides automated moderation, sentiment analysis, and intelligent conversation responses for developer communities on Discord.
+          Harmony Bot provides automated moderation, sentiment analysis, and
+          intelligent conversation responses for developer communities on
+          Discord.
         </p>
       </div>
     ),
@@ -455,7 +531,11 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     ],
     skills: ["Python", "Discord.py", "OpenAI API", "AsyncIO"],
     packages: [
-      { name: "discord.py", purpose: "Discord API wrapper for Python", url: "https://discordpy.readthedocs.io" },
+      {
+        name: "discord.py",
+        purpose: "Discord API wrapper for Python",
+        url: "https://discordpy.readthedocs.io",
+      },
     ],
     links: [
       {
@@ -480,16 +560,20 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     title: "Weather Intelligence App",
     description:
       "A fast, responsive weather dashboard fetching real-time meteorological metrics, forecasts, and air quality indices via OpenWeather APIs.",
-    liveDemoUrl: "https://developers.google.com/community/gdsc-solution-challenge",
+    liveDemoUrl:
+      "https://developers.google.com/community/gdsc-solution-challenge",
     codeLink: "https://github.com/eatulrajput",
-    bannerImage: "https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=1200&q=80",
+    bannerImage:
+      "https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=1200&q=80",
     ],
     projectOverview: (
       <div className="space-y-4">
         <p>
-          Developed as part of the Google Developer Student Clubs Solution Challenge, this weather platform provides clean visual representations of humidity, UV index, wind vectors, and multi-day forecasts.
+          Developed as part of the Google Developer Student Clubs Solution
+          Challenge, this weather platform provides clean visual representations
+          of humidity, UV index, wind vectors, and multi-day forecasts.
         </p>
       </div>
     ),
@@ -531,15 +615,19 @@ export const soloProjects: Record<string, SoloProjectItem> = {
     description:
       "A native Android calculator application built with Java and XML layout designs during the Application Development Laboratory.",
     liveDemoUrl: "",
-    codeLink: "https://github.com/eatulrajput/android_app/tree/master/calculator_app",
-    bannerImage: "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?auto=format&fit=crop&w=1200&q=80",
+    codeLink:
+      "https://github.com/eatulrajput/android_app/tree/master/calculator_app",
+    bannerImage:
+      "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?auto=format&fit=crop&w=1200&q=80",
     ],
     projectOverview: (
       <div className="space-y-4">
         <p>
-          A clean, native Android application that handles basic and scientific mathematical evaluation with memory retention and clear history logging.
+          A clean, native Android application that handles basic and scientific
+          mathematical evaluation with memory retention and clear history
+          logging.
         </p>
       </div>
     ),
