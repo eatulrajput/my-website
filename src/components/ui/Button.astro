@@ -1,0 +1,74 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  target?: string;
+  rel?: string;
+  class?: string;
+  id?: string;
+  download?: boolean | string;
+  type?: 'button' | 'submit' | 'reset';
+  'aria-label'?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  target,
+  rel,
+  class: className = '',
+  id,
+  download,
+  type = 'button',
+  'aria-label': ariaLabel,
+  ...rest
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center justify-center font-medium rounded-full transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 min-h-[44px] text-center select-none active:scale-[0.98]';
+
+const sizeStyles = {
+  sm: 'text-xs px-4 py-2 gap-1.5 min-h-[40px]',
+  md: 'text-sm px-5 py-2.5 gap-2 min-h-[44px]',
+  lg: 'text-base px-6 py-3 gap-2.5 min-h-[48px]',
+};
+
+const variantStyles = {
+  primary: 'bg-gradient-to-r from-accent-from via-accent-via to-accent-to text-white shadow-sm hover:shadow-md hover:brightness-105 hover:shadow-indigo-500/20',
+  secondary: 'bg-white text-text border border-border shadow-xs hover:border-gray-300 hover:bg-gray-50',
+  outline: 'border border-border text-text hover:border-accent-from hover:text-accent-from bg-transparent',
+  ghost: 'text-muted hover:text-text hover:bg-gray-100 bg-transparent',
+};
+
+const isExternal = href && (href.startsWith('http') || href.startsWith('mailto:'));
+const computedRel = rel || (isExternal && !href.startsWith('mailto:') ? 'noopener noreferrer' : undefined);
+const computedTarget = target || (isExternal && !href.startsWith('mailto:') ? '_blank' : undefined);
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      target={computedTarget}
+      rel={computedRel}
+      class:list={[baseStyles, sizeStyles[size], variantStyles[variant], className]}
+      id={id}
+      download={download}
+      aria-label={ariaLabel}
+      {...rest}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      class:list={[baseStyles, sizeStyles[size], variantStyles[variant], className]}
+      id={id}
+      aria-label={ariaLabel}
+      {...rest}
+    >
+      <slot />
+    </button>
+  )
+}

@@ -1,0 +1,38 @@
+---
+interface Props {
+  kicker?: string;
+  title: string;
+  subtitle?: string;
+  id?: string;
+  class?: string;
+  align?: 'left' | 'center';
+}
+
+const {
+  kicker,
+  title,
+  subtitle,
+  id,
+  class: className = '',
+  align = 'left',
+} = Astro.props;
+---
+
+<div class:list={['mb-8 sm:mb-12', align === 'center' && 'text-center', className]}>
+  {kicker && (
+    <p class="text-xs uppercase tracking-widest text-muted font-semibold mb-2">
+      {kicker}
+    </p>
+  )}
+  <h2
+    id={id}
+    class="text-section font-bold tracking-tight text-text leading-tight"
+  >
+    {title}
+  </h2>
+  {subtitle && (
+    <p class="mt-3 text-base sm:text-lg text-muted max-w-2xl leading-relaxed">
+      {subtitle}
+    </p>
+  )}
+</div>

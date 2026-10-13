@@ -1,0 +1,19 @@
+---
+interface Props {
+  as?: 'span' | 'h1' | 'h2' | 'h3' | 'p';
+  class?: string;
+  serif?: boolean;
+}
+
+const { as: Tag = 'span', class: className = '', serif = true } = Astro.props;
+---
+
+<Tag
+  class:list={[
+    'bg-clip-text text-transparent bg-gradient-to-r from-accent-from via-accent-via to-accent-to',
+    serif && 'font-accent italic font-bold',
+    className,
+  ]}
+>
+  <slot />
+</Tag>

@@ -1,0 +1,58 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import PostCard from '@/components/blog/PostCard.astro';
+import Button from '@/components/ui/Button.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+{
+  posts.length > 0 && (
+    <section class="py-16 sm:py-24 bg-white/40 border-t border-border/70" id="blog-preview">
+      <Container>
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+          <SectionHeading
+            kicker="Writing"
+            title="Notes on mobile engineering"
+            subtitle="Deep dives into React Native performance, state architecture, and native internals."
+            id="writing-heading"
+            class="mb-0 sm:mb-0"
+          />
+
+          <Button
+            href="/blog"
+            variant="outline"
+            size="sm"
+            id="view-all-articles-btn"
+            class="self-start sm:self-auto shrink-0"
+          >
+            All articles
+            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.slice(0, 3).map((post, idx) => (
+            <div class="reveal" style={`--delay: ${idx * 100}ms;`}>
+              <PostCard
+                title={post.data.title}
+                description={post.data.description}
+                date={post.data.date}
+                slug={post.id}
+                tags={post.data.tags}
+              />
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  )
+}

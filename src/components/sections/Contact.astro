@@ -1,0 +1,81 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+import Card from '@/components/ui/Card.astro';
+import { siteData } from '@/data/site';
+---
+
+<section class="py-16 sm:py-24" id="contact">
+  <Container>
+    <div class="max-w-3xl mx-auto text-center">
+      <SectionHeading
+        kicker="Get In Touch"
+        title="Let's build something fast and polished"
+        subtitle={`I'm currently considering mobile engineering roles and select contract opportunities. ${siteData.availability}.`}
+        align="center"
+        id="contact-heading"
+      />
+
+      <div class="reveal mt-8" style="--delay: 150ms;">
+        <Card padding="lg" class="bg-gradient-to-b from-white to-slate-50/50">
+          <div class="flex flex-col items-center">
+            <span class="text-xs uppercase tracking-wider text-muted font-bold mb-2">Direct Contact</span>
+            <a
+              href={`mailto:${siteData.email}`}
+              class="text-xl sm:text-2xl md:text-3xl font-extrabold text-text hover:text-indigo-600 transition-colors mb-6 break-all"
+              id="contact-email-link"
+            >
+              {siteData.email}
+            </a>
+
+            <div class="flex flex-wrap items-center justify-center gap-4 w-full pt-4 border-t border-border/80">
+              <Button
+                href={`mailto:${siteData.email}`}
+                variant="primary"
+                size="md"
+                id="contact-btn-email"
+              >
+                Send Email
+                <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </Button>
+
+              <Button
+                href={siteData.resume}
+                variant="secondary"
+                size="md"
+                id="contact-btn-resume"
+                download
+              >
+                Download Resume (PDF)
+                <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </Button>
+
+              <Button
+                href={siteData.social.linkedin}
+                variant="outline"
+                size="md"
+                id="contact-btn-linkedin"
+              >
+                LinkedIn
+              </Button>
+
+              <Button
+                href={siteData.social.github}
+                variant="outline"
+                size="md"
+                id="contact-btn-github"
+              >
+                GitHub
+              </Button>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </Container>
+</section>

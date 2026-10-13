@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import PostCard from '@/components/blog/PostCard.astro';
+
+// Fetch published blog posts sorted newest first
+const allPosts = await getCollection('blog');
+const publishedPosts = allPosts
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout
+  title="Engineering Articles & Notes — Atul Rajput"
+  description="Technical deep dives on React Native performance, gesture engines, native TurboModules, and offline state architecture."
+>
+  <div class="py-12 sm:py-20">
+    <Container>
+      <div class="max-w-3xl mb-12">
+        <SectionHeading
+          kicker="Engineering Blog"
+          title="Articles, benchmarks & native deep dives"
+          subtitle="Honest write-ups of engineering trade-offs, architecture decisions, and performance wins while building mobile apps with React Native."
+          id="blog-index-heading"
+        />
+      </div>
+
+      {publishedPosts.length === 0 ? (
+        <div class="py-16 text-center text-muted">
+          <p>No articles published yet. Check back soon!</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {publishedPosts.map((post, idx) => (
+            <div class="reveal" style={`--delay: ${idx * 80}ms;`}>
+              <PostCard
+                title={post.data.title}
+                description={post.data.description}
+                date={post.data.date}
+                slug={post.id}
+                tags={post.data.tags}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </Container>
+  </div>
+</BaseLayout>

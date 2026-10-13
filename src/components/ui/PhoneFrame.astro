@@ -1,0 +1,58 @@
+---
+interface Props {
+  cover: string;
+  video?: string;
+  title: string;
+  class?: string;
+}
+
+const { cover, video, title, class: className = '' } = Astro.props;
+---
+
+<div class:list={['relative mx-auto flex items-center justify-center', className]}>
+  {/* Modern smartphone device frame */}
+  <div class="relative w-[240px] sm:w-[260px] aspect-[9/19] rounded-[36px] bg-slate-950 p-2.5 shadow-2xl ring-1 ring-slate-800/80 shadow-slate-900/40">
+    {/* Screen outer container */}
+    <div class="relative h-full w-full overflow-hidden rounded-[26px] bg-slate-900">
+      {/* Dynamic island / notch */}
+      <div class="absolute top-2.5 left-1/2 -translate-x-1/2 w-20 h-4 bg-slate-950 rounded-full z-20 flex items-center justify-end pr-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-slate-800"></span>
+      </div>
+
+      {/* Screen media */}
+      {video ? (
+        <video
+          src={video}
+          poster={cover}
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="none"
+          aria-label={`Demo video for ${title}`}
+          class="h-full w-full object-cover"
+        />
+      ) : (
+        <img
+          src={cover}
+          alt={`Screenshot of ${title}`}
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+      )}
+
+      {/* Glass glare effect for realism */}
+      <div
+        class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10"
+        aria-hidden="true"
+      ></div>
+    </div>
+
+    {/* Side buttons */}
+    <div class="absolute -left-[10px] top-16 h-8 w-[2px] bg-slate-700 rounded-l" aria-hidden="true"></div>
+    <div class="absolute -left-[10px] top-28 h-10 w-[2px] bg-slate-700 rounded-l" aria-hidden="true"></div>
+    <div class="absolute -left-[10px] top-42 h-10 w-[2px] bg-slate-700 rounded-l" aria-hidden="true"></div>
+    <div class="absolute -right-[10px] top-24 h-12 w-[2px] bg-slate-700 rounded-r" aria-hidden="true"></div>
+  </div>
+</div>

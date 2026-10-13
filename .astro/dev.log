@@ -1,0 +1,24 @@
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Generated 0ms","label":"types","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Syncing content","label":"content","level":"info"}
+{"message":"Synced content","label":"content","level":"info"}
+{"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
+{"message":" astro  v7.3.8 ready in 802 ms\n┃ Local    http://localhost:4321/\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
+{"message":"watching for file changes...","label":null,"level":"info"}
+{"message":"[200] / 87ms","label":null,"level":"info"}
+{"message":"[200] / 8ms","label":null,"level":"info"}
+{"message":"[console.error] Astro Error while running audit's match function: TypeError: Failed to fetch","label":"vite","level":"error"}
+{"message":"[404] /sitemap-index.xml 3ms","label":null,"level":"info"}
+{"message":"[200] /rss.xml 5ms","label":null,"level":"info"}
+{"message":"[200] / 7ms","label":null,"level":"info"}
+{"message":"[200] /blog 21ms","label":null,"level":"info"}
+{"message":"[200] /rss.xml 2ms","label":null,"level":"info"}
+{"message":"[404] /sitemap-index.xml 3ms","label":null,"level":"info"}
+{"message":"[200] /blog/solving-virtualized-list-blank-spaces-flashlist 230ms","label":null,"level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"[200] /blog 10ms","label":null,"level":"info"}
+{"message":"[200] /blog/rethinking-offline-sync-mobile-apps 183ms","label":null,"level":"info"}
+{"message":"[200] / 13ms","label":null,"level":"info"}
+{"message":"[200] / 8ms","label":null,"level":"info"}
+{"message":"[200] / 7ms","label":null,"level":"info"}

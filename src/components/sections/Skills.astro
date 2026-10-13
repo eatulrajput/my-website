@@ -1,0 +1,97 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Card from '@/components/ui/Card.astro';
+
+const skillCategories = [
+  {
+    title: 'Mobile Architecture',
+    skills: [
+      'React Native',
+      'Expo & Prebuild',
+      'TypeScript',
+      'React 19',
+      'Reanimated 3',
+      'React Navigation',
+      'FlashList',
+      'Gesture Handler',
+    ],
+  },
+  {
+    title: 'Native & Bridge',
+    skills: [
+      'Swift / SwiftUI',
+      'Kotlin / Jetpack',
+      'TurboModules & JSI',
+      'Native Bridging',
+      'iOS StoreKit & IAP',
+      'Push Notifications',
+      'Android Intents',
+      'Permissions APIs',
+    ],
+  },
+  {
+    title: 'State & Data',
+    skills: [
+      'TanStack Query',
+      'Zustand',
+      'MMKV (Fast Key-Value)',
+      'WatermelonDB / SQLite',
+      'Offline Sync Engines',
+      'RESTful APIs & GraphQL',
+      'WebSockets',
+      'Zod Schema Validation',
+    ],
+  },
+  {
+    title: 'Testing & Tooling',
+    skills: [
+      'EAS Build & Submit',
+      'Fastlane Automation',
+      'Maestro E2E Testing',
+      'Jest & Testing Library',
+      'Flipper Profiling',
+      'Xcode & Android Studio',
+      'Sentry Crash Reporting',
+      'GitHub Actions CI',
+    ],
+  },
+];
+---
+
+<section class="py-16 sm:py-24" id="skills">
+  <Container>
+    <SectionHeading
+      kicker="Technical Stack"
+      title="Technologies & tooling"
+      subtitle="A focused toolkit centered around performant mobile development and production-grade software delivery."
+      id="skills-heading"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+      {
+        skillCategories.map((category, index) => (
+          <div
+            class="reveal"
+            style={`--delay: ${index * 100}ms;`}
+          >
+            <Card padding="md" class="h-full">
+              <h3 class="text-base font-bold text-text mb-4 pb-2 border-b border-border/80">
+                {category.title}
+              </h3>
+
+              <ul class="space-y-2 text-sm text-slate-600">
+                {category.skills.map((skill) => (
+                  <li class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent-from" aria-hidden="true"></span>
+                    <span>{skill}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,60 @@
+---
+import { siteData } from '@/data/site';
+import Container from './Container.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-border/80 bg-white/60 py-12 sm:py-16 mt-20">
+  <Container>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <p class="text-sm font-semibold text-text">
+          {siteData.name} <span class="font-normal text-muted">· {siteData.role}</span>
+        </p>
+        <p class="text-xs text-muted mt-1">
+          Crafted with Astro & Tailwind. Zero bloated JavaScript.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-5 text-sm">
+        <a
+          href={siteData.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-muted hover:text-text transition-colors p-1"
+          aria-label="GitHub Profile"
+          id="footer-github"
+        >
+          GitHub
+        </a>
+        <a
+          href={siteData.social.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-muted hover:text-text transition-colors p-1"
+          aria-label="LinkedIn Profile"
+          id="footer-linkedin"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="/rss.xml"
+          class="text-muted hover:text-text transition-colors p-1"
+          aria-label="RSS Feed"
+          id="footer-rss"
+        >
+          RSS
+        </a>
+        <a
+          href="/sitemap-index.xml"
+          class="text-muted hover:text-text transition-colors p-1"
+          aria-label="Sitemap"
+          id="footer-sitemap"
+        >
+          Sitemap
+        </a>
+      </div>
+    </div>
+  </Container>
+</footer>

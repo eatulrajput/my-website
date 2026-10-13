@@ -1,0 +1,80 @@
+---
+title: "Architecting Resilient Offline Sync in React Native with WatermelonDB"
+description: "How to handle conflicting writes, background sync retry queues, and local schema migrations without corrupting client state."
+date: 2026-09-28
+tags:
+  - "Architecture"
+  - "Offline-First"
+  - "WatermelonDB"
+draft: false
+cover: "/og-image.svg"
+---
+
+Mobile apps operate on hostile networks: subways with dead zones, flaky cellular towers, and sudden handoffs between 5G and Wi-Fi. If your app displays a blocking spinner whenever a network request is inflight, you haven't built a mobile app—you've built an insecure browser wrapper.
+
+True offline-first design means every user action writes immediately to local storage, updating the UI instantaneously, while an asynchronous synchronizer reconciles changes with the remote server.
+
+## Why WatermelonDB over Raw AsyncStorage or SQLite
+
+`AsyncStorage` is a serialized key-value store; reading 2,000 records requires reading the entire string payload into memory. Raw SQLite is fast, but wiring observable change events to React state quickly devolves into spaghetti code.
+
+WatermelonDB solves this with **lazy loading** and **RxJS-backed observables**:
+
+```ts
+import { Database } from '@nozbe/watermelondb';
+import SQLiteAdapter from '@nozbe/watermelondb/adapters/sqlite';
+import { mySchema } from './model/schema';
+import { Task } from './model/Task';
+
+const adapter = new SQLiteAdapter({
+  schema: mySchema,
+  dbName: 'taskManagerDB',
+  jsi: true, // Uses JSI for native database communication
+});
+
+export const database = new Database({
+  adapter,
+  modelClasses: [Task],
+});
+```
+
+## The Sync Protocol
+
+Our synchronization engine relies on a last-modified-timestamp protocol:
+
+```ts
+import { synchronize } from '@nozbe/watermelondb/sync';
+
+export async function runSync() {
+  await synchronize({
+    database,
+    pullChanges: async ({ lastPulledAt, schemaVersion, migration }) => {
+      const response = await fetch(`/api/sync?last_pulled=${lastPulledAt || 0}`);
+      if (!response.ok) throw new Error('Sync fetch failed');
+      const { changes, timestamp } = await response.json();
+      return { changes, timestamp };
+    },
+    pushChanges: async ({ changes, lastPulledAt }) => {
+      const response = await fetch('/api/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ changes, lastPulledAt }),
+      });
+      if (!response.ok) throw new Error('Sync push failed');
+    },
+    // Prevent sync conflicts when user navigates away
+    sendCreatedAsUpdated: false,
+  });
+}
+```
+
+## Conflict Resolution Strategy
+
+When a record is modified both locally while offline and remotely by a team collaborator:
+1. **Server-Wins for Metadata**: Timestamps, ownership tags, and security ACLs default to server state.
+2. **Client-Preserves Content**: If an offline user spent 20 minutes drafting notes, the app forks the document or flags conflicting fields rather than silently clobbering uncommitted work.
+3. **Queue Deduplication**: Sync mutations are committed in atomic transactions. If connectivity drops mid-batch, SQLite rolls back to the last coherent snapshot.
+
+## Conclusion
+
+Offline-first architecture is not a feature you bolt on after launch; it is a foundational architectural choice. By backing React Native apps with deterministic local databases, your apps feel instantaneous to users regardless of cell reception.
