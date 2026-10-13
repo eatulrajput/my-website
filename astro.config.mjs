@@ -5,8 +5,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://atulrajput.dev',
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
-    tailwindcss(),
     mdx(),
     sitemap(),
   ],

@@ -4,38 +4,8 @@
 {"message":"Syncing content","label":"content","level":"info"}
 {"message":"Synced content","label":"content","level":"info"}
 {"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
-{"message":" astro  v7.3.8 ready in 802 ms\n┃ Local    http://localhost:4321/\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
+{"message":" astro  v7.3.8 ready in 788 ms\n┃ Local    http://localhost:4321/\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
 {"message":"watching for file changes...","label":null,"level":"info"}
-{"message":"[200] / 87ms","label":null,"level":"info"}
+{"message":"[200] / 97ms","label":null,"level":"info"}
+{"message":"[200] HEAD / 6ms","label":null,"level":"info"}
 {"message":"[200] / 8ms","label":null,"level":"info"}
-{"message":"[console.error] Astro Error while running audit's match function: TypeError: Failed to fetch","label":"vite","level":"error"}
-{"message":"[404] /sitemap-index.xml 3ms","label":null,"level":"info"}
-{"message":"[200] /rss.xml 5ms","label":null,"level":"info"}
-{"message":"[200] / 7ms","label":null,"level":"info"}
-{"message":"[200] /blog 21ms","label":null,"level":"info"}
-{"message":"[200] /rss.xml 2ms","label":null,"level":"info"}
-{"message":"[404] /sitemap-index.xml 3ms","label":null,"level":"info"}
-{"message":"[200] /blog/solving-virtualized-list-blank-spaces-flashlist 230ms","label":null,"level":"info"}
-{"message":"[200] / 5ms","label":null,"level":"info"}
-{"message":"[200] /blog 10ms","label":null,"level":"info"}
-{"message":"[200] /blog/rethinking-offline-sync-mobile-apps 183ms","label":null,"level":"info"}
-{"message":"[200] / 13ms","label":null,"level":"info"}
-{"message":"[200] / 8ms","label":null,"level":"info"}
-{"message":"[200] / 7ms","label":null,"level":"info"}
-{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
-[astro] Unable to load your Astro config
-
-{"message":"Cannot find module '@astrojs/tailwind' imported from '/home/atulrajput/Desktop/projects/my-website/astro.config.mjs'\n  Stack trace:\n    at /home/atulrajput/Desktop/projects/my-website/node_modules/vite/dist/node/chunks/node.js:36152:32\n    [...] See full stack trace in the browser, or rerun with --verbose.\n","label":"config","level":"error"}
-{"message":"Continuing with previous valid configuration\n","label":null,"level":"error"}
-{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
-[astro] Unable to load your Astro config
-
-{"message":"Cannot find module '@astrojs/tailwind' imported from '/home/atulrajput/Desktop/projects/my-website/astro.config.mjs'\n  Stack trace:\n    at fetchModule (file:///home/atulrajput/Desktop/projects/my-website/node_modules/vite/dist/node/chunks/node.js:36152:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.\n","label":"config","level":"error"}
-{"message":"Continuing with previous valid configuration\n","label":null,"level":"error"}
-{"message":"[200] / 7ms","label":null,"level":"info"}
-{"message":"[200] / 6ms","label":null,"level":"info"}
-{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
-[astro] Unable to load your Astro config
-
-{"message":"Cannot find package '/home/atulrajput/Desktop/projects/my-website/node_modules/jiti/lib/index.js' imported from /home/atulrajput/Desktop/projects/my-website/node_modules/@tailwindcss/node/dist/index.mjs\n  Stack trace:\n    at legacyMainResolve (node:internal/modules/esm/resolve:201:26)\n    at moduleResolve (node:internal/modules/esm/resolve:859:18)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)\n    at nextStep (node:internal/modules/customization_hooks:189:26)\n    at nextStep (node:internal/modules/customization_hooks:189:26)\n","label":"config","level":"error"}
-{"message":"Continuing with previous valid configuration\n","label":null,"level":"error"}
