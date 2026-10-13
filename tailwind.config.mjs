@@ -1,10 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       colors: {
         bg: 'var(--bg)',
+        surface: 'var(--surface)',
         text: 'var(--text)',
         muted: 'var(--muted)',
         border: 'var(--border)',

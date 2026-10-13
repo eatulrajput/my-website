@@ -9,3 +9,53 @@
 {"message":"[200] / 97ms","label":null,"level":"info"}
 {"message":"[200] HEAD / 6ms","label":null,"level":"info"}
 {"message":"[200] / 8ms","label":null,"level":"info"}
+{"message":"program reload","label":"vite","level":"info"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"server restarted.","label":"vite","level":"info"}
+{"message":"Syncing content","label":"content","level":"info"}
+{"message":"Astro config changed","label":"content","level":"info"}
+{"message":"Clearing content store","label":"content","level":"info"}
+{"message":"Synced content","label":"content","level":"info"}
+{"message":"[200] / 136ms","label":null,"level":"info"}
+{"message":"[200] / 16ms","label":null,"level":"info"}
+{"message":"src/layouts/BaseLayout.astro","label":"watch","level":"info"}
+{"message":"[200] / 56ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 84ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 45ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 48ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 54ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 43ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 69ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 40ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 63ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 49ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 60ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 54ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 39ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"program reload","label":"vite","level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"program reload","label":"vite","level":"info"}
+{"message":"[200] / 392ms","label":null,"level":"info"}
+{"message":"[200] / 15ms","label":null,"level":"info"}
+{"message":"[404] /do 91ms","label":null,"level":"info"}
+{"message":"[200] / 18ms","label":null,"level":"info"}
+{"message":"[200] / 14ms","label":null,"level":"info"}

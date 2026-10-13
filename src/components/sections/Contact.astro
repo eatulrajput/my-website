@@ -18,12 +18,12 @@ import { siteData } from '@/data/site';
       />
 
       <div class="reveal mt-8" style="--delay: 150ms;">
-        <Card padding="lg" class="bg-gradient-to-b from-white to-slate-50/50">
+        <Card padding="lg" class="bg-surface">
           <div class="flex flex-col items-center">
             <span class="text-xs uppercase tracking-wider text-muted font-bold mb-2">Direct Contact</span>
             <a
               href={`mailto:${siteData.email}`}
-              class="text-xl sm:text-2xl md:text-3xl font-extrabold text-text hover:text-indigo-600 transition-colors mb-6 break-all"
+              class="text-xl sm:text-2xl md:text-3xl font-extrabold text-text hover:text-accent-from transition-colors mb-6 break-all"
               id="contact-email-link"
             >
               {siteData.email}

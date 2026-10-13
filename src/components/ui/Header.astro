@@ -1,6 +1,7 @@
 ---
 import { siteData } from '@/data/site';
 import Container from './Container.astro';
+import ThemeSwitcher from './ThemeSwitcher.astro';
 
 interface Props {
   currentPath?: string;
@@ -11,7 +12,7 @@ const { currentPath = '/' } = Astro.props;
 
 <header class="sticky top-0 z-40 w-full border-b border-border/70 bg-bg/85 backdrop-blur-md">
   <Container>
-    <div class="flex h-16 items-center justify-between">
+    <div class="flex h-16 items-center justify-between gap-4">
       {/* Brand / Logo */}
       <a
         href="/"
@@ -19,7 +20,7 @@ const { currentPath = '/' } = Astro.props;
         id="nav-logo"
         aria-label={`${siteData.name} - Home`}
       >
-        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-text text-white text-sm font-semibold transition-transform group-hover:scale-105">
+        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-text text-bg text-sm font-semibold transition-transform group-hover:scale-105">
           AR
         </span>
         <span class="font-semibold">{siteData.name}</span>
@@ -38,11 +39,16 @@ const { currentPath = '/' } = Astro.props;
         ))}
       </nav>
 
-      {/* Action CTA & Mobile Menu Button */}
-      <div class="flex items-center gap-3">
+      {/* Desktop Switcher, Action CTA & Mobile Toggle */}
+      <div class="flex items-center gap-2 sm:gap-3">
+        {/* Desktop Theme Switcher */}
+        <div class="hidden sm:inline-flex">
+          <ThemeSwitcher id="header-theme-switcher-desktop" />
+        </div>
+
         <a
           href="mailto:hello@atulrajput.dev"
-          class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-semibold bg-text text-white hover:bg-slate-800 transition-colors shadow-xs min-h-[40px]"
+          class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-semibold bg-text text-bg hover:opacity-90 transition-opacity shadow-xs min-h-[36px]"
           id="header-cta-email"
         >
           Say Hello
@@ -52,7 +58,7 @@ const { currentPath = '/' } = Astro.props;
         <button
           type="button"
           id="mobile-menu-toggle"
-          class="inline-flex md:hidden items-center justify-center p-2 rounded-lg text-muted hover:text-text hover:bg-gray-100 transition-colors min-h-[44px] min-w-[44px]"
+          class="inline-flex md:hidden items-center justify-center p-2 rounded-lg text-muted hover:text-text hover:bg-surface transition-colors min-h-[44px] min-w-[44px]"
           aria-expanded="false"
           aria-controls="mobile-nav"
           aria-label="Toggle navigation menu"
@@ -90,15 +96,22 @@ const { currentPath = '/' } = Astro.props;
       {siteData.nav.map((item) => (
         <a
           href={item.href}
-          class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-muted hover:text-text hover:bg-gray-100 transition-colors"
+          class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-muted hover:text-text hover:bg-surface transition-colors"
         >
           {item.label}
         </a>
       ))}
+
+      {/* Mobile Theme Switcher Row */}
+      <div class="pt-3 pb-2 flex items-center justify-between px-3 border-t border-border/70">
+        <span class="text-xs font-semibold text-muted uppercase tracking-wider">Appearance</span>
+        <ThemeSwitcher id="header-theme-switcher-mobile" />
+      </div>
+
       <div class="pt-2">
         <a
           href="mailto:hello@atulrajput.dev"
-          class="block w-full text-center py-2.5 rounded-lg text-sm font-semibold bg-text text-white hover:bg-slate-800 transition-colors"
+          class="block w-full text-center py-2.5 rounded-lg text-sm font-semibold bg-text text-bg hover:opacity-90 transition-opacity"
         >
           Say Hello
         </a>
@@ -124,7 +137,7 @@ const { currentPath = '/' } = Astro.props;
       iconClose.classList.toggle('hidden');
     });
 
-    // Close when link clicked
+    // Close when nav links are clicked
     document.querySelectorAll('.mobile-nav-link').forEach((link) => {
       link.addEventListener('click', () => {
         menu.classList.add('hidden');

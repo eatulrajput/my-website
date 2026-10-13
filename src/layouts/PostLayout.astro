@@ -92,7 +92,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
       )}
 
       {/* Prose Content */}
-      <div class="prose prose-slate lg:prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-indigo-600 prose-img:rounded-xl prose-pre:rounded-xl">
+      <div class="prose prose-slate dark:prose-invert lg:prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-accent-from prose-img:rounded-xl prose-pre:rounded-xl">
         <slot />
       </div>
 
@@ -100,7 +100,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
       <footer class="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
         <a
           href="/blog"
-          class="inline-flex items-center gap-2 text-sm font-medium text-indigo-600 hover:text-indigo-800 transition-colors"
+          class="inline-flex items-center gap-2 text-sm font-medium text-accent-from hover:text-accent-via transition-colors"
         >
           ← Explore more articles
         </a>

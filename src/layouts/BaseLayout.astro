@@ -45,6 +45,7 @@ const personSchema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#FAFAF9" />
 
     {/* Primary Meta Tags */}
     <title>{title}</title>
@@ -77,8 +78,30 @@ const personSchema = {
 
     {/* Structured Data */}
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+    {/* Zero-flash Theme Initializer (PRD section 2a) */}
+    <script is:inline>
+      (function () {
+        try {
+          var preference = localStorage.getItem('theme') || 'system';
+          var isDark =
+            preference === 'dark' ||
+            (preference === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var effectiveTheme = isDark ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', effectiveTheme);
+          document.documentElement.setAttribute('data-theme-preference', preference);
+          document.documentElement.style.colorScheme = effectiveTheme;
+          var metaTheme = document.querySelector('meta[name="theme-color"]');
+          if (metaTheme) {
+            metaTheme.setAttribute('content', isDark ? '#0B1120' : '#FAFAF9');
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
   </head>
-  <body class="min-h-screen flex flex-col bg-bg text-text antialiased selection:bg-indigo-500/15 selection:text-indigo-900">
+  <body class="min-h-screen flex flex-col bg-bg text-text antialiased selection:bg-accent-from/20 selection:text-text">
     {/* Accessible skip link */}
     <a href="#main" class="skip-link">
       Skip to content
@@ -92,7 +115,8 @@ const personSchema = {
 
     <Footer />
 
-    {/* Lightweight reveal animation script */}
+    {/* Interactive Client Scripts */}
     <script src="../scripts/reveal.ts"></script>
+    <script src="../scripts/theme.ts"></script>
   </body>
 </html>

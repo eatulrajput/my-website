@@ -12,7 +12,6 @@ Part 1: Product Requirements Document
 7. Non-goals
    • No backend, database, user accounts, or authentication.
    • No contact form, CMS, or e-commerce.
-   • No dark mode at launch.
    • No more than three featured projects.
    • No multi-language support in v1.
 8. Target audience
@@ -42,9 +41,10 @@ Part 1: Product Requirements Document
     • Blog index and individual MDX post pages.
     • Resume link, social links, SEO and social sharing metadata.
     • Scroll-reveal motion with reduced-motion support.
+    • Light, dark, and system theme modes with an animated theme change.
     Out of scope (later)
     • Individual case study pages per project (v1.1, via the projects content collection).
-    • Dark mode, RSS styling polish, analytics dashboards, newsletter.
+    • RSS styling polish, analytics dashboards, newsletter.
 11. Functional requirements
     ID
     Requirement
@@ -80,7 +80,7 @@ Part 1: Product Requirements Document
     Home shows the 2 to 3 best blog posts, with a link to the full archive
     Should
     F11
-    Header with anchor navigation (Work, About, Blog, Contact), collapsing cleanly on mobile
+    Header with anchor navigation (Work, About, Blog, Contact) and the theme switcher, collapsing cleanly on mobile
     Must
     F12
     Open Graph image, page titles, meta descriptions, favicon, sitemap
@@ -94,6 +94,15 @@ Part 1: Product Requirements Document
     F15
     Custom 404 page
     Should
+    F16
+    Theme switcher with three modes: Light, Dark, System. System follows the device prefers-color-scheme and updates live when it changes
+    Must
+    F17
+    Theme choice persists across pages and visits, with no flash of the wrong theme on load
+    Must
+    F18
+    Theme change animates (circular reveal, with a crossfade fallback) and switches instantly under prefers-reduced-motion
+    Must
 12. Content requirements
     • Headline (draft): "I build fast, polished mobile apps with React Native." The italic word receives the serif accent and gradient.
     • Subtext: one sentence on what the developer builds and for whom.
@@ -145,15 +154,15 @@ Part 1: Product Requirements Document
     Blog collection, post layout, MDX migration
     0.5 to 1 day
     4
-    Reveal animation, polish, responsive pass
-    0.5 day
+    Reveal animation, theme switcher and transition, polish, responsive pass
+    1 day
     5
     SEO, Open Graph, Lighthouse, real-device test, deploy, custom domain
     0.5 day
 16. Launch checklist
     • Copy reviewed for tone (no pleading, no buzzwords).
     • Every link works; resume is current.
-    • Tested on a real iPhone and Android phone.
+    • Tested on a real iPhone and Android phone in light, dark, and system modes.
     • Lighthouse targets met.
     • Social share preview checked on LinkedIn and WhatsApp.
     • Custom domain live with HTTPS.
@@ -206,37 +215,101 @@ Part 1: Product Requirements Document
 18. Design tokens
     Defined once in global.css as CSS variables and mapped into Tailwind. Components use token names only, never hex values.
     Token
-    Value
+    Light
+    Dark
     Use
     --bg
     #FFFFFF (or #FAFAF9)
+    #0B1120
     Page background
+    --surface
+    #F8FAFC
+    #111827
+    Cards and raised panels
     --text
     #0F172A
+    #E2E8F0
     Primary text
     --muted
     #64748B
-    Secondary text, dates, tags (minimum allowed lightness for text)
+    #94A3B8
+    Secondary text, dates, tags (lightest allowed gray in light mode)
     --border
     #E2E8F0
+    #1E293B
     Cards, dividers
     --accent-from
-    #6366F1
-    Gradient start (indigo)
+    #3B82F6
+    #60A5FA
+    Gradient start (blue)
     --accent-via
-    #8B5CF6
-    Gradient middle (violet)
+    #06B6D4
+    #22D3EE
+    Gradient middle (teal)
     --accent-to
-    #EC4899
-    Gradient edge only (faint pink)
+    #10B981
+    #34D399
+    Gradient end (green)
     --available
     #22C55E
+    #4ADE80
     Availability dot only
     Gradient usage rules (three places only):
-19. Blurred mesh behind the hero at 10 to 25% opacity.
+19. Blurred mesh behind the hero at 10 to 25% opacity in light mode and 15 to 30% in dark mode.
 20. The italic accent word in the headline (bg-clip-text, large text only).
 21. The primary button, or its hover state.
-    Alternate palettes to test by swapping tokens: blue to teal (#3B82F6 to #06B6D4), or orange to pink (#F97316 to #EC4899).
+    Alternate palettes to test by swapping tokens: indigo to violet (#6366F1 to #8B5CF6), or orange to pink (#F97316 to #EC4899).
+    2a. Theme system (light, dark, system)
+    The site offers three modes: Light, Dark, and System. The choice is stored as a preference and applied through a data-theme attribute on <html>.
+    Mode
+    Behavior
+    Light
+    Always uses the light tokens
+    Dark
+    Always uses the dark tokens
+    System
+    Follows the device prefers-color-scheme setting and updates live when it changes; the default for first-time visitors
+    Implementation
+    • Preference stored in localStorage under one key (theme) with the values light, dark, or system; wrapped in try/catch so blocked storage falls back to System.
+    • A tiny inline script in <head> resolves the theme and sets data-theme and color-scheme before first paint, so there is no flash of the wrong theme.
+    • A matchMedia('(prefers-color-scheme: dark)') listener re-resolves the theme when the mode is System.
+    • Tokens: light values on :root, dark overrides on :root[data-theme="dark"]. Tailwind's dark: variant is configured to use that selector, not the media query.
+    • Switcher: a three-option segmented control (sun, monitor, moon icons) in the header and the mobile menu, built as a labeled radio group.
+    • Code blocks: Shiki dual themes (one light, one dark) switched through CSS variables, with no extra JavaScript.
+    • Gradient mesh: separate opacity values per theme; the browser theme-color meta tag updates with the active theme.
+    • The Open Graph image stays a single light-themed image.
+    2b. Theme change animation
+    Switching themes plays one coordinated transition of about 500 ms, built from the layers below. The click origin is the switcher button.
+    Animation
+    What the visitor sees
+    Technique
+    Duration
+    Circular reveal (primary)
+    The new theme expands as a circle from the switcher button until it covers the page
+    View Transitions API (document.startViewTransition) animating clip-path: circle() on the new-theme snapshot, from the button center to the farthest page corner
+    500 ms, ease-in-out
+    Color crossfade (fallback)
+    Backgrounds, text, and borders fade smoothly to the new colors
+    Temporary theme-transition class on <html> that adds transition on background-color, color, border-color, fill, and stroke, removed after the change
+    300 ms, ease
+    Switcher icon motion
+    The sun, moon, or monitor icon rotates and scales in while the old one scales out; the active-option highlight slides to the chosen segment
+    CSS transform and opacity; indicator moved with translateX
+    250 ms, ease-out
+    Gradient mesh shift
+    The hero gradient blobs fade between their light and dark opacities
+    opacity transition on the mesh layer
+    500 ms, in sync with the reveal
+    Reduced motion
+    Theme changes instantly with no animation
+    prefers-reduced-motion: reduce disables all of the above
+    0 ms
+    Rules
+    • Browsers without View Transitions support use the crossfade, so the visitor never sees a hard flash.
+    • When System mode follows an operating system change, use the 300 ms crossfade instead of the circular reveal, since there is no click origin.
+    • The theme-transition class exists only during the switch, so hover effects and scroll reveals are never slowed.
+    • No animation runs on first page load; the inline script sets the theme before paint.
+    • Only color properties animate, so the switch causes no layout shift.
 22. Typography
     Role
     Font
@@ -278,6 +351,7 @@ Part 1: Product Requirements Document
     • Hover: cards lift slightly with a soft shadow; buttons shift gradient position. CSS transitions only.
     • Accessibility: a single prefers-reduced-motion rule disables all reveal motion and autoplaying video loops fall back to a poster image.
     • No parallax, no scroll hijacking, no more than one motion pattern.
+    Theme-change animations are specified separately in section 2b.
 26. Content schemas
     Projects collection
     Field
@@ -369,7 +443,7 @@ Part 1: Product Requirements Document
     Item
     Budget
     Client JavaScript on home page
-    Under 10 KB (only the reveal script)
+    Under 10 KB (reveal and theme scripts only)
     Total page weight (excluding lazy videos)
     Under 500 KB
     Each project video
@@ -381,12 +455,13 @@ Part 1: Product Requirements Document
     Lighthouse (mobile)
     95 or higher in all four categories
 29. Accessibility
-    • Meets WCAG AA contrast (4.5:1 for body text).
+    • Meets WCAG AA contrast (4.5:1 for body text) in both the light and dark themes.
     • Semantic landmarks (header, main, section, footer) and a logical heading order.
     • Visible keyboard focus states and a skip-to-content link.
     • Alt text on all meaningful images; decorative gradients are aria-hidden.
     • Videos are decorative or have adjacent text describing the app.
     • Gradient text used only at large sizes.
+    • Theme switcher is keyboard-operable, has labeled options (Light, Dark, System), and announces the current selection.
 30. SEO and sharing
     • Unique title and meta description per page.
     • Open Graph and Twitter card tags with a designed 1200 x 630 image.
@@ -407,8 +482,10 @@ Part 1: Product Requirements Document
 37. Adding a new project or post requires creating one file and no component changes.
 38. Copy contains no begging language, buzzwords, or skill percentage bars.
 39. The social share preview renders correctly on LinkedIn and WhatsApp.
-40. Open questions
+40. Light, dark, and system modes all work, persist across reloads, and never flash the wrong theme on load.
+41. The theme change plays the circular reveal (or the crossfade fallback) and is instant under reduced motion.
+42. Open questions
     • Which two or three projects will be featured, and are any live on a store or TestFlight?
     • Will a photo be included in the About section?
-    • Which gradient palette is final after testing on the real page (indigo-violet, blue-teal, or warm)?
+    • Does the blue-to-green gradient hold up on both light and dark backgrounds once tested on the real page?
     • Which framework was the existing MDX blog written for, and how much cleanup does the migration need?

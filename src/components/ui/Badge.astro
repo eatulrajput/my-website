@@ -8,9 +8,9 @@ interface Props {
 const { variant = 'default', size = 'sm', class: className = '' } = Astro.props;
 
 const variantStyles = {
-  default: 'bg-white text-muted border border-border/80 shadow-xs',
-  accent: 'bg-indigo-50 text-indigo-700 border border-indigo-100',
-  subtle: 'bg-gray-100/80 text-muted border border-transparent',
+  default: 'bg-surface text-muted border border-border/80 shadow-xs',
+  accent: 'bg-accent-from/10 text-accent-from border border-accent-from/20',
+  subtle: 'bg-surface text-muted border border-border/60',
 };
 
 const sizeStyles = {

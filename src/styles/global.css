@@ -2,18 +2,32 @@
 
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 @config "../../tailwind.config.mjs";
 
 @layer base {
   :root {
     --bg: #FAFAF9;
+    --surface: #F8FAFC;
     --text: #0F172A;
     --muted: #64748B;
     --border: #E2E8F0;
-    --accent-from: #6366F1;
-    --accent-via: #8B5CF6;
-    --accent-to: #EC4899;
+    --accent-from: #3B82F6;
+    --accent-via: #06B6D4;
+    --accent-to: #10B981;
     --available: #22C55E;
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0B1120;
+    --surface: #111827;
+    --text: #E2E8F0;
+    --muted: #94A3B8;
+    --border: #1E293B;
+    --accent-from: #60A5FA;
+    --accent-via: #22D3EE;
+    --accent-to: #34D399;
+    --available: #4ADE80;
   }
 
   html {
@@ -28,7 +42,11 @@
   }
 
   ::selection {
-    background-color: rgba(99, 102, 241, 0.15);
+    background-color: rgba(59, 130, 246, 0.2);
+  }
+
+  :root[data-theme="dark"] ::selection {
+    background-color: rgba(96, 165, 250, 0.3);
   }
 
   /* Focus styles */
@@ -44,13 +62,14 @@
     background-image: linear-gradient(135deg, var(--accent-from), var(--accent-via), var(--accent-to));
   }
 
-  /* Hero gradient mesh */
+  /* Hero gradient mesh (10-25% opacity in light mode, 15-30% in dark mode) */
   .gradient-mesh {
     position: absolute;
     inset: 0;
     overflow: hidden;
     pointer-events: none;
     z-index: 0;
+    transition: opacity 0.5s ease;
   }
 
   .gradient-mesh::before {
@@ -63,11 +82,12 @@
     border-radius: 50%;
     background: radial-gradient(
       circle,
-      rgba(99, 102, 241, 0.15) 0%,
-      rgba(139, 92, 246, 0.1) 40%,
+      rgba(59, 130, 246, 0.20) 0%,
+      rgba(6, 182, 212, 0.14) 40%,
       transparent 70%
     );
     filter: blur(80px);
+    transition: background 0.5s ease;
   }
 
   .gradient-mesh::after {
@@ -80,11 +100,30 @@
     border-radius: 50%;
     background: radial-gradient(
       circle,
-      rgba(236, 72, 153, 0.08) 0%,
-      rgba(139, 92, 246, 0.05) 40%,
+      rgba(16, 185, 129, 0.15) 0%,
+      rgba(6, 182, 212, 0.10) 40%,
       transparent 70%
     );
     filter: blur(80px);
+    transition: background 0.5s ease;
+  }
+
+  :root[data-theme="dark"] .gradient-mesh::before {
+    background: radial-gradient(
+      circle,
+      rgba(96, 165, 250, 0.28) 0%,
+      rgba(34, 211, 238, 0.20) 40%,
+      transparent 70%
+    );
+  }
+
+  :root[data-theme="dark"] .gradient-mesh::after {
+    background: radial-gradient(
+      circle,
+      rgba(52, 211, 153, 0.24) 0%,
+      rgba(34, 211, 238, 0.16) 40%,
+      transparent 70%
+    );
   }
 
   /* Reveal animation */
@@ -155,7 +194,7 @@
 
   .prose a {
     text-decoration: underline;
-    text-decoration-color: rgba(99, 102, 241, 0.35);
+    text-decoration-color: rgba(59, 130, 246, 0.35);
     text-underline-offset: 2px;
     transition: text-decoration-color 0.2s ease;
   }
@@ -165,12 +204,55 @@
   }
 
   .prose code {
-    @apply bg-gray-100 px-1.5 py-0.5 rounded text-sm font-medium;
+    @apply bg-surface px-1.5 py-0.5 rounded text-sm font-medium border border-border/70;
   }
 
   .prose pre code {
-    @apply bg-transparent p-0 rounded-none text-sm;
+    @apply bg-transparent p-0 rounded-none text-sm border-none;
   }
+}
+
+/* Shiki Dual Themes (Zero-JS switching via CSS variables) */
+html[data-theme="dark"] .astro-code,
+html[data-theme="dark"] .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+html[data-theme="light"] .astro-code,
+html[data-theme="light"] .astro-code span {
+  color: var(--shiki-light) !important;
+  background-color: var(--shiki-light-bg) !important;
+  font-style: var(--shiki-light-font-style) !important;
+  font-weight: var(--shiki-light-font-weight) !important;
+  text-decoration: var(--shiki-light-text-decoration) !important;
+}
+
+/* View Transitions API circular reveal animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Fallback crossfade during OS or non-view-transition theme switch */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, fill 300ms ease, stroke 300ms ease !important;
+  transition-delay: 0s !important;
 }
 
 /* Reduced motion */
@@ -191,5 +273,16 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  html.theme-transition,
+  html.theme-transition * {
+    transition: none !important;
   }
 }
