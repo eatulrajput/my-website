@@ -22,3 +22,15 @@
 {"message":"[200] / 13ms","label":null,"level":"info"}
 {"message":"[200] / 8ms","label":null,"level":"info"}
 {"message":"[200] / 7ms","label":null,"level":"info"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+[astro] Unable to load your Astro config
+
+{"message":"Cannot find module '@astrojs/tailwind' imported from '/home/atulrajput/Desktop/projects/my-website/astro.config.mjs'\n  Stack trace:\n    at /home/atulrajput/Desktop/projects/my-website/node_modules/vite/dist/node/chunks/node.js:36152:32\n    [...] See full stack trace in the browser, or rerun with --verbose.\n","label":"config","level":"error"}
+{"message":"Continuing with previous valid configuration\n","label":null,"level":"error"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+[astro] Unable to load your Astro config
+
+{"message":"Cannot find module '@astrojs/tailwind' imported from '/home/atulrajput/Desktop/projects/my-website/astro.config.mjs'\n  Stack trace:\n    at fetchModule (file:///home/atulrajput/Desktop/projects/my-website/node_modules/vite/dist/node/chunks/node.js:36152:32)\n    [...] See full stack trace in the browser, or rerun with --verbose.\n","label":"config","level":"error"}
+{"message":"Continuing with previous valid configuration\n","label":null,"level":"error"}
+{"message":"[200] / 7ms","label":null,"level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
