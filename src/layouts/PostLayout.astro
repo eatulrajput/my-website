@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Container from '@/components/ui/Container.astro';
 import Badge from '@/components/ui/Badge.astro';
+import { ArrowLeft } from 'lucide-astro';
 
 interface Props {
   title: string;
@@ -44,15 +45,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
           class="inline-flex items-center gap-2 text-sm text-muted hover:text-text transition-colors group"
           id="post-back-link"
         >
-          <svg
-            class="w-4 h-4 transition-transform group-hover:-translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
+          <ArrowLeft class="w-4 h-4 transition-transform group-hover:-translate-x-1" stroke-width={2} />
           Back to all articles
         </a>
       </div>

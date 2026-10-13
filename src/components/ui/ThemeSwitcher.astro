@@ -1,4 +1,6 @@
 ---
+import { Sun, Monitor, Moon } from 'lucide-astro';
+
 interface Props {
   id?: string;
   class?: string;
@@ -33,19 +35,11 @@ const { id = 'theme-switcher', class: className = '' } = Astro.props;
     title="Light mode"
     tabindex="-1"
   >
-    <svg
+    <Sun
       class="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-250 ease-out group-hover:scale-110"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      stroke-width={2}
       aria-hidden="true"
-    >
-      <circle cx="12" cy="12" r="4"></circle>
-      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
-    </svg>
+    />
   </button>
 
   {/* System option */}
@@ -59,19 +53,11 @@ const { id = 'theme-switcher', class: className = '' } = Astro.props;
     title="System mode (follows device setting)"
     tabindex="0"
   >
-    <svg
+    <Monitor
       class="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-250 ease-out group-hover:scale-110"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      stroke-width={2}
       aria-hidden="true"
-    >
-      <rect width="20" height="14" x="2" y="3" rx="2"></rect>
-      <path d="M8 21h8M12 17v4"></path>
-    </svg>
+    />
   </button>
 
   {/* Dark option */}
@@ -85,17 +71,10 @@ const { id = 'theme-switcher', class: className = '' } = Astro.props;
     title="Dark mode"
     tabindex="-1"
   >
-    <svg
+    <Moon
       class="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-250 ease-out group-hover:scale-110"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      stroke-width={2}
       aria-hidden="true"
-    >
-      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-    </svg>
+    />
   </button>
 </div>

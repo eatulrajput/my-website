@@ -1,6 +1,9 @@
 ---
 import { siteData } from '@/data/site';
 import Container from './Container.astro';
+import GitHub from '@/components/icons/GitHub.astro';
+import LinkedIn from '@/components/icons/LinkedIn.astro';
+import { Rss } from 'lucide-astro';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -17,42 +20,48 @@ const currentYear = new Date().getFullYear();
         </p>
       </div>
 
-      <div class="flex items-center gap-5 text-sm">
+      <div class="flex flex-wrap items-center gap-5 sm:gap-6 text-sm">
         <a
           href={siteData.social.github}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-muted hover:text-text transition-colors p-1"
+          class="social-icon-link inline-flex items-center gap-1.5 text-muted hover:text-accent-from transition-all p-1"
           aria-label="GitHub Profile"
           id="footer-github"
         >
-          GitHub
+          <GitHub size={18} class="w-[18px] h-[18px]" />
+          <span>GitHub</span>
         </a>
+
         <a
           href={siteData.social.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-muted hover:text-text transition-colors p-1"
+          class="social-icon-link inline-flex items-center gap-1.5 text-muted hover:text-accent-from transition-all p-1"
           aria-label="LinkedIn Profile"
           id="footer-linkedin"
         >
-          LinkedIn
+          <LinkedIn size={18} class="w-[18px] h-[18px]" />
+          <span>LinkedIn</span>
         </a>
+
         <a
           href="/rss.xml"
-          class="text-muted hover:text-text transition-colors p-1"
+          class="social-icon-link inline-flex items-center gap-1.5 text-muted hover:text-accent-from transition-all p-1"
           aria-label="RSS Feed"
           id="footer-rss"
         >
-          RSS
+          <Rss class="w-[18px] h-[18px]" stroke-width={2} />
+          <span>RSS</span>
         </a>
+
         <a
           href="/sitemap-index.xml"
-          class="text-muted hover:text-text transition-colors p-1"
+          class="social-icon-link inline-flex items-center gap-1.5 text-muted hover:text-accent-from transition-all p-1"
           aria-label="Sitemap"
           id="footer-sitemap"
         >
-          Sitemap
+          <span>Sitemap</span>
         </a>
       </div>
     </div>

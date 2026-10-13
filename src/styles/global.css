@@ -255,6 +255,50 @@ html.theme-transition *::after {
   transition-delay: 0s !important;
 }
 
+/* Mobile full-screen navigation overlay (PRD Section 5a) */
+.mobile-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 300ms cubic-bezier(0.4, 0, 1, 1),
+              transform 300ms cubic-bezier(0.4, 0, 1, 1),
+              visibility 300ms ease;
+  pointer-events: none;
+}
+
+.mobile-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0ms;
+  pointer-events: auto;
+}
+
+.mobile-nav-link-item {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--link-delay, 0ms);
+}
+
+.mobile-overlay.is-open .mobile-nav-link-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Social icon hover motion (PRD Section 5b) */
+.social-icon-link {
+  transition: color 150ms ease, transform 150ms ease;
+}
+
+.social-icon-link:hover {
+  color: var(--accent-from);
+  transform: translateY(-2px);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .reveal {
@@ -284,5 +328,14 @@ html.theme-transition *::after {
   html.theme-transition,
   html.theme-transition * {
     transition: none !important;
+  }
+
+  .mobile-overlay,
+  .mobile-overlay.is-open,
+  .mobile-nav-link-item,
+  .mobile-overlay.is-open .mobile-nav-link-item,
+  .social-icon-link {
+    transition: none !important;
+    transform: none !important;
   }
 }

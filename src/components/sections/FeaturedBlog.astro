@@ -3,6 +3,7 @@ import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import PostCard from '@/components/blog/PostCard.astro';
 import Button from '@/components/ui/Button.astro';
+import { ArrowRight } from 'lucide-astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -33,9 +34,7 @@ const { posts } = Astro.props;
             class="self-start sm:self-auto shrink-0"
           >
             All articles
-            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+            <ArrowRight class="w-4 h-4 ml-1" stroke-width={2} />
           </Button>
         </div>
 

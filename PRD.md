@@ -68,7 +68,7 @@ Part 1: Product Requirements Document
     Skills section shows a compact list of technologies grouped by category, with no bars or percentages
     Must
     F7
-    Contact section shows email (mailto), GitHub, LinkedIn, and resume download
+    Contact section shows email (mailto), GitHub, LinkedIn, and resume download, each with an icon and a text label
     Must
     F8
     Blog index lists published posts by date; drafts never appear in production
@@ -80,7 +80,7 @@ Part 1: Product Requirements Document
     Home shows the 2 to 3 best blog posts, with a link to the full archive
     Should
     F11
-    Header with anchor navigation (Work, About, Blog, Contact) and the theme switcher, collapsing cleanly on mobile
+    Header with anchor navigation (Work, About, Blog, Contact) and the theme switcher, collapsing into a full-screen menu on mobile (see 5a)
     Must
     F12
     Open Graph image, page titles, meta descriptions, favicon, sitemap
@@ -344,6 +344,63 @@ Part 1: Product Requirements Document
     /rss.xml, /sitemap-index.xml
     Generated
     Hero layout: availability pill, headline, subtext, two buttons, and a blurred gradient mesh behind. Optionally a phone mockup on the right on desktop, stacked below on mobile.
+    5a. Mobile navigation (full-screen menu)
+    Below 768 px the header collapses to the logo, the theme switcher, and a menu button. The menu opens as a full-screen overlay with a smooth ease.
+    Property
+    Spec
+    Coverage
+    Fixed overlay filling the whole viewport (inset: 0, 100dvh), respecting safe-area insets
+    Open animation
+    Overlay fades in (opacity 0 to 1) while moving from translateY(-8px) to 0; 400 ms, cubic-bezier(0.16, 1, 0.3, 1) (ease-out)
+    Close animation
+    Reverse of the open animation; 300 ms, cubic-bezier(0.4, 0, 1, 1) (ease-in)
+    Link entrance
+    Links fade up with a 60 ms stagger, starting about 100 ms after the overlay begins to open
+    Button icon
+    menu icon rotates and cross-fades into x; 250 ms
+    Scroll lock
+    Page scroll locked while open (overflow: hidden), restored on close
+    Closing
+    Close button, tapping a link, the Escape key, or an anchor change
+    Contents
+    Large links (Work, About, Blog, Contact), theme switcher, social icon row, availability pill, resume button
+    Background
+    --bg token with a light backdrop blur, so it works in both themes
+    Reduced motion
+    Opens and closes instantly, with no movement
+    Accessibility: the menu button has aria-expanded; focus moves into the menu on open, stays trapped inside, and returns to the button on close; the page behind is inert. A closed menu uses visibility: hidden after its transition so it is never focusable. The script is under 1 KB.
+    5b. Icons
+    Lucide is the icon set for interface icons. Lucide has deprecated its brand logos, so the GitHub and LinkedIn marks come from Simple Icons as inline SVG. Use @lucide/astro, which renders icons as inline SVG at build time with no client JavaScript; import only the icons in use.
+    Use
+    Icon
+    Source
+    Email
+    mail
+    Lucide
+    GitHub
+    GitHub mark
+    Simple Icons (inline SVG)
+    LinkedIn
+    LinkedIn mark
+    Simple Icons (inline SVG)
+    Resume
+    file-text or download
+    Lucide
+    Project links (live, store)
+    arrow-up-right
+    Lucide
+    Mobile menu
+    menu, x
+    Lucide
+    Theme switcher
+    sun, monitor, moon
+    Lucide
+    Rules
+    • Social links appear in the Contact section, footer, and mobile menu.
+    • In Contact and the mobile menu, each icon has a visible text label (for example, GitHub); icon-only links in the header or footer carry an aria-label.
+    • One consistent size (20 px in lists, 24 px in the mobile menu), a 1.5 to 2 px stroke, and currentColor so icons follow the light and dark tokens.
+    • Touch targets at least 44 px.
+    • Hover: icon color moves to the accent and shifts up 1 to 2 px; 150 ms.
 25. Motion spec
     • Entrance: fade up, 16 to 24 px translate, about 500 ms, ease-out.
     • Stagger: 80 to 100 ms per sibling via a CSS variable (--delay).
@@ -484,7 +541,9 @@ Part 1: Product Requirements Document
 39. The social share preview renders correctly on LinkedIn and WhatsApp.
 40. Light, dark, and system modes all work, persist across reloads, and never flash the wrong theme on load.
 41. The theme change plays the circular reveal (or the crossfade fallback) and is instant under reduced motion.
-42. Open questions
+42. Social links in Contact, the footer, and the mobile menu show icons with text labels or accessible names.
+43. Below 768 px the menu opens full-screen with the specified ease, traps focus, locks scroll, and is instant under reduced motion.
+44. Open questions
     • Which two or three projects will be featured, and are any live on a store or TestFlight?
     • Will a photo be included in the About section?
     • Does the blue-to-green gradient hold up on both light and dark backgrounds once tested on the real page?
