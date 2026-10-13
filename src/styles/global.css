@@ -16,6 +16,10 @@
     --accent-via: #06B6D4;
     --accent-to: #10B981;
     --available: #22C55E;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   :root[data-theme="dark"] {
@@ -299,6 +303,137 @@ html.theme-transition *::after {
   transform: translateY(-2px);
 }
 
+/* Contact Form Wizard animations (PRD Section 5c) */
+.wizard-height-wrapper {
+  transition: height 300ms var(--ease-in-out);
+}
+
+.wizard-step {
+  display: none;
+  opacity: 0;
+  transform: translateX(0);
+}
+
+.wizard-step.active {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.wizard-step.entering-from-right {
+  display: block;
+  animation: stepInRight 350ms var(--ease-out) forwards;
+}
+
+.wizard-step.leaving-to-left {
+  display: block;
+  animation: stepOutLeft 200ms var(--ease-in) forwards;
+}
+
+.wizard-step.entering-from-left {
+  display: block;
+  animation: stepInLeft 350ms var(--ease-out) forwards;
+}
+
+.wizard-step.leaving-to-right {
+  display: block;
+  animation: stepOutRight 200ms var(--ease-in) forwards;
+}
+
+@keyframes stepInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes stepOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+
+@keyframes stepInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes stepOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+
+/* Field shake on validation error */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.shake {
+  animation: shake 300ms ease-in-out;
+}
+
+/* Success checkmark stroke draw animation */
+@keyframes drawCheck {
+  0% {
+    stroke-dashoffset: 48;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: drawCheck 500ms var(--ease-out) 150ms forwards;
+}
+
+/* Field focus state with soft glow */
+.wizard-input:focus {
+  border-color: var(--accent-from);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  outline: none;
+}
+
+/* Topic option selection spring pop */
+.topic-option-card {
+  transition: transform 200ms var(--ease-spring), border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.topic-option-card:hover {
+  transform: translateY(-2px);
+}
+
+.topic-option-card.selected {
+  transform: scale(1.02);
+  border-color: var(--accent-from);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--accent-from), 0 4px 12px rgba(59, 130, 246, 0.08);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .reveal {
@@ -334,8 +469,21 @@ html.theme-transition *::after {
   .mobile-overlay.is-open,
   .mobile-nav-link-item,
   .mobile-overlay.is-open .mobile-nav-link-item,
-  .social-icon-link {
-    transition: none !important;
+  .social-icon-link,
+  .wizard-height-wrapper,
+  .wizard-step,
+  .wizard-step.active,
+  .wizard-step.entering-from-right,
+  .wizard-step.leaving-to-left,
+  .wizard-step.entering-from-left,
+  .wizard-step.leaving-to-right,
+  .shake,
+  .animate-draw-check,
+  .topic-option-card,
+  .topic-option-card.selected {
+    animation: none !important;
+    transition: opacity 100ms linear !important;
     transform: none !important;
+    stroke-dashoffset: 0 !important;
   }
 }

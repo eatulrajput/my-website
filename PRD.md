@@ -11,7 +11,7 @@ Part 1: Product Requirements Document
 6. Provide a blog that shows the ability to explain technical problems clearly.
 7. Non-goals
    • No backend, database, user accounts, or authentication.
-   • No contact form, CMS, or e-commerce.
+   • No CMS, e-commerce, or custom backend.
    • No more than three featured projects.
    • No multi-language support in v1.
 8. Target audience
@@ -68,7 +68,7 @@ Part 1: Product Requirements Document
     Skills section shows a compact list of technologies grouped by category, with no bars or percentages
     Must
     F7
-    Contact section shows email (mailto), GitHub, LinkedIn, and resume download, each with an icon and a text label
+    Contact section shows email (mailto), GitHub, LinkedIn, and resume download, each with an icon and a text label, plus the contact form wizard (see 7a)
     Must
     F8
     Blog index lists published posts by date; drafts never appear in production
@@ -103,13 +103,60 @@ Part 1: Product Requirements Document
     F18
     Theme change animates (circular reveal, with a crossfade fallback) and switches instantly under prefers-reduced-motion
     Must
-12. Content requirements
+    7a. Feature: multi-step contact form
+    The Contact section gains a four-step form wizard so recruiters can send a message without leaving the page. Submissions reach the developer's inbox through the Web3Forms API; the mailto: link stays as a fallback. Motion, easing, and implementation are specified in Part 2, section 5c.
+    Step
+    Fields
+    Needed to continue
+12. About you
+    Name, email
+    Name entered; email is valid
+13. Topic
+    One of: Job opportunity, Freelance project, Collaboration, Just saying hi
+    One option selected
+14. Message
+    Message, optional company or website
+    Message of at least 20 characters
+15. Review and send
+    Read-only summary with an Edit link back to each step
+    None; Send submits the form
+    ID
+    Requirement
+    Priority
+    F19
+    Four-step wizard (About you, Topic, Message, Review and send) with Next and Back buttons; Back keeps what was entered
+    Must
+    F20
+    Progress indicator showing the current step ("Step 2 of 4") and a filling progress bar
+    Must
+    F21
+    Each step validates before advancing, with inline error messages next to the field
+    Must
+    F22
+    Submission is a POST to the Web3Forms API (https://api.web3forms.com/submit) with the form data as JSON
+    Must
+    F23
+    The Web3Forms access key is read from a .env file (PUBLIC_WEB3FORMS_ACCESS_KEY); .env is git-ignored and a .env.example with a placeholder is committed
+    Must
+    F24
+    Spam protection: hidden honeypot field, Send disabled while sending, and one submission per 60 seconds per visitor
+    Should
+    F25
+    Success state with an animated confirmation; error state with Retry and the mailto: fallback
+    Must
+    F26
+    Fully keyboard operable, focus moves to the first field of each new step, errors announced to screen readers, works in light and dark themes
+    Must
+    F27
+    Motion uses the shared easing tokens and is disabled under prefers-reduced-motion
+    Must
+16. Content requirements
     • Headline (draft): "I build fast, polished mobile apps with React Native." The italic word receives the serif accent and gradient.
     • Subtext: one sentence on what the developer builds and for whom.
     • Projects: each must state the problem, the developer's role, the stack, and an outcome or lesson. Prefer apps that are live on TestFlight, the App Store, or the Play Store. Avoid tutorial clones.
     • About: three to five sentences, first person, specific, no buzzwords.
     • Blog: posts about real React Native problems solved (performance, navigation, native modules, state, testing).
-13. Success metrics
+17. Success metrics
     Metric
     Target
     Lighthouse (mobile): Performance, Accessibility, Best Practices, SEO
@@ -124,7 +171,7 @@ Part 1: Product Requirements Document
     Tracked monthly
     Interview or recruiter conversations attributed to the site
     Qualitative, tracked manually
-14. Risks and mitigations
+18. Risks and mitigations
     Risk
     Mitigation
     Weak or too few projects undermines the pitch
@@ -137,7 +184,7 @@ Part 1: Product Requirements Document
     Copy review against the tone rules in section 5
     Over-engineering delays launch
     Treat v1 as a one-weekend build; abstract only on the second repetition
-15. Milestones
+19. Milestones
     Phase
     Deliverable
     Estimate
@@ -159,7 +206,7 @@ Part 1: Product Requirements Document
     5
     SEO, Open Graph, Lighthouse, real-device test, deploy, custom domain
     0.5 day
-16. Launch checklist
+20. Launch checklist
     • Copy reviewed for tone (no pleading, no buzzwords).
     • Every link works; resume is current.
     • Tested on a real iPhone and Android phone in light, dark, and system modes.
@@ -167,8 +214,9 @@ Part 1: Product Requirements Document
     • Social share preview checked on LinkedIn and WhatsApp.
     • Custom domain live with HTTPS.
     • GitHub repo public with a clear README.
+    • Web3Forms key set in the hosting environment, and a live test message received.
     Part 2: Technical Spec Sheet
-17. Stack
+21. Stack
     Layer
     Choice
     Reason
@@ -212,7 +260,7 @@ Part 1: Product Requirements Document
     Custom (for example yourname.dev)
     Strong professionalism signal
     React islands are not used unless a feature genuinely needs client state.
-18. Design tokens
+22. Design tokens
     Defined once in global.css as CSS variables and mapped into Tailwind. Components use token names only, never hex values.
     Token
     Light
@@ -255,9 +303,9 @@ Part 1: Product Requirements Document
     #4ADE80
     Availability dot only
     Gradient usage rules (three places only):
-19. Blurred mesh behind the hero at 10 to 25% opacity in light mode and 15 to 30% in dark mode.
-20. The italic accent word in the headline (bg-clip-text, large text only).
-21. The primary button, or its hover state.
+23. Blurred mesh behind the hero at 10 to 25% opacity in light mode and 15 to 30% in dark mode.
+24. The italic accent word in the headline (bg-clip-text, large text only).
+25. The primary button, or its hover state.
     Alternate palettes to test by swapping tokens: indigo to violet (#6366F1 to #8B5CF6), or orange to pink (#F97316 to #EC4899).
     2a. Theme system (light, dark, system)
     The site offers three modes: Light, Dark, and System. The choice is stored as a preference and applied through a data-theme attribute on <html>.
@@ -310,7 +358,7 @@ Part 1: Product Requirements Document
     • The theme-transition class exists only during the switch, so hover effects and scroll reveals are never slowed.
     • No animation runs on first page load; the inline script sets the theme before paint.
     • Only color properties animate, so the switch causes no layout shift.
-22. Typography
+26. Typography
     Role
     Font
     Notes
@@ -324,13 +372,13 @@ Part 1: Product Requirements Document
     • Type scale: fluid headline (about 40 to 72 px), section headings (28 to 36 px), body 16 to 18 px, small 14 px.
     • Blog reading width of 65 to 70 characters per line, line height 1.6 to 1.75.
     • No full cursive fonts for body or headings.
-23. Layout and responsiveness
+27. Layout and responsiveness
     • Mobile-first. Breakpoints: 640, 768, 1024, 1280 px.
     • Content container max width about 1100 px; blog column about 680 px.
     • Generous vertical spacing between sections (96 to 160 px desktop, 64 to 96 px mobile).
     • Wide elements (tables, code blocks) scroll inside their own container; the page never scrolls sideways.
     • Touch targets at least 44 px.
-24. Page structure
+28. Page structure
     Route
     Content
     /
@@ -401,149 +449,215 @@ Part 1: Product Requirements Document
     • One consistent size (20 px in lists, 24 px in the mobile menu), a 1.5 to 2 px stroke, and currentColor so icons follow the light and dark tokens.
     • Touch targets at least 44 px.
     • Hover: icon color moves to the accent and shifts up 1 to 2 px; 150 ms.
-25. Motion spec
-    • Entrance: fade up, 16 to 24 px translate, about 500 ms, ease-out.
-    • Stagger: 80 to 100 ms per sibling via a CSS variable (--delay).
-    • Trigger: one IntersectionObserver adds a visible class once; elements do not re-animate.
-    • Hover: cards lift slightly with a soft shadow; buttons shift gradient position. CSS transitions only.
-    • Accessibility: a single prefers-reduced-motion rule disables all reveal motion and autoplaying video loops fall back to a poster image.
-    • No parallax, no scroll hijacking, no more than one motion pattern.
-    Theme-change animations are specified separately in section 2b.
-26. Content schemas
-    Projects collection
-    Field
-    Type
-    Notes
-    title
-    string
-    Required
-    summary
-    string
-    One-line problem and solution
-    role
-    string
-    What the developer owned
-    stack
-    string[]
-    For example React Native, Expo, TypeScript
-    outcome
-    string
-    Result or lesson learned
-    links
-    object
-    live, appStore, playStore, testFlight, github (all optional)
-    cover
-    image
-    Poster or screenshot
-    video
-    string (optional)
-    Path to compressed MP4 or WebM
-    featured
-    boolean
-    Shown on home when true
-    order
-    number
-    Sort order
-    Blog collection
-    Field
-    Type
-    Notes
-    title
-    string
-    Required
-    description
-    string
-    Used for meta and cards
-    date
-    date
-    Required
-    tags
-    string[]
-    Optional
-    draft
-    boolean
-    Drafts are excluded from production builds
-    cover
-    image (optional)
-    For cards and Open Graph
-    Site data (src/data/site.ts): name, role title, email, social links, resume path, availability text, navigation items. The header, footer, contact section, and meta tags all read from this single file.
-27. Architecture
-    src/
-    ├── content/
-    │ ├── blog/
-    │ └── projects/
-    ├── content.config.ts
-    ├── data/site.ts
-    ├── styles/global.css
-    ├── layouts/
-    │ ├── BaseLayout.astro
-    │ └── PostLayout.astro
-    ├── components/
-    │ ├── ui/ Button, Badge, StatusPill, Container,
-    │ │ SectionHeading, Card, GradientText, PhoneFrame
-    │ ├── sections/ Hero, Work, About, Skills, Contact
-    │ └── blog/ PostCard, PostMeta
-    ├── pages/
-    │ ├── index.astro
-    │ ├── 404.astro
-    │ ├── rss.xml.ts
-    │ └── blog/ (index.astro, [...slug].astro)
-    └── scripts/reveal.ts
-    Rules
-    • Separate design (tokens), content (collections and site.ts), and structure (components).
-    • Type every component's props with a TypeScript interface.
-    • Use path aliases (@/components, @/data).
-    • Extract a primitive on the second repetition, not the first.
-    • One component per file, named by role.
-    • Tailwind utilities in components; custom CSS only for prose styles and the gradient mesh.
-28. Performance budget
-    Item
-    Budget
-    Client JavaScript on home page
-    Under 10 KB (reveal and theme scripts only)
-    Total page weight (excluding lazy videos)
-    Under 500 KB
-    Each project video
-    Under 1 to 2 MB, lazy-loaded, muted, playsinline
-    Fonts
-    Two families, WOFF2, subsetted, preloaded
-    Images
-    Responsive sizes, modern formats, explicit width and height
-    Lighthouse (mobile)
-    95 or higher in all four categories
-29. Accessibility
-    • Meets WCAG AA contrast (4.5:1 for body text) in both the light and dark themes.
-    • Semantic landmarks (header, main, section, footer) and a logical heading order.
-    • Visible keyboard focus states and a skip-to-content link.
-    • Alt text on all meaningful images; decorative gradients are aria-hidden.
-    • Videos are decorative or have adjacent text describing the app.
-    • Gradient text used only at large sizes.
-    • Theme switcher is keyboard-operable, has labeled options (Light, Dark, System), and announces the current selection.
-30. SEO and sharing
-    • Unique title and meta description per page.
-    • Open Graph and Twitter card tags with a designed 1200 x 630 image.
-    • Canonical URLs, sitemap, and RSS.
-    • Structured data (Person) on the home page.
-    • Favicon set including an Apple touch icon.
-31. Deployment and operations
-    • Git repository on GitHub, public, with a README covering the stack, structure, and how to add a project or post.
-    • Automatic deploys from the main branch; preview URLs for branches.
-    • HTTPS and custom domain.
-    • Privacy-friendly analytics (Plausible or Vercel Analytics) with custom events for email, LinkedIn, and resume clicks.
-    • Contact is a plain mailto: link, with no form to maintain or spam to filter.
-32. Acceptance criteria
-33. All functional requirements marked Must are implemented.
-34. Lighthouse mobile scores are 95 or higher on home, blog index, and a post page.
-35. The site works on a real iPhone and Android device with no horizontal scroll.
-36. Reduced-motion users see no animation and still get all content.
-37. Adding a new project or post requires creating one file and no component changes.
-38. Copy contains no begging language, buzzwords, or skill percentage bars.
-39. The social share preview renders correctly on LinkedIn and WhatsApp.
-40. Light, dark, and system modes all work, persist across reloads, and never flash the wrong theme on load.
-41. The theme change plays the circular reveal (or the crossfade fallback) and is instant under reduced motion.
-42. Social links in Contact, the footer, and the mobile menu show icons with text labels or accessible names.
-43. Below 768 px the menu opens full-screen with the specified ease, traps focus, locks scroll, and is instant under reduced motion.
-44. Open questions
+    5c. Contact form wizard (motion and implementation)
+    The wizard is a plain TypeScript script and an Astro component, with no React. The script loads when the Contact section nears the viewport.
+    Easing tokens (defined once in global.css, shared with the mobile menu)
+    Token
+    Value
+    Used for
+    --ease-out
+    cubic-bezier(0.16, 1, 0.3, 1)
+    Things entering: incoming step, success panel, progress fill
+    --ease-in
+    cubic-bezier(0.4, 0, 1, 1)
+    Things leaving: outgoing step
+    --ease-in-out
+    cubic-bezier(0.65, 0, 0.35, 1)
+    Height changes, button width
+    --ease-spring
+    cubic-bezier(0.34, 1.56, 0.64, 1)
+    Small pops: selected option, step dot
+    Motion
+    Element
+    Animation
+    Duration and ease
+    Step change (forward)
+    Outgoing step fades and moves 24 px left; incoming step fades in from 24 px right
+    200 ms --ease-in out, 350 ms --ease-out in
+    Step change (back)
+    Same, with the directions reversed
+    Same
+    Form height
+    Container height animates to fit the new step, so the page below never jumps
+    300 ms --ease-in-out
+    Progress bar
+    Gradient fill grows to the new step
+    400 ms --ease-out
+    Step dots
+    Completed dot scales from 0.8 to 1 and shows a check icon
+    200 ms --ease-spring
+    Field focus
+    Border shifts to the accent color with a soft glow; label color changes
+    150 ms ease
+    Topic options
+    Hover lifts 2 px; selecting one pops from 0.96 to 1 and gives it a gradient border
+    200 ms --ease-spring
+    Validation error
+    Field shakes 6 px left and right twice; message fades and slides down 4 px
+    300 ms shake, 200 ms --ease-out message
+    Send button
+    Label swaps to a spinner and the button holds its width
+    250 ms --ease-in-out
+    Success
+    Form fades out; confirmation panel scales from 0.96 to 1 and fades in; check icon draws itself with a stroke animation
+    400 ms --ease-out, check draw 500 ms
+    Error
+    Banner slides down above the buttons; Retry stays enabled
+    250 ms --ease-out
+    Reduced motion
+    Steps swap with at most a 100 ms fade; no shake, no draw, no scale
+    Under 100 ms
+    Implementation
+    • All four steps are in one <form>; inactive steps are hidden and inert, so only the current step is reachable by keyboard or screen reader.
+    • States: idle, sending, success, error. The Enter key advances a step; only the last step submits.
+    • Request: POST JSON to https://api.web3forms.com/submit with access_key, name, email, subject (for example "Portfolio: Freelance project from Name"), message, and the hidden botcheck field. Treat a response with success: true as sent; any other response or a 10-second timeout shows the error state.
+    • The topic and optional company are added to the message body so they arrive in the same email.
+    Environment variable
+
+# .env (git-ignored)
+
+PUBLIC*WEB3FORMS_ACCESS_KEY=your_access_key_here
+• Read in code with import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY. Astro only exposes variables with the PUBLIC* prefix to browser code, which this static site needs.
+• Commit a .env.example with a placeholder value, add .env to .gitignore, and set the same variable in the hosting provider's environment settings.
+• Web3Forms access keys are designed to appear in client code: they can only send mail to the address they were created for. Restrict the key to the site's domain in the Web3Forms dashboard if the plan allows it. 6. Motion spec
+• Entrance: fade up, 16 to 24 px translate, about 500 ms, ease-out.
+• Stagger: 80 to 100 ms per sibling via a CSS variable (--delay).
+• Trigger: one IntersectionObserver adds a visible class once; elements do not re-animate.
+• Hover: cards lift slightly with a soft shadow; buttons shift gradient position. CSS transitions only.
+• Accessibility: a single prefers-reduced-motion rule disables all reveal motion and autoplaying video loops fall back to a poster image.
+• No parallax, no scroll hijacking, no more than one motion pattern.
+Theme-change animations are specified separately in section 2b. 7. Content schemas
+Projects collection
+Field
+Type
+Notes
+title
+string
+Required
+summary
+string
+One-line problem and solution
+role
+string
+What the developer owned
+stack
+string[]
+For example React Native, Expo, TypeScript
+outcome
+string
+Result or lesson learned
+links
+object
+live, appStore, playStore, testFlight, github (all optional)
+cover
+image
+Poster or screenshot
+video
+string (optional)
+Path to compressed MP4 or WebM
+featured
+boolean
+Shown on home when true
+order
+number
+Sort order
+Blog collection
+Field
+Type
+Notes
+title
+string
+Required
+description
+string
+Used for meta and cards
+date
+date
+Required
+tags
+string[]
+Optional
+draft
+boolean
+Drafts are excluded from production builds
+cover
+image (optional)
+For cards and Open Graph
+Site data (src/data/site.ts): name, role title, email, social links, resume path, availability text, navigation items. The header, footer, contact section, and meta tags all read from this single file. 8. Architecture
+src/
+├── content/
+│ ├── blog/
+│ └── projects/
+├── content.config.ts
+├── data/site.ts
+├── styles/global.css
+├── layouts/
+│ ├── BaseLayout.astro
+│ └── PostLayout.astro
+├── components/
+│ ├── ui/ Button, Badge, StatusPill, Container,
+│ │ SectionHeading, Card, GradientText, PhoneFrame
+│ ├── sections/ Hero, Work, About, Skills, Contact
+│ └── blog/ PostCard, PostMeta
+├── pages/
+│ ├── index.astro
+│ ├── 404.astro
+│ ├── rss.xml.ts
+│ └── blog/ (index.astro, [...slug].astro)
+└── scripts/reveal.ts
+Rules
+• Separate design (tokens), content (collections and site.ts), and structure (components).
+• Type every component's props with a TypeScript interface.
+• Use path aliases (@/components, @/data).
+• Extract a primitive on the second repetition, not the first.
+• One component per file, named by role.
+• Tailwind utilities in components; custom CSS only for prose styles and the gradient mesh. 9. Performance budget
+Item
+Budget
+Client JavaScript on home page
+Under 15 KB (reveal, theme, menu, and form scripts; the form script loads when Contact nears the viewport)
+Total page weight (excluding lazy videos)
+Under 500 KB
+Each project video
+Under 1 to 2 MB, lazy-loaded, muted, playsinline
+Fonts
+Two families, WOFF2, subsetted, preloaded
+Images
+Responsive sizes, modern formats, explicit width and height
+Lighthouse (mobile)
+95 or higher in all four categories 10. Accessibility
+• Meets WCAG AA contrast (4.5:1 for body text) in both the light and dark themes.
+• Semantic landmarks (header, main, section, footer) and a logical heading order.
+• Visible keyboard focus states and a skip-to-content link.
+• Alt text on all meaningful images; decorative gradients are aria-hidden.
+• Videos are decorative or have adjacent text describing the app.
+• Gradient text used only at large sizes.
+• Theme switcher is keyboard-operable, has labeled options (Light, Dark, System), and announces the current selection. 11. SEO and sharing
+• Unique title and meta description per page.
+• Open Graph and Twitter card tags with a designed 1200 x 630 image.
+• Canonical URLs, sitemap, and RSS.
+• Structured data (Person) on the home page.
+• Favicon set including an Apple touch icon. 12. Deployment and operations
+• Git repository on GitHub, public, with a README covering the stack, structure, and how to add a project or post.
+• Automatic deploys from the main branch; preview URLs for branches.
+• HTTPS and custom domain.
+• Privacy-friendly analytics (Plausible or Vercel Analytics) with custom events for email, LinkedIn, and resume clicks.
+• Contact is a plain mailto: link, alongside a multi-step form handled by Web3Forms, so there is no backend to maintain. 13. Acceptance criteria
+
+1. All functional requirements marked Must are implemented.
+2. Lighthouse mobile scores are 95 or higher on home, blog index, and a post page.
+3. The site works on a real iPhone and Android device with no horizontal scroll.
+4. Reduced-motion users see no animation and still get all content.
+5. Adding a new project or post requires creating one file and no component changes.
+6. Copy contains no begging language, buzzwords, or skill percentage bars.
+7. The social share preview renders correctly on LinkedIn and WhatsApp.
+8. Light, dark, and system modes all work, persist across reloads, and never flash the wrong theme on load.
+9. The theme change plays the circular reveal (or the crossfade fallback) and is instant under reduced motion.
+10. Social links in Contact, the footer, and the mobile menu show icons with text labels or accessible names.
+11. Below 768 px the menu opens full-screen with the specified ease, traps focus, locks scroll, and is instant under reduced motion.
+12. The contact wizard completes all four steps, validates each step, and a test submission arrives in the developer's inbox through Web3Forms.
+13. The Web3Forms key is read from .env, no key is committed to the repository, and the success, error, and reduced-motion states all work.
+14. Open questions
     • Which two or three projects will be featured, and are any live on a store or TestFlight?
     • Will a photo be included in the About section?
     • Does the blue-to-green gradient hold up on both light and dark backgrounds once tested on the real page?
