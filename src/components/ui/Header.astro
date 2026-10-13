@@ -12,6 +12,18 @@ interface Props {
 }
 
 const { currentPath = '/' } = Astro.props;
+
+const isHome = currentPath === '/' || currentPath === '';
+
+const resolveNavHref = (href: string) => {
+  if (href.startsWith('/#')) {
+    return isHome ? href.substring(1) : href;
+  }
+  if (href.startsWith('#')) {
+    return isHome ? href : `/${href}`;
+  }
+  return href;
+};
 ---
 
 <header class="sticky top-0 z-40 w-full border-b border-border/70 bg-bg/85 backdrop-blur-md">
@@ -34,7 +46,7 @@ const { currentPath = '/' } = Astro.props;
       <nav class="hidden md:flex items-center gap-7 text-sm font-medium" aria-label="Main Navigation">
         {siteData.nav.map((item) => (
           <a
-            href={item.href}
+            href={resolveNavHref(item.href)}
             class="text-muted hover:text-text transition-colors duration-150 py-1"
             id={`nav-link-${item.label.toLowerCase()}`}
           >
@@ -130,7 +142,7 @@ const { currentPath = '/' } = Astro.props;
       {siteData.nav.map((item, index) => (
         <div class="mobile-nav-link-item" style={`--link-delay: ${100 + index * 60}ms;`}>
           <a
-            href={item.href}
+            href={resolveNavHref(item.href)}
             class="mobile-overlay-link block text-3xl font-extrabold tracking-tight text-text hover:text-accent-from transition-colors py-1.5 focus-visible:outline-2 focus-visible:outline-accent-from"
           >
             {item.label}

@@ -90,3 +90,33 @@
 {"message":"[200] /blog 207ms","label":null,"level":"info"}
 {"message":"[200] /blog/rethinking-offline-sync-mobile-apps 257ms","label":null,"level":"info"}
 {"message":"[200] /blog 150ms","label":null,"level":"info"}
+{"message":"[200] /blog 146ms","label":null,"level":"info"}
+{"message":"[200] / 165ms","label":null,"level":"info"}
+{"message":"[200] /blog 168ms","label":null,"level":"info"}
+{"message":"[200] /blog 165ms","label":null,"level":"info"}
+{"message":"[200] / 182ms","label":null,"level":"info"}
+{"message":"[200] /blog 188ms","label":null,"level":"info"}
+{"message":"[200] /blog 177ms","label":null,"level":"info"}
+{"message":"[200] / 180ms","label":null,"level":"info"}
+{"message":"[200] /blog 159ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] /blog 278ms","label":null,"level":"info"}
+{"message":"src/components/ui/Header.astro","label":"watch","level":"info"}
+{"message":"[200] /blog 206ms","label":null,"level":"info"}
+{"message":"[200] / 266ms","label":null,"level":"info"}
+{"message":"src/components/ui/Header.astro","label":"watch","level":"info"}
+{"message":"[200] / 341ms","label":null,"level":"info"}
+{"message":"src/components/ui/Header.astro","label":"watch","level":"info"}
+{"message":"[200] / 204ms","label":null,"level":"info"}
+{"message":"program reload","label":"vite","level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"program reload","label":"vite","level":"info"}
+{"message":"[200] / 1303ms","label":null,"level":"info"}
+{"message":"[200] / 217ms","label":null,"level":"info"}
+{"message":"[200] /blog 244ms","label":null,"level":"info"}
+{"message":"[200] / 181ms","label":null,"level":"info"}
+{"message":"[200] /blog 173ms","label":null,"level":"info"}
+{"message":"[200] / 175ms","label":null,"level":"info"}
+{"message":"[200] /blog 166ms","label":null,"level":"info"}
+{"message":"[200] / 164ms","label":null,"level":"info"}
