@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "stack": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outcome": {
+      "type": "string"
+    },
+    "links": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "live": {
+          "type": "string"
+        },
+        "appStore": {
+          "type": "string"
+        },
+        "playStore": {
+          "type": "string"
+        },
+        "testFlight": {
+          "type": "string"
+        },
+        "github": {
+          "type": "string"
+        }
+      }
+    },
+    "cover": {
+      "type": "string"
+    },
+    "video": {
+      "type": "string"
+    },
+    "featured": {
+      "default": true,
+      "type": "boolean"
+    },
+    "order": {
+      "default": 1,
+      "type": "number"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "summary",
+    "role",
+    "stack",
+    "outcome",
+    "cover"
+  ]
+}

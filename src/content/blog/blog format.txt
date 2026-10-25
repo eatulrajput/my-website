@@ -1,0 +1,12 @@
+---
+title: "Your Post Title Here"
+description: "A clear, compelling summary of the article."
+date: 2026-10-25
+tags:
+  - "Technical"
+  - "React Native"
+draft: false
+cover: "/og-image.svg"
+---
+
+Your content in standard Markdown or MDX starts here...
