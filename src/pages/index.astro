@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Work from '@/components/sections/Work.astro';
+import About from '@/components/sections/About.astro';
+import Skills from '@/components/sections/Skills.astro';
+import FeaturedBlog from '@/components/sections/FeaturedBlog.astro';
+import Contact from '@/components/sections/Contact.astro';
+
+// Fetch projects ordered by order field
+const rawProjects = await getCollection('projects');
+const projects = rawProjects
+  .filter((project) => project.data.featured)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+// Fetch published blog posts sorted by date
+const rawPosts = await getCollection('blog');
+const posts = rawPosts
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout>
+  <Hero />
+  <Work projects={projects} />
+  <About />
+  <Skills />
+  <FeaturedBlog posts={posts} />
+  <Contact />
+</BaseLayout>

@@ -1,0 +1,86 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+import ContactWizard from '@/components/ui/ContactWizard.astro';
+import GitHub from '@/components/icons/GitHub.astro';
+import LinkedIn from '@/components/icons/LinkedIn.astro';
+import { Mail, Download } from 'lucide-astro';
+import { siteData } from '@/data/site';
+---
+
+<section class="py-16 sm:py-24" id="contact">
+  <Container>
+    <div class="max-w-3xl mx-auto text-center">
+      <SectionHeading
+        kicker="Get In Touch"
+        title="Let's build something fast and polished"
+        subtitle={`I'm currently considering mobile engineering roles and select contract opportunities. Send a message below or reach out directly.`}
+        align="center"
+        id="contact-heading"
+      />
+
+      {/* Multi-step Contact Form Wizard (PRD 7a & 5c) */}
+      <div class="reveal mt-8 mb-12" style="--delay: 150ms;">
+        <ContactWizard />
+      </div>
+
+      {/* Fallback Direct Contact & Social Links (PRD F7 & 5b) */}
+      <div class="reveal pt-6 border-t border-border/80" style="--delay: 250ms;">
+        <p class="text-xs uppercase tracking-wider text-muted font-bold mb-4">
+          Or reach out directly
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full">
+          <Button
+            href={`mailto:${siteData.email}`}
+            variant="secondary"
+            size="md"
+            id="contact-direct-email"
+            class="min-h-[44px]"
+          >
+            <Mail class="w-5 h-5 mr-1 text-accent-from" stroke-width={2} />
+            <span>{siteData.email}</span>
+          </Button>
+
+          <Button
+            href={siteData.resume}
+            variant="secondary"
+            size="md"
+            id="contact-btn-resume"
+            download
+            class="min-h-[44px]"
+          >
+            <Download class="w-5 h-5 mr-1" stroke-width={2} />
+            <span>Download Resume</span>
+          </Button>
+
+          <Button
+            href={siteData.social.linkedin}
+            variant="outline"
+            size="md"
+            id="contact-btn-linkedin"
+            class="min-h-[44px]"
+          >
+            <LinkedIn size={20} class="w-5 h-5 mr-1 text-current" />
+            <span>LinkedIn</span>
+          </Button>
+
+          <Button
+            href={siteData.social.github}
+            variant="outline"
+            size="md"
+            id="contact-btn-github"
+            class="min-h-[44px]"
+          >
+            <GitHub size={20} class="w-5 h-5 mr-1 text-current" />
+            <span>GitHub</span>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+{/* Client script for wizard interactions */}
+<script src="../../scripts/contact.ts"></script>

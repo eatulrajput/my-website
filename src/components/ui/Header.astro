@@ -1,0 +1,339 @@
+---
+import { siteData } from '@/data/site';
+import Container from './Container.astro';
+import ThemeSwitcher from './ThemeSwitcher.astro';
+import StatusPill from './StatusPill.astro';
+import GitHub from '@/components/icons/GitHub.astro';
+import LinkedIn from '@/components/icons/LinkedIn.astro';
+import { Menu, X, Mail, Download, ArrowUpRight } from 'lucide-astro';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+const isHome = currentPath === '/' || currentPath === '';
+
+const resolveNavHref = (href: string) => {
+  if (href.startsWith('/#')) {
+    return isHome ? href.substring(1) : href;
+  }
+  if (href.startsWith('#')) {
+    return isHome ? href : `/${href}`;
+  }
+  return href;
+};
+---
+
+<header class="sticky top-0 z-40 w-full border-b border-border/70 bg-bg/85 backdrop-blur-md">
+  <Container>
+    <div class="flex h-16 items-center justify-between gap-3">
+      {/* Brand / Logo */}
+      <a
+        href="/"
+        class="group flex items-center gap-2 font-bold text-text text-base tracking-tight hover:opacity-90 transition-opacity shrink-0"
+        id="nav-logo"
+        aria-label={`${siteData.name} - Home`}
+      >
+        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-text text-bg text-sm font-semibold transition-transform group-hover:scale-105">
+          AR
+        </span>
+        <span class="font-semibold">{siteData.name}</span>
+      </a>
+
+      {/* Desktop Navigation (>= 768px) */}
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium" aria-label="Main Navigation">
+        {siteData.nav.map((item) => (
+          <a
+            href={resolveNavHref(item.href)}
+            class="text-muted hover:text-text transition-colors duration-150 py-1"
+            id={`nav-link-${item.label.toLowerCase()}`}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      {/* Right Controls: Desktop Switcher & CTA, Mobile Switcher & Menu Button */}
+      <div class="flex items-center gap-2 sm:gap-3">
+        {/* Theme Switcher (visible on BOTH desktop and mobile top bar) */}
+        <ThemeSwitcher id="header-theme-switcher" />
+
+        {/* Desktop CTA */}
+        <a
+          href="mailto:hello@atulrajput.dev"
+          class="hidden md:inline-flex items-center gap-1.5 justify-center px-4 py-2 rounded-full text-xs font-semibold bg-text text-bg hover:opacity-90 transition-opacity shadow-xs min-h-[36px]"
+          id="header-cta-email"
+        >
+          <Mail class="w-3.5 h-3.5" stroke-width={2} />
+          <span>Say Hello</span>
+        </a>
+
+        {/* Mobile menu toggle button (< 768px) */}
+        <button
+          type="button"
+          id="mobile-menu-toggle"
+          class="relative md:hidden inline-flex items-center justify-center p-2 rounded-lg text-muted hover:text-text hover:bg-surface transition-colors min-h-[44px] min-w-[44px] focus-visible:outline-2 focus-visible:outline-accent-from"
+          aria-expanded="false"
+          aria-controls="mobile-menu-overlay"
+          aria-label="Toggle navigation menu"
+        >
+          <Menu
+            id="menu-icon-bars"
+            class="w-5 h-5 transition-transform duration-250 ease-out"
+            stroke-width={2}
+          />
+          <X
+            id="menu-icon-cross"
+            class="w-5 h-5 absolute transition-transform duration-250 ease-out opacity-0 rotate-90 scale-75 pointer-events-none"
+            stroke-width={2}
+          />
+        </button>
+      </div>
+    </div>
+  </Container>
+</header>
+
+{/* Full-screen Mobile Navigation Overlay (< 768px, PRD Section 5a) */}
+<div
+  id="mobile-menu-overlay"
+  class="mobile-overlay fixed inset-0 z-50 md:hidden bg-bg/95 backdrop-blur-md flex flex-col justify-between overflow-y-auto px-6 py-6"
+  aria-modal="true"
+  role="dialog"
+  aria-label="Mobile Navigation Menu"
+>
+  {/* Top Bar inside overlay */}
+  <div class="flex items-center justify-between h-12 border-b border-border/60 pb-4">
+    <a
+      href="/"
+      class="flex items-center gap-2 font-bold text-text text-base tracking-tight mobile-overlay-link"
+      aria-label={`${siteData.name} - Home`}
+    >
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-text text-bg text-sm font-semibold">
+        AR
+      </span>
+      <span class="font-semibold">{siteData.name}</span>
+    </a>
+
+    <div class="flex items-center gap-3">
+      {/* Theme Switcher inside mobile overlay */}
+      <ThemeSwitcher id="mobile-menu-theme-switcher" />
+
+      {/* Close button */}
+      <button
+        type="button"
+        id="mobile-menu-close"
+        class="inline-flex items-center justify-center p-2 rounded-lg text-muted hover:text-text hover:bg-surface transition-colors min-h-[44px] min-w-[44px] focus-visible:outline-2 focus-visible:outline-accent-from"
+        aria-label="Close navigation menu"
+      >
+        <X class="w-6 h-6" stroke-width={2} />
+      </button>
+    </div>
+  </div>
+
+  {/* Main Navigation Links */}
+  <div class="py-8 my-auto flex flex-col justify-center space-y-6">
+    <div class="mb-4">
+      <StatusPill text={siteData.availability} />
+    </div>
+
+    <nav class="flex flex-col space-y-4" aria-label="Mobile Full-screen Navigation">
+      {siteData.nav.map((item, index) => (
+        <div class="mobile-nav-link-item" style={`--link-delay: ${100 + index * 60}ms;`}>
+          <a
+            href={resolveNavHref(item.href)}
+            class="mobile-overlay-link block text-3xl font-extrabold tracking-tight text-text hover:text-accent-from transition-colors py-1.5 focus-visible:outline-2 focus-visible:outline-accent-from"
+          >
+            {item.label}
+          </a>
+        </div>
+      ))}
+    </nav>
+
+    {/* Action buttons in mobile menu */}
+    <div
+      class="mobile-nav-link-item pt-4 flex flex-col sm:flex-row gap-3"
+      style={`--link-delay: ${100 + siteData.nav.length * 60}ms;`}
+    >
+      <a
+        href="mailto:hello@atulrajput.dev"
+        class="mobile-overlay-link inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm font-semibold bg-text text-bg hover:opacity-90 transition-opacity shadow-xs min-h-[44px]"
+      >
+        <Mail class="w-4 h-4" stroke-width={2} />
+        <span>Say Hello</span>
+      </a>
+
+      <a
+        href={siteData.resume}
+        download
+        class="mobile-overlay-link inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm font-semibold bg-surface text-text border border-border hover:border-muted/40 transition-colors shadow-xs min-h-[44px]"
+      >
+        <Download class="w-4 h-4" stroke-width={2} />
+        <span>Resume (PDF)</span>
+      </a>
+    </div>
+  </div>
+
+  {/* Bottom Social Links Row with Visible Text Labels (PRD Section 5a & 5b) */}
+  <div class="pt-6 border-t border-border/60">
+    <div class="text-xs font-semibold text-muted uppercase tracking-wider mb-3">
+      Connect
+    </div>
+    <div class="flex items-center gap-6">
+      <a
+        href={siteData.social.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon-link flex items-center gap-2 text-sm font-medium text-muted hover:text-accent-from transition-all min-h-[44px]"
+        aria-label="GitHub Profile"
+      >
+        <GitHub size={24} class="w-6 h-6" />
+        <span>GitHub</span>
+      </a>
+
+      <a
+        href={siteData.social.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon-link flex items-center gap-2 text-sm font-medium text-muted hover:text-accent-from transition-all min-h-[44px]"
+        aria-label="LinkedIn Profile"
+      >
+        <LinkedIn size={24} class="w-6 h-6" />
+        <span>LinkedIn</span>
+      </a>
+
+      <a
+        href={`mailto:${siteData.email}`}
+        class="social-icon-link flex items-center gap-2 text-sm font-medium text-muted hover:text-accent-from transition-all min-h-[44px]"
+        aria-label="Email Atul Rajput"
+      >
+        <Mail class="w-6 h-6" stroke-width={2} />
+        <span>Email</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupFullScreenMobileMenu() {
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const iconBars = document.getElementById('menu-icon-bars');
+    const iconCross = document.getElementById('menu-icon-cross');
+    const mainContent = document.getElementById('main');
+    const footer = document.querySelector('footer');
+
+    if (!toggleBtn || !overlay) return;
+
+    let isOpen = false;
+
+    function openMenu() {
+      if (isOpen) return;
+      isOpen = true;
+
+      // Update button state
+      toggleBtn?.setAttribute('aria-expanded', 'true');
+      if (iconBars && iconCross) {
+        iconBars.classList.add('opacity-0', '-rotate-90', 'scale-75');
+        iconCross.classList.remove('opacity-0', 'rotate-90', 'scale-75');
+      }
+
+      // Show overlay & lock scroll
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+
+      // Set inert on background
+      if (mainContent) mainContent.setAttribute('inert', '');
+      if (footer) footer.setAttribute('inert', '');
+
+      // Focus first link or close button inside overlay
+      const firstFocusable = overlay.querySelector<HTMLElement>(
+        'a, button:not([tabindex="-1"])'
+      );
+      firstFocusable?.focus();
+    }
+
+    function closeMenu() {
+      if (!isOpen) return;
+      isOpen = false;
+
+      // Update button state
+      toggleBtn?.setAttribute('aria-expanded', 'false');
+      if (iconBars && iconCross) {
+        iconBars.classList.remove('opacity-0', '-rotate-90', 'scale-75');
+        iconCross.classList.add('opacity-0', 'rotate-90', 'scale-75');
+      }
+
+      // Hide overlay & unlock scroll
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+
+      // Remove inert on background
+      if (mainContent) mainContent.removeAttribute('inert');
+      if (footer) footer.removeAttribute('inert');
+
+      // Return focus to toggle button
+      toggleBtn?.focus();
+    }
+
+    // Toggle button click
+    toggleBtn.addEventListener('click', () => {
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Close button click
+    closeBtn?.addEventListener('click', closeMenu);
+
+    // Close on tapping any link
+    overlay.querySelectorAll('.mobile-overlay-link').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        closeMenu();
+      }
+    });
+
+    // Focus trap inside overlay
+    overlay.addEventListener('keydown', (e) => {
+      if (!isOpen || e.key !== 'Tab') return;
+
+      const focusables = Array.from(
+        overlay.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]):not([tabindex="-1"]), [tabindex="0"]'
+        )
+      );
+
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    // Close on hashchange
+    window.addEventListener('hashchange', closeMenu);
+  }
+
+  setupFullScreenMobileMenu();
+  document.addEventListener('astro:page-load', setupFullScreenMobileMenu);
+</script>

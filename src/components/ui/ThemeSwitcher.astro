@@ -1,0 +1,80 @@
+---
+import { Sun, Monitor, Moon } from 'lucide-astro';
+
+interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id = 'theme-switcher', class: className = '' } = Astro.props;
+---
+
+<div
+  id={id}
+  class:list={[
+    'theme-switcher relative inline-flex items-center p-0.5 rounded-full bg-surface border border-border shadow-xs select-none',
+    className,
+  ]}
+  role="radiogroup"
+  aria-label="Theme preference"
+>
+  {/* Sliding indicator highlight */}
+  <span
+    class="theme-indicator absolute inset-y-0.5 left-0 rounded-full bg-bg border border-border/80 shadow-xs pointer-events-none transition-all duration-200 ease-out"
+    aria-hidden="true"
+  ></span>
+
+  {/* Light option */}
+  <button
+    type="button"
+    role="radio"
+    aria-checked="false"
+    data-theme-value="light"
+    class="theme-btn group relative z-10 inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full text-muted hover:text-text transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent-from"
+    aria-label="Light mode"
+    title="Light mode"
+    tabindex="-1"
+  >
+    <Sun
+      class="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-250 ease-out group-hover:scale-110"
+      stroke-width={2}
+      aria-hidden="true"
+    />
+  </button>
+
+  {/* System option */}
+  <button
+    type="button"
+    role="radio"
+    aria-checked="true"
+    data-theme-value="system"
+    class="theme-btn group relative z-10 inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full text-muted hover:text-text transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent-from"
+    aria-label="System mode"
+    title="System mode (follows device setting)"
+    tabindex="0"
+  >
+    <Monitor
+      class="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-250 ease-out group-hover:scale-110"
+      stroke-width={2}
+      aria-hidden="true"
+    />
+  </button>
+
+  {/* Dark option */}
+  <button
+    type="button"
+    role="radio"
+    aria-checked="false"
+    data-theme-value="dark"
+    class="theme-btn group relative z-10 inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full text-muted hover:text-text transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent-from"
+    aria-label="Dark mode"
+    title="Dark mode"
+    tabindex="-1"
+  >
+    <Moon
+      class="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-250 ease-out group-hover:scale-110"
+      stroke-width={2}
+      aria-hidden="true"
+    />
+  </button>
+</div>

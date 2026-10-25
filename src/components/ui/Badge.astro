@@ -1,0 +1,24 @@
+---
+interface Props {
+  variant?: 'default' | 'accent' | 'subtle';
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const { variant = 'default', size = 'sm', class: className = '' } = Astro.props;
+
+const variantStyles = {
+  default: 'bg-surface text-muted border border-border/80 shadow-xs',
+  accent: 'bg-accent-from/10 text-accent-from border border-accent-from/20',
+  subtle: 'bg-surface text-muted border border-border/60',
+};
+
+const sizeStyles = {
+  sm: 'text-xs px-2.5 py-1 rounded-md font-medium',
+  md: 'text-sm px-3 py-1.5 rounded-lg font-medium',
+};
+---
+
+<span class:list={['inline-flex items-center gap-1 leading-none select-none', variantStyles[variant], sizeStyles[size], className]}>
+  <slot />
+</span>

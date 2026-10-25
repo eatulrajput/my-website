@@ -1,0 +1,145 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Badge from '@/components/ui/Badge.astro';
+import PhoneFrame from '@/components/ui/PhoneFrame.astro';
+import Button from '@/components/ui/Button.astro';
+import GitHub from '@/components/icons/GitHub.astro';
+import { ArrowUpRight } from 'lucide-astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { projects } = Astro.props;
+---
+
+<section class="py-16 sm:py-24" id="work">
+  <Container>
+    <SectionHeading
+      kicker="Selected Work"
+      title="Apps built for real-world impact"
+      subtitle="Production mobile applications engineered with React Native, focused on high frame rates, offline resilience, and delightful UX."
+      id="work-heading"
+    />
+
+    <div class="space-y-16 sm:space-y-24 mt-12">
+      {
+        projects.map((project, index) => {
+          const { title, summary, role, stack, outcome, links, cover, video } = project.data;
+          const isEven = index % 2 === 1;
+
+          return (
+            <article
+              class="reveal group bg-surface rounded-3xl border border-border p-6 sm:p-10 shadow-xs hover:shadow-xl hover:shadow-accent-from/5 transition-all duration-300"
+              style={`--delay: ${index * 120}ms;`}
+            >
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                {/* Project Details */}
+                <div class:list={['lg:col-span-7 flex flex-col justify-center', isEven && 'lg:order-2']}>
+                  <div class="flex flex-wrap items-center gap-2 mb-4">
+                    {stack.map((tech) => (
+                      <Badge variant="subtle">{tech}</Badge>
+                    ))}
+                  </div>
+
+                  <h3 class="text-2xl sm:text-3xl font-bold text-text mb-3 tracking-tight">
+                    {title}
+                  </h3>
+
+                  <p class="text-base sm:text-lg text-muted mb-6 leading-relaxed">
+                    {summary}
+                  </p>
+
+                  <div class="space-y-4 rounded-xl bg-bg/60 p-4 sm:p-5 border border-border/60 mb-6 text-sm">
+                    <div>
+                      <span class="font-semibold text-text">Role & Ownership:</span>{' '}
+                      <span class="text-muted">{role}</span>
+                    </div>
+                    <div>
+                      <span class="font-semibold text-text">Key Outcome:</span>{' '}
+                      <span class="text-muted">{outcome}</span>
+                    </div>
+                  </div>
+
+                  {/* Project Links */}
+                  <div class="flex flex-wrap items-center gap-3 pt-2">
+                    {links.live && (
+                      <Button
+                        href={links.live}
+                        variant="primary"
+                        size="sm"
+                        id={`project-${project.id}-live`}
+                      >
+                        Live Demo
+                        <ArrowUpRight class="w-4 h-4 ml-1" stroke-width={2} />
+                      </Button>
+                    )}
+
+                    {links.appStore && (
+                      <Button
+                        href={links.appStore}
+                        variant="secondary"
+                        size="sm"
+                        id={`project-${project.id}-appstore`}
+                      >
+                        App Store
+                        <ArrowUpRight class="w-4 h-4 ml-1" stroke-width={2} />
+                      </Button>
+                    )}
+
+                    {links.playStore && (
+                      <Button
+                        href={links.playStore}
+                        variant="secondary"
+                        size="sm"
+                        id={`project-${project.id}-playstore`}
+                      >
+                        Google Play
+                        <ArrowUpRight class="w-4 h-4 ml-1" stroke-width={2} />
+                      </Button>
+                    )}
+
+                    {links.testFlight && (
+                      <Button
+                        href={links.testFlight}
+                        variant="secondary"
+                        size="sm"
+                        id={`project-${project.id}-testflight`}
+                      >
+                        TestFlight
+                        <ArrowUpRight class="w-4 h-4 ml-1" stroke-width={2} />
+                      </Button>
+                    )}
+
+                    {links.github && (
+                      <Button
+                        href={links.github}
+                        variant="outline"
+                        size="sm"
+                        id={`project-${project.id}-github`}
+                      >
+                        Source Code
+                        <GitHub size={16} class="w-4 h-4 ml-1" />
+                      </Button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Phone Preview */}
+                <div class:list={['lg:col-span-5 flex justify-center', isEven && 'lg:order-1']}>
+                  <PhoneFrame
+                    title={title}
+                    cover={cover}
+                    video={video}
+                  />
+                </div>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </Container>
+</section>

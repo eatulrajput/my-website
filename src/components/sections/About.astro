@@ -1,0 +1,53 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import { siteData } from '@/data/site';
+---
+
+<section class="py-16 sm:py-24 bg-surface/50 border-y border-border/70" id="about">
+  <Container>
+    <div class="max-w-3xl">
+      <SectionHeading
+        kicker="Background"
+        title="Engineering for feel and performance"
+        id="about-heading"
+      />
+
+      <div class="reveal space-y-6 text-base sm:text-lg text-text/80 leading-relaxed font-normal" style="--delay: 150ms;">
+        <p>
+          I am a mobile engineer specializing in React Native, Expo, and native platform bridges. My focus is on writing deterministic, buttery-smooth client applications that maintain 60 FPS even under heavy list virtualization and complex gesture interactions.
+        </p>
+
+        <p>
+          Rather than relying solely on out-of-the-box abstractions, I dig into native iOS and Android profiling tools (Instruments, Android Studio Profiler, and React DevTools) to eliminate unnecessary re-renders, optimize bridge serialization, and keep memory footprints lean.
+        </p>
+
+        <p>
+          I graduated in Computer Science in 2026 and have taken apps from initial architectural design through store approval on both Google Play and Apple App Store. I value clear communication, comprehensive pull requests, and predictable release pipelines.
+        </p>
+      </div>
+
+      {/* Focus values */}
+      <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 pt-8 border-t border-border/70" style="--delay: 250ms;">
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-text mb-1">Architecture</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Clean module boundaries, offline-first state synchronizers, and strongly-typed APIs.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-text mb-1">Fluid Motion</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Declarative gesture pipelines utilizing Reanimated 3 running on UI worklets.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-text mb-1">Reliability</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Automated CI/CD with EAS Build, Fastlane, and end-to-end Maestro testing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,84 @@
+---
+import { siteData } from '@/data/site';
+import Container from '@/components/ui/Container.astro';
+import StatusPill from '@/components/ui/StatusPill.astro';
+import Button from '@/components/ui/Button.astro';
+import GradientText from '@/components/ui/GradientText.astro';
+import { ArrowDown } from 'lucide-astro';
+---
+
+<section class="relative pt-12 pb-16 sm:pt-20 sm:pb-28 overflow-hidden" id="hero">
+  {/* Blurred background gradient mesh */}
+  <div class="gradient-mesh" aria-hidden="true"></div>
+
+  <Container class="relative z-10">
+    <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
+      {/* Availability pill */}
+      <div class="reveal mb-6" style="--delay: 100ms;">
+        <StatusPill text={siteData.availability} />
+      </div>
+
+      {/* Main headline */}
+      <h1
+        class="reveal text-fluid-hero font-extrabold tracking-tight text-text leading-[1.08] mb-6"
+        style="--delay: 180ms;"
+      >
+        I build fast, <GradientText serif={true}>{siteData.accentWord}</GradientText> mobile apps with React Native.
+      </h1>
+
+      {/* Subtext */}
+      <p
+        class="reveal text-lg sm:text-xl text-muted leading-relaxed max-w-2xl mb-10"
+        style="--delay: 260ms;"
+      >
+        {siteData.subtext}
+      </p>
+
+      {/* Action buttons */}
+      <div
+        class="reveal flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+        style="--delay: 340ms;"
+      >
+        <Button
+          variant="primary"
+          size="lg"
+          href="#work"
+          id="hero-btn-work"
+          class="w-full sm:w-auto shadow-md shadow-accent-from/20"
+        >
+          View work
+          <ArrowDown class="w-4 h-4 ml-1" stroke-width={2} />
+        </Button>
+
+        <Button
+          variant="secondary"
+          size="lg"
+          href="#contact"
+          id="hero-btn-contact"
+          class="w-full sm:w-auto"
+        >
+          Get in touch
+        </Button>
+      </div>
+
+      {/* Mobile-first highlights row */}
+      <div
+        class="reveal mt-14 pt-8 border-t border-border/60 grid grid-cols-3 gap-4 text-center w-full max-w-xl"
+        style="--delay: 420ms;"
+      >
+        <div>
+          <div class="text-xl sm:text-2xl font-bold text-text">60 FPS</div>
+          <div class="text-xs text-muted mt-0.5">Smooth UI Target</div>
+        </div>
+        <div>
+          <div class="text-xl sm:text-2xl font-bold text-text">iOS & Android</div>
+          <div class="text-xs text-muted mt-0.5">Cross-Platform</div>
+        </div>
+        <div>
+          <div class="text-xl sm:text-2xl font-bold text-text">Production</div>
+          <div class="text-xs text-muted mt-0.5">Shipped to Stores</div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

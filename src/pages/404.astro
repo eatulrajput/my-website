@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import GradientText from '@/components/ui/GradientText.astro';
+---
+
+<BaseLayout title="404 — Page Not Found · Atul Rajput">
+  <div class="py-24 sm:py-36 text-center">
+    <Container size="narrow">
+      <p class="text-xs uppercase tracking-widest font-bold text-accent-from mb-3">Error 404</p>
+      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-text mb-4">
+        Screen <GradientText serif={true}>not found</GradientText>
+      </h1>
+      <p class="text-base sm:text-lg text-muted max-w-md mx-auto mb-8 leading-relaxed">
+        The route you navigated to doesn't exist or has been refactored. Let's get you back on track.
+      </p>
+
+      <div class="flex items-center justify-center gap-4">
+        <Button href="/" variant="primary" size="md" id="not-found-home-btn">
+          Back to Home
+        </Button>
+        <Button href="/blog" variant="outline" size="md" id="not-found-blog-btn">
+          Read Articles
+        </Button>
+      </div>
+    </Container>
+  </div>
+</BaseLayout>
