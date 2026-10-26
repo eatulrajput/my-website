@@ -66,7 +66,18 @@
     background-image: linear-gradient(135deg, var(--accent-from), var(--accent-via), var(--accent-to));
   }
 
-  /* Hero gradient mesh (10-25% opacity in light mode, 15-30% in dark mode) */
+  /* Gradient serif text utility: avoids clipping italic flourishes (e.g. letter 'd') */
+  .gradient-serif {
+    display: inline-block;
+    padding-right: 0.25em;
+    margin-right: -0.2em;
+    padding-left: 0.05em;
+    margin-left: -0.05em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Hero gradient mesh wrapper */
   .gradient-mesh {
     position: absolute;
     inset: 0;
@@ -74,60 +85,6 @@
     pointer-events: none;
     z-index: 0;
     transition: opacity 0.5s ease;
-  }
-
-  .gradient-mesh::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(59, 130, 246, 0.20) 0%,
-      rgba(6, 182, 212, 0.14) 40%,
-      transparent 70%
-    );
-    filter: blur(80px);
-    transition: background 0.5s ease;
-  }
-
-  .gradient-mesh::after {
-    content: '';
-    position: absolute;
-    bottom: -30%;
-    left: -5%;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(16, 185, 129, 0.15) 0%,
-      rgba(6, 182, 212, 0.10) 40%,
-      transparent 70%
-    );
-    filter: blur(80px);
-    transition: background 0.5s ease;
-  }
-
-  :root[data-theme="dark"] .gradient-mesh::before {
-    background: radial-gradient(
-      circle,
-      rgba(96, 165, 250, 0.28) 0%,
-      rgba(34, 211, 238, 0.20) 40%,
-      transparent 70%
-    );
-  }
-
-  :root[data-theme="dark"] .gradient-mesh::after {
-    background: radial-gradient(
-      circle,
-      rgba(52, 211, 153, 0.24) 0%,
-      rgba(34, 211, 238, 0.16) 40%,
-      transparent 70%
-    );
   }
 
   /* Reveal animation */
@@ -216,7 +173,7 @@
   }
 }
 
-/* Shiki Dual Themes (Zero-JS switching via CSS variables) */
+/* Shiki Dual Themes */
 html[data-theme="dark"] .astro-code,
 html[data-theme="dark"] .astro-code span {
   color: var(--shiki-dark) !important;
@@ -235,7 +192,7 @@ html[data-theme="light"] .astro-code span {
   text-decoration: var(--shiki-light-text-decoration) !important;
 }
 
-/* View Transitions API circular reveal animation */
+/* View Transitions API */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -259,7 +216,7 @@ html.theme-transition *::after {
   transition-delay: 0s !important;
 }
 
-/* Mobile full-screen navigation overlay (PRD Section 5a) */
+/* Mobile full-screen navigation overlay */
 .mobile-overlay {
   opacity: 0;
   visibility: hidden;
@@ -293,7 +250,7 @@ html.theme-transition *::after {
   transform: translateY(0);
 }
 
-/* Social icon hover motion (PRD Section 5b) */
+/* Social icon hover motion */
 .social-icon-link {
   transition: color 150ms ease, transform 150ms ease;
 }
@@ -303,7 +260,13 @@ html.theme-transition *::after {
   transform: translateY(-2px);
 }
 
-/* Contact Form Wizard animations (PRD Section 5c) */
+/* ==========================================================================
+   Contact Wizard Modern Tally Styles
+   ========================================================================== */
+.wizard-hidden {
+  display: none !important;
+}
+
 .wizard-height-wrapper {
   transition: height 300ms var(--ease-in-out);
 }
@@ -322,7 +285,7 @@ html.theme-transition *::after {
 
 .wizard-step.entering-from-right {
   display: block;
-  animation: stepInRight 350ms var(--ease-out) forwards;
+  animation: stepInRight 300ms var(--ease-out) forwards;
 }
 
 .wizard-step.leaving-to-left {
@@ -332,7 +295,7 @@ html.theme-transition *::after {
 
 .wizard-step.entering-from-left {
   display: block;
-  animation: stepInLeft 350ms var(--ease-out) forwards;
+  animation: stepInLeft 300ms var(--ease-out) forwards;
 }
 
 .wizard-step.leaving-to-right {
@@ -343,7 +306,7 @@ html.theme-transition *::after {
 @keyframes stepInRight {
   from {
     opacity: 0;
-    transform: translateX(24px);
+    transform: translateX(16px);
   }
   to {
     opacity: 1;
@@ -358,14 +321,14 @@ html.theme-transition *::after {
   }
   to {
     opacity: 0;
-    transform: translateX(-24px);
+    transform: translateX(-16px);
   }
 }
 
 @keyframes stepInLeft {
   from {
     opacity: 0;
-    transform: translateX(-24px);
+    transform: translateX(-16px);
   }
   to {
     opacity: 1;
@@ -380,7 +343,7 @@ html.theme-transition *::after {
   }
   to {
     opacity: 0;
-    transform: translateX(24px);
+    transform: translateX(16px);
   }
 }
 
@@ -413,56 +376,75 @@ html.theme-transition *::after {
 
 /* Field focus state with soft glow */
 .wizard-input:focus {
-  border-color: var(--accent-from);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-  outline: none;
+  border-color: var(--accent-from) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+  outline: none !important;
 }
 
-/* Topic option selection spring pop */
+/* Topic option selection */
 .topic-option-card {
-  transition: transform 200ms var(--ease-spring), border-color 150ms ease, box-shadow 150ms ease;
+  transition: transform 180ms var(--ease-spring), border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
 }
 
 .topic-option-card:hover {
   transform: translateY(-2px);
+  border-color: rgba(59, 130, 246, 0.4);
 }
 
 .topic-option-card.selected {
-  transform: scale(1.02);
   border-color: var(--accent-from);
-  background: var(--surface);
+  background-color: rgba(59, 130, 246, 0.05);
   box-shadow: 0 0 0 1px var(--accent-from), 0 4px 12px rgba(59, 130, 246, 0.08);
+}
+
+:root[data-theme="dark"] .topic-option-card.selected {
+  background-color: rgba(96, 165, 250, 0.1);
+  box-shadow: 0 0 0 1px var(--accent-from), 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.topic-option-card.selected .topic-key-badge {
+  background-color: var(--accent-from);
+  color: #ffffff;
+  border-color: var(--accent-from);
+}
+
+.topic-check-circle {
+  transition: border-color 180ms ease, background-color 180ms ease, transform 180ms var(--ease-spring);
+}
+
+.topic-option-card:hover:not(.selected) .topic-check-circle {
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.topic-check-icon,
+.topic-check-circle svg {
+  opacity: 0;
+  transform: scale(0.4);
+  transition: transform 200ms var(--ease-spring), opacity 150ms ease;
+}
+
+.topic-option-card.selected .topic-check-circle {
+  border-color: var(--accent-from);
+  background-color: var(--accent-from);
+}
+
+.topic-option-card.selected .topic-check-icon,
+.topic-option-card.selected .topic-check-circle svg {
+  opacity: 1;
+  transform: scale(1);
+  color: #ffffff;
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 
   html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
-  }
-
-  html.theme-transition,
-  html.theme-transition * {
-    transition: none !important;
+    scroll-behavior: auto !important;
   }
 
   .mobile-overlay,
@@ -480,10 +462,22 @@ html.theme-transition *::after {
   .shake,
   .animate-draw-check,
   .topic-option-card,
-  .topic-option-card.selected {
+  .topic-option-card.selected,
+  .topic-check-circle,
+  .topic-check-icon {
     animation: none !important;
     transition: opacity 100ms linear !important;
     transform: none !important;
     stroke-dashoffset: 0 !important;
   }
 }
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

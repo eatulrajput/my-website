@@ -1,4 +1,6 @@
 ---
+import { Calendar, Clock } from 'lucide-astro';
+
 interface Props {
   date: Date;
   readingTime?: string;
@@ -14,8 +16,14 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 }).format(date);
 ---
 
-<div class:list={['flex items-center gap-2 text-xs sm:text-sm text-muted font-medium', className]}>
-  <time datetime={date.toISOString()}>{formattedDate}</time>
-  <span aria-hidden="true">·</span>
-  <span>{readingTime}</span>
+<div class:list={['flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted font-medium', className]}>
+  <div class="inline-flex items-center gap-1.5 whitespace-nowrap">
+    <Calendar class="w-3.5 h-3.5 text-muted/80" stroke-width={2} />
+    <time datetime={date.toISOString()}>{formattedDate}</time>
+  </div>
+  <span class="text-border dark:text-border/80 select-none" aria-hidden="true">•</span>
+  <div class="inline-flex items-center gap-1.5 whitespace-nowrap">
+    <Clock class="w-3.5 h-3.5 text-muted/80" stroke-width={2} />
+    <span>{readingTime}</span>
+  </div>
 </div>

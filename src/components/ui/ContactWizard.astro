@@ -1,18 +1,14 @@
 ---
-import {
-  Check,
-  ArrowRight,
-  ArrowLeft,
-  Send,
-  Briefcase,
-  Code2,
-  Users,
-  MessageSquare,
-  AlertCircle,
-  RotateCcw,
-  Pencil,
-  Mail,
-} from 'lucide-astro';
+import WizardProgressBar from './contact/WizardProgressBar.astro';
+import WizardStepIndicator from './contact/WizardStepIndicator.astro';
+import WizardStep from './contact/WizardStep.astro';
+import FormField from './contact/FormField.astro';
+import TopicCard from './contact/TopicCard.astro';
+import WizardReview from './contact/WizardReview.astro';
+import WizardNavigation from './contact/WizardNavigation.astro';
+import WizardSuccess from './contact/WizardSuccess.astro';
+import { WIZARD_TOPICS } from '@/data/wizard-topics';
+import { AlertCircle } from 'lucide-astro';
 
 interface Props {
   class?: string;
@@ -24,396 +20,134 @@ const { class: className = '' } = Astro.props;
 <div
   id="contact-wizard"
   class:list={[
-    'relative w-full max-w-2xl mx-auto rounded-3xl bg-surface border border-border p-6 sm:p-10 shadow-lg shadow-black/5 overflow-hidden',
+    'relative w-full max-w-2xl mx-auto rounded-2xl sm:rounded-3xl bg-surface/95 dark:bg-surface/90 border border-border/80 dark:border-border/60 shadow-xl shadow-black/5 dark:shadow-black/25 overflow-hidden backdrop-blur-xl',
     className,
   ]}
 >
-  {/* Progress Header */}
-  <div class="mb-8" id="wizard-progress-section">
-    <div class="flex items-center justify-between text-xs font-semibold text-muted uppercase tracking-wider mb-2.5">
-      <span id="wizard-step-label">Step 1 of 4: About you</span>
-      <span id="wizard-step-percent" class="font-bold text-accent-from">25%</span>
-    </div>
+  {/* Top Hairline Progress Bar */}
+  <WizardProgressBar initialPercent={0} />
 
-    {/* Progress Track */}
-    <div
-      class="h-2 w-full rounded-full bg-border/60 overflow-hidden"
-      role="progressbar"
-      aria-valuemin="1"
-      aria-valuemax="4"
-      aria-valuenow="1"
-      aria-label="Contact form progress"
-      id="wizard-progressbar"
-    >
-      <div
-        id="wizard-progress-fill"
-        class="h-full rounded-full bg-gradient-to-r from-accent-from via-accent-via to-accent-to transition-all duration-400 ease-out"
-        style="width: 25%;"
-      ></div>
-    </div>
+  <div class="p-5 sm:p-8 md:p-10">
+    {/* Tally Step Pill & Percentage Header */}
+    <WizardStepIndicator initialStep={1} totalSteps={4} initialTitle="About you" initialPercent={0} />
 
-    {/* Step Dots with Spring Check */}
-    <div class="flex items-center justify-between mt-3 px-1" aria-hidden="true">
-      <div class="step-dot active flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold border border-accent-from bg-accent-from text-white transition-all duration-200" data-dot-step="1">
-        <span class="step-num">1</span>
-        <Check class="step-check hidden w-3.5 h-3.5" stroke-width={2.5} />
-      </div>
-      <div class="h-0.5 flex-1 bg-border/60 mx-1"></div>
-      <div class="step-dot flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold border border-border bg-bg text-muted transition-all duration-200" data-dot-step="2">
-        <span class="step-num">2</span>
-        <Check class="step-check hidden w-3.5 h-3.5" stroke-width={2.5} />
-      </div>
-      <div class="h-0.5 flex-1 bg-border/60 mx-1"></div>
-      <div class="step-dot flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold border border-border bg-bg text-muted transition-all duration-200" data-dot-step="3">
-        <span class="step-num">3</span>
-        <Check class="step-check hidden w-3.5 h-3.5" stroke-width={2.5} />
-      </div>
-      <div class="h-0.5 flex-1 bg-border/60 mx-1"></div>
-      <div class="step-dot flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold border border-border bg-bg text-muted transition-all duration-200" data-dot-step="4">
-        <span class="step-num">4</span>
-        <Check class="step-check hidden w-3.5 h-3.5" stroke-width={2.5} />
-      </div>
-    </div>
-  </div>
+    {/* Form Container */}
+    <form id="contact-wizard-form" novalidate>
+      {/* Honeypot Spam Protection (PRD F24) */}
+      <input type="checkbox" name="botcheck" class="wizard-hidden" style="display: none;" tabindex="-1" autocomplete="off" />
 
-  {/* Form Container */}
-  <form id="contact-wizard-form" novalidate>
-    {/* Honeypot Spam Protection (PRD F24) */}
-    <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
+      {/* Screen reader live announcement */}
+      <div id="wizard-sr-announcements" class="sr-only" aria-live="polite"></div>
 
-    {/* Screen reader live announcement */}
-    <div id="wizard-sr-announcements" class="sr-only" aria-live="polite"></div>
-
-    <div class="wizard-height-wrapper relative">
-      {/* STEP 1: About you */}
-      <div class="wizard-step active" data-step="1" id="step-1">
-        <h3 class="text-xl sm:text-2xl font-bold text-text tracking-tight mb-2">
-          Let's start with your details
-        </h3>
-        <p class="text-sm text-muted mb-6 leading-relaxed">
-          Who should I reply to? Your email remains private and is only used to respond.
-        </p>
-
-        <div class="space-y-5">
-          <div class="field-group" id="group-name">
-            <label for="wizard-name" class="block text-xs font-semibold text-text uppercase tracking-wider mb-2">
-              Your Name <span class="text-accent-from">*</span>
-            </label>
-            <input
-              type="text"
+      <div class="wizard-height-wrapper relative">
+        {/* STEP 1: Details */}
+        <WizardStep
+          step={1}
+          active={true}
+          kicker="01 · Details"
+          title="Let's start with your details"
+          description="Who should I reply to? Your email remains private and is only used to respond."
+        >
+          <div class="space-y-5 text-left">
+            <FormField
               id="wizard-name"
               name="name"
+              label="Your Name"
               required
               autocomplete="name"
               placeholder="e.g. Sarah Connor"
-              class="wizard-input w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder:text-muted/60 transition-colors text-sm sm:text-base min-h-[44px]"
+              errorMessage="Please enter your name."
             />
-            <p id="error-name" class="hidden text-xs text-rose-500 mt-1.5 flex items-center gap-1 font-medium" role="alert">
-              <AlertCircle class="w-3.5 h-3.5 shrink-0" stroke-width={2} />
-              <span>Please enter your name.</span>
-            </p>
-          </div>
-
-          <div class="field-group" id="group-email">
-            <label for="wizard-email" class="block text-xs font-semibold text-text uppercase tracking-wider mb-2">
-              Email Address <span class="text-accent-from">*</span>
-            </label>
-            <input
-              type="email"
+            <FormField
               id="wizard-email"
               name="email"
+              label="Email Address"
+              type="email"
               required
               autocomplete="email"
+              autocapitalize="none"
+              autocorrect="off"
+              spellcheck="false"
+              lowercase
               placeholder="e.g. sarah@example.com"
-              class="wizard-input w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder:text-muted/60 transition-colors text-sm sm:text-base min-h-[44px]"
+              errorMessage="Please enter a valid email address."
             />
-            <p id="error-email" class="hidden text-xs text-rose-500 mt-1.5 flex items-center gap-1 font-medium" role="alert">
-              <AlertCircle class="w-3.5 h-3.5 shrink-0" stroke-width={2} />
-              <span>Please enter a valid email address.</span>
-            </p>
           </div>
-        </div>
-      </div>
+        </WizardStep>
 
-      {/* STEP 2: Topic */}
-      <div class="wizard-step" data-step="2" id="step-2" inert>
-        <h3 class="text-xl sm:text-2xl font-bold text-text tracking-tight mb-2">
-          What is on your mind?
-        </h3>
-        <p class="text-sm text-muted mb-6 leading-relaxed">
-          Select the option that best describes what you would like to discuss.
-        </p>
+        {/* STEP 2: Topic */}
+        <WizardStep
+          step={2}
+          kicker="02 · Topic"
+          title="What is on your mind?"
+          description="Select the option that best describes what you would like to discuss."
+        >
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left" role="radiogroup" aria-label="Discussion topic">
+            {WIZARD_TOPICS.map((topic) => (
+              <TopicCard topic={topic} />
+            ))}
+          </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" role="radiogroup" aria-label="Discussion topic">
-          <label class="topic-option-card relative flex items-start gap-3 p-4 rounded-2xl bg-bg border border-border cursor-pointer transition-all select-none min-h-[72px]">
-            <input type="radio" name="topic" value="Job opportunity" class="sr-only" />
-            <div class="p-2 rounded-xl bg-accent-from/10 text-accent-from shrink-0 mt-0.5">
-              <Briefcase class="w-4 h-4" stroke-width={2} />
-            </div>
-            <div>
-              <div class="text-sm font-bold text-text">Job opportunity</div>
-              <div class="text-xs text-muted mt-0.5">Full-time role or contract opportunity</div>
-            </div>
-          </label>
+          <p id="error-topic" class="wizard-hidden text-xs text-rose-500 mt-3 flex items-center gap-1.5 font-medium" role="alert">
+            <AlertCircle class="w-3.5 h-3.5 shrink-0" stroke-width={2} />
+            <span>Please choose one topic to continue.</span>
+          </p>
 
-          <label class="topic-option-card relative flex items-start gap-3 p-4 rounded-2xl bg-bg border border-border cursor-pointer transition-all select-none min-h-[72px]">
-            <input type="radio" name="topic" value="Freelance project" class="sr-only" />
-            <div class="p-2 rounded-xl bg-accent-via/10 text-accent-via shrink-0 mt-0.5">
-              <Code2 class="w-4 h-4" stroke-width={2} />
-            </div>
-            <div>
-              <div class="text-sm font-bold text-text">Freelance project</div>
-              <div class="text-xs text-muted mt-0.5">New app, architecture audit, or bridge</div>
-            </div>
-          </label>
+          <div class="hidden sm:flex items-center gap-1.5 text-xs text-muted/70 mt-4 text-left">
+            <span>Tip: Press key</span>
+            <kbd class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-bg border border-border text-text font-semibold">1</kbd>
+            <span>-</span>
+            <kbd class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-bg border border-border text-text font-semibold">4</kbd>
+            <span>to select option</span>
+          </div>
+        </WizardStep>
 
-          <label class="topic-option-card relative flex items-start gap-3 p-4 rounded-2xl bg-bg border border-border cursor-pointer transition-all select-none min-h-[72px]">
-            <input type="radio" name="topic" value="Collaboration" class="sr-only" />
-            <div class="p-2 rounded-xl bg-accent-to/10 text-accent-to shrink-0 mt-0.5">
-              <Users class="w-4 h-4" stroke-width={2} />
-            </div>
-            <div>
-              <div class="text-sm font-bold text-text">Collaboration</div>
-              <div class="text-xs text-muted mt-0.5">Open source or technical co-building</div>
-            </div>
-          </label>
-
-          <label class="topic-option-card relative flex items-start gap-3 p-4 rounded-2xl bg-bg border border-border cursor-pointer transition-all select-none min-h-[72px]">
-            <input type="radio" name="topic" value="Just saying hi" class="sr-only" />
-            <div class="p-2 rounded-xl bg-available/10 text-available shrink-0 mt-0.5">
-              <MessageSquare class="w-4 h-4" stroke-width={2} />
-            </div>
-            <div>
-              <div class="text-sm font-bold text-text">Just saying hi</div>
-              <div class="text-xs text-muted mt-0.5">Networking or a quick friendly chat</div>
-            </div>
-          </label>
-        </div>
-
-        <p id="error-topic" class="hidden text-xs text-rose-500 mt-3 flex items-center gap-1 font-medium" role="alert">
-          <AlertCircle class="w-3.5 h-3.5 shrink-0" stroke-width={2} />
-          <span>Please choose one topic to continue.</span>
-        </p>
-      </div>
-
-      {/* STEP 3: Message */}
-      <div class="wizard-step" data-step="3" id="step-3" inert>
-        <h3 class="text-xl sm:text-2xl font-bold text-text tracking-tight mb-2">
-          Tell me about your project
-        </h3>
-        <p class="text-sm text-muted mb-6 leading-relaxed">
-          Provide some context, your timeline, or any specific goals.
-        </p>
-
-        <div class="space-y-5">
-          <div class="field-group" id="group-message">
-            <div class="flex items-center justify-between mb-2">
-              <label for="wizard-message" class="block text-xs font-semibold text-text uppercase tracking-wider">
-                Message <span class="text-accent-from">*</span>
-              </label>
-              <span id="wizard-char-counter" class="text-xs text-muted font-medium">
-                0 / 20 chars min
-              </span>
-            </div>
-            <textarea
+        {/* STEP 3: Message */}
+        <WizardStep
+          step={3}
+          kicker="03 · Message"
+          title="Tell me about your project"
+          description="Provide some context, your timeline, or any specific goals."
+        >
+          <div class="space-y-4 sm:space-y-5 text-left">
+            <FormField
               id="wizard-message"
               name="message"
-              rows="4"
+              label="Message"
+              type="textarea"
               required
+              rows={4}
+              showCharCounter
+              charCounterMin={20}
               placeholder="Hi Atul, I saw your work on React Native and would love to talk about..."
-              class="wizard-input w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder:text-muted/60 transition-colors text-sm sm:text-base leading-relaxed resize-y"
-            ></textarea>
-            <p id="error-message" class="hidden text-xs text-rose-500 mt-1.5 flex items-center gap-1 font-medium" role="alert">
-              <AlertCircle class="w-3.5 h-3.5 shrink-0" stroke-width={2} />
-              <span>Please enter a message of at least 20 characters.</span>
-            </p>
-          </div>
-
-          <div class="field-group" id="group-company">
-            <label for="wizard-company" class="block text-xs font-semibold text-text uppercase tracking-wider mb-2">
-              Company or Website <span class="text-muted font-normal lowercase">(optional)</span>
-            </label>
-            <input
-              type="text"
+              errorMessage="Please enter a message of at least 20 characters."
+            />
+            <FormField
               id="wizard-company"
               name="company"
+              label="Company or Website"
+              optionalHint="optional"
               placeholder="e.g. Acme Corp or acme.com"
-              class="wizard-input w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder:text-muted/60 transition-colors text-sm sm:text-base min-h-[44px]"
             />
           </div>
-        </div>
-      </div>
+        </WizardStep>
 
-      {/* STEP 4: Review and send */}
-      <div class="wizard-step" data-step="4" id="step-4" inert>
-        <h3 class="text-xl sm:text-2xl font-bold text-text tracking-tight mb-2">
-          Review your message
-        </h3>
-        <p class="text-sm text-muted mb-6 leading-relaxed">
-          Check over your details before submitting directly to my inbox.
-        </p>
-
-        <div class="space-y-3.5 rounded-2xl bg-bg/80 border border-border p-5 text-sm">
-          {/* Review Row: Sender */}
-          <div class="flex items-start justify-between gap-4 pb-3 border-b border-border/60">
-            <div>
-              <div class="text-xs font-semibold text-muted uppercase tracking-wider">From</div>
-              <div class="font-bold text-text mt-0.5" id="review-name">—</div>
-              <div class="text-xs text-muted" id="review-email">—</div>
-            </div>
-            <button
-              type="button"
-              class="wizard-edit-btn inline-flex items-center gap-1 text-xs font-semibold text-accent-from hover:text-accent-via transition-colors p-1"
-              data-goto-step="1"
-              aria-label="Edit personal details"
-            >
-              <Pencil class="w-3 h-3" />
-              <span>Edit</span>
-            </button>
-          </div>
-
-          {/* Review Row: Topic & Company */}
-          <div class="flex items-start justify-between gap-4 pb-3 border-b border-border/60">
-            <div>
-              <div class="text-xs font-semibold text-muted uppercase tracking-wider">Topic</div>
-              <div class="font-bold text-text mt-0.5" id="review-topic">—</div>
-              <div class="text-xs text-muted hidden" id="review-company-wrapper">
-                Company: <span id="review-company" class="font-medium text-text"></span>
-              </div>
-            </div>
-            <button
-              type="button"
-              class="wizard-edit-btn inline-flex items-center gap-1 text-xs font-semibold text-accent-from hover:text-accent-via transition-colors p-1"
-              data-goto-step="2"
-              aria-label="Edit topic"
-            >
-              <Pencil class="w-3 h-3" />
-              <span>Edit</span>
-            </button>
-          </div>
-
-          {/* Review Row: Message */}
-          <div class="flex items-start justify-between gap-4">
-            <div class="flex-1">
-              <div class="text-xs font-semibold text-muted uppercase tracking-wider mb-1">Message</div>
-              <p class="text-sm text-text leading-relaxed whitespace-pre-wrap max-h-36 overflow-y-auto pr-2" id="review-message">
-                —
-              </p>
-            </div>
-            <button
-              type="button"
-              class="wizard-edit-btn inline-flex items-center gap-1 text-xs font-semibold text-accent-from hover:text-accent-via transition-colors p-1"
-              data-goto-step="3"
-              aria-label="Edit message"
-            >
-              <Pencil class="w-3 h-3" />
-              <span>Edit</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Submission Error Banner */}
-        <div id="wizard-error-banner" class="hidden mt-4 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-500 text-sm">
-          <div class="flex items-start gap-2.5">
-            <AlertCircle class="w-5 h-5 shrink-0 mt-0.5" stroke-width={2} />
-            <div class="flex-1">
-              <p class="font-bold" id="wizard-error-title">Failed to send message</p>
-              <p class="text-xs mt-0.5 text-rose-600 dark:text-rose-400" id="wizard-error-text">
-                Please try again, or email me directly at hello@atulrajput.dev.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Footer Navigation Buttons */}
-    <div class="mt-8 pt-6 border-t border-border/80 flex items-center justify-between gap-3">
-      <button
-        type="button"
-        id="wizard-btn-back"
-        class="hidden inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-semibold text-muted hover:text-text hover:bg-bg border border-border transition-colors min-h-[44px]"
-      >
-        <ArrowLeft class="w-4 h-4" stroke-width={2} />
-        <span>Back</span>
-      </button>
-
-      <div class="flex items-center gap-3 ml-auto">
-        {/* Next Button (Steps 1-3) */}
-        <button
-          type="button"
-          id="wizard-btn-next"
-          class="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full text-sm font-semibold bg-text text-bg hover:opacity-90 transition-opacity shadow-xs min-h-[44px]"
+        {/* STEP 4: Review and send */}
+        <WizardStep
+          step={4}
+          kicker="04 · Review"
+          title="Review your message"
+          description="Check over your details before submitting directly to my inbox."
         >
-          <span>Continue</span>
-          <ArrowRight class="w-4 h-4" stroke-width={2} />
-        </button>
-
-        {/* Send Button (Step 4) */}
-        <button
-          type="submit"
-          id="wizard-btn-submit"
-          class="hidden inline-flex items-center justify-center gap-2 px-7 py-2.5 rounded-full text-sm font-bold bg-gradient-to-r from-accent-from via-accent-via to-accent-to text-white shadow-md hover:shadow-lg hover:brightness-105 transition-all min-h-[44px]"
-        >
-          <span id="btn-submit-text">Send Message</span>
-          <Send id="btn-submit-icon" class="w-4 h-4" stroke-width={2} />
-          {/* Spinner */}
-          <svg
-            id="btn-submit-spinner"
-            class="hidden animate-spin w-4 h-4 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-        </button>
+          <WizardReview />
+        </WizardStep>
       </div>
-    </div>
-  </form>
 
-  {/* SUCCESS CONFIRMATION PANEL (PRD F25) */}
-  <div
-    id="wizard-success-panel"
-    class="hidden py-8 px-4 text-center flex flex-col items-center justify-center transition-all duration-400"
-    role="status"
-    aria-live="polite"
-  >
-    {/* Animated Checkmark Circle */}
-    <div class="relative flex items-center justify-center w-20 h-20 rounded-full bg-available/10 text-available mb-6 shadow-xs">
-      <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="20 6 9 17 4 12" class="animate-draw-check" />
-      </svg>
-    </div>
+      {/* Navigation Controls */}
+      <WizardNavigation />
+    </form>
 
-    <h3 class="text-2xl sm:text-3xl font-extrabold text-text tracking-tight mb-2">
-      Message sent successfully!
-    </h3>
-
-    <p class="text-base text-muted max-w-md mx-auto mb-2 leading-relaxed">
-      Thanks for getting in touch, <strong id="success-sender-name" class="text-text font-bold">there</strong>.
-    </p>
-    <p class="text-sm text-muted max-w-md mx-auto mb-8 leading-relaxed">
-      Your inquiry has landed in my inbox. I typically respond within 24–48 hours.
-    </p>
-
-    <div class="flex flex-wrap items-center justify-center gap-3">
-      <button
-        type="button"
-        id="wizard-btn-reset"
-        class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-surface border border-border hover:border-muted/40 text-text transition-colors shadow-xs min-h-[44px]"
-      >
-        <RotateCcw class="w-3.5 h-3.5" stroke-width={2} />
-        <span>Send another message</span>
-      </button>
-
-      <a
-        href="mailto:hello@atulrajput.dev"
-        class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold text-muted hover:text-text transition-colors min-h-[44px]"
-      >
-        <Mail class="w-3.5 h-3.5" stroke-width={2} />
-        <span>hello@atulrajput.dev</span>
-      </a>
-    </div>
+    {/* Confirmation / Success Panel */}
+    <WizardSuccess />
   </div>
 </div>

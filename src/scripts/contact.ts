@@ -16,6 +16,18 @@ const STEP_TITLES: Record<number, string> = {
 const RATE_LIMIT_STORAGE_KEY = 'last_contact_submission';
 const RATE_LIMIT_SECONDS = 60;
 
+function hideEl(el: HTMLElement | null) {
+  if (el) {
+    el.classList.add('wizard-hidden');
+  }
+}
+
+function showEl(el: HTMLElement | null) {
+  if (el) {
+    el.classList.remove('wizard-hidden');
+  }
+}
+
 export function setupContactWizard() {
   const wizard = document.getElementById('contact-wizard');
   const form = document.getElementById('contact-wizard-form') as HTMLFormElement | null;
@@ -44,6 +56,7 @@ export function setupContactWizard() {
   const btnBack = document.getElementById('wizard-btn-back') as HTMLButtonElement | null;
   const btnNext = document.getElementById('wizard-btn-next') as HTMLButtonElement | null;
   const btnSubmit = document.getElementById('wizard-btn-submit') as HTMLButtonElement | null;
+  const kbdHint = document.getElementById('wizard-kbd-hint');
   const submitText = document.getElementById('btn-submit-text');
   const submitIcon = document.getElementById('btn-submit-icon');
   const submitSpinner = document.getElementById('btn-submit-spinner');
@@ -82,27 +95,34 @@ export function setupContactWizard() {
         charCounter.classList.add('text-muted');
       }
     }
+    if (len >= 20) {
+      clearError(errorMessage);
+    }
   });
 
   // Topic option click / radio changes
+  function selectTopicOption(card: HTMLLabelElement) {
+    const radio = card.querySelector<HTMLInputElement>('input[type="radio"]');
+    if (!radio) return;
+
+    topicCards.forEach((c) => c.classList.remove('selected'));
+    card.classList.add('selected');
+    radio.checked = true;
+    data.topic = radio.value;
+    clearError(errorTopic);
+  }
+
   topicCards.forEach((card) => {
     const radio = card.querySelector<HTMLInputElement>('input[type="radio"]');
     if (!radio) return;
 
     card.addEventListener('click', () => {
-      topicCards.forEach((c) => c.classList.remove('selected'));
-      card.classList.add('selected');
-      radio.checked = true;
-      data.topic = radio.value;
-      clearError(errorTopic);
+      selectTopicOption(card);
     });
 
     radio.addEventListener('change', () => {
       if (radio.checked) {
-        topicCards.forEach((c) => c.classList.remove('selected'));
-        card.classList.add('selected');
-        data.topic = radio.value;
-        clearError(errorTopic);
+        selectTopicOption(card);
       }
     });
   });
@@ -113,7 +133,7 @@ export function setupContactWizard() {
   }
 
   function showError(el: HTMLElement | null, groupElId?: string) {
-    if (el) el.classList.remove('hidden');
+    showEl(el);
     if (groupElId) {
       const grp = document.getElementById(groupElId);
       if (grp) {
@@ -124,15 +144,41 @@ export function setupContactWizard() {
   }
 
   function clearError(el: HTMLElement | null) {
-    if (el) el.classList.add('hidden');
+    hideEl(el);
   }
+
+  // Clear errors when typing
+  inputName?.addEventListener('input', () => {
+    if (inputName.value.trim().length > 0) clearError(errorName);
+  });
+  // Enforce lowercase on email input (auto-convert caps to lowercase)
+  function ensureEmailLowercase() {
+    if (!inputEmail) return;
+    const start = inputEmail.selectionStart;
+    const end = inputEmail.selectionEnd;
+    const lower = inputEmail.value.toLowerCase();
+    if (inputEmail.value !== lower) {
+      inputEmail.value = lower;
+      if (start !== null && end !== null) {
+        inputEmail.setSelectionRange(start, end);
+      }
+    }
+  }
+
+  inputEmail?.addEventListener('input', () => {
+    ensureEmailLowercase();
+    if (validateEmail(inputEmail.value)) clearError(errorEmail);
+  });
+  inputEmail?.addEventListener('blur', () => {
+    ensureEmailLowercase();
+  });
 
   function validateStep(step: number): boolean {
     let isValid = true;
 
     if (step === 1) {
       const nameVal = inputName?.value.trim() || '';
-      const emailVal = inputEmail?.value.trim() || '';
+      const emailVal = inputEmail?.value.trim().toLowerCase() || '';
 
       if (!nameVal) {
         showError(errorName, 'group-name');
@@ -194,9 +240,9 @@ export function setupContactWizard() {
     if (revCompanyWrapper && revCompany) {
       if (data.company) {
         revCompany.textContent = data.company;
-        revCompanyWrapper.classList.remove('hidden');
+        showEl(revCompanyWrapper);
       } else {
-        revCompanyWrapper.classList.add('hidden');
+        hideEl(revCompanyWrapper);
       }
     }
 
@@ -204,7 +250,7 @@ export function setupContactWizard() {
   }
 
   function updateProgressUI(step: number) {
-    const pct = Math.round((step / totalSteps) * 100);
+    const pct = Math.round(((step - 1) / totalSteps) * 100);
 
     if (stepLabel) {
       stepLabel.textContent = `Step ${step} of ${totalSteps}: ${STEP_TITLES[step]}`;
@@ -215,49 +261,32 @@ export function setupContactWizard() {
     if (progressFill) {
       progressFill.style.width = `${pct}%`;
     }
+    const progressBar = document.getElementById('wizard-progressbar');
+    if (progressBar) {
+      progressBar.setAttribute('aria-valuenow', pct.toString());
+    }
 
-    // Step dots
-    document.querySelectorAll<HTMLElement>('.step-dot').forEach((dot) => {
-      const dotStep = parseInt(dot.getAttribute('data-dot-step') || '0', 10);
-      const numSpan = dot.querySelector('.step-num');
-      const checkIcon = dot.querySelector('.step-check');
-
-      if (dotStep < step) {
-        // Completed step
-        dot.classList.add('bg-accent-from', 'text-white', 'border-accent-from');
-        dot.classList.remove('bg-bg', 'text-muted', 'border-border');
-        numSpan?.classList.add('hidden');
-        checkIcon?.classList.remove('hidden');
-      } else if (dotStep === step) {
-        // Active step
-        dot.classList.add('bg-accent-from', 'text-white', 'border-accent-from');
-        dot.classList.remove('bg-bg', 'text-muted', 'border-border');
-        numSpan?.classList.remove('hidden');
-        checkIcon?.classList.add('hidden');
-      } else {
-        // Inactive future step
-        dot.classList.remove('bg-accent-from', 'text-white', 'border-accent-from');
-        dot.classList.add('bg-bg', 'text-muted', 'border-border');
-        numSpan?.classList.remove('hidden');
-        checkIcon?.classList.add('hidden');
-      }
-    });
-
-    // Button states
+    // Button states - strictly toggled with wizard-hidden to prevent inline-flex overrides
     if (btnBack) {
       if (step === 1) {
-        btnBack.classList.add('hidden');
+        hideEl(btnBack);
       } else {
-        btnBack.classList.remove('hidden');
+        showEl(btnBack);
       }
     }
 
     if (step === totalSteps) {
-      btnNext?.classList.add('hidden');
-      btnSubmit?.classList.remove('hidden');
+      hideEl(btnNext);
+      showEl(btnSubmit);
+      if (kbdHint) {
+        kbdHint.innerHTML = '<span>Press</span><kbd class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-bg border border-border text-text font-semibold">Ctrl + Enter ↵</kbd>';
+      }
     } else {
-      btnNext?.classList.remove('hidden');
-      btnSubmit?.classList.add('hidden');
+      showEl(btnNext);
+      hideEl(btnSubmit);
+      if (kbdHint) {
+        kbdHint.innerHTML = '<span>Press</span><kbd class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-bg border border-border text-text font-semibold">Enter ↵</kbd>';
+      }
     }
 
     // Screen reader announcement
@@ -305,17 +334,21 @@ export function setupContactWizard() {
 
       setTimeout(() => {
         targetStepEl.classList.remove(inClass);
-      }, 350);
+      }, 300);
 
       currentStep = targetStep;
       updateProgressUI(currentStep);
       focusFirstField(targetStepEl);
-    }, 200);
+    }, 180);
   }
 
   function focusFirstField(stepEl: HTMLElement) {
+    // Only auto-focus on devices with fine pointer (mouse/trackpad), avoiding mobile keyboard popup jump
+    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+    if (!isFinePointer) return;
+
     const focusable = stepEl.querySelector<HTMLElement>(
-      'input:not([type="hidden"]), textarea, [role="radio"]:checked, label.topic-option-card'
+      'input:not([type="hidden"]), textarea, .topic-option-card.selected, button.wizard-edit-btn'
     );
     focusable?.focus();
   }
@@ -344,11 +377,78 @@ export function setupContactWizard() {
     });
   });
 
-  // Enter key navigation inside inputs (prevents premature submit)
-  form.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && e.target instanceof HTMLInputElement && currentStep < totalSteps) {
+  // Tally Keyboard Shortcuts & Navigation
+  document.addEventListener('keydown', (e) => {
+    // Only react if wizard is currently visible and not submitted
+    if (form.classList.contains('wizard-hidden')) return;
+
+    // Check if user is typing inside an active input or textarea
+    const isInput = e.target instanceof HTMLInputElement;
+    const isTextarea = e.target instanceof HTMLTextAreaElement;
+
+    // 1) Escape to go back
+    if (e.key === 'Escape' && currentStep > 1) {
       e.preventDefault();
-      btnNext?.click();
+      goToStep(currentStep - 1, 'back');
+      return;
+    }
+
+    // 2) Keys 1-4 or a-d on Step 2 (Topic selection) when not typing in an input
+    if (currentStep === 2 && !isInput && !isTextarea) {
+      let optionIndex = -1;
+      if (['1', '2', '3', '4'].includes(e.key)) {
+        optionIndex = parseInt(e.key, 10) - 1;
+      } else if (['a', 'b', 'c', 'd'].includes(e.key.toLowerCase())) {
+        optionIndex = e.key.toLowerCase().charCodeAt(0) - 97;
+      }
+
+      if (optionIndex >= 0 && optionIndex < topicCards.length) {
+        e.preventDefault();
+        selectTopicOption(topicCards[optionIndex]);
+        return;
+      }
+    }
+
+    // 3) Enter key handling
+    if (e.key === 'Enter') {
+      if (currentStep === 1) {
+        if (e.target === inputName) {
+          e.preventDefault();
+          if (inputName?.value.trim()) {
+            inputEmail?.focus();
+          } else {
+            showError(errorName, 'group-name');
+          }
+          return;
+        }
+        if (e.target === inputEmail) {
+          e.preventDefault();
+          btnNext?.click();
+          return;
+        }
+      } else if (currentStep === 2) {
+        e.preventDefault();
+        btnNext?.click();
+        return;
+      } else if (currentStep === 3) {
+        // In textarea: Ctrl+Enter or Cmd+Enter advances; plain Enter creates newline
+        if (isTextarea) {
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            btnNext?.click();
+          }
+          return;
+        }
+        if (isInput) {
+          e.preventDefault();
+          btnNext?.click();
+          return;
+        }
+      } else if (currentStep === 4) {
+        e.preventDefault();
+        btnSubmit?.click();
+        return;
+      }
     }
   });
 
@@ -364,7 +464,6 @@ export function setupContactWizard() {
     // Honeypot check
     const botcheck = form.querySelector<HTMLInputElement>('input[name="botcheck"]');
     if (botcheck && botcheck.checked) {
-      // Bot detected - simulate silent success without sending
       showSuccessState();
       return;
     }
@@ -456,18 +555,18 @@ export function setupContactWizard() {
 
     if (isSending) {
       submitText?.classList.add('opacity-0');
-      submitIcon?.classList.add('hidden');
-      submitSpinner?.classList.remove('hidden');
+      hideEl(submitIcon);
+      showEl(submitSpinner);
     } else {
       submitText?.classList.remove('opacity-0');
-      submitIcon?.classList.remove('hidden');
-      submitSpinner?.classList.add('hidden');
+      showEl(submitIcon);
+      hideEl(submitSpinner);
     }
   }
 
   function showSubmissionError(title: string, desc: string) {
     if (errorBanner) {
-      errorBanner.classList.remove('hidden');
+      showEl(errorBanner);
       if (errorTitle) errorTitle.textContent = title;
       if (errorText) errorText.textContent = desc;
       errorBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -475,15 +574,23 @@ export function setupContactWizard() {
   }
 
   function showSuccessState() {
-    form.classList.add('hidden');
-    progressSection?.classList.add('hidden');
+    hideEl(form);
+    hideEl(progressSection);
+
+    if (progressFill) {
+      progressFill.style.width = '100%';
+    }
+    const progressBar = document.getElementById('wizard-progressbar');
+    if (progressBar) {
+      progressBar.setAttribute('aria-valuenow', '100');
+    }
 
     if (successSenderName) {
       successSenderName.textContent = data.name || 'there';
     }
 
     if (successPanel) {
-      successPanel.classList.remove('hidden');
+      showEl(successPanel);
       successPanel.focus();
     }
   }
@@ -506,12 +613,15 @@ export function setupContactWizard() {
     clearError(errorTopic);
     clearError(errorMessage);
 
-    successPanel?.classList.add('hidden');
-    form.classList.remove('hidden');
-    progressSection?.classList.remove('hidden');
+    hideEl(successPanel);
+    showEl(form);
+    showEl(progressSection);
 
     goToStep(1, 'back');
   });
+
+  // Initial step setup
+  updateProgressUI(1);
 }
 
 // Auto-initialize when script loads or on astro:page-load

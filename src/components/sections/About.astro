@@ -4,46 +4,47 @@ import SectionHeading from '@/components/ui/SectionHeading.astro';
 import { siteData } from '@/data/site';
 ---
 
-<section class="py-16 sm:py-24 bg-surface/50 border-y border-border/70" id="about">
+<section class="py-16 sm:py-24 bg-surface/50 border-y border-border/70 relative" id="about">
   <Container>
     <div class="max-w-3xl">
       <SectionHeading
         kicker="Background"
         title="Engineering for feel and performance"
         id="about-heading"
+        class="about-heading-wrap"
       />
 
-      <div class="reveal space-y-6 text-base sm:text-lg text-text/80 leading-relaxed font-normal" style="--delay: 150ms;">
-        <p>
+      <div class="about-scrub-body space-y-6 text-base sm:text-lg leading-relaxed font-normal">
+        <p class="about-scrub-p">
           I am a mobile engineer specializing in React Native, Expo, and native platform bridges. My focus is on writing deterministic, buttery-smooth client applications that maintain 60 FPS even under heavy list virtualization and complex gesture interactions.
         </p>
 
-        <p>
+        <p class="about-scrub-p">
           Rather than relying solely on out-of-the-box abstractions, I dig into native iOS and Android profiling tools (Instruments, Android Studio Profiler, and React DevTools) to eliminate unnecessary re-renders, optimize bridge serialization, and keep memory footprints lean.
         </p>
 
-        <p>
+        <p class="about-scrub-p">
           I graduated in Computer Science in 2026 and have taken apps from initial architectural design through store approval on both Google Play and Apple App Store. I value clear communication, comprehensive pull requests, and predictable release pipelines.
         </p>
       </div>
 
       {/* Focus values */}
-      <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 pt-8 border-t border-border/70" style="--delay: 250ms;">
-        <div>
-          <h3 class="text-sm font-bold uppercase tracking-wider text-text mb-1">Architecture</h3>
-          <p class="text-xs text-muted leading-relaxed">
+      <div class="about-focus-grid grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 pt-8 border-t border-border/70">
+        <div class="about-focus-card">
+          <h3 class="about-focus-title text-sm font-bold uppercase tracking-wider mb-1">Architecture</h3>
+          <p class="about-focus-desc text-xs leading-relaxed">
             Clean module boundaries, offline-first state synchronizers, and strongly-typed APIs.
           </p>
         </div>
-        <div>
-          <h3 class="text-sm font-bold uppercase tracking-wider text-text mb-1">Fluid Motion</h3>
-          <p class="text-xs text-muted leading-relaxed">
+        <div class="about-focus-card">
+          <h3 class="about-focus-title text-sm font-bold uppercase tracking-wider mb-1">Fluid Motion</h3>
+          <p class="about-focus-desc text-xs leading-relaxed">
             Declarative gesture pipelines utilizing Reanimated 3 running on UI worklets.
           </p>
         </div>
-        <div>
-          <h3 class="text-sm font-bold uppercase tracking-wider text-text mb-1">Reliability</h3>
-          <p class="text-xs text-muted leading-relaxed">
+        <div class="about-focus-card">
+          <h3 class="about-focus-title text-sm font-bold uppercase tracking-wider mb-1">Reliability</h3>
+          <p class="about-focus-desc text-xs leading-relaxed">
             Automated CI/CD with EAS Build, Fastlane, and end-to-end Maestro testing.
           </p>
         </div>
@@ -51,3 +52,281 @@ import { siteData } from '@/data/site';
     </div>
   </Container>
 </section>
+
+<script>
+  function setupAboutScrollScrub() {
+    const aboutSection = document.getElementById('about');
+    if (!aboutSection) return;
+
+    const headingEl = document.getElementById('about-heading');
+    const kickerEl = aboutSection.querySelector<HTMLElement>('.about-heading-wrap p');
+    if (kickerEl) {
+      kickerEl.classList.add('about-scrub-kicker');
+    }
+
+    const paragraphs = Array.from(aboutSection.querySelectorAll<HTMLElement>('.about-scrub-p'));
+    const focusGrid = aboutSection.querySelector<HTMLElement>('.about-focus-grid');
+    const focusCards = Array.from(aboutSection.querySelectorAll<HTMLElement>('.about-focus-card'));
+
+    // Helper to wrap text content into word spans while preserving spaces
+    const wrapWords = (el: HTMLElement) => {
+      if (el.dataset.scrubPrepared === 'true') return;
+      el.dataset.scrubPrepared = 'true';
+
+      const text = el.textContent || '';
+      const words = text.trim().split(/\s+/);
+      if (words.length === 0 || (words.length === 1 && words[0] === '')) return;
+
+      el.innerHTML = words
+        .map((word, i) => `<span class="about-scrub-word" data-word-idx="${i}">${word}</span>`)
+        .join(' ');
+    };
+
+    if (headingEl) {
+      wrapWords(headingEl);
+    }
+    paragraphs.forEach((p) => wrapWords(p));
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      aboutSection.querySelectorAll('.about-scrub-word').forEach((w) => w.classList.add('is-lit'));
+      if (kickerEl) kickerEl.classList.add('is-lit');
+      focusCards.forEach((c) => c.classList.add('is-lit'));
+      return;
+    }
+
+    let ticking = false;
+    let isNearViewport = false;
+
+    const updateScrub = () => {
+      const windowHeight = window.innerHeight;
+      // Reading focal window in viewport:
+      // entryY: element top crosses 84% from top of screen (nearing bottom third)
+      // exitY: element top crosses 32% from top of screen (reading completed)
+      const entryY = windowHeight * 0.84;
+      const exitY = windowHeight * 0.32;
+      const travelRange = entryY - exitY;
+
+      // 1. Kicker illumination
+      if (kickerEl) {
+        const rect = kickerEl.getBoundingClientRect();
+        kickerEl.classList.toggle('is-lit', rect.top <= windowHeight * 0.88);
+      }
+
+      // 2. Heading word-by-word scrub
+      if (headingEl) {
+        const rect = headingEl.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (entryY - rect.top) / (travelRange * 0.7)));
+        const words = headingEl.querySelectorAll<HTMLElement>('.about-scrub-word');
+        const total = words.length;
+
+        words.forEach((word, idx) => {
+          const threshold = idx / total;
+          const isLit = progress > threshold;
+          word.classList.toggle('is-lit', isLit);
+
+          const isCurrent = isLit && (idx === total - 1 || progress <= (idx + 1) / total);
+          word.classList.toggle('is-current', isCurrent);
+        });
+      }
+
+      // 3. Paragraphs word-by-word scrub
+      paragraphs.forEach((p) => {
+        const rect = p.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (entryY - rect.top) / travelRange));
+        const words = p.querySelectorAll<HTMLElement>('.about-scrub-word');
+        const total = words.length;
+
+        words.forEach((word, idx) => {
+          const threshold = idx / total;
+          const isLit = progress > threshold;
+          word.classList.toggle('is-lit', isLit);
+
+          const isCurrent = isLit && (idx === total - 1 || progress <= (idx + 1) / total);
+          word.classList.toggle('is-current', isCurrent);
+        });
+      });
+
+      // 4. Focus cards progressive illumination
+      if (focusGrid) {
+        const rect = focusGrid.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (entryY - rect.top) / travelRange));
+        focusCards.forEach((card, idx) => {
+          const threshold = idx * 0.25;
+          card.classList.toggle('is-lit', progress > threshold);
+        });
+      }
+    };
+
+    const onScroll = () => {
+      if (!isNearViewport) return;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateScrub();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Use IntersectionObserver to sleep scroll listener when About is far offscreen
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isNearViewport = entry.isIntersecting;
+          if (isNearViewport) {
+            updateScrub();
+          }
+        });
+      },
+      {
+        rootMargin: '250px 0px 250px 0px',
+        threshold: 0,
+      }
+    );
+
+    observer.observe(aboutSection);
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    // Initial check in case page is already scrolled to About
+    updateScrub();
+  }
+
+  if (typeof window !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupAboutScrollScrub);
+    } else {
+      setupAboutScrollScrub();
+    }
+    document.addEventListener('astro:page-load', setupAboutScrollScrub);
+  }
+</script>
+
+<style>
+  :root {
+    --scrub-dim: #94A3B8;
+    --scrub-dim-opacity: 0.32;
+    --scrub-lit: #0F172A;
+    --scrub-lit-heading: #0F172A;
+    --scrub-frontier: #2563EB;
+  }
+
+  :root[data-theme="dark"] {
+    --scrub-dim: #475569;
+    --scrub-dim-opacity: 0.32;
+    --scrub-lit: #F1F5F9;
+    --scrub-lit-heading: #FFFFFF;
+    --scrub-frontier: #38BDF8;
+  }
+
+  /* Kicker */
+  :global(.about-scrub-kicker) {
+    opacity: 0.45;
+    transition: opacity 0.5s ease, color 0.5s ease;
+  }
+
+  :global(.about-scrub-kicker.is-lit) {
+    opacity: 1;
+    color: var(--accent-from);
+  }
+
+  /* Word scrub transition */
+  :global(.about-scrub-word) {
+    display: inline-block;
+    color: var(--scrub-dim);
+    opacity: var(--scrub-dim-opacity);
+    transform: translateY(2px);
+    filter: blur(0.25px);
+    transition:
+      color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: color, opacity, transform;
+  }
+
+  :global(.about-scrub-word.is-lit) {
+    color: var(--scrub-lit);
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  /* Active frontier reading word subtle highlight */
+  :global(.about-scrub-word.is-current) {
+    color: var(--scrub-frontier);
+    opacity: 1;
+  }
+
+  /* Heading custom styling when lit */
+  :global(#about-heading .about-scrub-word.is-lit) {
+    color: var(--scrub-lit-heading);
+  }
+
+  :global(:root[data-theme="dark"] #about-heading .about-scrub-word.is-lit) {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.25), 0 0 35px rgba(56, 189, 248, 0.15);
+  }
+
+  :global(:root[data-theme="light"] #about-heading .about-scrub-word.is-lit) {
+    text-shadow: 0 0 24px rgba(15, 23, 42, 0.08);
+  }
+
+  /* Focus Cards */
+  .about-focus-card {
+    opacity: 0.35;
+    transform: translateY(10px);
+    transition:
+      opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .about-focus-card.is-lit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .about-focus-card .about-focus-title {
+    color: var(--scrub-dim);
+    transition: color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .about-focus-card.is-lit .about-focus-title {
+    color: var(--text);
+  }
+
+  .about-focus-card .about-focus-desc {
+    color: var(--scrub-dim);
+    opacity: 0.85;
+    transition: color 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
+  }
+
+  .about-focus-card.is-lit .about-focus-desc {
+    color: var(--muted);
+    opacity: 1;
+  }
+
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    :global(.about-scrub-word),
+    :global(.about-scrub-word.is-lit),
+    :global(.about-scrub-word.is-current),
+    :global(.about-scrub-kicker),
+    .about-focus-card,
+    .about-focus-card.is-lit,
+    .about-focus-card .about-focus-title,
+    .about-focus-card.is-lit .about-focus-title,
+    .about-focus-card .about-focus-desc,
+    .about-focus-card.is-lit .about-focus-desc {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+      color: inherit !important;
+      text-shadow: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+

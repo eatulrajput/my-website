@@ -1,0 +1,24 @@
+---
+interface Props {
+  initialPercent?: number;
+}
+
+const { initialPercent = 0 } = Astro.props;
+---
+
+{/* Top Hairline Progress Bar (Tally signature look) */}
+<div
+  class="w-full h-1 sm:h-1.5 bg-border/40 dark:bg-border/30 overflow-hidden relative"
+  role="progressbar"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow={initialPercent}
+  aria-label="Contact form progress"
+  id="wizard-progressbar"
+>
+  <div
+    id="wizard-progress-fill"
+    class="h-full bg-gradient-to-r from-accent-from via-accent-via to-accent-to transition-all duration-300 ease-out"
+    style={`width: ${initialPercent}%;`}
+  ></div>
+</div>

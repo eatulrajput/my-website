@@ -1,15 +1,22 @@
 ---
-import { siteData } from '@/data/site';
-import Container from '@/components/ui/Container.astro';
-import StatusPill from '@/components/ui/StatusPill.astro';
-import Button from '@/components/ui/Button.astro';
-import GradientText from '@/components/ui/GradientText.astro';
-import { ArrowDown } from 'lucide-astro';
+import { siteData } from "@/data/site";
+import Container from "@/components/ui/Container.astro";
+import StatusPill from "@/components/ui/StatusPill.astro";
+import Button from "@/components/ui/Button.astro";
+import GradientText from "@/components/ui/GradientText.astro";
+import RotatingText from "@/components/ui/RotatingText.astro";
+import { ArrowDown } from "lucide-astro";
 ---
 
-<section class="relative pt-12 pb-16 sm:pt-20 sm:pb-28 overflow-hidden" id="hero">
-  {/* Blurred background gradient mesh */}
-  <div class="gradient-mesh" aria-hidden="true"></div>
+<section
+  class="relative pt-12 pb-16 sm:pt-20 sm:pb-28 overflow-hidden"
+  id="hero"
+>
+  {/* Blurred background animated gradient blobs */}
+  <div class="gradient-mesh" aria-hidden="true">
+    <div class="hero-blob hero-blob-tr"></div>
+    <div class="hero-blob hero-blob-bl"></div>
+  </div>
 
   <Container class="relative z-10">
     <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
@@ -23,7 +30,12 @@ import { ArrowDown } from 'lucide-astro';
         class="reveal text-fluid-hero font-extrabold tracking-tight text-text leading-[1.08] mb-6"
         style="--delay: 180ms;"
       >
-        I build fast, <GradientText serif={true}>{siteData.accentWord}</GradientText> mobile apps with React Native.
+        I build fast, <GradientText serif={true}
+          >{siteData.accentWord}</GradientText
+        > mobile apps with <RotatingText
+          words={siteData.heroTechTerms}
+          suffix="."
+        />
       </h1>
 
       {/* Subtext */}
@@ -71,7 +83,9 @@ import { ArrowDown } from 'lucide-astro';
           <div class="text-xs text-muted mt-0.5">Smooth UI Target</div>
         </div>
         <div>
-          <div class="text-xl sm:text-2xl font-bold text-text">iOS & Android</div>
+          <div class="text-xl sm:text-2xl font-bold text-text">
+            iOS & Android
+          </div>
           <div class="text-xs text-muted mt-0.5">Cross-Platform</div>
         </div>
         <div>
@@ -82,3 +96,105 @@ import { ArrowDown } from 'lucide-astro';
     </div>
   </Container>
 </section>
+
+<style>
+  .gradient-mesh {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-blob {
+    position: absolute;
+    filter: blur(60px);
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  /* Top-Right Blob */
+  .hero-blob-tr {
+    top: -15%;
+    right: -10%;
+    width: clamp(340px, 45vw, 600px);
+    height: clamp(340px, 45vw, 600px);
+    background: radial-gradient(
+      circle,
+      rgba(59, 130, 246, 0.40) 0%,
+      rgba(6, 182, 212, 0.30) 40%,
+      rgba(147, 51, 234, 0.16) 70%,
+      transparent 85%
+    );
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+    animation: blobFloatTR 9s ease-in-out infinite;
+  }
+
+  /* Bottom-Left Blob */
+  .hero-blob-bl {
+    bottom: -20%;
+    left: -8%;
+    width: clamp(300px, 40vw, 540px);
+    height: clamp(300px, 40vw, 540px);
+    background: radial-gradient(
+      circle,
+      rgba(16, 185, 129, 0.35) 0%,
+      rgba(6, 182, 212, 0.25) 40%,
+      rgba(59, 130, 246, 0.14) 70%,
+      transparent 85%
+    );
+    border-radius: 40% 60% 35% 65% / 60% 35% 65% 40%;
+    animation: blobFloatBL 11s ease-in-out infinite;
+  }
+
+  /* Dark mode vibrant glowing colors */
+  :global([data-theme="dark"]) .hero-blob-tr {
+    background: radial-gradient(
+      circle,
+      rgba(96, 165, 250, 0.45) 0%,
+      rgba(34, 211, 238, 0.32) 40%,
+      rgba(168, 85, 247, 0.22) 70%,
+      transparent 85%
+    );
+  }
+
+  :global([data-theme="dark"]) .hero-blob-bl {
+    background: radial-gradient(
+      circle,
+      rgba(52, 211, 153, 0.40) 0%,
+      rgba(34, 211, 238, 0.28) 40%,
+      rgba(96, 165, 250, 0.18) 70%,
+      transparent 85%
+    );
+  }
+
+  @keyframes blobFloatTR {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    }
+    25% {
+      transform: translate3d(-75px, 45px, 0) scale(1.12) rotate(14deg);
+    }
+    50% {
+      transform: translate3d(-35px, 95px, 0) scale(0.92) rotate(-8deg);
+    }
+    75% {
+      transform: translate3d(50px, 40px, 0) scale(1.08) rotate(18deg);
+    }
+  }
+
+  @keyframes blobFloatBL {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    }
+    25% {
+      transform: translate3d(65px, -40px, 0) scale(1.10) rotate(-14deg);
+    }
+    50% {
+      transform: translate3d(30px, -85px, 0) scale(0.90) rotate(10deg);
+    }
+    75% {
+      transform: translate3d(-45px, -30px, 0) scale(1.06) rotate(-6deg);
+    }
+  }
+</style>
