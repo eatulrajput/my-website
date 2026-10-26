@@ -2,7 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Container from '@/components/ui/Container.astro';
 import Badge from '@/components/ui/Badge.astro';
-import { ArrowLeft } from 'lucide-astro';
+import { ArrowLeft, Calendar, Clock } from 'lucide-astro';
 
 interface Props {
   title: string;
@@ -64,10 +64,16 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
           {title}
         </h1>
 
-        <div class="flex items-center gap-3 text-sm text-muted">
-          <time datetime={date.toISOString()}>{formattedDate}</time>
-          <span aria-hidden="true">·</span>
-          <span>{readingTime}</span>
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-sm text-muted font-medium">
+          <div class="inline-flex items-center gap-1.5 whitespace-nowrap">
+            <Calendar class="w-4 h-4 text-muted/80" stroke-width={2} />
+            <time datetime={date.toISOString()}>{formattedDate}</time>
+          </div>
+          <span class="text-border dark:text-border/80 select-none" aria-hidden="true">•</span>
+          <div class="inline-flex items-center gap-1.5 whitespace-nowrap">
+            <Clock class="w-4 h-4 text-muted/80" stroke-width={2} />
+            <span>{readingTime}</span>
+          </div>
         </div>
       </header>
 
