@@ -10,8 +10,8 @@ const { as: Tag = 'span', class: className = '', serif = true } = Astro.props;
 
 <Tag
   class:list={[
-    'bg-clip-text text-transparent bg-gradient-to-r from-accent-from via-accent-via to-accent-to',
-    serif && 'font-accent italic font-bold',
+    'inline-block bg-clip-text text-transparent bg-gradient-to-r from-accent-from via-accent-via to-accent-to',
+    serif && 'font-accent italic font-bold tracking-normal gradient-serif',
     className,
   ]}
 >

@@ -1,0 +1,203 @@
+---
+import { siteData } from '@/data/site';
+
+interface Props {
+  words?: readonly string[] | string[];
+  suffix?: string;
+  interval?: number;
+  class?: string;
+  id?: string;
+}
+
+const {
+  words = siteData.heroTechTerms ?? ['React Native', 'Expo', 'TypeScript', 'Swift & Kotlin', 'TurboModules', 'Reanimated'],
+  suffix = '.',
+  interval = 2400,
+  class: className = '',
+  id = 'hero-rotating-text',
+} = Astro.props;
+---
+
+<span
+  id={id}
+  class:list={['rt-wrap', className]}
+  data-interval={interval}
+  role="button"
+  tabindex="0"
+  aria-label={`Technology: ${words[0]}. Click to rotate.`}
+  title="Click to cycle technology"
+>
+  <span class="rt-slot" data-slot>
+    {words.map((word, i) => (
+      <span
+        class:list={['rt-item', i === 0 && 'rt-active']}
+        data-index={i}
+      >
+        {word}
+      </span>
+    ))}
+  </span>{suffix && <span class="rt-suffix">{suffix}</span>}
+</span>
+
+<style>
+  /* Wrapper */
+  .rt-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: baseline;
+  }
+
+  /* Slot: sized by the active item, clips overflow */
+  .rt-slot {
+    position: relative;
+    display: inline-grid;
+    vertical-align: baseline;
+    overflow: hidden;
+    /* Override the tight leading-[1.08] from the hero h1 so descenders (y,p,q,g,j) are not clipped */
+    line-height: 1.4;
+    padding-bottom: 0.1em;
+    margin-bottom: -0.1em;
+  }
+
+  /* Every item occupies the same grid cell; only one is visible */
+  :global(.rt-item) {
+    grid-area: 1 / 1;
+    display: inline-block;
+    white-space: pre;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background-image: linear-gradient(135deg, var(--accent-from), var(--accent-via), var(--accent-to));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.25s ease;
+    pointer-events: none;
+  }
+
+  /* Active word: visible, in-place */
+  :global(.rt-item.rt-active) {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Word leaving: slide up and fade */
+  :global(.rt-item.rt-exit) {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  .rt-suffix {
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  /* Hover glow */
+  .rt-wrap:hover {
+    filter: drop-shadow(0 2px 12px rgba(6, 182, 212, 0.3));
+  }
+
+  .rt-wrap:focus-visible {
+    outline: 2px solid var(--accent-from);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.rt-item) {
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  function initRotators() {
+    document.querySelectorAll<HTMLElement>('.rt-wrap').forEach((wrap) => {
+      // Prevent double-init
+      if (wrap.hasAttribute('data-rt-init')) return;
+      wrap.setAttribute('data-rt-init', '');
+
+      const items = Array.from(wrap.querySelectorAll<HTMLElement>('.rt-item'));
+      const intervalMs = parseInt(wrap.getAttribute('data-interval') || '2400', 10);
+
+      if (items.length < 2) return;
+
+      let active = 0;
+      let timer: number | null = null;
+
+      function go(nextIdx: number) {
+        const prev = items[active];
+        const next = items[nextIdx];
+        if (!prev || !next || nextIdx === active) return;
+
+        // Exit current
+        prev.classList.remove('rt-active');
+        prev.classList.add('rt-exit');
+
+        // Enter next
+        next.classList.remove('rt-exit');
+        // Force reflow so the translateY(100%) starting position is applied before we add rt-active
+        void next.offsetHeight;
+        next.classList.add('rt-active');
+
+        // Clean exit class after transition
+        setTimeout(() => prev.classList.remove('rt-exit'), 400);
+
+        active = nextIdx;
+        wrap.setAttribute('aria-label', `Technology: ${next.textContent?.trim()}. Click to rotate.`);
+      }
+
+      function advance() {
+        go((active + 1) % items.length);
+      }
+
+      function start() {
+        stop();
+        timer = window.setInterval(advance, intervalMs);
+      }
+
+      function stop() {
+        if (timer !== null) {
+          clearInterval(timer);
+          timer = null;
+        }
+      }
+
+      // Click / key to manually advance
+      wrap.addEventListener('click', () => { advance(); start(); });
+      wrap.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          advance();
+          start();
+        }
+      });
+
+      // Pause when tab is hidden, resume when visible
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stop();
+        } else {
+          start();
+        }
+      });
+
+      start();
+    });
+  }
+
+  // Init on load and Astro page transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRotators);
+  } else {
+    initRotators();
+  }
+  document.addEventListener('astro:page-load', initRotators);
+</script>
