@@ -26,20 +26,43 @@ const resolveNavHref = (href: string) => {
 };
 ---
 
-<header class="sticky top-0 z-40 w-full border-b border-border/70 bg-bg/85 backdrop-blur-md">
+<header id="site-header" class="sticky top-0 z-40 w-full border-b border-border/70 bg-bg/85 backdrop-blur-md">
+  <script is:inline>
+    if (typeof window !== 'undefined' && window.scrollY > 20) {
+      document.getElementById('site-header')?.classList.add('is-scrolled');
+    }
+  </script>
   <Container>
     <div class="flex h-16 items-center justify-between gap-3">
       {/* Brand / Logo */}
       <a
         href="/"
-        class="group flex items-center gap-2 font-bold text-text text-base tracking-tight hover:opacity-90 transition-opacity shrink-0"
+        class="group flex items-center font-bold text-text text-base tracking-tight hover:opacity-90 transition-opacity shrink-0"
         id="nav-logo"
         aria-label={`${siteData.name} - Home`}
       >
-        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-text text-bg text-sm font-semibold transition-transform group-hover:scale-105">
+        <span
+          id="nav-logo-badge"
+          class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-text text-bg text-sm font-semibold transition-transform group-hover:scale-105 shrink-0 overflow-hidden mr-2"
+          aria-hidden="true"
+        >
           AR
         </span>
-        <span class="font-semibold">{siteData.name}</span>
+        <span
+          id="nav-name"
+          class="inline-flex items-baseline font-semibold text-text tracking-tight select-none"
+          aria-hidden="true"
+        >
+          <span class="inline-block">A</span><span
+            id="nav-name-tul-wrap"
+            class="nav-collapsible-wrapper"
+          ><span class="nav-collapsible-inner">tul&nbsp;</span></span><span
+            class="inline-block"
+          >R</span><span
+            id="nav-name-ajput-wrap"
+            class="nav-collapsible-wrapper"
+          ><span class="nav-collapsible-inner">ajput</span></span>
+        </span>
       </a>
 
       {/* Desktop Navigation (>= 768px) */}
@@ -334,6 +357,114 @@ const resolveNavHref = (href: string) => {
     window.addEventListener('hashchange', closeMenu);
   }
 
+  // Handle sticky nav brand morphing on scroll
+  let navScrollListenerInitialized = false;
+
+  function setupNavScrollLogo() {
+    const SCROLL_THRESHOLD = 20;
+
+    const syncScrollState = () => {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+      if (window.scrollY > SCROLL_THRESHOLD) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    };
+
+    // Immediately sync state on current position (useful for mid-scroll reloads / view transitions)
+    syncScrollState();
+
+    if (!navScrollListenerInitialized) {
+      let ticking = false;
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              syncScrollState();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        },
+        { passive: true }
+      );
+      navScrollListenerInitialized = true;
+    }
+  }
+
   setupFullScreenMobileMenu();
-  document.addEventListener('astro:page-load', setupFullScreenMobileMenu);
+  setupNavScrollLogo();
+
+  document.addEventListener('astro:page-load', () => {
+    setupFullScreenMobileMenu();
+    setupNavScrollLogo();
+  });
 </script>
+
+<style>
+  /* Header brand morph transitions */
+  #nav-logo-badge {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    transition: width 700ms cubic-bezier(0.35, 0, 0.25, 1),
+                max-width 700ms cubic-bezier(0.35, 0, 0.25, 1),
+                margin-right 700ms cubic-bezier(0.35, 0, 0.25, 1),
+                opacity 500ms ease,
+                transform 700ms cubic-bezier(0.35, 0, 0.25, 1);
+  }
+
+  .nav-collapsible-wrapper {
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    max-width: 6rem;
+    overflow: hidden;
+    vertical-align: baseline;
+    transition: grid-template-columns 750ms cubic-bezier(0.35, 0, 0.25, 1),
+                max-width 750ms cubic-bezier(0.35, 0, 0.25, 1);
+  }
+
+  .nav-collapsible-inner {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 550ms cubic-bezier(0.35, 0, 0.25, 1),
+                transform 750ms cubic-bezier(0.35, 0, 0.25, 1);
+  }
+
+  /* When scrolled / present in mid: logo is hidden, tul and ajput disappear slowly, and A & R meet */
+  :global(#site-header.is-scrolled) #nav-logo-badge {
+    width: 0 !important;
+    max-width: 0 !important;
+    margin-right: 0 !important;
+    opacity: 0 !important;
+    transform: scale(0.6) translateX(-8px) !important;
+    pointer-events: none !important;
+  }
+
+  :global(#site-header.is-scrolled) .nav-collapsible-wrapper {
+    grid-template-columns: 0fr;
+    max-width: 0 !important;
+  }
+
+  :global(#site-header.is-scrolled) .nav-collapsible-inner {
+    opacity: 0;
+    transform: translateX(-4px);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #nav-logo-badge,
+    .nav-collapsible-wrapper,
+    .nav-collapsible-inner {
+      transition: none !important;
+    }
+  }
+</style>
