@@ -1,0 +1,38 @@
+---
+import { Check, Briefcase, Code2, Users, MessageSquare } from 'lucide-astro';
+import type { WizardTopic } from '@/data/wizard-topics';
+
+interface Props {
+  topic: WizardTopic;
+}
+
+const { topic } = Astro.props;
+---
+
+<label class="topic-option-card relative flex items-center gap-3.5 p-3.5 sm:p-4 rounded-xl bg-bg/60 dark:bg-bg/40 border border-border/80 cursor-pointer transition-all select-none group min-h-[68px]">
+  <input type="radio" name="topic" value={topic.value} class="sr-only" />
+  
+  <div class="topic-key-badge w-7 h-7 rounded-lg border border-border/80 bg-surface text-xs font-mono font-bold flex items-center justify-center text-muted group-hover:text-text group-hover:border-accent-from/60 transition-colors shrink-0">
+    {topic.key}
+  </div>
+
+  <div class:list={['p-2 rounded-lg shrink-0', topic.iconBgClass, topic.iconTextClass]}>
+    {topic.icon === 'Briefcase' && <Briefcase class="w-4 h-4" stroke-width={2} />}
+    {topic.icon === 'Code2' && <Code2 class="w-4 h-4" stroke-width={2} />}
+    {topic.icon === 'Users' && <Users class="w-4 h-4" stroke-width={2} />}
+    {topic.icon === 'MessageSquare' && <MessageSquare class="w-4 h-4" stroke-width={2} />}
+  </div>
+
+  <div class="flex-1 min-w-0">
+    <div class:list={['text-sm font-semibold text-text transition-colors truncate', topic.hoverTextClass]}>
+      {topic.title}
+    </div>
+    <div class="text-xs text-muted leading-snug">
+      {topic.description}
+    </div>
+  </div>
+
+  <div class="topic-check-circle w-5 h-5 rounded-full border border-border/80 flex items-center justify-center shrink-0">
+    <Check class="topic-check-icon w-3 h-3 text-white pointer-events-none" stroke-width={3} />
+  </div>
+</label>

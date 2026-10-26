@@ -1,0 +1,78 @@
+---
+import { Pencil, AlertCircle } from 'lucide-astro';
+---
+
+<div class="rounded-xl sm:rounded-2xl bg-bg/60 dark:bg-bg/40 border border-border/80 divide-y divide-border/60 text-sm overflow-hidden text-left">
+  {/* Sender row */}
+  <div class="p-4 sm:p-5 flex items-start justify-between gap-4">
+    <div>
+      <span class="text-[11px] font-mono font-medium text-muted uppercase tracking-wider block">From</span>
+      <div class="font-bold text-text text-base mt-0.5" id="review-name">—</div>
+      <div class="text-xs text-muted font-mono mt-0.5" id="review-email">—</div>
+    </div>
+    <button
+      type="button"
+      class="wizard-edit-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium text-muted hover:text-accent-from hover:bg-surface transition-colors border border-border/50"
+      data-goto-step="1"
+      aria-label="Edit personal details"
+    >
+      <Pencil class="w-3 h-3" />
+      <span>Edit</span>
+    </button>
+  </div>
+
+  {/* Topic & Company row */}
+  <div class="p-4 sm:p-5 flex items-start justify-between gap-4">
+    <div>
+      <span class="text-[11px] font-mono font-medium text-muted uppercase tracking-wider block">Topic</span>
+      <div class="inline-flex items-center gap-2 font-bold text-text text-sm sm:text-base mt-0.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent-from shrink-0"></span>
+        <span id="review-topic">—</span>
+      </div>
+      <div class="text-xs text-muted mt-1 wizard-hidden" id="review-company-wrapper">
+        Company / Link: <span id="review-company" class="font-medium text-text"></span>
+      </div>
+    </div>
+    <button
+      type="button"
+      class="wizard-edit-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium text-muted hover:text-accent-from hover:bg-surface transition-colors border border-border/50"
+      data-goto-step="2"
+      aria-label="Edit topic"
+    >
+      <Pencil class="w-3 h-3" />
+      <span>Edit</span>
+    </button>
+  </div>
+
+  {/* Message row */}
+  <div class="p-4 sm:p-5 flex items-start justify-between gap-4">
+    <div class="flex-1 min-w-0">
+      <span class="text-[11px] font-mono font-medium text-muted uppercase tracking-wider mb-1 block">Message</span>
+      <p class="text-sm text-text leading-relaxed whitespace-pre-wrap max-h-36 overflow-y-auto pr-2 bg-surface/50 dark:bg-surface/30 p-3 rounded-lg border border-border/50 font-mono text-xs sm:text-sm" id="review-message">
+        —
+      </p>
+    </div>
+    <button
+      type="button"
+      class="wizard-edit-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium text-muted hover:text-accent-from hover:bg-surface transition-colors border border-border/50 shrink-0"
+      data-goto-step="3"
+      aria-label="Edit message"
+    >
+      <Pencil class="w-3 h-3" />
+      <span>Edit</span>
+    </button>
+  </div>
+</div>
+
+{/* Submission Error Banner */}
+<div id="wizard-error-banner" class="wizard-hidden mt-4 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-500 text-sm">
+  <div class="flex items-start gap-2.5">
+    <AlertCircle class="w-5 h-5 shrink-0 mt-0.5" stroke-width={2} />
+    <div class="flex-1 text-left">
+      <p class="font-bold" id="wizard-error-title">Failed to send message</p>
+      <p class="text-xs mt-0.5 text-rose-600 dark:text-rose-400" id="wizard-error-text">
+        Please try again, or email me directly at hello@atulrajput.dev.
+      </p>
+    </div>
+  </div>
+</div>

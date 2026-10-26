@@ -1,0 +1,28 @@
+---
+interface Props {
+  initialStep?: number;
+  totalSteps?: number;
+  initialTitle?: string;
+  initialPercent?: number;
+}
+
+const {
+  initialStep = 1,
+  totalSteps = 4,
+  initialTitle = 'About you',
+  initialPercent = 0,
+} = Astro.props;
+---
+
+{/* Tally Step Pill & Percentage Header */}
+<div class="flex items-center justify-between mb-6 sm:mb-8" id="wizard-progress-section">
+  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-bg/80 dark:bg-bg/60 border border-border/80 text-text shadow-xs">
+    <span class="w-1.5 h-1.5 rounded-full bg-accent-from animate-pulse"></span>
+    <span id="wizard-step-label">Step {initialStep} of {totalSteps}: {initialTitle}</span>
+  </div>
+
+  <div class="flex items-center gap-1.5 text-xs font-mono text-muted">
+    <span id="wizard-step-percent" class="font-bold text-accent-from">{initialPercent}%</span>
+    <span class="text-muted/60">completed</span>
+  </div>
+</div>

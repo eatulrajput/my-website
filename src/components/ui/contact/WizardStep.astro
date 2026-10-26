@@ -1,0 +1,44 @@
+---
+interface Props {
+  step: number;
+  active?: boolean;
+  kicker: string;
+  title: string;
+  description: string;
+  class?: string;
+}
+
+const {
+  step,
+  active = false,
+  kicker,
+  title,
+  description,
+  class: className = '',
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    'wizard-step',
+    active && 'active',
+    className,
+  ]}
+  data-step={step}
+  id={`step-${step}`}
+  inert={!active ? '' : undefined}
+>
+  <div class="mb-5 sm:mb-6 text-left">
+    <span class="text-[11px] font-mono font-bold text-accent-from uppercase tracking-widest block mb-1">
+      {kicker}
+    </span>
+    <h3 class="text-2xl sm:text-3xl font-bold text-text tracking-tight">
+      {title}
+    </h3>
+    <p class="text-sm sm:text-base text-muted mt-2 leading-relaxed">
+      {description}
+    </p>
+  </div>
+
+  <slot />
+</div>
