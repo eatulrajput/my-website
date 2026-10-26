@@ -1,0 +1,16 @@
+---
+import RotatingText from './RotatingText.astro';
+
+interface Props {
+  words?: readonly string[] | string[];
+  suffix?: string;
+  interval?: number;
+  duration?: number;
+  class?: string;
+  id?: string;
+}
+
+const props = Astro.props;
+---
+
+<RotatingText {...props} />
